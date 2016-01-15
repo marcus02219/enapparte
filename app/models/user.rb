@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  validates :firstname, :surname, presence: true
-  validates :gender, inclusion: { in: %w(male female), message: 'must be provided' }
+  validates :firstname, :surname, :gender, presence: true
 
+
+  def full_name
+    "#{firstname} #{surname}"
+  end
 end

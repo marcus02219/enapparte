@@ -258,6 +258,10 @@ body {
   }
 }
 
+#SignInModal .modal-dialog {
+  width: 320px;
+}
+
 .carousel .item {
   left: 0 !important;
   -webkit-transition: opacity .8s;
@@ -393,6 +397,17 @@ aside h2.title.white {
 #navbarNavSmall {
   float: none;
   display: inline-block !important;
+}
+
+.flash-messages {
+  margin-top: 50px;
+}
+.flash-messages.floating {
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  top: 150px;
+  z-index: 5000;
 }
 
 .xs-nav {
@@ -5873,7 +5888,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 
-.navbar-nav > li > a {
+.navbar-nav > li > a, .navbar-nav > li > .dropdown {
   font-weight: 600;
   padding: 10px 13px;
   font-size: 15px;
@@ -5884,7 +5899,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 14px;
 
   a:hover {
-    background: black;
+    background: #ccc;
     text-decoration: underline;
   }
 }

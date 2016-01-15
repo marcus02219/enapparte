@@ -1,3 +1,7 @@
+<% content_for( :messages ) do %>
+  <%= render partial: 'layouts/messages', locals: { flash_class: 'floating' } %>
+<% end %>
+
 <div id="slider" data-ride="carousel" class="carousel home-carousel slide" style="text-align:center">
     <div class="carousel-inner" style="text-align:center;">
 
