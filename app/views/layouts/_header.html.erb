@@ -16,15 +16,7 @@
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-              <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-            <% else %>
-              <li><%= link_to 'Sign in', new_user_session_path %></li>
-              <li><%= link_to 'Sign up', new_user_registration_path %></li>
-            <% end %>
-                <li><a href="" class="nav_links">Connexion</a></li>
-                <li><a href="" class="nav_links">Inscrivez-vous</a></li>
+                <%= render 'layouts/nav_links_for_auth' %>
                 <li><a href="" class="btn btn-performer">Devenez performeur</a>
                 </li>
             </ul>

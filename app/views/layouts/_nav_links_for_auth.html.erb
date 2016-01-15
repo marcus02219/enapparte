@@ -10,5 +10,5 @@
   </div>
 <% else %>
   <li><%= link_to 'Connexion', new_user_session_path, class: 'nav_links', data: { toggle: 'modal', target: '#SignInModal' } %></li>
-  <li><%= link_to 'Inscrivez-vous', new_user_registration_path %></li>
+  <li><%= link_to 'Inscrivez-vous', new_user_registration_path, class: 'nav_links' %></li>
 <% end%>
