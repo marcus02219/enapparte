@@ -1,4 +1,5 @@
-<header id="header" class="navbar navbar-static-top affix" id="top" role="banner" data-spy="affix" data-offset-top="490">
+<header id="header" class="navbar navbar-static-top <%= affix_header? ? 'affix-top' : 'not-fixed' %>" 
+  role="banner" <%= affix_header? ? "data-spy=affix data-offset-top=490" : '' %>>
     <div style="padding:0 30px">
         <div class="navbar-header">
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">

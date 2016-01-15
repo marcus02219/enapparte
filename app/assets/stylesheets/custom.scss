@@ -129,7 +129,7 @@ body {
     -moz-border-radius: 0;
     border-radius: 0;
   }
-  .affix a, .affix {
+  .affix a, .affix, .not-fixed a, .not-fixed {
     color: $navigation_color;
   }
   #the_logo {
@@ -157,6 +157,15 @@ body {
   box-shadow: 0 1px 0 0 #E4E4E4;
   background: $white !important;
 
+  a {
+    color: $navigation_color;
+    text-decoration: none;
+  }
+}
+
+#header.not-fixed {
+  -moz-box-shadow: 0 1px 0 0 #E4E4E4;
+  box-shadow: 0 1px 0 0 #E4E4E4;
   a {
     color: $navigation_color;
     text-decoration: none;
