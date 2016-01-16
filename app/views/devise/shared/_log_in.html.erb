@@ -15,7 +15,7 @@
       <%= f.label :password, "Mot de passe" %>
       <%= f.password_field :password, class: 'form-control' %>
     </div>
-      <%= f.submit 'Sign in', "Se connecter" :class => 'button right' %>
+      <%= f.submit "Se connecter", :class => 'button right' %>
       <% if devise_mapping.rememberable? -%>
         <div class="checkbox" style="width:150px">
           <label>
