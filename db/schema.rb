@@ -11,7 +11,107 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114140215) do
+ActiveRecord::Schema.define(version: 20160117022126) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "street"
+    t.string   "postcode"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "user_id"
+    t.integer  "bookings_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "arts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "shows_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "status"
+    t.datetime "date"
+    t.integer  "spectators"
+    t.float    "price"
+    t.text     "message"
+    t.float    "payout"
+    t.boolean  "payment_received?"
+    t.boolean  "payment_sent?"
+    t.datetime "paid_on"
+    t.datetime "paid_out_on"
+    t.integer  "show_id"
+    t.integer  "user_id"
+    t.integer  "address_id"
+    t.integer  "payment_methods_id"
+    t.integer  "ratings_id"
+    t.integer  "comment_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "users_id"
+    t.integer  "shows_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string   "payoption"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.integer  "bookings_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.integer  "imageable_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "value"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shows", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "length"
+    t.text     "description"
+    t.float    "price"
+    t.integer  "max_spectators"
+    t.time     "starts_at"
+    t.time     "ends_at"
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.integer  "art_id"
+    t.integer  "language_id"
+    t.integer  "bookings_id"
+    t.integer  "pictures_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,6 +134,19 @@ ActiveRecord::Schema.define(version: 20160114140215) do
     t.string   "firstname"
     t.string   "surname"
     t.integer  "gender"
+    t.integer  "sex"
+    t.text     "bio"
+    t.string   "phone_number"
+    t.string   "provider"
+    t.integer  "uid"
+    t.date     "dob"
+    t.string   "activity"
+    t.integer  "language_id"
+    t.integer  "addresses_id"
+    t.integer  "bookings_id"
+    t.integer  "payment_methods_id"
+    t.integer  "shows_id"
+    t.integer  "picture_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
