@@ -8,7 +8,7 @@
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
-User.create(firstname:"asdasd",surname:"asdsad",gender:1, email:"gasdas@mail.ru" , password:"dfghjkllkiu7",phone_number:"+89276214346",provider:"fb",uid:123,dob:Time.now ,activity:"asdsad")
+User.create(firstname:"asdasd",surname:"asdsad",gender:1, email:"gasdas@mail.ru" , password:"dfghjkllkiu7",phone_number:"927-621-4346",provider:"fb",uid:123,dob:Time.now ,activity:"asdsad")
 puts "1st test user created"
 Address.create(street:"sdadasd",postcode:"12345",city:"Asdsa",state:"asdsad",country:"Masdaserd",latitude:41.1,longitude:42.21)
 Booking.create(status:1,date:Time.now,spectators:123,price:123,message:"asdasd",payout:12.1,payment_received?:true,payment_sent?:false,paid_on:Time.now,paid_out_on:Time.now)
