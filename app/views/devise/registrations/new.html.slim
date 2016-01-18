@@ -1,0 +1,29 @@
+.authform
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
+    h3
+      | S'inscrire
+    = devise_error_messages!
+    .form-group
+      = f.label :firstname, "Prénom"
+      = f.text_field :firstname, :autofocus => true, class: 'form-control'
+    .form-group
+      = f.label :surname
+      = f.text_field :surname, :autofocus => true, class: 'form-control'
+    .form-group
+      = f.label :gender
+      br
+      = f.radio_button :gender, '1'
+      = f.label :gender, "Male", :value => "1"
+      | </br /> 
+      = f.radio_button :gender, '2'
+      = f.label :gender, "Female", :value => "2"
+    .form-group
+      = f.label :email
+      = f.email_field :email, class: 'form-control'
+    .form-group
+      = f.label :password
+      = f.password_field :password, class: 'form-control'
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, class: 'form-control'
+    = f.submit 'Sign up', :class => 'button right'

@@ -69,6 +69,12 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'sqlite3'
+
+  gem 'guard'
+  gem 'guard-rails'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
 end
 
 group :production do
@@ -84,3 +90,4 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'slim-rails'
