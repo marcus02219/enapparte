@@ -70,7 +70,7 @@ body {
     -webkit-border-radius: 100px;
     border-radius: 100px;
   }
-  
+
   margin-top: 1px;
   padding-top: 1px;
   margin-bottom: -40px;
@@ -5901,6 +5901,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   a:hover {
     background: #ccc;
     text-decoration: underline;
+    cursor: pointer;
   }
 }
 
