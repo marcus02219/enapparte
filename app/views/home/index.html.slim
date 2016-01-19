@@ -2,15 +2,13 @@
   = render partial: 'layouts/messages', locals: { flash_class: 'floating' }
 #slider.carousel.home-carousel.slide[data-ride="carousel" style="text-align:center"]
   .carousel-inner[style="text-align:center;"]
-    |  <div class="item relative discovery-card active" style="background:url('
-    = image_url('main_bg.jpg')
-    | ') no-repeat center center;background-size:cover;"> 
-    .va-container.va-container-v.va-container-h
-      p.va-middle.text-center.text-contrast
-        | Et si notre canapé 
-        br
-        |  nous plaçait aux premières loges ?
-        br
+    .item.relative.discovery-card.active[style="background:url(#{image_url('main_bg.jpg')}) no-repeat center center; background-size:cover;"]
+      .va-container.va-container-v.va-container-h
+        p.va-middle.text-center.text-contrast
+          | Et si notre canapé
+          br
+          |  nous plaçait aux premières loges ?
+          br
   #search-bar-home.container
     #htw-home-link.row
       a.btn.btn-lg.btn-classic[href="#how-it-works" style="padding-left:20px;padding-right:20px;"]
@@ -27,21 +25,13 @@
         .col-xs-12.col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1
           .row
             .col-xs-12.col-sm-6
-              |  <div class="discovery-card" style="background:url('
-              = image_url('img-1.jpg')
-              | ');"> 
-          .col-xs-12.col-sm-6
-            |  <div class="discovery-card" style="background:url('
-            = image_url('img-2.jpg')
-            | ');"> 
-        .col-xs-12.col-sm-6
-          |  <div class="discovery-card" style="background:url('
-          = image_url('img-3.jpg')
-          | ');"> 
-      .col-xs-12.col-sm-6
-        |  <div class="discovery-card" style="background:url('
-        = image_url('img-4.jpg')
-        | ');"> 
+              .discovery-card[style="background:url(#{image_url('img-1.jpg')});"]
+            .col-xs-12.col-sm-6
+              .discovery-card[style="background:url(#{image_url('img-2.jpg')});"]
+            .col-xs-12.col-sm-6
+              .discovery-card[style="background:url(#{image_url('img-3.jpg')});"]
+            .col-xs-12.col-sm-6
+              .discovery-card[style="background:url(#{image_url('img-4.jpg')});"]
 .row
   .col-sm-8.col-sm-offset-2
     .text-center[style="padding-top:50px;padding-bottom:30px"]
