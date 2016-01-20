@@ -49,7 +49,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :language
+
   has_many   :addresses
+  accepts_nested_attributes_for :addresses
+
   has_many   :bookings
   has_many   :payment_methods
   has_many   :shows

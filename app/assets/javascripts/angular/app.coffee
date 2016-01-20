@@ -1,0 +1,2 @@
+angular
+  .module 'enapparte', ['ngResource']

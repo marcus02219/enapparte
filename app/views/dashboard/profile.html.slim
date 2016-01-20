@@ -1,48 +1,64 @@
 = render "tabs"
 
 br
-.container
-  .row
-    .col-lg-3
-      br
-      ul.nav.nav-pills
-        li.active
-          a[href="#personal" data-toggle="tab"]= "Personal informations"
-        li
-          a[href="#comments" data-toggle="tab"]= "Comments"
+div[ng-controller="profile"]
+  .container
+    .row
+      .col-lg-3
+        br
+        ul.nav.nav-pills
+          li.active
+            a[href="#personal" data-toggle="tab"]= "Personal informations"
+          li
+            a[href="#comments" data-toggle="tab"]= "Comments"
 
-    .col-lg-9
-      .tab-content
-        #personal.tab-pane.active
-          .page-header
-            h2= "Personal informations"
-          .row
-            .col-lg-4
-              h4= "Your profile photo"
-              .photo
-                - if @user.picture
-                  = image_tag @user.picture.image.url(:medium)
+      .col-lg-9
+        .tab-content
+          #personal.tab-pane.active
+            .page-header
+              h2= "Personal informations"
+            .row
+              .col-lg-4
+                h4= "Your profile photo"
+                .photo
+                  - if @user.picture
+                    = image_tag @user.picture.image.url(:medium)
 
-              .btn-upload
-                .btn.btn-success= "Change"
-                form[action=(upload_photo_users_path) enctype="multipart/form-data" method="post"]
-                  input[type="file" name="image"]
+                .btn-upload
+                  .btn.btn-success.pull-right= "Change"
+                  form[action=(upload_photo_users_path) enctype="multipart/form-data" method="post"]
+                    input[type="file" name="image"]
 
-            .col-lg-8
-              = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
-                fieldset
-                  legend= "Personal Info"
-                  = f.input :gender
-                  = f.input :firstname
-                  = f.input :surname
-                  = f.input :dob
-                  = f.input :email, disabled: true
-                  .col-lg-9.col-lg-offset-3
-                    = link_to "Actualisez votre adresse email", "#"
-                  = f.input :phone_number
-                fieldset
-                  legend= "Addresses"
-                  = f.simple_fields_for :addresses do |subform|
-        #comments.tab-pane
-          .page-header
-            h2= "Comments"
+              .col-lg-8
+                = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+                  fieldset
+                    legend= "Personal Info"
+                    input_enum[name="gender"]
+                    = f.input :firstname
+                    = f.input :surname
+                    = f.input :dob
+                    .col-lg-9.col-lg-offset-3
+                      = link_to "Actualisez votre adresse email", "#"
+                    = f.input :email, disabled: true
+                    = f.input :phone_number
+                  fieldset
+                    legend= "Addresses"
+                    .form-group.tel.optional
+                      label.tel.optional.col-sm-3.control-label for="user_phone_number"  Select address
+                      .col-sm-9
+                        = select_tag "addresses", options_from_collection_for_select(@user.addresses, :id, :full_address), include_blank: "Add New"
+                    = f.simple_fields_for @user.addresses.build do |address_form|
+                      .new_address
+                        = address_form.input :country, as: :string
+                        = address_form.input :state
+                        = address_form.input :postcode
+                        = address_form.input :city
+                        = address_form.input :street
+
+                  .form-actions
+                    .pull-right
+                      = f.button :submit, "Save", class: "btn btn-success"
+
+          #comments.tab-pane
+            .page-header
+              h2= "Comments"

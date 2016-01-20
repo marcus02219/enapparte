@@ -80,8 +80,18 @@ ActiveRecord::Schema.define(version: 20160120030535) do
     t.datetime "updated_at",  null: false
   end
 
-# Could not dump table "pictures" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "pictures", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.integer  "imageable_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "imageable_type"
+  end
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "value"

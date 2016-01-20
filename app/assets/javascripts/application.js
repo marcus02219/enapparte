@@ -15,4 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require jquery-form/jquery.form
+//= require angular/angular.min
+//= require angular/angular.min
+//= require angular-resource/angular-resource
 //= require_tree .

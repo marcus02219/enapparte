@@ -66,4 +66,14 @@ class UsersController < ApplicationController
     render json: { image: @user.picture.image.url(:medium) }
   end
 
+  def update
+    @user = current_user
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:gender, :firstname, :surname, :dob, :phone_number)
+  end
+
 end

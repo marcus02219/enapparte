@@ -4,3 +4,5 @@
 # asset 'bootstrap'
 
 asset 'jquery-form'
+asset 'angular'
+asset 'angular-resource'

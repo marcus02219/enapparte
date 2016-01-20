@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     post 'upload_photo', on: :collection
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users
+    end
+  end
+
   get '/dashboard', to: 'dashboard#index'
   get '/dashboard/profile', to: 'dashboard#profile', as: 'profile_dashboard'
 

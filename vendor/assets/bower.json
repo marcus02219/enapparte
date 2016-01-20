@@ -1,6 +1,8 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "jquery-form": "latest"
+    "jquery-form": "latest",
+    "angular": "latest",
+    "angular-resource": "latest"
   }
 }
