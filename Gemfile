@@ -53,6 +53,7 @@ group :development do
   gem 'spring-commands-rspec'
 
   gem 'annotate', github: 'ctran/annotate_models'
+  gem 'quiet_assets'
 end
 
 group :development, :test do

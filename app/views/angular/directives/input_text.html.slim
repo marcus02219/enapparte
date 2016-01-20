@@ -1,0 +1,7 @@
+.form-group.string.required
+  label.string.required.col-sm-3.control-label for="{{elementId}}"
+    abbr title="required"  *
+    '
+    | {{ dtLabel }}
+  .col-sm-9
+    input.string.required.form-control[id="{{elementId}}" type="text" ng-model="dtModel"]

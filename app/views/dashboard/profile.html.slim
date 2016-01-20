@@ -33,9 +33,10 @@ div[ng-controller="profile"]
                 = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
                   fieldset
                     legend= "Personal Info"
-                    input_enum[name="gender"]
-                    = f.input :firstname
-                    = f.input :surname
+                    input_enum[dt-model="user.gender" dt-label=(User.human_attribute_name(:gender)) required=true dt-enum=(User.genders_i18n.to_json)]
+                    input_text[dt-model="user.firstname" dt-label=(User.human_attribute_name(:firstname)) required=true]
+                    input_text[dt-model="user.surname" dt-label=(User.human_attribute_name(:surname)) required=true]
+                    input_date[dt-model="user.dob" dt-label=(User.human_attribute_name(:dob)) dt-monthes=(I18n.t('date.month_names').to_json)]
                     = f.input :dob
                     .col-lg-9.col-lg-offset-3
                       = link_to "Actualisez votre adresse email", "#"
