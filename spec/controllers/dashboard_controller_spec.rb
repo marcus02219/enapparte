@@ -32,6 +32,7 @@ describe DashboardController do
       end
 
       it { expect(response).to be_success }
+      it { expect(assigns(:user)).to_not be_nil }
     end
   end
 

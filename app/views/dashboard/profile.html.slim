@@ -1,1 +1,32 @@
 = render "tabs"
+
+br
+.container
+  .row
+    .col-lg-3
+      br
+      ul.nav.nav-pills
+        li.active
+          a[href="#personal" data-toggle="tab"]= "Personal informations"
+        li
+          a[href="#comments" data-toggle="tab"]= "Comments"
+
+    .col-lg-9
+      .tab-content
+        #personal.tab-pane.active
+          .page-header
+            h2= "Personal informations"
+          .row
+            .col-lg-3
+              h4= "Your profile photo"
+              .photo
+                - if @user.picture
+                  = image_tag @user.picture.image.url(:medium)
+
+              .btn-upload
+                .btn.btn-success= "Change"
+                input[type="file"]
+
+        #comments.tab-pane
+          .page-header
+            h2= "Comments"

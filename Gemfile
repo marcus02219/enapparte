@@ -51,6 +51,8 @@ group :development do
   gem 'rails_apps_testing'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
+
+  gem 'annotate', github: 'ctran/annotate_models'
 end
 
 group :development, :test do
@@ -84,3 +86,4 @@ end
 gem 'slim-rails'
 gem 'geocoder'
 gem 'active_link_to'
+gem 'paperclip'
