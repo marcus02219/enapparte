@@ -17,7 +17,7 @@ br
           .page-header
             h2= "Personal informations"
           .row
-            .col-lg-3
+            .col-lg-4
               h4= "Your profile photo"
               .photo
                 - if @user.picture
@@ -28,6 +28,21 @@ br
                 form[action=(upload_photo_users_path) enctype="multipart/form-data" method="post"]
                   input[type="file" name="image"]
 
+            .col-lg-8
+              = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+                fieldset
+                  legend= "Personal Info"
+                  = f.input :gender
+                  = f.input :firstname
+                  = f.input :surname
+                  = f.input :dob
+                  = f.input :email, disabled: true
+                  .col-lg-9.col-lg-offset-3
+                    = link_to "Actualisez votre adresse email", "#"
+                  = f.input :phone_number
+                fieldset
+                  legend= "Addresses"
+                  = f.simple_fields_for :addresses do |subform|
         #comments.tab-pane
           .page-header
             h2= "Comments"

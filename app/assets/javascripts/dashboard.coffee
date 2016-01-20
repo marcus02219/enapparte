@@ -9,3 +9,5 @@ $ ->
         $form.prev().html('Change')
         $('.dashboard.profile .photo img').prop('src', data.image)
 
+
+

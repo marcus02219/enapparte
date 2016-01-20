@@ -1,0 +1,14 @@
+en:
+  enums:
+    user:
+      gender:
+        male: Male
+        female: Female
+        other: Other
+  activerecord:
+    attributes:
+      user:
+        firstname: First Name
+        surname: Last Name
+        dob: Day Of Birth
+
