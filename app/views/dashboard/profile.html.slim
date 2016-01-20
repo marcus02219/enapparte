@@ -33,10 +33,9 @@ div[ng-controller="profile"]
                 = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
                   fieldset
                     legend= "Personal Info"
-                    input_enum[dt-model="user.gender" dt-label=(User.human_attribute_name(:gender)) required=true dt-enum=(User.genders_i18n.to_json)]
-                    input_text[dt-model="user.firstname" dt-label=(User.human_attribute_name(:firstname)) required=true]
-                    input_text[dt-model="user.surname" dt-label=(User.human_attribute_name(:surname)) required=true]
-                    input_date[dt-model="user.dob" dt-label=(User.human_attribute_name(:dob)) dt-monthes=(I18n.t('date.month_names').to_json)]
+                    = f.input :gender
+                    = f.input :firstname
+                    = f.input :surname
                     = f.input :dob
                     .col-lg-9.col-lg-offset-3
                       = link_to "Actualisez votre adresse email", "#"
@@ -48,17 +47,20 @@ div[ng-controller="profile"]
                       label.tel.optional.col-sm-3.control-label for="user_phone_number"  Select address
                       .col-sm-9
                         = select_tag "addresses", options_from_collection_for_select(@user.addresses, :id, :full_address), include_blank: "Add New"
-                    = f.simple_fields_for @user.addresses.build do |address_form|
-                      .new_address
-                        = address_form.input :country, as: :string
-                        = address_form.input :state
-                        = address_form.input :postcode
-                        = address_form.input :city
-                        = address_form.input :street
+                    = render "profile_address", f: f
+
+                  fieldset
+                    legend= "About you"
+                    = f.input :activity
+                    = f.input :language, as: :select, collection: Language.all
+                    = f.input :bio, as: :text
 
                   .form-actions
                     .pull-right
-                      = f.button :submit, "Save", class: "btn btn-success"
+                      = f.button :submit, "Save My Profile", class: "btn btn-success"
+                br
+                br
+                br
 
           #comments.tab-pane
             .page-header

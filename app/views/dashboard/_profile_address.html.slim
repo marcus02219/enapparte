@@ -1,0 +1,7 @@
+= f.simple_fields_for @user.addresses.build do |address_form|
+  .new_address
+    = address_form.input :country, as: :string
+    = address_form.input :state
+    = address_form.input :postcode
+    = address_form.input :city
+    = address_form.input :street
