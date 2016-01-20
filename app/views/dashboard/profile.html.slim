@@ -25,7 +25,8 @@ br
 
               .btn-upload
                 .btn.btn-success= "Change"
-                input[type="file"]
+                form[action=(upload_photo_users_path) enctype="multipart/form-data" method="post"]
+                  input[type="file" name="image"]
 
         #comments.tab-pane
           .page-header

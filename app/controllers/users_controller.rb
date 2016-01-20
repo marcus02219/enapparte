@@ -59,6 +59,11 @@ class UsersController < ApplicationController
 
   def upload_photo
     @user = current_user
+    if params[:image]
+      @user.picture.image = params[:image]
+      @user.picture.save
+    end
+    render json: { image: @user.picture.image.url(:medium) }
   end
 
 end

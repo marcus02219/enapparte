@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
   devise_for :users
 
-  resources :users
+  resources :users do
+    post 'upload_photo', on: :collection
+  end
 
   get '/dashboard', to: 'dashboard#index'
   get '/dashboard/profile', to: 'dashboard#profile', as: 'profile_dashboard'
