@@ -1,4 +1,5 @@
-= f.simple_fields_for @user.addresses.build do |address_form|
+- @user.addresses.build  if @user.addresses.empty?
+= f.simple_fields_for :addresses do |address_form|
   .new_address
     = address_form.input :country, as: :string
     = address_form.input :state

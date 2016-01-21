@@ -24,6 +24,6 @@ class Address < ActiveRecord::Base
   def full_address
     "#{country}, #{state}, #{street}, #{city}"
   end
-  geocoded_by :full_address
-  after_validation :geocode
+  # geocoded_by :full_address
+  # after_validation :geocode
 end

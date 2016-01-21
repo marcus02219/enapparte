@@ -68,12 +68,14 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    @user.update_attributes user_params
+    redirect_to profile_dashboard_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:gender, :firstname, :surname, :dob, :phone_number)
+    params.require(:user).permit(:gender, :firstname, :surname, :dob, :phone_number, :language_id, :bio, :activity, addresses_attributes: [:country, :state, :postcode, :city, :street])
   end
 
 end
