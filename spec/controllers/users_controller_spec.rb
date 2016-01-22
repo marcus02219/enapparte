@@ -36,6 +36,7 @@
 #  payment_methods_id     :integer
 #  shows_id               :integer
 #  picture_id             :integer
+#  rating                 :float
 #
 # Indexes
 #

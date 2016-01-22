@@ -36,6 +36,7 @@
 #  payment_methods_id     :integer
 #  shows_id               :integer
 #  picture_id             :integer
+#  rating                 :float
 #
 # Indexes
 #
@@ -57,11 +58,20 @@ class User < ActiveRecord::Base
   has_many   :payment_methods
   has_many   :shows
   has_one    :picture , as: :imageable
+
   validates :firstname, :surname, :gender, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates :phone_number, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" }
 
+  has_many :show_bookings, through: :shows, source: :bookings
+  has_many :ratings, through: :show_bookings
+  before_save :recalculate_rating
+
   enum gender: { male: 0, female: 1, other: 2 }
+
+  def comments
+    self.shows.inject([]) {|comments, s| comments += s.bookings.map {|b| b.comment} }
+  end
 
   def full_name
     "#{firstname} #{surname}"
@@ -73,5 +83,9 @@ class User < ActiveRecord::Base
 
   def check_picture_exists
     self.build_picture  if self.picture.nil?
+  end
+
+  def recalculate_rating
+    self.rating = 1.0 * self.ratings.sum(:value) / self.ratings.size  if self.ratings.size > 0
   end
 end

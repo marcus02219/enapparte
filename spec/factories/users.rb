@@ -36,6 +36,7 @@
 #  payment_methods_id     :integer
 #  shows_id               :integer
 #  picture_id             :integer
+#  rating                 :float
 #
 # Indexes
 #
@@ -48,7 +49,7 @@ FactoryGirl.define do
     confirmed_at Time.now
     firstname Faker::Name.first_name
     surname Faker::Name.last_name
-    email Faker::Internet.free_email
+    email { Faker::Internet.free_email }
     gender { User.genders.keys.sample }
     phone_number { Faker::Number.number(10).gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3') }
     dob { Faker::Time.backward(14000, :evening).to_date }
@@ -57,5 +58,12 @@ FactoryGirl.define do
     bio { Faker::Lorem.sentence }
 
     language
+
+    factory :user_with_picture do
+      after(:create) do |user|
+        user.picture.image = File.open Rails.root.join('spec/fixtures/photo.jpeg')
+        user.picture.save
+      end
+    end
   end
 end

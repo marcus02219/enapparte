@@ -36,12 +36,15 @@
 #  payment_methods_id     :integer
 #  shows_id               :integer
 #  picture_id             :integer
+#  rating                 :float
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+
+require 'rails_helper'
 
 describe User do
 
@@ -53,6 +56,21 @@ describe User do
 
   it "#email returns a string" do
     expect(@user.email).to match 'user@example.com'
+  end
+
+  context '#rating' do
+    let(:user) { create(:user)  }
+    let(:show) { create(:show, user: user) }
+    let(:bookings) { create_list(:booking, 2, show: show) }
+
+    before(:each) do
+      bookings.each {|booking| create_list(:rating, 2, booking: booking) }
+    end
+
+    it { expect { create(:rating, booking: bookings.first) }.to change { user.reload; user.rating } }
+    it { expect { bookings.first.ratings.first.destroy }.to change { user.reload; user.rating } }
+    it { expect { bookings.first.ratings.first.update_attribute(:value, 0) }.to change { user.reload; user.rating } }
+
   end
 
 end

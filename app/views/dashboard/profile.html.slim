@@ -14,7 +14,7 @@ div[ng-controller="profile"]
 
       .col-lg-9
         .tab-content
-          #personal.tab-pane.active
+          #personal.tab-pane
             .row
               .page-header
                 h2= "Personal informations"
@@ -63,7 +63,7 @@ div[ng-controller="profile"]
                   br
                   br
 
-          #comments.tab-pane
+          #comments.tab-pane.active
             .row
               .page-header
                 h2= "Comments"
@@ -72,3 +72,31 @@ div[ng-controller="profile"]
                   a[href="#received_comments" data-toggle="tab"]= "Received Comments"
                 li
                   a[href="#sent_comments" data-toggle="tab"]= "Sent Comments"
+
+            .row
+              .tab-content
+                #received_comments.tab-pane.active
+                  br
+                  - @user.comments.each do |comment|
+                    .row
+                      .comment
+                        .photo.pull-left.col-lg-2
+                          = image_tag comment.booking.user.picture.image.url(:thumb)
+                        .col-lg-10
+                          .row
+                            .col-lg-4
+                              .name
+                                i= comment.booking.user.full_name
+                            .col-lg-4
+                              .date
+                                = l comment.created_at.to_date, format: :short
+                            .col-lg-4
+                              .rating
+                                - rating = comment.booking.user.rating.round
+                                - rating.times.each do
+                                  i.glyphicon.glyphicon-star
+
+                        .clearfix
+                    hr
+                #sent_comments.tab-pane
+

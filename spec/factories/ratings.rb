@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :rating do
-    value 1
+    value { Faker::Number.between(1, 5) }
   end
 
 end
