@@ -79,6 +79,18 @@ class User < ActiveRecord::Base
 
   before_save :check_picture_exists
 
+  def current_bookings
+    self.show_bookings.where('date >= ? and (status = 1 or status = 2)', Time.now).order('date desc')
+  end
+
+  def old_bookings
+    self.show_bookings.where('date < ? and (status = 1)', Time.now).order('date desc')
+  end
+
+  def cancelled_bookings
+    self.show_bookings.where('(status = 3 or status = 4)', Time.now).order('date desc')
+  end
+
   private
 
   def check_picture_exists

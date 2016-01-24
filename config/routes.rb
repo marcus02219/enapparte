@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboard#index'
   get '/dashboard/profile', to: 'dashboard#profile', as: 'profile_dashboard'
+  get '/dashboard/messages', to: 'dashboard#messages', as: 'messages_dashboard'
+  get '/dashboard/ads', to: 'dashboard#ads', as: 'ads_dashboard'
+  get '/dashboard/performances', to: 'dashboard#performances', as: 'performances_dashboard'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

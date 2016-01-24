@@ -1,102 +1,106 @@
 = render "tabs"
 
 br
-div[ng-controller="profile"]
-  .container
-    .row
-      .col-lg-3
-        br
-        ul.nav.nav-pills.nav-stacked
-          li.active
-            a[href="#personal" data-toggle="tab"]= "Personal informations"
-          li
-            a[href="#comments" data-toggle="tab"]= "Comments"
+.container
+  .row
+    .col-lg-3
+      br
+      ul.nav.nav-pills.nav-stacked
+        li.active
+          a[href="#personal" data-toggle="tab"]= "Personal informations"
+        li
+          a[href="#comments" data-toggle="tab"]= "Comments"
 
-      .col-lg-9
-        .tab-content
-          #personal.tab-pane
+    .col-lg-9
+      .tab-content
+        #personal.tab-pane
+          .row
+            .page-header
+              h2= "Personal informations"
             .row
-              .page-header
-                h2= "Personal informations"
-              .row
-                .col-lg-4
-                  h4= "Your profile photo"
-                  .photo
-                    - if @user.picture
-                      = image_tag @user.picture.image.url(:medium)
+              .col-lg-4
+                h4= "Your profile photo"
+                .photo
+                  - if @user.picture
+                    = image_tag @user.picture.image.url(:medium)
 
-                  .btn-upload
-                    .btn.btn-success.pull-right= "Change"
-                    form[action=(upload_photo_users_path) enctype="multipart/form-data" method="post"]
-                      input[type="file" name="image"]
+                .btn-upload
+                  .btn.btn-success.pull-right= "Change"
+                  form[action=(upload_photo_users_path) enctype="multipart/form-data" method="post"]
+                    input[type="file" name="image"]
 
-                .col-lg-8
-                  = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
-                    fieldset
-                      legend= "Personal Info"
-                      = f.input :gender
-                      = f.input :firstname
-                      = f.input :surname
-                      = f.input :dob
-                      .col-lg-9.col-lg-offset-3
-                        = link_to "Actualisez votre adresse email", "#"
-                      = f.input :email, disabled: true
-                      = f.input :phone_number
-                    fieldset
-                      legend= "Addresses"
-                      .form-group.tel.optional
-                        label.tel.optional.col-sm-3.control-label for="user_phone_number"  Select address
-                        .col-sm-9
-                          = select_tag "addresses", options_from_collection_for_select(@user.addresses, :id, :full_address), include_blank: "Add New"
-                      = render "profile_address", f: f
+              .col-lg-8
+                = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+                  fieldset
+                    legend= "Personal Info"
+                    = f.input :gender
+                    = f.input :firstname
+                    = f.input :surname
+                    = f.input :dob
+                    .col-lg-9.col-lg-offset-3
+                      = link_to "Actualisez votre adresse email", "#"
+                    = f.input :email, disabled: true
+                    = f.input :phone_number
+                  fieldset
+                    legend= "Addresses"
+                    .form-group.tel.optional
+                      label.tel.optional.col-sm-3.control-label for="user_phone_number"  Select address
+                      .col-sm-9
+                        = select_tag "addresses", options_from_collection_for_select(@user.addresses, :id, :full_address), include_blank: "Add New"
+                    = render "profile_address", f: f
 
-                    fieldset
-                      legend= "About you"
-                      = f.input :activity
-                      = f.input :language_id, as: :select, collection: Language.all
-                      = f.input :bio, as: :text
+                  fieldset
+                    legend= "About you"
+                    = f.input :activity
+                    = f.input :language_id, as: :select, collection: Language.all
+                    = f.input :bio, as: :text
 
-                    .form-actions
-                      .pull-right
-                        = f.button :submit, "Save My Profile", class: "btn btn-success"
-                  br
-                  br
-                  br
+                  .form-actions
+                    .pull-right
+                      = f.button :submit, "Save My Profile", class: "btn btn-success"
+                br
+                br
+                br
 
-          #comments.tab-pane.active
-            .row
-              .page-header
-                h2= "Comments"
-              ul.nav.nav-tabs
-                li.active
-                  a[href="#received_comments" data-toggle="tab"]= "Received Comments"
-                li
-                  a[href="#sent_comments" data-toggle="tab"]= "Sent Comments"
+        #comments.tab-pane
+          .row
+            .page-header
+              h2= "Comments"
+            ul.nav.nav-tabs
+              li.active
+                a[href="#received_comments" data-toggle="tab"]= "Received Comments"
+              li
+                a[href="#sent_comments" data-toggle="tab"]= "Sent Comments"
 
-            .row
-              .tab-content
-                #received_comments.tab-pane.active
-                  br
-                  - @user.comments.each do |comment|
-                    .row
-                      .comment
-                        .photo.pull-left.col-lg-2
-                          = image_tag comment.booking.user.picture.image.url(:thumb)
-                        .col-lg-10
-                          .row
-                            .col-lg-4
-                              .name
-                                i= comment.booking.user.full_name
-                            .col-lg-4
-                              .date
-                                = l comment.created_at.to_date, format: :short
-                            .col-lg-4
-                              .rating
-                                - rating = comment.booking.user.rating.round
-                                - rating.times.each do
-                                  i.glyphicon.glyphicon-star
+          .row
+            .tab-content
+              #received_comments.tab-pane.active
+                br
+                - @user.comments.each do |comment|
+                  .row
+                    .comment
+                      .photo.pull-left.col-lg-2
+                        = image_tag comment.booking.user.picture.image.url(:thumb)
+                      .col-lg-10
+                        .row
+                          .col-lg-4
+                            .name
+                              i= comment.booking.user.full_name
+                          .col-lg-4
+                            .date
+                              = l comment.created_at.to_date, format: :short
+                          .col-lg-4
+                            .rating
+                              - rating = comment.booking.user.rating.round
+                              - rating.times.each do
+                                i.glyphicon.glyphicon-star
+                        .row
+                          .col-lg-12
+                            blockquote
+                              p
+                                = comment.content
 
-                        .clearfix
-                    hr
-                #sent_comments.tab-pane
+                      .clearfix
+                  hr
+              #sent_comments.tab-pane
 

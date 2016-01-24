@@ -63,28 +63,34 @@ User.all.each do |user|
     )
   end
 end
+
+Booking.destroy_all
+Rating.destroy_all
+Comment.destroy_all
 User.all.each do |user|
-  5.times.each do |i|
-    booking = Booking.create(
-      user: user,
-      show: Show.where('user_id != ?', user.id).all.sample,
-      status: 1,
-      date: Time.now,
-      spectators: 10,
-      price: Faker::Number.decimal(5,2),
-      message: Faker::Lorem.sentence,
-      payout: Faker::Number.decimal(5,2)
-    )
-    3.times.each do
-      Rating.create(
+  4.times.each do |status|
+    20.times.each do
+      booking = Booking.create(
+        user: user,
+        show: Show.where('user_id != ?', user.id).all.sample,
+        status: status + 1,
+        date: Faker::Time.between(1.days.ago, 10.days.from_now),
+        spectators: 10,
+        price: Faker::Number.decimal(5,2),
+        message: Faker::Lorem.sentence,
+        payout: Faker::Number.decimal(5,2)
+      )
+      3.times.each do
+        Rating.create(
+          booking: booking,
+          value: Faker::Number.between(1, 5)
+        )
+      end
+      Comment.create(
         booking: booking,
-        value: Faker::Number.between(1, 5)
+        content: Faker::Lorem.sentence
       )
     end
-    Comment.create(
-      booking: booking,
-      content: Faker::Lorem.sentence
-    )
   end
 end
 

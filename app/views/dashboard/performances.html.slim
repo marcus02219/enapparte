@@ -1,0 +1,41 @@
+= render "tabs"
+
+br
+.container
+  br
+  .row
+    .col-lg-3
+      br
+      ul.nav.nav-pills.nav-stacked
+        li.active
+          a[href="#current" data-toggle="tab"]= "Current bookings"
+        li
+          a[href="#history" data-toggle="tab"]= "History"
+        li
+          a[href="#cancelled" data-toggle="tab"]= "Cancelled bookings"
+
+    .col-lg-9
+      .tab-content
+        #current.tab-pane.active
+          - if @user.current_bookings.size == 0
+            p
+              = "You have no future representation"
+          - else
+            - @user.current_bookings.each do |booking|
+              = render "performance", booking: booking
+
+        #history.tab-pane
+          - if @user.old_bookings.size == 0
+            p
+              = "You have no old representation"
+          - else
+            - @user.old_bookings.each do |booking|
+              = render "performance", booking: booking
+
+        #cancelled.tab-pane
+          - if @user.cancelled_bookings.size == 0
+            p
+              = "You have no cancelled representation"
+          - else
+            - @user.cancelled_bookings.each do |booking|
+              = render "performance", booking: booking
