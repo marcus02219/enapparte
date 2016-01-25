@@ -91,4 +91,4 @@ gem 'paperclip'
 gem 'bower-rails'
 gem 'simple_form'
 gem 'enum_help'
-
+gem 'jquery-turbolinks'

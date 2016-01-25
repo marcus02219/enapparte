@@ -11,11 +11,21 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require jquery-form/jquery.form
 //= require angular/angular.min
 //= require angular/angular.min
 //= require angular-resource/angular-resource
 //= require_tree .
+//= require_self
+//= require turbolinks
+//
+
+
+I18n = {
+  'dashboard': {
+    'add_new_address': '<%= I18n.t('dashboard.add_new_address') %>'
+  }
+}

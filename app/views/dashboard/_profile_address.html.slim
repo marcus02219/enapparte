@@ -1,8 +1,6 @@
-- @user.addresses.build  if @user.addresses.empty?
-= f.simple_fields_for :addresses do |address_form|
-  .new_address
-    = address_form.input :country, as: :string
-    = address_form.input :state
-    = address_form.input :postcode
-    = address_form.input :city
-    = address_form.input :street
+.address.hide[data-id=(f.object.id.to_i) class=(f.object.errors.empty? ? "" : "has_errors")]
+  = f.input :country, as: :string
+  = f.input :state
+  = f.input :postcode
+  = f.input :city
+  = f.input :street

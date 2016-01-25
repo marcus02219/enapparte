@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   belongs_to :language
 
   has_many   :addresses
-  accepts_nested_attributes_for :addresses
+  accepts_nested_attributes_for :addresses, reject_if: :reject_addresses
 
   has_many   :bookings
   has_many   :payment_methods
@@ -99,5 +99,9 @@ class User < ActiveRecord::Base
 
   def recalculate_rating
     self.rating = 1.0 * self.ratings.sum(:value) / self.ratings.size  if self.ratings.size > 0
+  end
+
+  def reject_addresses attrs
+    attrs['country'].blank? && attrs['postcode'].blank? && attrs['state'].blank? && attrs['city'].blank? && attrs['street'].blank?
   end
 end

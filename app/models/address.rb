@@ -22,7 +22,7 @@ class Address < ActiveRecord::Base
   validates_format_of :postcode ,  with: /\A\d{5}-\d{4}|\A\d{5}\z/, :message => "bad format"
 
   def full_address
-    "#{country}, #{state}, #{street}, #{city}"
+    [country, state, street, city].select {|e| e.present? }.join(', ')
   end
   # geocoded_by :full_address
   # after_validation :geocode

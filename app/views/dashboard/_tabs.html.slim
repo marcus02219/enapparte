@@ -2,7 +2,7 @@
   .row
     ul.nav.nav-tabs
       = active_link_to 'Dashboard', dashboard_path, wrap_tag: :li, active: /^\/dashboard$/
-      = active_link_to 'Profile', profile_dashboard_path, wrap_tag: :li
+      = active_link_to 'Profile', profile_dashboard_path, wrap_tag: :li, active: /^\/dashboard\/(profile|update)$/
       = active_link_to 'Messages', messages_dashboard_path, wrap_tag: :li
       - if @user.shows.size > 0
         = active_link_to 'My Ads', ads_dashboard_path, wrap_tag: :li

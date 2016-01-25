@@ -13,7 +13,7 @@ br
 
     .col-lg-9
       .tab-content
-        #personal.tab-pane
+        #personal.tab-pane.active
           .row
             .page-header
               h2= "Personal informations"
@@ -30,7 +30,7 @@ br
                     input[type="file" name="image"]
 
               .col-lg-8
-                = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+                = simple_form_for @user, html: { class: 'form-horizontal' }, url: update_dashboard_path do |f|
                   fieldset
                     legend= "Personal Info"
                     = f.input :gender
@@ -41,13 +41,16 @@ br
                       = link_to "Actualisez votre adresse email", "#"
                     = f.input :email, disabled: true
                     = f.input :phone_number
-                  fieldset
+                  fieldset.form_addresses
                     legend= "Addresses"
                     .form-group.tel.optional
                       label.tel.optional.col-sm-3.control-label for="user_phone_number"  Select address
                       .col-sm-9
-                        = select_tag "addresses", options_from_collection_for_select(@user.addresses, :id, :full_address), include_blank: "Add New"
-                    = render "profile_address", f: f
+                        = select_tag "addresses", options_from_collection_for_select(@user.addresses.select { |a| a.persisted? }, :id, :full_address)
+                    - unless @user.addresses.any? { |a| !a.errors.empty? }
+                      - @user.addresses.build
+                    = f.simple_fields_for :addresses do |address_form|
+                      = render "profile_address", f: address_form
 
                   fieldset
                     legend= "About you"
