@@ -4,7 +4,7 @@ br
 .container
   br
   .row
-    .col-lg-3
+    .col-md-3
       br
       ul.nav.nav-pills.nav-stacked
         li.active
@@ -14,7 +14,7 @@ br
         li
           a[href="#security" data-toggle="tab"]= "Security"
 
-    .col-lg-9
+    .col-md-9
       .tab-content
         #payment.tab-pane.active
 
@@ -22,9 +22,9 @@ br
           -# FIXME
           = simple_form_for PaymentMethod.new, url: '/' do |f|
             .form-group
-              label.col-lg-3.text-right
+              label.col-md-3.text-right
                 = "Payment methods"
-              .col-lg-9
+              .col-md-9
                 = select_tag :payment_methods, options_for_select(@user.payment_methods.map {|pm| [pm.provider, pm.id]})
                 / = "Add a new payment method"
 
@@ -37,7 +37,7 @@ br
               = f.input :password_confirmation
               br
               br
-            .form-actions.col-lg-9.col-lg-offset-3
+            .form-actions.col-md-9.col-md-offset-3
               = f.button :submit, 'Change Password'
 
           br
@@ -52,5 +52,5 @@ br
               = f.input :email
               br
               br
-            .form-actions.col-lg-9.col-lg-offset-3
+            .form-actions.col-md-9.col-md-offset-3
               = f.button :submit, 'Change Email'

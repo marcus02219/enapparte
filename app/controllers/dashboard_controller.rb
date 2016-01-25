@@ -32,6 +32,10 @@ class DashboardController < ApplicationController
     render 'profile'
   end
 
+  def bookings
+
+  end
+
   private
 
   def user_params

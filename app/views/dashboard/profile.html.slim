@@ -3,7 +3,7 @@
 br
 .container
   .row
-    .col-lg-3
+    .col-md-3
       br
       ul.nav.nav-pills.nav-stacked
         li.active
@@ -11,14 +11,14 @@ br
         li
           a[href="#comments" data-toggle="tab"]= "Comments"
 
-    .col-lg-9
+    .col-md-9
       .tab-content
         #personal.tab-pane.active
           .row
             .page-header
               h2= "Personal informations"
             .row
-              .col-lg-4
+              .col-md-4
                 h4= "Your profile photo"
                 .photo
                   - if @user.picture
@@ -29,7 +29,7 @@ br
                   form[action=(upload_photo_users_path) enctype="multipart/form-data" method="post"]
                     input[type="file" name="image"]
 
-              .col-lg-8
+              .col-md-8
                 = simple_form_for @user, html: { class: 'form-horizontal' }, url: update_dashboard_path do |f|
                   fieldset
                     legend= "Personal Info"
@@ -37,7 +37,7 @@ br
                     = f.input :firstname
                     = f.input :surname
                     = f.input :dob
-                    .col-lg-9.col-lg-offset-3
+                    .col-md-9.col-md-offset-3
                       = link_to "Actualisez votre adresse email", "#"
                     = f.input :email, disabled: true
                     = f.input :phone_number
@@ -82,24 +82,24 @@ br
                 - @user.comments.each do |comment|
                   .row
                     .comment
-                      .photo.pull-left.col-lg-2
+                      .photo.pull-left.col-md-2
                         = image_tag comment.booking.user.picture.image.url(:thumb)
-                      .col-lg-10
+                      .col-md-10
                         .row
-                          .col-lg-5
+                          .col-md-5
                             span.name
                               = comment.booking.user.full_name
                             |,
                             '
                             span.date
                               = l comment.created_at.to_date, format: :long
-                          .col-lg-4
+                          .col-md-4
                             .rating
                               - rating = comment.booking.user.rating.round
                               - rating.times.each do
                                 i.glyphicon.glyphicon-star
                         .row
-                          .col-lg-12
+                          .col-md-12
                             blockquote
                               p
                                 = comment.content
@@ -111,24 +111,24 @@ br
                 - @user.sent_comments.each do |comment|
                   .row
                     .comment
-                      .photo.pull-left.col-lg-2
+                      .photo.pull-left.col-md-2
                         = image_tag comment.booking.show.user.picture.image.url(:thumb)
-                      .col-lg-10
+                      .col-md-10
                         .row
-                          .col-lg-5
+                          .col-md-5
                             span.name
                               = comment.booking.show.user.full_name
                             |,
                             '
                             span.date
                               = l comment.created_at.to_date, format: :long
-                          .col-lg-4
+                          .col-md-4
                             .rating
                               - rating = comment.booking.show.user.rating.round
                               - rating.times.each do
                                 i.glyphicon.glyphicon-star
                         .row
-                          .col-lg-12
+                          .col-md-12
                             blockquote
                               p
                                 = comment.content

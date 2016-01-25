@@ -1,0 +1,23 @@
+.booking
+  .row
+    .col-md-2
+      .photo
+        = image_tag booking.user.picture.image.url(:thumb)
+      .contact
+        = link_to "Contactez #{booking.user.name}", "#"
+    .col-md-10
+      p.name
+        span.text-danger = booking.user.full_name
+        '
+        | par
+        '
+        span.text-danger = booking.show.title
+      p.date
+        i.glyphicon.glyphicon-calendar
+        '
+        = l booking.date.to_date, format: :long
+      p.spectators
+        i.glyphicon.glyphicon-ok-circle
+        '
+        = booking.spectators
+hr
