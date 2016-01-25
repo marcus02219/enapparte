@@ -61,6 +61,15 @@ describe DashboardController do
       it { expect(response).to be_success }
       it { expect(assigns(:user)).to_not be_nil }
     end
+
+    context 'GET account' do
+      before(:each) do
+        get :account
+      end
+
+      it { expect(response).to be_success }
+      it { expect(assigns(:user)).to_not be_nil }
+    end
   end
 
 end

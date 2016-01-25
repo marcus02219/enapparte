@@ -62,6 +62,15 @@ User.all.each do |user|
       active: true
     )
   end
+
+  # PaymentMethod
+  5.times.each do |i|
+    PaymentMethod.create(
+      user: user,
+      payoption: Faker::Lorem.sentence,
+      provider: Faker::Company.name
+    )
+  end
 end
 
 Booking.destroy_all
