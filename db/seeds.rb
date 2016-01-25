@@ -12,7 +12,7 @@ puts 'CREATED ADMIN USER: ' << user.email
 Language.destroy_all
 Language.create(title:"asdasdasd")
 
-main_user = User.create(firstname:"asdasd",surname:"asdsad",gender:1, email:"gasdas@mail.ru" , password:"dfghjkllkiu7",phone_number:"927-621-4346",provider:"fb",uid:123,dob:Time.now ,activity:"asdsad", language: Language.first)
+main_user = User.create(firstname:"asdasd",surname:"asdsad",gender:1, email: 'csolg7@gmail.com', password:"dfghjkllkiu7",phone_number:"927-621-4346",provider:"fb",uid:123,dob:Time.now ,activity:"asdsad", language: Language.first)
 main_user.confirm!
 
 # Shows
