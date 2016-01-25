@@ -3,20 +3,24 @@
     .photo.pull-left.col-lg-2
       = image_tag booking.user.picture.image.url(:thumb)
     .col-lg-10
-      .row
-        h4= "#{booking.user.full_name} a réservé pour #{booking.show.title}"
-      .row
-        .col-lg-3
-          .date
-            = l booking.date.to_date, format: :short
-        .col-lg-3
-          .spectators
-            = booking.spectators
-        .col-lg-3
-          .payout
-            = number_to_currency booking.payout
-        .col-lg-3
-          = link_to "Contactez #{booking.user.name}", "#"
+      p.name
+        span.text-danger = booking.user.full_name
+        '
+        | a réservé pour
+        '
+        span.text-danger = booking.show.title
+      p.date
+        i.glyphicon.glyphicon-calendar
+        '
+        = l booking.date.to_date, format: :long
+      p.spectators
+        i.glyphicon.glyphicon-ok-circle
+        '
+        = booking.spectators
+      p.payout
+        i.glyphicon.glyphicon-credit-card
+        '
+        = number_to_currency booking.payout
       br
       - if booking.status == 1
         .row
@@ -28,5 +32,8 @@
             button.btn.btn-default= "Accept the application"
             '
             = link_to "Reject the application", "#"
+      br
 
+      .contact
+        = link_to "Contactez #{booking.user.name}", "#"
 hr
