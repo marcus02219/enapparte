@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
     self.shows.inject([]) {|comments, s| comments += s.bookings.map {|b| b.comment} }
   end
 
+  def sent_comments
+    self.bookings.inject([]) {|comments, b| comments << b.comment }
+  end
+
   def full_name
     "#{firstname} #{surname}"
   end

@@ -86,12 +86,13 @@ br
                         = image_tag comment.booking.user.picture.image.url(:thumb)
                       .col-lg-10
                         .row
-                          .col-lg-4
-                            .name
-                              i= comment.booking.user.full_name
-                          .col-lg-4
-                            .date
-                              = l comment.created_at.to_date, format: :short
+                          .col-lg-5
+                            span.name
+                              = comment.booking.user.full_name
+                            |,
+                            '
+                            span.date
+                              = l comment.created_at.to_date, format: :long
                           .col-lg-4
                             .rating
                               - rating = comment.booking.user.rating.round
@@ -106,4 +107,31 @@ br
                       .clearfix
                   hr
               #sent_comments.tab-pane
+                br
+                - @user.sent_comments.each do |comment|
+                  .row
+                    .comment
+                      .photo.pull-left.col-lg-2
+                        = image_tag comment.booking.show.user.picture.image.url(:thumb)
+                      .col-lg-10
+                        .row
+                          .col-lg-5
+                            span.name
+                              = comment.booking.show.user.full_name
+                            |,
+                            '
+                            span.date
+                              = l comment.created_at.to_date, format: :long
+                          .col-lg-4
+                            .rating
+                              - rating = comment.booking.show.user.rating.round
+                              - rating.times.each do
+                                i.glyphicon.glyphicon-star
+                        .row
+                          .col-lg-12
+                            blockquote
+                              p
+                                = comment.content
 
+                      .clearfix
+                  hr
