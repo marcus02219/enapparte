@@ -57,7 +57,6 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'rspec-rails'
   gem 'sqlite3'
 
@@ -92,3 +91,4 @@ gem 'bower-rails'
 gem 'simple_form'
 gem 'enum_help'
 gem 'jquery-turbolinks'
+gem 'faker'
