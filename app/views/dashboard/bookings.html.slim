@@ -22,7 +22,7 @@ br
               = "You have no future bookings"
           - else
             - @user.current_bookings.each do |booking|
-              = render "booking", booking: booking
+              = render "booking", booking: booking, active: true
 
         #history.tab-pane
           - if @user.old_bookings.size == 0
@@ -30,7 +30,7 @@ br
               = "You have no old bookings"
           - else
             - @user.old_bookings.each do |booking|
-              = render "booking", booking: booking
+              = render "booking", booking: booking, active: false
 
         #cancelled.tab-pane
           - if @user.cancelled_bookings.size == 0
@@ -38,4 +38,4 @@ br
               = "You have no cancelled bookings"
           - else
             - @user.cancelled_bookings.each do |booking|
-              = render "booking", booking: booking
+              = render "booking", booking: booking, active: false

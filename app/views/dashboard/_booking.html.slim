@@ -4,7 +4,7 @@
       .photo
         = image_tag booking.user.picture.image.url(:thumb)
       .contact
-        = link_to "Contactez #{booking.user.name}", "#"
+        = link_to "Contactez #{booking.user.full_name}", "#"
     .col-md-10
       p.name
         span.text-danger = booking.user.full_name
@@ -20,4 +20,7 @@
         i.glyphicon.glyphicon-ok-circle
         '
         = booking.spectators
+
+      - if active
+        button.btn.btn-default= "See the details"
 hr
