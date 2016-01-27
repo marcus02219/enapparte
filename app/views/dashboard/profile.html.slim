@@ -47,7 +47,7 @@ br
                       label.tel.optional.col-sm-3.control-label for="user_phone_number"  Select address
                       .col-sm-9
                         = select_tag "addresses", options_from_collection_for_select(@user.addresses.select { |a| a.persisted? }, :id, :full_address)
-                    - unless @user.addresses.any? { |a| !a.errors.empty? }
+                    - unless @user.addresses.any? { |a| !a.errors.empty? || a.new_record? }
                       - @user.addresses.build
                     = f.simple_fields_for :addresses do |address_form|
                       = render "profile_address", f: address_form
