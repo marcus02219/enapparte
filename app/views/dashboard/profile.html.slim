@@ -33,7 +33,7 @@ br
                 = simple_form_for @user, html: { class: 'form-horizontal' }, url: update_dashboard_path do |f|
                   fieldset
                     legend= "Personal Info"
-                    = f.input :gender
+                    = f.input :gender, include_blank: false
                     = f.input :firstname
                     = f.input :surname
                     = f.input :dob
