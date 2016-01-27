@@ -92,3 +92,5 @@ gem 'simple_form'
 gem 'enum_help'
 gem 'jquery-turbolinks'
 gem 'faker'
+
+gem 'aws-sdk', '< 2.0'
