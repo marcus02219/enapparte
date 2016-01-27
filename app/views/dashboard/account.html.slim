@@ -28,6 +28,7 @@ br
                 = select_tag :payment_methods, options_for_select(@user.payment_methods.map {|pm| [pm.provider, pm.id]})
                 / = "Add a new payment method"
 
+        a[name="security"]
         #security.tab-pane
           = simple_form_for @user do |f|
             fieldset
