@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
   validates :firstname, :surname, :gender, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
-  validates :phone_number, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" }
+  # validates :phone_number, format: { with: /\d{10}/, message: "bad format" }
 
   has_many :show_bookings, through: :shows, source: :bookings
   has_many :ratings, through: :show_bookings
