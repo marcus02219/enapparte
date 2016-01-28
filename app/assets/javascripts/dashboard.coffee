@@ -18,5 +18,7 @@ $ ->
     $('.dashboard .form_addresses select').change (e)->
       $('.dashboard .form_addresses .address').addClass('hide')
       $('.dashboard .form_addresses .address[data-id=' + this.value + ']').removeClass('hide')
+      optionSelected = $('option:selected', this)      
+      setLocationbyAddress optionSelected.index()
+      
     $('.dashboard .form_addresses select').change()
-
