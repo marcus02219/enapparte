@@ -39,7 +39,7 @@ br
                     = f.input :surname, hint: "Cette information ne sera partagée uniquement avec les utilisateur faisant partie d’une réservation confirmée"
                     = f.input :dob, start_year: Date.today.year - 96, end_year: Date.today.year
                     .col-md-9.col-md-offset-3
-                      = link_to "Actualisez votre adresse email", "#"
+                      = link_to "Actualisez votre adresse email", account_dashboard_path + "#security"
                     = f.input :email, disabled: true
                     = f.input :phone_number, hint: "Le numéro permet aux hôtes et aux performeurs de se contacter. Rassurez-vous, cette information ne sera communiquée qu’une fois votre réservation confirmée!"
                   fieldset.form_addresses

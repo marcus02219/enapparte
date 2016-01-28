@@ -29,3 +29,9 @@ I18n = {
     'add_new_address': '<%= I18n.t('dashboard.add_new_address') %>'
   }
 }
+
+$(function(){
+  if(window.location.hash != "") {
+      $('a[href="' + window.location.hash + '"]').click()
+  }
+})

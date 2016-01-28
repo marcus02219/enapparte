@@ -18,10 +18,10 @@ $classy_btn_color: rgba(249, 246, 125, 0.6); //Has to be in RGB format for opaci
 
 //FONT NAME AND SOURCE
 $font_name: Futura;
-$font_src: '../fonts/Futura%20(Light).ttf';
-$font_src1: '../fonts/Futura-SC-T-OT-Book_19037.ttf';
-$font_src2: '../fonts/Futura-T-OT-Book_19064.ttf';
-$font_src3: '../fonts/Futura_ICG_Book_Oblique.ttf';
+$font_src: font-url('Futura%20(Light).ttf');
+$font_src1: font-url('Futura-SC-T-OT-Book_19037.ttf');
+$font_src2: font-url('fonts/Futura-T-OT-Book_19064.ttf');
+$font_src3: font-url('/Futura_ICG_Book_Oblique.ttf');
 
 @mixin links {
   color: $link_color;
@@ -30,10 +30,10 @@ $font_src3: '../fonts/Futura_ICG_Book_Oblique.ttf';
 
 @font-face {
   font-family: $font_name; /*a name to be used later*/
-  src: url($font_src); /*URL to font*/
-  src: url($font_src1); /*URL to font*/
-  src: url($font_src2); /*URL to font*/
-  src: url($font_src3); /*URL to font*/
+  src: $font_src; /*URL to font*/
+  src: $font_src1; /*URL to font*/
+  src: $font_src2; /*URL to font*/
+  src: $font_src3; /*URL to font*/
 }
 
 html {
