@@ -8,6 +8,9 @@ var componentForm = {
 };
 
 var map;
+var marker;
+var infowindow;
+var first_load = false;
 
 function initialize() {
   if(!map) {
@@ -27,11 +30,16 @@ function initialize() {
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
 
-  var infowindow = new google.maps.InfoWindow();
-  var marker = new google.maps.Marker({
-    map: map,
-    anchorPoint: new google.maps.Point(0, -29)
-  });
+  if(!infowindow) {
+    infowindow = new google.maps.InfoWindow();
+  }
+
+  if(!marker) {
+    marker = new google.maps.Marker({
+      map: map,
+      anchorPoint: new google.maps.Point(0, -29)
+    });
+  }
 
   autocomplete.addListener('place_changed', function() {
     infowindow.close();
@@ -47,7 +55,7 @@ function initialize() {
       map.fitBounds(place.geometry.viewport);
     } else {
       map.setCenter(place.geometry.location);
-      map.setZoom(12);  // Why 17? Because it looks good.
+      map.setZoom(17);  // Why 17? Because it looks good.
     }
    
     marker.setPosition(place.geometry.location);
@@ -114,45 +122,42 @@ function setLocationbyAddress(sel_index)
   $('#google-address').val(address);
 
   if(!address) {
+    marker = null;
     map = null;
     initialize();
     return;
   }
 
-  $('#google-address').val(address);
-
   if(!map) {
-    map = new google.maps.Map(document.getElementById('google-maps'), {
-      center: {lat: 0, lng: 0},
-      zoom: 1,
-      navigationControl: false,
-      mapTypeControl: false,
-      scaleControl: false,
-      streetViewControl: false
-    });
+    initialize();
   }
 
   var geocoder = new google.maps.Geocoder();
-  var infowindow = new google.maps.InfoWindow();
-  var marker = new google.maps.Marker({
-    map: map,
-    position: new google.maps.Point(0, -29)
-  });
-
+  
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       infowindow.close();
+      
+      marker.setVisible(false);
 
-      map.setCenter(results[0].geometry.location);
-      map.setZoom(17);
-      
-      marker.setPosition(results[0].geometry.location);
-      
-      infowindow.setContent('<div><strong>' + results[0].name + '</strong><br>' + address);
+      var place = results[0];
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17);  // Why 17? Because it looks good.
+      }
+
+      marker.setPosition(place.geometry.location);
+      marker.setVisible(true);
+     
+      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, marker);
+      
     } else {
       alert('Address contains no geometry ' + status);
       map = null;
+      marker = null;
       initialize();
     }
   });
