@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post 'upload_photo', on: :collection
   end
 
+  resources :shows
+
   namespace :api do
     namespace :v1 do
       resources :users
