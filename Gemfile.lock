@@ -149,6 +149,12 @@ GEM
     http_parser.rb (0.6.0)
     hub (1.12.4)
     i18n (0.7.0)
+    jasmine (2.4.0)
+      jasmine-core (~> 2.4)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.4.1)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -190,6 +196,7 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.18.4)
+    phantomjs (1.9.8.0)
     postmark (1.7.0)
       json
       rake
@@ -353,6 +360,7 @@ DEPENDENCIES
   guard-rspec
   high_voltage
   hub
+  jasmine
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks

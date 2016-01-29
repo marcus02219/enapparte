@@ -94,3 +94,4 @@ gem 'jquery-turbolinks'
 gem 'faker'
 
 gem 'aws-sdk', '< 2.0'
+gem 'jasmine'
