@@ -65,6 +65,7 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload'
+  gem 'guard-jasmine'
 
   gem 'rack-livereload'
   gem 'libnotify'
