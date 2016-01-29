@@ -1,7 +1,13 @@
 
 describe 'ShowController', ->
+  ShowController = null
 
   beforeEach(module('enapparte'))
 
-  it 'should be defined', inject (ShowController)->
+  beforeEach inject ($rootScope, $controller)->
+    scope = $rootScope.$new()
+    ShowController = $controller('ShowController', { '$scope': scope })
+
+  it 'should be defined', ->
     expect(ShowController).toBeDefined()
+

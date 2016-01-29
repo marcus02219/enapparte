@@ -4,6 +4,6 @@
     "jquery-form": "latest",
     "angular": "latest",
     "angular-resource": "latest",
-    "bootstrap-star-rating": "latest"
+    "angular-mocks": "latest"
   }
 }
