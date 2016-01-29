@@ -4,6 +4,7 @@
     "jquery-form": "latest",
     "angular": "latest",
     "angular-resource": "latest",
+    "angular-route": "latest",
     "angular-mocks": "latest"
   }
 }

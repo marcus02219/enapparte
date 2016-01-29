@@ -1,4 +1,4 @@
-.flash-messages[class=(defined?( flash_class ) ? flash_class : '')]
+.flash-messages[ng-if="flashMessages" class=(defined?( flash_class ) ? flash_class : '')]
   .row
     .col-sm-8.col-sm-offset-2
       - # Rails flash messages styled for Bootstrap 3.0
