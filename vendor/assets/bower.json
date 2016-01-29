@@ -5,6 +5,7 @@
     "angular": "latest",
     "angular-resource": "latest",
     "angular-route": "latest",
+    "angular-bootstrap": "latest",
     "angular-mocks": "latest"
   }
 }
