@@ -8,7 +8,11 @@
             legend= "Add Photos"
             p= "Add photos from your Show"
             br
-            = file_field_tag 'show_image'
+            .row.form-group
+              label.col-md-3.text-right
+                = "Select photos"
+              .col-md-9
+                input#show_image.file-loading[type="file" multiple data-url=(photo_upload_show_path(@show))]
 
         .form-actions
           .form-group

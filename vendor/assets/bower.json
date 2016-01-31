@@ -6,7 +6,7 @@
     "angular-resource": "latest",
     "angular-route": "latest",
     "angular-bootstrap": "latest",
-    "blueimp-file-upload": "latest",
-    "angular-mocks": "latest"
+    "angular-mocks": "latest",
+    "bootstrap-fileinput": "latest"
   }
 }

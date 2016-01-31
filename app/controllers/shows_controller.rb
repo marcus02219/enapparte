@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :edit, :update, :destroy, :photos]
+  before_action :set_show, only: [:show, :edit, :update, :destroy, :photos, :photo_upload]
 
   # GET /shows
   # GET /shows.json
@@ -38,6 +38,11 @@ class ShowsController < ApplicationController
         format.json { render json: @show.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def photo_upload
+    picture = Picture.create(image: params[:file_data], imageable_type: 'Show', imageable_id: @show.id)
+    render json: { initialPreview: [ "<img src='#{ picture.image.url(:medium) }'>" ] }
   end
 
   # PATCH/PUT /shows/1

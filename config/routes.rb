@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :shows do
     get 'photos', on: :member
+    post 'photo_upload', on: :member
   end
 
   namespace :api do

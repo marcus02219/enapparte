@@ -16,11 +16,23 @@ describe ShowsController do
   end
 
   describe 'GET photos' do
-    it 'returns success' do
-      show = create(:show)
-      get :photos, id: show.id
-      expect(assigns(:show)).to_not be_nil
-      expect(response).to be_success
+    let(:show) { create(:show) }
+    before(:each) { get :photos, id: show.id }
+    it { expect(assigns(:show)).to_not be_nil }
+    it { expect(response).to be_success }
+  end
+
+  describe 'POST photo_upload' do
+    let(:show) { create(:show) }
+    it 'creates Photo' do
+      expect {
+        post :photo_upload, id: show.id, picture: fixture_file_upload('missing.png', 'image/png'), format: :json
+        show.reload
+      }.to change { show.pictures.count }.by(1)
+    end
+    it 'returns image preview' do
+      post :photo_upload, id: show.id, file_data: fixture_file_upload('missing.png', 'image/png'), format: :json
+      expect(response.body).to include("img src='#{show.pictures.first.image.url(:medium)}'")
     end
   end
 end
