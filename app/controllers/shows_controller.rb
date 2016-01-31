@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :edit, :update, :destroy]
+  before_action :set_show, only: [:show, :edit, :update, :destroy, :photos]
 
   # GET /shows
   # GET /shows.json
@@ -17,6 +17,9 @@ class ShowsController < ApplicationController
     @show = Show.new
   end
 
+  def photos
+  end
+
   # GET /shows/1/edit
   def edit
   end
@@ -28,7 +31,7 @@ class ShowsController < ApplicationController
 
     respond_to do |format|
       if @show.save
-        format.html { redirect_to @show, notice: 'Show was successfully created.' }
+        format.html { redirect_to action: :photos, id: @show.id }
         format.json { render :show, status: :created, location: @show }
       else
         format.html { render :new }

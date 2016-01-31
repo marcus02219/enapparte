@@ -9,5 +9,6 @@ asset 'angular-resource'
 asset 'angular-route'
 asset 'angular-route'
 asset 'angular-bootstrap'
+asset 'blueimp-file-upload'
 
 asset 'angular-mocks'

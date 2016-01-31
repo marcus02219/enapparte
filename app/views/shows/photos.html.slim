@@ -1,0 +1,18 @@
+.container
+  .row
+    = render "tabs"
+    .col-md-9
+      = simple_form_for @show do |f|
+        .form-inputs
+          fieldset
+            legend= "Add Photos"
+            p= "Add photos from your Show"
+            br
+              = f.fields_for :pictures do |fp|
+                = fp.input :image
+
+        .form-actions
+          .form-group
+            .row
+              .col-md-9.col-md-offset-3
+                = f.button :submit, "Continue"
