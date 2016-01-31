@@ -69,6 +69,6 @@ class ShowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def show_params
-      params[:show]
+      params[:show].permit(:art_id, :max_spectators, :length, :title, :description, :language_id, :price)
     end
 end

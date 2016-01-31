@@ -1,1 +1,64 @@
-div[ng-view]
+/ div[ng-view]
+
+- content_for( :messages ) do
+  = render partial: 'layouts/messages', locals: { flash_class: 'floating' }
+#slider.carousel.home-carousel.slide[data-ride="carousel" style="text-align:center"]
+  .carousel-inner[style="text-align:center;"]
+    .item.relative.discovery-card.active[style="background:url(#{image_url('main_bg.jpg')}) no-repeat center center; background-size:cover;"]
+      .va-container.va-container-v.va-container-h
+        p.va-middle.text-center.text-contrast
+          | Et si notre canapé
+          br
+          |  nous plaçait aux premières loges ?
+          br
+  #search-bar-home.container
+    #htw-home-link.row
+      a.btn.btn-lg.btn-classic[href="#how-it-works" style="padding-left:20px;padding-right:20px;"]
+        span.glyphicon.glyphicon-heart
+        |  Trouvez un performeur
+.relative[itemscope itemtype="//schema.org/WebPage"]
+  aside.aside_bg[style="padding-bottom:70px;"]
+    .container
+      h2.title.text-center[style="padding-bottom:0 !important"]
+        | Ils ont quelque-chose à vous montrer
+      p[style="padding-top:15px;text-align:center;margin-bottom:60px;font-size:15px;"]
+        |  Découvrez leur talent depuis le comfort de votre canapé
+      .row
+        .col-xs-12.col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1
+          .row
+            .col-xs-12.col-sm-6
+              .discovery-card[style="background:url(#{image_url('img-1.jpg')});"]
+            .col-xs-12.col-sm-6
+              .discovery-card[style="background:url(#{image_url('img-2.jpg')});"]
+            .col-xs-12.col-sm-6
+              .discovery-card[style="background:url(#{image_url('img-3.jpg')});"]
+            .col-xs-12.col-sm-6
+              .discovery-card[style="background:url(#{image_url('img-4.jpg')});"]
+.row
+  .col-sm-8.col-sm-offset-2
+    .text-center[style="padding-top:50px;padding-bottom:30px"]
+      a.btn-xl.btn.btn-performer[style="padding:9px 20px 10px 20px;font-size:15px;border-radius:0;" href=""]
+        | Découvrez tous les performeurs
+aside#how-it-works.site-how-it-works.text-center
+  h2.title[style="padding-bottom:40px"]
+    | How it works
+  .container
+    .row
+      .col-sm-4.text-center
+        img[src="//static.vizeat.com/assets/img/search.png" alt=""]
+        h4.feature_header
+          |  Découvrez
+        p.features_content
+          |  Flanez à la rencontre de nos performeurs. Découvrez leur art et leurs talents. Magicien aux lapins blancs ou joueur de banjo ?
+      .col-sm-4.text-center
+        img[src="//static.vizeat.com/assets/img/calendar.png" alt=""]
+        h4.feature_header
+          |  Réservez
+        p.features_content
+          |  Choisissez la prestation de vos rêves, échangez avec vos amis et réservez les yeux fermés grâce à notre site sécurisé
+      .col-sm-4.text-center
+        img[src="//static.vizeat.com/assets/img/enjoy.png" alt=""]
+        h4.feature_header
+          |  Partagez
+        p.features_content
+          |  Installez vous confortablement aux cotes de vos amis pour une aventure culturelle et humaine unique où partage et talent se rencontrent

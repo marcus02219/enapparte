@@ -12,7 +12,7 @@
         = render 'layouts/nav_links_for_auth'
         li
           - if user_signed_in?
-            a.btn.btn-performer[href="#/show/new"]
+            a.btn.btn-performer[href=(new_show_path)]
               | Postez votre performance
           - else
             a.btn.btn-performer[href=""]

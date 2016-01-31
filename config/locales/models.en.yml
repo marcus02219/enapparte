@@ -12,3 +12,7 @@ en:
         surname: Last Name
         dob: Day Of Birth
 
+      show:
+        length: Duration in minutes
+        price: Show price
+

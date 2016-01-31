@@ -1,0 +1,21 @@
+= simple_form_for @show do |f|
+  .form-inputs
+    fieldset
+      legend= "My Show Details"
+      p= "Your show will be visible on the site once you have downloaded your photos and complete details of your profile"
+      br
+        = f.association  :art
+        = f.input :max_spectators
+        = f.input :length
+        = f.input :title
+        = f.input :description
+        = f.input :language
+    fieldset
+      legend= "Price"
+      = f.input :price
+
+  .form-actions
+    .form-group
+      .row
+        .col-md-9.col-md-offset-3
+          = f.button :submit, "Continue"

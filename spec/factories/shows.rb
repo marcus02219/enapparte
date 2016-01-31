@@ -22,11 +22,11 @@
 
 FactoryGirl.define do
   factory :show do
-    title "MyString"
-    length 1
-    description "MyText"
-    price 1.5
-    max_spectators 1
+    title { Faker::Lorem.sentence }
+    length { Faker::Number.number(2) }
+    description { Faker::Lorem.paragraph }
+    price { Faker::Number.number(2) }
+    max_spectators { Faker::Number.number(2) }
     starts_at "2016-01-17 05:17:54"
     ends_at "2016-01-17 05:17:54"
     active false
