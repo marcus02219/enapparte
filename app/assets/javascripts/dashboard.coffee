@@ -1,5 +1,10 @@
 $ ->
 
+  $('#profile-form').on 'keyup keypress', (e) ->
+    keyCode = e.keyCode or e.which
+    if keyCode == 13
+      e.preventDefault()
+
   $('.dashboard .btn-upload input').change (e)->
     $form = $(this).parents("form:first")
     $form.ajaxSubmit

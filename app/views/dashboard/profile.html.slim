@@ -31,7 +31,7 @@ br
                     input[type="file" name="image"]
 
               .col-md-8
-                = simple_form_for @user, html: { class: 'form-horizontal' }, url: update_dashboard_path do |f|
+                = simple_form_for @user, html: { class: 'form-horizontal', id: 'profile-form' }, url: update_dashboard_path do |f|
                   fieldset
                     legend= "Personal Info"
                     = f.input :gender, include_blank: false
