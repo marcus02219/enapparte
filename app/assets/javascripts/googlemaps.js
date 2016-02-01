@@ -151,7 +151,7 @@ function setLocationbyAddress(sel_index)
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
      
-      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+      infowindow.setContent('<div><strong>' + address + '</strong>');
       infowindow.open(map, marker);
       
     } else {
