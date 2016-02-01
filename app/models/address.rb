@@ -19,7 +19,7 @@
 class Address < ActiveRecord::Base
   belongs_to :user
   has_many   :bookings
-  validates_format_of :postcode ,  with: /\A\d{5}-\d{4}|\A\d{5}\z/, :message => "bad format (12345-1234 or 12345)"
+  # validates_format_of :postcode , :allow_blank => true, with: /\A\d{5}-\d{4}|\A\d{5}\z/, :message => "bad format (12345-1234 or 12345)"
 
   def full_address
     [country, state, street, city].select {|e| e.present? }.join(', ')
