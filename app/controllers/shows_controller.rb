@@ -40,11 +40,6 @@ class ShowsController < ApplicationController
     end
   end
 
-  def photo_upload
-    picture = Picture.create(image: params[:file_data], imageable_type: 'Show', imageable_id: @show.id)
-    render json: { initialPreview: [ "<img src='#{ picture.image.url(:medium) }'>" ] }
-  end
-
   # PATCH/PUT /shows/1
   # PATCH/PUT /shows/1.json
   def update
