@@ -12,11 +12,11 @@
               label.col-md-3.text-right
                 = "Select photos"
               .col-md-9
-                input#show_image.file-loading[type="file" multiple data-url=(pictures_path(@show))]
+                input#show_image.file-loading[type="file" multiple data-show-id=(@show.id) data-url=(pictures_path(imageable_type: 'Show', imageable_id: @show.id))]
 
         .form-actions
           .form-group
             .row
               .col-md-9.col-md-offset-3
-                button.btn.btn-default
+                button#continue.btn.btn-default[disabled="true"]
                   = "Continue"

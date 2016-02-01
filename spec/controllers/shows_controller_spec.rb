@@ -22,4 +22,19 @@ describe ShowsController do
     it { expect(response).to be_success }
   end
 
+  describe 'GET pictures_count' do
+    let(:show) { create(:show) }
+
+    context "pictures count == 0" do
+      before(:each) { get :pictures_count, id: show.id }
+      it { expect(response.body).to eq "0" }
+    end
+
+    context "pictures count > 0" do
+      let(:pictures_count) { 3 }
+      before(:each) { pictures_count.times.each { show.pictures.create } }
+      before(:each) { get :pictures_count, id: show.id }
+      it { expect(response.body).to eq pictures_count.to_s }
+    end
+  end
 end

@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :edit, :update, :destroy, :photos, :photo_upload]
+  before_action :set_show, only: [:show, :edit, :update, :destroy, :photos, :photo_upload, :pictures_count]
 
   # GET /shows
   # GET /shows.json
@@ -18,10 +18,16 @@ class ShowsController < ApplicationController
   end
 
   def photos
+
+  end
+
+  def pictures_count
+    render json: @show.pictures.count
   end
 
   # GET /shows/1/edit
   def edit
+
   end
 
   # POST /shows
