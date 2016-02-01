@@ -18,10 +18,10 @@ $classy_btn_color: rgba(249, 246, 125, 0.6); //Has to be in RGB format for opaci
 
 //FONT NAME AND SOURCE
 $font_name: Futura;
-$font_src: font-url('Futura%20(Light).ttf');
+$font_src: font-url('Futura.ttf');
 $font_src1: font-url('Futura-SC-T-OT-Book_19037.ttf');
-$font_src2: font-url('fonts/Futura-T-OT-Book_19064.ttf');
-$font_src3: font-url('/Futura_ICG_Book_Oblique.ttf');
+$font_src2: font-url('Futura-T-OT-Book_19064.ttf');
+$font_src3: font-url('Futura_ICG_Book_Oblique.ttf');
 
 @mixin links {
   color: $link_color;
