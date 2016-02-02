@@ -2,6 +2,12 @@ $ ->
 
   showId = $('.container.show').data('show-id')
 
+  # new
+  $('form.new_show, form.edit_show').ajaxForm
+    dataType: 'json'
+    success: (data)->
+      window.location = '/shows/' + data.id + '/photos'
+
   # photos
   $fileinput = $('#show_image')
   if $fileinput.length > 0

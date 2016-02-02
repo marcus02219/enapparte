@@ -101,10 +101,10 @@ describe ShowsController do
       context "shedules" do
         let(:starts_at) { '00:00' }
         let(:ends_at) { '02:00' }
-        before(:each) { put :update, id: show.id, show: { starts_at: starts_at, ends_at: ends_at } }
+        before(:each) { put :update, id: show.id, show: { starts_at: starts_at, ends_at: ends_at }, format: :json }
         it { expect(assigns(:show).starts_at).to eq starts_at }
         it { expect(assigns(:show).ends_at).to eq ends_at }
-        it { expect(response).to redirect_to(shows_dashboard_path) }
+        it { expect(response).to be_success }
       end
     end
 
