@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'photos', on: :member
     get 'pictures_count', on: :member
     get 'cover_picture', on: :member
+    get 'shedules', on: :member
   end
 
   resources :pictures do

@@ -22,7 +22,7 @@
 #
 
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :edit, :update, :destroy, :photos, :photo_upload, :pictures_count, :cover_picture]
+  before_action :set_show, only: [:show, :edit, :update, :destroy, :photos, :photo_upload, :pictures_count, :cover_picture, :shedules]
   before_action :authenticate_user!
 
   # GET /shows
@@ -46,6 +46,10 @@ class ShowsController < ApplicationController
   end
 
   def cover_picture
+
+  end
+
+  def shedules
 
   end
 

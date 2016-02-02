@@ -1,8 +1,8 @@
-.container
+.container.show[data-show-id=(@show.id)]
   .row
     = render "tabs"
     .col-md-9
-      form#cover_picture_form[action=(show_path(@show) + ".json") method="PUT"]
+      form#cover_picture_form[action=(show_path(@show) + ".json")]
         .form-inputs
           fieldset
             legend= "Cover Photo"
@@ -18,7 +18,6 @@
                         input[name="show[cover_picture_id]" id="cover_picture_#{picture.id}" value=(picture.id) type="radio" onclick="$('#continue').prop('disabled', false);"]
                         '
                         = "Cover photo"
-
 
         .form-actions
           .form-group

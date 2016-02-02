@@ -1,5 +1,7 @@
 $ ->
 
+  showId = $('.container.show').data('show-id')
+
   $fileinput = $('#show_image')
 
   if $fileinput.length > 0
@@ -7,8 +9,6 @@ $ ->
       uploadUrl: $fileinput.data('url')
       uploadAsync: true
       maxFileCount: 10
-
-    showId = $fileinput.data('show-id')
 
     $("#continue").on 'click', (e)->
       window.location = $(this).data('href')
@@ -32,5 +32,5 @@ $ ->
   $('#cover_picture_form').ajaxForm
     type: 'PUT'
     success: (data)->
-      console.log data
+      window.location = '/shows/' + showId + '/shedules'
 

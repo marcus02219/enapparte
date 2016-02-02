@@ -78,6 +78,13 @@ describe ShowsController do
       it { expect(response).to be_success }
     end
 
+    describe 'GET shedules' do
+      let(:show) { create(:show) }
+      before(:each) { get :shedules, id: show.id }
+      it { expect(assigns(:show)).to_not be_nil }
+      it { expect(response).to be_success }
+    end
+
     describe 'PUT update' do
       let(:show) { create(:show) }
 
