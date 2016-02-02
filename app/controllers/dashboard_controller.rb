@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
 
   end
 
-  def ads
+  def shows
 
   end
 

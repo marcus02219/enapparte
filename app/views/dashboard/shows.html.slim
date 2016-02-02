@@ -1,0 +1,16 @@
+= render "tabs"
+
+br
+.container
+  br
+  .row
+    .col-md-3
+      a.btn.btn-success[href=(new_show_path)]= "Add New Show"
+
+    .col-md-9
+      - @user.shows.each do |show|
+        .col-sm-6.col-md-4
+          .thumbnail.show
+            = image_tag show.cover_picture.try(:image).try(:url, :medium)
+            .caption
+              h3= show.title

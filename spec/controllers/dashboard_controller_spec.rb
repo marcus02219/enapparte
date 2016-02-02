@@ -44,9 +44,9 @@ describe DashboardController do
       it { expect(assigns(:user)).to_not be_nil }
     end
 
-    context 'GET ads' do
+    context 'GET shows' do
       before(:each) do
-        get :ads
+        get :shows
       end
 
       it { expect(response).to be_success }

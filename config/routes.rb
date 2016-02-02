@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index'
   get '/dashboard/profile', to: 'dashboard#profile', as: 'profile_dashboard'
   get '/dashboard/messages', to: 'dashboard#messages', as: 'messages_dashboard'
-  get '/dashboard/ads', to: 'dashboard#ads', as: 'ads_dashboard'
+  get '/dashboard/shows', to: 'dashboard#shows', as: 'shows_dashboard'
   get '/dashboard/performances', to: 'dashboard#performances', as: 'performances_dashboard'
   get '/dashboard/account', to: 'dashboard#account', as: 'account_dashboard'
   patch '/dashboard/update', to: 'dashboard#update', as: 'update_dashboard'
