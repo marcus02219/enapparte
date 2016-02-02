@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202122958) do
+ActiveRecord::Schema.define(version: 20160202131317) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -106,8 +106,6 @@ ActiveRecord::Schema.define(version: 20160202122958) do
     t.text     "description"
     t.float    "price"
     t.integer  "max_spectators"
-    t.time     "starts_at"
-    t.time     "ends_at"
     t.boolean  "active"
     t.integer  "user_id"
     t.integer  "art_id"
@@ -118,6 +116,8 @@ ActiveRecord::Schema.define(version: 20160202122958) do
     t.datetime "updated_at",       null: false
     t.integer  "cover_picture_id"
     t.datetime "published_at"
+    t.string   "starts_at"
+    t.string   "ends_at"
   end
 
   create_table "users", force: :cascade do |t|

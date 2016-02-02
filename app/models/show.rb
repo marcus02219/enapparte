@@ -8,8 +8,6 @@
 #  description      :text
 #  price            :float
 #  max_spectators   :integer
-#  starts_at        :time
-#  ends_at          :time
 #  active           :boolean
 #  user_id          :integer
 #  art_id           :integer
@@ -20,6 +18,8 @@
 #  updated_at       :datetime         not null
 #  cover_picture_id :integer
 #  published_at     :datetime
+#  starts_at        :string
+#  ends_at          :string
 #
 
 class Show < ActiveRecord::Base

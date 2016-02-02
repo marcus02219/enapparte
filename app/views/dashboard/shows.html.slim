@@ -14,3 +14,12 @@ br
             = image_tag show.cover_picture.try(:image).try(:url, :medium)
             .caption
               h3= show.title
+              .price
+                = number_to_currency show.price
+              .actions.pull-right
+                = link_to '', title: 'Edit' do
+                  i.glyphicon.glyphicon-pencil
+                '
+                = link_to '', title: 'Delete' do
+                  i.glyphicon.glyphicon-trash
+              .clearfix

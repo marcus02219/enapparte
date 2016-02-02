@@ -8,8 +8,6 @@
 #  description      :text
 #  price            :float
 #  max_spectators   :integer
-#  starts_at        :time
-#  ends_at          :time
 #  active           :boolean
 #  user_id          :integer
 #  art_id           :integer
@@ -20,6 +18,8 @@
 #  updated_at       :datetime         not null
 #  cover_picture_id :integer
 #  published_at     :datetime
+#  starts_at        :string
+#  ends_at          :string
 #
 
 class ShowsController < ApplicationController
@@ -66,7 +66,7 @@ class ShowsController < ApplicationController
   # POST /shows
   # POST /shows.json
   def create
-    @show = Show.new(show_params)
+    @show = current_user.shows.build(show_params)
 
     respond_to do |format|
       if @show.save
@@ -84,7 +84,7 @@ class ShowsController < ApplicationController
   def update
     respond_to do |format|
       if @show.update(show_params)
-        format.html { redirect_to @show, notice: 'Show was successfully updated.' }
+        format.html { redirect_to shows_dashboard_path, notice: 'Show was successfully updated.' }
         format.json { render :show, status: :ok, location: @show }
       else
         format.html { render :edit }
@@ -111,6 +111,6 @@ class ShowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def show_params
-      params[:show].permit(:art_id, :max_spectators, :length, :title, :description, :language_id, :price, :cover_picture_id)
+      return_params = params[:show].permit(:art_id, :max_spectators, :length, :title, :description, :language_id, :price, :cover_picture_id, :starts_at, :ends_at)
     end
 end
