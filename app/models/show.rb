@@ -19,6 +19,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  cover_picture_id :integer
+#  published_at     :datetime
 #
 
 class Show < ActiveRecord::Base
