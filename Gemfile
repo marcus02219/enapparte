@@ -69,6 +69,8 @@ group :development, :test do
 
   gem 'rack-livereload'
   gem 'libnotify'
+
+  gem 'awesome_print'
 end
 
 group :production do

@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: pictures
+#
+#  id                 :integer          not null, primary key
+#  title              :string
+#  url                :string
+#  imageable_id       :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#  imageable_type     :string
+#
+
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
 
@@ -30,7 +47,7 @@ class PicturesController < ApplicationController
     @picture.image = params[:file_data]
 
     if @picture.save
-      render json: { initialPreview: [ "<img src='#{ @picture.image.url(:medium) }'>" ],
+      render json: { initialPreview: [ "<img src='#{ @picture.image.url(:thumb) }'>" ],
                      initialPreviewConfig: [ { url: destroy_picture_path(@picture) } ] }
     else
     end

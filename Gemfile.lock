@@ -51,6 +51,7 @@ GEM
     autoprefixer-rails (6.1.2)
       execjs
       json
+    awesome_print (1.6.1)
     aws-sdk (1.60.2)
       aws-sdk-v1 (= 1.60.2)
     aws-sdk-v1 (1.60.2)
@@ -348,6 +349,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   annotate!
+  awesome_print
   aws-sdk (< 2.0)
   better_errors
   bootstrap-sass

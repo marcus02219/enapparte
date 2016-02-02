@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127133639) do
+ActiveRecord::Schema.define(version: 20160201190905) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -114,8 +114,9 @@ ActiveRecord::Schema.define(version: 20160127133639) do
     t.integer  "language_id"
     t.integer  "bookings_id"
     t.integer  "pictures_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "cover_picture_id"
   end
 
   create_table "users", force: :cascade do |t|
