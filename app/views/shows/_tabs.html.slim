@@ -1,7 +1,7 @@
 .col-md-3
   br
   ul.nav.nav-pills.nav-stacked
-    li[class=(@show.new_record? ? "active" : "")]
+    li[class=(active_link_to_class(new_show_path) + active_link_to_class(edit_show_path(@show.id.to_i)))]
       a[href=""]= "Description"
     li[class=(active_link_to_class(photos_show_path(@show.id.to_i)))]
       a[href=""]= "Upload Photos"
@@ -9,3 +9,4 @@
       a[href=""]= "Select Cover Photo"
     li[class=(active_link_to_class(shedules_show_path(@show.id.to_i)))]
       a[href=""]= "Shedules"
+

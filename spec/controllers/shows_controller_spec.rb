@@ -52,6 +52,12 @@ describe ShowsController do
       end
     end
 
+    describe 'GET edit' do
+      before(:each) { get :edit, id: show.id }
+      it { expect(assigns(:show)).to_not be_nil }
+      it { expect(response).to be_success }
+    end
+
     describe 'GET photos' do
       before(:each) { get :photos, id: show.id }
       it { expect(assigns(:show)).to_not be_nil }

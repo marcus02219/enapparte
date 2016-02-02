@@ -17,7 +17,7 @@ br
               .price
                 = number_to_currency show.price
               .actions.pull-right
-                = link_to '', title: 'Edit' do
+                = link_to edit_show_path(show), title: 'Edit' do
                   i.glyphicon.glyphicon-pencil
                 '
                 = link_to '', title: 'Delete' do
