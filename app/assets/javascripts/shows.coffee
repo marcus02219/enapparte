@@ -29,9 +29,8 @@ $ ->
             $("#continue").prop('disabled', true)
 
   # cover picture
-  $('#cover_picture_form').submit ()->
-    $(this).ajaxSubmit
-      success: (data)->
-        console.log data
-    false
+  $('#cover_picture_form').ajaxForm
+    type: 'PUT'
+    success: (data)->
+      console.log data
 
