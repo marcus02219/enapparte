@@ -1,25 +1,33 @@
-.container
+.container[ng-controller="ShowController"]
   .row
     = render "tabs"
     .col-md-9
-      = simple_form_for @show do |f|
-        .form-inputs
+      / = simple_form_for @show do |f|
+      form.show[novalidate name="showForm"]
+        .form-inputs[ng-show="step == 1"]
           fieldset
             legend= "My Show Details"
             p= "Your show will be visible on the site once you have downloaded your photos and complete details of your profile"
             br
-              = f.association :art
-              = f.input :max_spectators
-              = f.input :length
-              = f.input :title
-              = f.input :description
-              = f.association :language
+            input-select[label="Art" model="show.art_id" required data-collection=(Art.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json)]
+            input-integer[label="Max Spectators" model="show.max_spectators" required]
+            input-integer[label="Duration in minutes" model="show.length" required]
+            input-string[label="Title" model="show.title" required]
+            input-text[label="Description" model="show.description" required]
+            input-select[label="Language" model="show.language_id" data-collection=(Language.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json) required]
+            / = f.association :art
+            / = f.input :max_spectators
+            / = f.input :length
+            / = f.input :title
+            / = f.input :description
+            / = f.association :language
           fieldset
             legend= "Price"
-            = f.input :price
+            input-integer[label="Price" model="show.price" required]
+            / = f.input :price
 
         .form-actions
           .form-group
             .row
               .col-md-9.col-md-offset-3
-                = f.button :submit, "Continue"
+                input#continue.btn.btn-default[type="submit" value="Continue" ng-click="nextStep(showForm)"]

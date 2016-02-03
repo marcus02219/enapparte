@@ -47,6 +47,7 @@ $ ->
     $end = $('#show_ends_at')
     if $start.val() > $end.val()
       $end.val($start.val())
+
   $('#show_ends_at').change (e)->
     $("#continue").prop('disabled', false)
     $start = $('#show_starts_at')

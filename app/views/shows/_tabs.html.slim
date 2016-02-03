@@ -1,12 +1,10 @@
 .col-md-3
   br
   ul.nav.nav-pills.nav-stacked
-    li[class=(active_link_to_class(new_show_path) + active_link_to_class(edit_show_path(@show.id.to_i)))]
+    li[ng-class="{ active: step == 1 }"]
       a[href=""]= "Description"
-    li[class=(active_link_to_class(photos_show_path(@show.id.to_i)))]
-      a[href=""]= "Upload Photos"
-    li[class=(active_link_to_class(cover_picture_show_path(@show.id.to_i)))]
-      a[href=""]= "Select Cover Photo"
-    li[class=(active_link_to_class(shedules_show_path(@show.id.to_i)))]
+    li[ng-class="{ active: step == 2 }"]
+      a[href=""]= "Photos"
+    li[ng-class="{ active: step == 3 }"]
       a[href=""]= "Shedules"
 

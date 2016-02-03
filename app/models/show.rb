@@ -29,4 +29,6 @@ class Show < ActiveRecord::Base
   has_many   :bookings  , dependent: :destroy
   has_many   :pictures  , dependent: :destroy , as: :imageable
   belongs_to :cover_picture, class_name: 'Picture'
+
+  validates :art_id, :max_spectators, :length, :title, :description, :language_id, :price, presence: true
 end
