@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, :defaults => { :format => 'json' }
       resources :shows, :defaults => { :format => 'json' }
+      resources :pictures, :defaults => { :format => 'json' }
     end
   end
 

@@ -1,5 +1,4 @@
 class Api::V1::ShowsController < Api::BaseController
-  respond_to :json
 
   def create
     @show = Show.create(show_params.merge({ user: current_user }))
@@ -7,7 +6,7 @@ class Api::V1::ShowsController < Api::BaseController
   end
 
   def show
-    @show = Show.include(:pictures).find(params[:id])
+    @show = Show.find(params[:id])
     respond_with :api, :v1, @show
   end
 

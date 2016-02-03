@@ -1,6 +1,6 @@
 angular
   .module 'enapparte'
-  .controller 'ShowController', ['$scope', 'Show', ($scope, Show)->
+  .controller 'ShowController', ['$scope', 'Show', 'Picture', ($scope, Show, Picture)->
     $scope.step = 1
 
     $scope.show = {}
@@ -8,8 +8,11 @@ angular
     $scope.init = (id)->
       if id
         Show.get { id: id }, (show)->
-          console.log show
           $scope.show = show
+
+          Picture.query { imageable_type: 'Show', imageable_id: show.id },
+            success: (pictures)->
+              console.log pictures
       else
         $scope.show = new Show()
 
