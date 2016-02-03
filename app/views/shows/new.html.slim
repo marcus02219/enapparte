@@ -26,6 +26,50 @@
             input-integer[label="Price" model="show.price" required]
             / = f.input :price
 
+        .form-inputs[ng-show="step == 2"]
+          fieldset
+            legend= "Add Photos"
+            p= "Add photos from your Show"
+            br
+            .row
+              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures"]
+                .thumbnail
+                  img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
+                  .caption
+                    .actions.pull-right
+                      a[href="#" ng-click="removePicture($index)"]
+                        i.glyphicon.glyphicon-trash
+                  .clearfix
+            br
+            input-image[label="Upload photos" model="show.pictures" required]
+
+        .form-inputs[ng-show="step == 3"]
+          fieldset
+            legend= "Cover Photo"
+            p= "Choose a cover photo for your show"
+            br
+            .row
+              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures"]
+                a.thumbnail[href="" ng-click="selectCoverPhoto(picture)"]
+                  img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
+                  .caption
+                    h3[ng-show="picture.selected"]= "Cover Photo"
+
+        .form-inputs[ng-show="step == 4"]
+          fieldset
+            legend= "What at time?"
+            p= "Over what time slot can the spectators order your show?"
+            br
+            .row
+              .col-md-5
+                input-time[label="Starts at" model="show.starts_at" required]
+              /   = f.input :starts_at do
+              /     = f.select :starts_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
+              / .col-md-5
+              /   = f.input :ends_at do
+              /     = f.select :ends_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
+
+        hr
         .form-actions
           .form-group
             .row

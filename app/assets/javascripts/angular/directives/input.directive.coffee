@@ -106,3 +106,31 @@ angular
         scope.options = element.data('collection')
         scope.required = attrs.required != undefined
     }
+
+  .directive 'inputImage', ()->
+    {
+      require: '^form'
+      strict: 'E'
+      templateUrl: 'directives/input_image.html'
+      scope: {
+        model: '='
+      }
+      replace: true
+      link: (scope, element, attrs, form)->
+        scope.form = form
+        scope.label = attrs.label
+        scope.elementId = 'input_' + scope.$id
+        scope.required = attrs.required != undefined
+        scope.model = []
+
+        element.bind 'change', (changeEvent) ->
+          for file in changeEvent.target.files
+            reader = new FileReader()
+
+            reader.onload = (loadEvent) ->
+              scope.$apply ->
+                scope.model.push { src: loadEvent.target.result }
+
+            reader.readAsDataURL file
+
+    }
