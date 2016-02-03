@@ -1,11 +1,17 @@
 angular
   .module 'enapparte'
-  .controller 'ShowController', ['$scope', ($scope)->
-    $scope.step = 4
+  .controller 'ShowController', ['$scope', 'Show', ($scope, Show)->
+    $scope.step = 1
 
-    $scope.show =
-      art_id: null
-      pictures: []
+    $scope.show = {}
+
+    $scope.init = (id)->
+      if id
+        Show.get { id: id }, (show)->
+          console.log show
+          $scope.show = show
+      else
+        $scope.show = new Show()
 
     $scope.nextStep = (form)->
       if $scope.validate(form)
@@ -25,6 +31,21 @@ angular
       for picture in $scope.show.pictures
         picture.selected = false
       pic.selected = true
+
+    # schedules
+    $scope.$watch 'show.starts_at', (newValue, oldValue)->
+      $scope.show.ends_at = newValue  if newValue > $scope.show.ends_at
+
+    $scope.$watch 'show.ends_at', (newValue, oldValue)->
+      $scope.show.starts_at = newValue  if $scope.show.starts_at > newValue
+
+    # finish
+    $scope.finish = ()->
+      show = new Show({ show: $scope.show })
+      console.log show.$save()
+
+      # redirect to
+      window.location = '/dashboard/shows'
 
   ]
 

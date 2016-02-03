@@ -1,6 +1,6 @@
 
 describe 'ShowController', ->
-  ShowController = null
+  ShowController = undefined
 
   beforeEach(module('enapparte'))
 
@@ -10,4 +10,8 @@ describe 'ShowController', ->
 
   it 'should be defined', ->
     expect(ShowController).toBeDefined()
+
+  # it 'gets Show', ->
+  #   console.log ShowController
+  #   expect(ShowController.$scope).toBeDefined()
 

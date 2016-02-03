@@ -6,7 +6,7 @@
       | {{ label }}
     .col-sm-9
       select.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="model"]
-        option[ng-repeat="option in options" value="{option.value}"]
+        option[ng-repeat="option in options" value="{{ option.value }}" ng-selected="model == option.value"]
           | {{ option.name }}
       .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
         span.help-block[ng-show="form[elementId].$error.required"]

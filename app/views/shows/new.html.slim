@@ -1,10 +1,10 @@
-.container[ng-controller="ShowController"]
+.container[ng-controller="ShowController" ng-init="init(#{@show.id})"]
   .row
     = render "tabs"
     .col-md-9
       / = simple_form_for @show do |f|
       form.show[novalidate name="showForm"]
-        .form-inputs[ng-show="step == 1"]
+        .form-inputs[ng-if="step == 1"]
           fieldset
             legend= "My Show Details"
             p= "Your show will be visible on the site once you have downloaded your photos and complete details of your profile"
@@ -26,7 +26,7 @@
             input-integer[label="Price" model="show.price" required]
             / = f.input :price
 
-        .form-inputs[ng-show="step == 2"]
+        .form-inputs[ng-if="step == 2"]
           fieldset
             legend= "Add Photos"
             p= "Add photos from your Show"
@@ -43,7 +43,7 @@
             br
             input-image[label="Upload photos" model="show.pictures" required]
 
-        .form-inputs[ng-show="step == 3"]
+        .form-inputs[ng-if="step == 3"]
           fieldset
             legend= "Cover Photo"
             p= "Choose a cover photo for your show"
@@ -55,14 +55,13 @@
                   .caption
                     h3[ng-show="picture.selected"]= "Cover Photo"
 
-        .form-inputs[ng-show="step == 4"]
+        .form-inputs[ng-if="step == 4"]
           fieldset
             legend= "What at time?"
             p= "Over what time slot can the spectators order your show?"
             br
-            .row
-              .col-md-5
-                input-time[label="Starts at" model="show.starts_at" required]
+            input-time[label="Starts at" model="show.starts_at" required]
+            input-time[label="Ends at" model="show.ends_at" required]
               /   = f.input :starts_at do
               /     = f.select :starts_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
               / .col-md-5
@@ -74,4 +73,5 @@
           .form-group
             .row
               .col-md-9.col-md-offset-3
-                input#continue.btn.btn-default[type="submit" value="Continue" ng-click="nextStep(showForm)"]
+                input#continue.btn.btn-default[type="submit" value="Continue" ng-click="nextStep(showForm)" ng-show="step < 4"]
+                input#finish.btn.btn-default[type="submit" value="Finish" ng-click="finish()" ng-show="step == 4"]

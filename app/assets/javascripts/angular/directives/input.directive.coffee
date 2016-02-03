@@ -112,9 +112,8 @@ angular
       require: '^form'
       strict: 'E'
       templateUrl: 'directives/input_image.html'
-      scope: {
+      scope:
         model: '='
-      }
       replace: true
       link: (scope, element, attrs, form)->
         scope.form = form
@@ -133,4 +132,25 @@ angular
 
             reader.readAsDataURL file
 
+    }
+
+  .directive 'inputTime', ()->
+    {
+      require: '^form'
+      strict: 'E'
+      templateUrl: 'directives/input_time.html'
+      scope:
+        model: '='
+      replace: true
+      link: (scope, element, attrs, form)->
+        scope.form = form
+        scope.label = attrs.label
+        scope.elementId = 'input_' + scope.$id
+        scope.required = attrs.required != undefined
+
+        scope.options = []
+        for h in [0..23]
+          for min in [0, 30]
+            time = ('0' + h).slice(-2) + ':' + ('0' + min).slice(-2)
+            scope.options.push { name: time, value: time }
     }

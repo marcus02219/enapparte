@@ -4,10 +4,10 @@
       abbr[title="required" ng-if="required"] *
       '
       | {{ label }}
-    .col-sm-9
+    .col-sm-2
       select.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="model"]
-        option[ng-repeat="option in options" value="{option.value}"]
+        option[ng-repeat="option in options" value="{{ option.value }}"]
           | {{ option.name }}
       .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
         span.help-block[ng-show="form[elementId].$error.required"]
-          | Please, select a variant
+          | Please, select time

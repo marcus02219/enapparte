@@ -29,9 +29,12 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     price { Faker::Number.number(2) }
     max_spectators { Faker::Number.number(2) }
-    starts_at "2016-01-17 05:17:54"
-    ends_at "2016-01-17 05:17:54"
-    active false
+    starts_at { "2016-01-17 05:17:54" }
+    ends_at { "2016-01-17 05:17:54" }
+    active { false }
+
+    art
+    language
   end
 
 end
