@@ -74,5 +74,10 @@
           .form-group
             .row
               .col-md-9.col-md-offset-3
-                input#continue.btn.btn-default[type="submit" value="Continue" ng-click="nextStep(showForm)" ng-show="step < 4"]
-                input#finish.btn.btn-default[type="submit" value="Finish" ng-click="finish()" ng-show="step == 4"]
+                button#continue.btn.btn-default[ng-click="nextStep(showForm)" ng-show="step < 4"]
+                  = "Continue"
+                button#finish.btn.btn-default[ng-click="finish()" ng-show="step == 4"]
+                  i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate[ng-show="show.pending"]
+                  '
+                  = "Finish"
+

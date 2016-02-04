@@ -58,9 +58,11 @@ angular
 
     # finish
     $scope.finish = ()->
+      $scope.show.pending = true
       $scope.show
         .save()
         .then ()->
+          $scope.show.pending = false
           # redirect to
           window.location = '/dashboard/shows'
 
