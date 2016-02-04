@@ -11,6 +11,7 @@ angular
           .get id
           .then (show)->
             $scope.show = show
+            console.log $scope.show
 
             Picture
               .query { imageable_type: 'Show', imageable_id: show.id }
@@ -36,7 +37,10 @@ angular
       ).length > 0
 
     $scope.removePicture = (index)->
-      $scope.show.pictures.splice index, 1
+      $scope.show.pictures[index]
+        .remove()
+        .then ()->
+          $scope.show.pictures.splice index, 1
 
     $scope.selectCoverPhoto = (pic)->
       for picture in $scope.show.pictures

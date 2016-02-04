@@ -8,12 +8,12 @@
             legend= "My Show Details"
             p= "Your show will be visible on the site once you have downloaded your photos and complete details of your profile"
             br
-            input-select[label="Art" model="show.art_id" required data-collection=(Art.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json)]
-            input-integer[label="Max Spectators" model="show.max_spectators" required]
+            input-select[label="Art" model="show.artId" required data-collection=(Art.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json)]
+            input-integer[label="Max Spectators" model="show.maxSpectators" required]
             input-integer[label="Duration in minutes" model="show.length" required]
             input-string[label="Title" model="show.title" required]
             input-text[label="Description" model="show.description" required]
-            input-select[label="Language" model="show.language_id" data-collection=(Language.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json) required]
+            input-select[label="Language" model="show.languageId" data-collection=(Language.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json) required]
             / = f.association :art
             / = f.input :max_spectators
             / = f.input :length
@@ -31,7 +31,7 @@
             p= "Add photos from your Show"
             br
             .row
-              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures"]
+              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures" ng-hide="picture.deleted"]
                 .thumbnail
                   img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
                   .caption
@@ -48,7 +48,7 @@
             p= "Choose a cover photo for your show"
             br
             .row
-              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures"]
+              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures" ng-hide="picture.deleted"]
                 a.thumbnail[href="" ng-click="selectCoverPhoto(picture)"]
                   img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
                   .caption
@@ -59,8 +59,8 @@
             legend= "What at time?"
             p= "Over what time slot can the spectators order your show?"
             br
-            input-time[label="Starts at" model="show.starts_at" required]
-            input-time[label="Ends at" model="show.ends_at" required]
+            input-time[label="Starts at" model="show.startsAt" required]
+            input-time[label="Ends at" model="show.endsAt" required]
               /   = f.input :starts_at do
               /     = f.select :starts_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
               / .col-md-5

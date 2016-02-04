@@ -5,6 +5,5 @@ angular
       url: '/api/v1/shows',
       name: 'show'
       serializer: railsSerializer ()->
-        this.exclude('pictures')
-        # this.nestedAttribute('pictures')
+        this.nestedAttribute('pictures')
   ]

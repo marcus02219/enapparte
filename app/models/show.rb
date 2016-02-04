@@ -27,8 +27,10 @@ class Show < ActiveRecord::Base
   belongs_to :user
   belongs_to :language
   has_many   :bookings  , dependent: :destroy
-  has_many   :pictures  , dependent: :destroy , as: :imageable
   belongs_to :cover_picture, class_name: 'Picture'
 
   validates :art_id, :max_spectators, :length, :title, :description, :language_id, :price, presence: true
+
+  has_many   :pictures  , dependent: :destroy , as: :imageable
+  accepts_nested_attributes_for :pictures, allow_destroy: true
 end

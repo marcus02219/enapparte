@@ -21,6 +21,27 @@ describe Api::V1::ShowsController do
       it { expect(assigns(:show)).to be_persisted }
       it { expect(assigns(:show).user.id).to eq user.id }
     end
+
+    context "POST create" do
+      context 'when user is own' do
+        let(:show) { create :show, user: user }
+        let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
+        before(:each) { put :update, id: show.id, show: show_attributes, format: :json }
+        it { expect(response).to be_success }
+        it { expect(assigns(:show)).to be_persisted }
+        it { expect(assigns(:show).user.id).to eq user.id }
+      end
+
+      context 'when user is not own' do
+        let(:show) { create :show }
+        let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
+        it "raises exception" do
+          expect {
+            put :update, id: show.id, show: show_attributes, format: :json
+          }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+    end
   end
 
 end
