@@ -7,12 +7,19 @@ angular
 
     $scope.init = (id)->
       if id
-        Show.get { id: id }, (show)->
-          $scope.show = show
+        Show
+          .get id
+          .then (show)->
+            $scope.show = show
 
-          Picture.query { imageable_type: 'Show', imageable_id: show.id },
-            success: (pictures)->
-              console.log pictures
+            Picture
+              .query { imageable_type: 'Show', imageable_id: show.id }
+              .then (pictures)->
+                $scope.show.pictures = angular.copy(pictures)
+                # set selected
+                for picture in $scope.show.pictures
+                  picture.selected = true  if picture.id == show.coverPictureId
+
       else
         $scope.show = new Show()
 
@@ -21,6 +28,7 @@ angular
         $scope.step += 1
 
     $scope.validate = (form)->
+      # FIXME: change to switch
       return form.$valid  if $scope.step == 1
       return $scope.show.pictures.length > 0  if $scope.step == 2
       return true  if $scope.step == 3 && $scope.show.pictures.filter((picture)->
@@ -45,7 +53,7 @@ angular
     # finish
     $scope.finish = ()->
       show = new Show({ show: $scope.show })
-      console.log show.$save()
+      console.log show.save()
 
       # redirect to
       window.location = '/dashboard/shows'

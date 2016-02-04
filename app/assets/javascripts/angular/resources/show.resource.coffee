@@ -1,5 +1,10 @@
 angular
   .module 'enapparte'
-  .factory 'Show', ['$resource', ($resource)->
-    $resource('/api/v1/shows/:id', {id:'@id'})
+  .factory 'Show', ['railsResourceFactory', 'railsSerializer', (railsResourceFactory, railsSerializer)->
+    railsResourceFactory
+      url: '/api/v1/shows',
+      name: 'show'
+      serializer: railsSerializer ()->
+        this.exclude('pictures')
+        # this.nestedAttribute('pictures')
   ]

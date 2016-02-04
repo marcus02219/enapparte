@@ -2,7 +2,6 @@
   .row
     = render "tabs"
     .col-md-9
-      / = simple_form_for @show do |f|
       form.show[novalidate name="showForm"]
         .form-inputs[ng-if="step == 1"]
           fieldset

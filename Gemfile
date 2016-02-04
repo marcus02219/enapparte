@@ -98,4 +98,4 @@ gem 'faker'
 
 gem 'aws-sdk', '< 2.0'
 gem 'jasmine'
-gem 'angularjs-rails-resource'
+gem 'angularjs-rails-resource', '~> 2.0.0'

@@ -120,7 +120,7 @@ angular
         scope.label = attrs.label
         scope.elementId = 'input_' + scope.$id
         scope.required = attrs.required != undefined
-        scope.model = []
+        scope.model = []  unless scope.model
 
         element.bind 'change', (changeEvent) ->
           for file in changeEvent.target.files

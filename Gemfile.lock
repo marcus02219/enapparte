@@ -349,7 +349,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
-  angularjs-rails-resource
+  angularjs-rails-resource (~> 2.0.0)
   annotate!
   awesome_print
   aws-sdk (< 2.0)

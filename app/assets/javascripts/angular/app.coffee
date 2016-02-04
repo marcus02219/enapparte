@@ -1,5 +1,5 @@
 angular
-  .module 'enapparte', ['ngResource', 'ngRoute']
+  .module 'enapparte', ['rails', 'ngRoute']
 
   # .config ($routeProvider)->
   #   $routeProvider
