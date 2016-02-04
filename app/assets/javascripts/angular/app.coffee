@@ -14,8 +14,9 @@ angular
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
   ]
 
-  .run ($rootScope)->
+  .run ['$rootScope', ($rootScope)->
     $rootScope.flashMessages = true
 
     $rootScope.$on '$routeChangeStart', (scope, next, current)->
       $rootScope.flashMessages = true
+  ]

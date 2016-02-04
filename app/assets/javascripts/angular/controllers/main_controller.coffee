@@ -1,6 +1,6 @@
 angular
   .module 'enapparte'
-  .controller 'MainController',
-    class MainController
-      constructor: (@$scope)->
+  .controller 'MainController', ['$scope', ($scope)->
+
+  ]
 
