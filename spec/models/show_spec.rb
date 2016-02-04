@@ -25,5 +25,15 @@
 require 'rails_helper'
 
 RSpec.describe Show, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context 'accepts_nested_attributes_for :pictures' do
+    let(:show) { build :show }
+    it 'creates picture' do
+      expect {
+        show.pictures_attributes = [ { src: File.read(Rails.root.join('spec/fixtures/base64data.txt')) } ]
+        show.save
+      }.to change { Picture.count }.by(1)
+    end
+  end
+
 end

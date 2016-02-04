@@ -33,4 +33,16 @@ class Show < ActiveRecord::Base
 
   has_many   :pictures  , dependent: :destroy , as: :imageable
   accepts_nested_attributes_for :pictures, allow_destroy: true
+
+  after_save :set_cover_picture
+
+  private
+
+  def set_cover_picture
+    picture = self.pictures.select { |p| p.selected }.first
+    if picture && picture.id != cover_picture_id
+      self.cover_picture = picture
+      self.save
+    end
+  end
 end

@@ -31,7 +31,7 @@
             p= "Add photos from your Show"
             br
             .row
-              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures" ng-hide="picture.deleted"]
+              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures" ng-hide="picture._destroy == 1"]
                 .thumbnail
                   img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
                   .caption
@@ -48,11 +48,13 @@
             p= "Choose a cover photo for your show"
             br
             .row
-              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures" ng-hide="picture.deleted"]
+              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures" ng-hide="picture._destroy == 1"]
                 a.thumbnail[href="" ng-click="selectCoverPhoto(picture)"]
                   img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
                   .caption
-                    h3[ng-show="picture.selected"]= "Cover Photo"
+                    i.glyphicon.glyphicon-ok[ng-show="picture.selected"]
+                    '
+                    = "Cover Photo"
 
         .form-inputs[ng-if="step == 4"]
           fieldset

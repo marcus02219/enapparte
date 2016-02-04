@@ -13,6 +13,7 @@
 #  image_file_size    :integer
 #  image_updated_at   :datetime
 #  imageable_type     :string
+#  selected           :boolean          default(FALSE)
 #
 
 class Picture < ActiveRecord::Base
@@ -25,4 +26,22 @@ class Picture < ActiveRecord::Base
   def src
     self.image.url(:medium)
   end
+
+  def src= data
+    if data.include? 'base64,'
+      content_type, image_data = data.split('base64,')
+      decoded_data = Base64.decode64(image_data)
+
+      data = StringIO.new(decoded_data)
+      data.class_eval do
+        attr_accessor :content_type, :original_filename
+      end
+
+      data.content_type = content_type.split('data:')[1]
+      data.original_filename = File.basename('image.png')
+
+      self.image = data
+    end
+  end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202131317) do
+ActiveRecord::Schema.define(version: 20160204185510) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -84,13 +84,14 @@ ActiveRecord::Schema.define(version: 20160202131317) do
     t.string   "title"
     t.string   "url"
     t.integer  "imageable_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "imageable_type"
+    t.boolean  "selected",           default: false
   end
 
   create_table "ratings", force: :cascade do |t|

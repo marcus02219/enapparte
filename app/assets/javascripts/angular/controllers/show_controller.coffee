@@ -20,6 +20,7 @@ angular
                 # set selected
                 for picture in $scope.show.pictures
                   picture.selected = true  if picture.id == show.coverPictureId
+                  picture._destroy = 0
 
       else
         $scope.show = new Show()
@@ -37,10 +38,11 @@ angular
       ).length > 0
 
     $scope.removePicture = (index)->
-      $scope.show.pictures[index]
-        .remove()
-        .then ()->
-          $scope.show.pictures.splice index, 1
+      $scope.show.pictures[index]._destroy = 1
+      # $scope.show.pictures[index]
+      #   .remove()
+      #   .then ()->
+      #     $scope.show.pictures.splice index, 1
 
     $scope.selectCoverPhoto = (pic)->
       for picture in $scope.show.pictures
@@ -56,11 +58,11 @@ angular
 
     # finish
     $scope.finish = ()->
-      show = new Show({ show: $scope.show })
-      console.log show.save()
-
-      # redirect to
-      window.location = '/dashboard/shows'
+      $scope.show
+        .save()
+        .then ()->
+          # redirect to
+          window.location = '/dashboard/shows'
 
   ]
 
