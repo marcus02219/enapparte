@@ -1,0 +1,22 @@
+.container.show[data-show-id=(@show.id)]
+  .row
+    = render "tabs"
+    .col-md-9
+      form
+        .form-inputs
+          fieldset
+            legend= "Add Photos"
+            p= "Add photos from your Show"
+            br
+            .row.form-group
+              label.col-md-3.text-right
+                = "Select photos"
+              .col-md-9
+                input#show_image.file-loading[type="file" multiple data-show-id=(@show.id) data-url=(pictures_path(imageable_type: 'Show', imageable_id: @show.id))]
+
+        .form-actions
+          .form-group
+            .row
+              .col-md-9.col-md-offset-3
+                button#continue.btn.btn-default[disabled=(@show.pictures.count == 0) data-href=(cover_picture_show_path(@show))]
+                  = "Continue"

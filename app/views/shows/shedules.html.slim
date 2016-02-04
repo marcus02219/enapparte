@@ -1,0 +1,23 @@
+.container.show[data-show-id=(@show.id)]
+  .row
+    = render "tabs"
+    .col-md-9
+      = simple_form_for @show do |f|
+        .form-inputs
+          fieldset
+            legend= "What at time?"
+            p= "Over what time slot can the spectators order your show?"
+            br
+            .row
+              .col-md-5
+                = f.input :starts_at do
+                  = f.select :starts_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
+              .col-md-5
+                = f.input :ends_at do
+                  = f.select :ends_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
+
+        .form-actions
+          .form-group
+            input#continue.btn.btn-default[type="submit" value="Publish" disabled=(true)]
+
+

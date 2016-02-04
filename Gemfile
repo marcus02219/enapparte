@@ -65,9 +65,12 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload'
+  gem 'guard-jasmine'
 
   gem 'rack-livereload'
   gem 'libnotify'
+
+  gem 'awesome_print'
 end
 
 group :production do
@@ -94,3 +97,5 @@ gem 'jquery-turbolinks'
 gem 'faker'
 
 gem 'aws-sdk', '< 2.0'
+gem 'jasmine'
+gem 'angularjs-rails-resource', '~> 2.0.0'

@@ -6,3 +6,9 @@
 asset 'jquery-form'
 asset 'angular'
 asset 'angular-resource'
+asset 'angular-route'
+asset 'angular-route'
+asset 'angular-bootstrap'
+
+asset 'angular-mocks'
+asset 'bootstrap-fileinput'

@@ -5,7 +5,7 @@
       = active_link_to 'Profile', profile_dashboard_path, wrap_tag: :li, active: /^\/dashboard\/(profile|update)$/
       = active_link_to 'Messages', messages_dashboard_path, wrap_tag: :li
       - if @user.shows.size > 0
-        = active_link_to 'My Ads', ads_dashboard_path, wrap_tag: :li
+        = active_link_to 'My Shows', shows_dashboard_path, wrap_tag: :li
         = active_link_to 'My Performances', performances_dashboard_path, wrap_tag: :li
       = active_link_to 'My Bookings', bookings_dashboard_path, wrap_tag: :li
       = active_link_to 'Account', account_dashboard_path, wrap_tag: :li

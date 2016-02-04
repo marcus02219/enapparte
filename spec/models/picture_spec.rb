@@ -13,10 +13,27 @@
 #  image_file_size    :integer
 #  image_updated_at   :datetime
 #  imageable_type     :string
+#  selected           :boolean          default(FALSE)
 #
 
 require 'rails_helper'
 
 RSpec.describe Picture, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context 'base64 image' do
+
+    context 'when src is base64 image data' do
+      let(:data) { File.read(Rails.root.join('spec/fixtures/base64data.txt')) }
+      let(:picture) { build :picture, src: data }
+      before(:each) { picture.save }
+      it { expect(picture.image.exists?).to eq true }
+    end
+
+    context 'when src is http source' do
+      let(:picture) { build :picture, src: 'http://google.com/image.jpg' }
+      before(:each) { picture.save }
+      it { expect(picture.image.exists?).to eq false }
+    end
+  end
+
 end

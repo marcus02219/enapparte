@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127133639) do
+ActiveRecord::Schema.define(version: 20160204185510) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -84,13 +84,14 @@ ActiveRecord::Schema.define(version: 20160127133639) do
     t.string   "title"
     t.string   "url"
     t.integer  "imageable_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "imageable_type"
+    t.boolean  "selected",           default: false
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -106,16 +107,18 @@ ActiveRecord::Schema.define(version: 20160127133639) do
     t.text     "description"
     t.float    "price"
     t.integer  "max_spectators"
-    t.time     "starts_at"
-    t.time     "ends_at"
     t.boolean  "active"
     t.integer  "user_id"
     t.integer  "art_id"
     t.integer  "language_id"
     t.integer  "bookings_id"
     t.integer  "pictures_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "cover_picture_id"
+    t.datetime "published_at"
+    t.string   "starts_at"
+    t.string   "ends_at"
   end
 
   create_table "users", force: :cascade do |t|

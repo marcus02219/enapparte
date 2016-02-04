@@ -5,6 +5,8 @@ feature "Profile", :devise do
 
   scenario "Save" do
     user_attributes = attributes_for(:user).reject { |k,v| %w(confirmed_at password email).include? k.to_s }
+    user_attributes.delete(:dob)
+    user_attributes.delete(:gender)
 
     signin(user.email, '123'*3)
 
@@ -18,6 +20,11 @@ feature "Profile", :devise do
           begin
             choose "user_#{attribute.to_s}", with: value
           rescue
+            begin
+              page.find("#user_#{attribute.to_s}").select(value)
+            rescue
+              puts "Error fill form: #{attribute}"
+            end
           end
         end
       end

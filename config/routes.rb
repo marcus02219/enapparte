@@ -8,16 +8,29 @@ Rails.application.routes.draw do
     post 'upload_photo', on: :collection
   end
 
+  resources :shows do
+    get 'photos', on: :member
+    get 'pictures_count', on: :member
+    get 'cover_picture', on: :member
+    get 'shedules', on: :member
+  end
+
+  resources :pictures do
+    post 'destroy', on: :member, as: 'destroy'
+  end
+
   namespace :api do
     namespace :v1 do
-      resources :users
+      resources :users, :defaults => { :format => 'json' }
+      resources :shows, :defaults => { :format => 'json' }
+      resources :pictures, :defaults => { :format => 'json' }
     end
   end
 
   get '/dashboard', to: 'dashboard#index'
   get '/dashboard/profile', to: 'dashboard#profile', as: 'profile_dashboard'
   get '/dashboard/messages', to: 'dashboard#messages', as: 'messages_dashboard'
-  get '/dashboard/ads', to: 'dashboard#ads', as: 'ads_dashboard'
+  get '/dashboard/shows', to: 'dashboard#shows', as: 'shows_dashboard'
   get '/dashboard/performances', to: 'dashboard#performances', as: 'performances_dashboard'
   get '/dashboard/account', to: 'dashboard#account', as: 'account_dashboard'
   patch '/dashboard/update', to: 'dashboard#update', as: 'update_dashboard'

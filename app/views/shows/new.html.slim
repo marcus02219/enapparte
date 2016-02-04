@@ -1,0 +1,78 @@
+.container[ng-controller="ShowController" ng-init="init(#{@show.id})"]
+  .row
+    = render "tabs"
+    .col-md-9
+      form.show[novalidate name="showForm"]
+        .form-inputs[ng-if="step == 1"]
+          fieldset
+            legend= "My Show Details"
+            p= "Your show will be visible on the site once you have downloaded your photos and complete details of your profile"
+            br
+            input-select[label="Art" model="show.artId" required data-collection=(Art.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json)]
+            input-integer[label="Max Spectators" model="show.maxSpectators" required]
+            input-integer[label="Duration in minutes" model="show.length" required]
+            input-string[label="Title" model="show.title" required]
+            input-text[label="Description" model="show.description" required]
+            input-select[label="Language" model="show.languageId" data-collection=(Language.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json) required]
+            / = f.association :art
+            / = f.input :max_spectators
+            / = f.input :length
+            / = f.input :title
+            / = f.input :description
+            / = f.association :language
+          fieldset
+            legend= "Price"
+            input-integer[label="Price" model="show.price" required]
+            / = f.input :price
+
+        .form-inputs[ng-if="step == 2"]
+          fieldset
+            legend= "Add Photos"
+            p= "Add photos from your Show"
+            br
+            .row
+              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures" ng-hide="picture._destroy == 1"]
+                .thumbnail
+                  img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
+                  .caption
+                    .actions.pull-right
+                      a[href="#" ng-click="removePicture($index)"]
+                        i.glyphicon.glyphicon-trash
+                  .clearfix
+            br
+            input-image[label="Upload photos" model="show.pictures" required]
+
+        .form-inputs[ng-if="step == 3"]
+          fieldset
+            legend= "Cover Photo"
+            p= "Choose a cover photo for your show"
+            br
+            .row
+              .col-xs-6.col-md-3[ng-repeat="picture in show.pictures" ng-hide="picture._destroy == 1"]
+                a.thumbnail[href="" ng-click="selectCoverPhoto(picture)"]
+                  img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
+                  .caption
+                    i.glyphicon.glyphicon-ok[ng-show="picture.selected"]
+                    '
+                    = "Cover Photo"
+
+        .form-inputs[ng-if="step == 4"]
+          fieldset
+            legend= "What at time?"
+            p= "Over what time slot can the spectators order your show?"
+            br
+            input-time[label="Starts at" model="show.startsAt" required]
+            input-time[label="Ends at" model="show.endsAt" required]
+              /   = f.input :starts_at do
+              /     = f.select :starts_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
+              / .col-md-5
+              /   = f.input :ends_at do
+              /     = f.select :ends_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
+
+        hr
+        .form-actions
+          .form-group
+            .row
+              .col-md-9.col-md-offset-3
+                input#continue.btn.btn-default[type="submit" value="Continue" ng-click="nextStep(showForm)" ng-show="step < 4"]
+                input#finish.btn.btn-default[type="submit" value="Finish" ng-click="finish()" ng-show="step == 4"]

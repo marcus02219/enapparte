@@ -1,0 +1,4 @@
+ul.nav.nav-pills.nav-stacked
+  li[ng-repeat="pane in panes" ng-class="{active: pane.active}"]
+    a[href="" ng-click="selectPane(pane)"]
+      | {{ pane.title }}

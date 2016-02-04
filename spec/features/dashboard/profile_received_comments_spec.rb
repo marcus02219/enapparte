@@ -16,7 +16,7 @@ feature "Profile - Received comments" do
     visit profile_dashboard_path
 
     expect(page).to have_css("img[src='#{user_with_comments.picture.image.url(:thumb)}']")
-    expect(page).to include(user_with_comments.full_name)
+    expect(page).to have_content(user_with_comments.full_name)
   end
 
 

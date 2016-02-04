@@ -100,7 +100,7 @@ br
                               = l comment.created_at.to_date, format: :long
                           .col-md-4
                             .rating
-                              - rating = comment.booking.user.rating.round
+                              - rating = comment.booking.user.rating.try(:round).to_i
                               - rating.times.each do
                                 i.glyphicon.glyphicon-star
                         .row
