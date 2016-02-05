@@ -22,8 +22,8 @@ describe Api::V1::ShowsController do
       it { expect(assigns(:show).user.id).to eq user.id }
     end
 
-    context "POST create" do
-      context 'when user is own' do
+    context "PUT update" do
+      context 'when user is owner' do
         let(:show) { create :show, user: user }
         let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
         before(:each) { put :update, id: show.id, show: show_attributes, format: :json }
@@ -32,12 +32,38 @@ describe Api::V1::ShowsController do
         it { expect(assigns(:show).user.id).to eq user.id }
       end
 
-      context 'when user is not own' do
+      context 'when user is not owner' do
         let(:show) { create :show }
         let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
         it "raises exception" do
           expect {
             put :update, id: show.id, show: show_attributes, format: :json
+          }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+    end
+
+    context "GET index" do
+      let!(:shows) { create_list(:show, 2, user: user) }
+      before(:each) { get :index, format: :json }
+      it { expect(response).to be_success }
+      it { expect(assigns(:shows).map(&:id)).to match_array(shows.map(&:id)) }
+    end
+
+    context "DELETE destroy" do
+      context 'when user is owner' do
+        let(:show) { create :show, user: user }
+        before(:each) { delete :destroy, id: show.id, format: :json }
+        it { expect(response).to be_success }
+        it { expect(Show.exists?(show.id)).to eq false }
+      end
+
+      context 'when user is not owner' do
+        let(:show) { create :show }
+        let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
+        it "raises exception" do
+          expect {
+            delete :destroy, id: show.id, format: :json
           }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end

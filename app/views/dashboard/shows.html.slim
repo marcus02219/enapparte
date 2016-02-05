@@ -1,25 +1,26 @@
 = render "tabs"
 
 br
-.container
+.container[ng-controller="ShowController" ng-init="initShows()"]
   br
   .row
     .col-md-3
       a.btn.btn-success[href=(new_show_path)]= "Add New Show"
 
     .col-md-9
-      - @user.shows.each do |show|
-        .col-sm-6.col-md-4
-          .thumbnail.show
-            = image_tag show.cover_picture.try(:image).try(:url, :medium)
-            .caption
-              h3= show.title
-              .price
-                = number_to_currency show.price
-              .actions.pull-right
-                = link_to edit_show_path(show), title: 'Edit' do
-                  i.glyphicon.glyphicon-pencil
-                '
-                = link_to show_path(show), data: { method: :delete, confirm: 'Are you sure you want to remove this meal?' }, title: 'Delete' do
-                  i.glyphicon.glyphicon-trash
-              .clearfix
+      / - @user.shows.each do |show|
+      .col-sm-6.col-md-4[ng-repeat="show in shows"]
+        .thumbnail.show
+          img[ng-src="{{show.coverPicture.src}}"]
+          .caption
+            h3
+              | {{ show.title }}
+            .price
+              | {{ show.price | currency:$ }}
+            .actions.pull-right
+              a[ng-href="/shows/{{show.id}}/edit" title="Edit"]
+                i.glyphicon.glyphicon-pencil
+              '
+              a[href="" title="Delete" ng-click="removeShow(show)"]
+                i.glyphicon.glyphicon-trash
+            .clearfix

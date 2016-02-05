@@ -10,8 +10,3 @@ describe 'ShowController', ->
 
   it 'should be defined', ->
     expect(ShowController).toBeDefined()
-
-  # it 'gets Show', ->
-  #   console.log ShowController
-  #   expect(ShowController.$scope).toBeDefined()
-

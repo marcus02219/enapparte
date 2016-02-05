@@ -1,6 +1,6 @@
 angular
   .module 'enapparte'
-  .factory 'Show', ['railsResourceFactory', 'railsSerializer', (railsResourceFactory, railsSerializer)->
+  .factory 'Show', ['railsResourceFactory', 'railsSerializer', 'Picture', (railsResourceFactory, railsSerializer, Picture)->
     railsResourceFactory
       url: '/api/v1/shows',
       name: 'show'

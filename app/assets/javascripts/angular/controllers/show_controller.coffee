@@ -16,7 +16,7 @@ angular
             Picture
               .query { imageable_type: 'Show', imageable_id: show.id }
               .then (pictures)->
-                $scope.show.pictures = angular.copy(pictures)
+                $scope.show.pictures = pictures
                 # set selected
                 for picture in $scope.show.pictures
                   picture.selected = true  if picture.id == show.coverPictureId
@@ -24,6 +24,19 @@ angular
 
       else
         $scope.show = new Show()
+
+
+    $scope.initShows = ()->
+      Show
+        .query()
+        .then (shows)->
+          $scope.shows = shows
+
+          angular.forEach $scope.shows, (show, i)->
+            Picture
+              .get(show.coverPictureId)
+              .then (picture)->
+                show.coverPicture = picture
 
     $scope.nextStep = (form)->
       if $scope.validate(form)
@@ -39,15 +52,17 @@ angular
 
     $scope.removePicture = (index)->
       $scope.show.pictures[index]._destroy = 1
-      # $scope.show.pictures[index]
-      #   .remove()
-      #   .then ()->
-      #     $scope.show.pictures.splice index, 1
+
+    $scope.removeShow = (show)->
+      if confirm("Are you sure you want to remove this meal?")
+        show.remove()
+        $scope.shows.splice $scope.shows.indexOf(show), 1
 
     $scope.selectCoverPhoto = (pic)->
       for picture in $scope.show.pictures
         picture.selected = false
       pic.selected = true
+
 
     # schedules
     $scope.$watch 'show.starts_at', (newValue, oldValue)->
