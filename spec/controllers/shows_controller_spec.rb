@@ -39,7 +39,9 @@ describe ShowsController do
     before(:each) do sign_in user end
 
     describe 'POST create' do
-      let(:show_attributes) { attributes_for :show }
+      let(:art) { create :art }
+      let(:language) { create :language }
+      let(:show_attributes) { attributes_for :show, art_id: art.id, language_id: language.id }
       it 'creates Show' do
         expect {
           post :create, show: show_attributes

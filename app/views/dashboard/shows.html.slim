@@ -20,6 +20,6 @@ br
                 = link_to edit_show_path(show), title: 'Edit' do
                   i.glyphicon.glyphicon-pencil
                 '
-                = link_to '', title: 'Delete' do
+                = link_to show_path(show), data: { method: :delete, confirm: 'Are you sure you want to remove this meal?' }, title: 'Delete' do
                   i.glyphicon.glyphicon-trash
               .clearfix
