@@ -13,6 +13,10 @@ br
         .thumbnail.show
           img[ng-src="{{show.coverPicture.src}}"]
           .caption
+            a.label.label-danger[ng-href="#" ng-show="!show.active" ng-click="activateShow(show)"]
+              | Disabled (activate)
+            a.label.label-success[ng-href="#" ng-show="show.active" ng-click="deactivateShow(show)"]
+              | Enabled (deactivate)
             h3
               | {{ show.title }}
             .price

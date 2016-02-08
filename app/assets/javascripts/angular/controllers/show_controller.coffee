@@ -58,11 +58,21 @@ angular
         show.remove()
         $scope.shows.splice $scope.shows.indexOf(show), 1
 
+    $scope.activateShow = (show, index)->
+      show
+        .activate()
+        .then (show)->
+          $scope.shows[index] = show
+        , (reason)->
+          if reason.data.errors.address
+            window.location = '/dashboard/profile' + '?error=' + reason.data.errors.address[0]
+          else if reason.data.errors.phone_number
+            window.location = '/dashboard/profile' + '?error=' + reason.data.errors.phone_number[0]
+
     $scope.selectCoverPhoto = (pic)->
       for picture in $scope.show.pictures
         picture.selected = false
       pic.selected = true
-
 
     # schedules
     $scope.$watch 'show.starts_at', (newValue, oldValue)->

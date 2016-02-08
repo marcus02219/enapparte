@@ -36,6 +36,19 @@ class Show < ActiveRecord::Base
 
   after_save :set_cover_picture
 
+  def activate
+    if user && user.confirmed? && user.addresses.any? && user.phone_number.present?
+      self.active = true
+      self.save
+    else
+      if user.addresses.empty?
+        self.errors.add(:address, I18n.t('activerecord.errors.messages.addresses_is_empty'))
+      elsif user.phone_number.blank?
+        self.errors.add(:phone_number, I18n.t('activerecord.errors.messages.phone_number_is_empty'))
+      end
+    end
+  end
+
   private
 
   def set_cover_picture

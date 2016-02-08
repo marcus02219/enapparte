@@ -16,6 +16,12 @@ class Api::V1::ShowsController < Api::BaseController
     respond_with :api, :v1, @show
   end
 
+  def activate
+    @show = current_user.shows.find(params[:id])
+    @show.activate
+    respond_with :api, :v1, @show
+  end
+
   def index
     @shows = current_user.shows
     respond_with :api, :v1, @shows
