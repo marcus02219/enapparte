@@ -16,9 +16,9 @@ class Api::V1::ShowsController < Api::BaseController
     respond_with :api, :v1, @show
   end
 
-  def activate
+  def toggle_active
     @show = current_user.shows.find(params[:id])
-    @show.activate
+    @show.toggle_active
     respond_with :api, :v1, @show
   end
 

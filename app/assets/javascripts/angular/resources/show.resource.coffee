@@ -7,9 +7,9 @@ angular
       serializer: railsSerializer ()->
         this.nestedAttribute('pictures')
 
-    resource.prototype.activate = ()->
+    resource.prototype.toggleActive = ()->
       resource
-        .$post '/api/v1/shows/' + this.id + '/activate'
+        .$post '/api/v1/shows/' + this.id + '/toggle_active'
 
     resource
   ]

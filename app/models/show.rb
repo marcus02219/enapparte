@@ -36,9 +36,9 @@ class Show < ActiveRecord::Base
 
   after_save :set_cover_picture
 
-  def activate
+  def toggle_active
     if user && user.confirmed? && user.addresses.any? && user.phone_number.present?
-      self.active = true
+      self.active = !self.active
       self.save
     else
       if user.addresses.empty?

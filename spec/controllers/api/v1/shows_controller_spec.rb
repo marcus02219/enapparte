@@ -69,10 +69,10 @@ describe Api::V1::ShowsController do
       end
     end
 
-    context 'POST activate' do
+    context 'POST toggle_active' do
       context 'with valid fields' do
         let(:show) { create :show, user: user }
-        before(:each) { post :activate, id: show.id, format: :json }
+        before(:each) { post :toggle_active, id: show.id, format: :json }
         it { expect(assigns(:show)).to be_active }
         it { expect(response).to be_success }
       end
@@ -80,14 +80,14 @@ describe Api::V1::ShowsController do
       context 'when email didn\'t confirm' do
         let!(:show) { create :show, user: user }
         before(:each) { user.update(confirmed_at: nil) }
-        before(:each) { post :activate, id: show.id, format: :json }
+        before(:each) { post :toggle_active, id: show.id, format: :json }
         it { expect(response.status).to eq 401 }
       end
 
       context 'when address is empty' do
         let!(:show) { create :show, user: user }
         before(:each) { user.addresses.destroy_all }
-        before(:each) { post :activate, id: show.id, format: :json }
+        before(:each) { post :toggle_active, id: show.id, format: :json }
         it { expect(response.status).to eq 422 }
         it { expect(assigns(:show)).to_not be_active }
         it { expect(response.body).to include(I18n.t('activerecord.errors.messages.addresses_is_empty')) }
@@ -96,7 +96,7 @@ describe Api::V1::ShowsController do
       context 'when phone number is empty' do
         let!(:show) { create :show, user: user }
         before(:each) { user.update(phone_number: nil) }
-        before(:each) { post :activate, id: show.id, format: :json }
+        before(:each) { post :toggle_active, id: show.id, format: :json }
         it { expect(response.status).to eq 422 }
         it { expect(assigns(:show)).to_not be_active }
         it { expect(response.body).to include(I18n.t('activerecord.errors.messages.phone_number_is_empty')) }

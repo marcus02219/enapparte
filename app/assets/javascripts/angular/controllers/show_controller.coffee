@@ -5,13 +5,14 @@ angular
 
     $scope.show = {}
 
+    $scope.shows = []
+
     $scope.init = (id)->
       if id
         Show
           .get id
           .then (show)->
             $scope.show = show
-            console.log $scope.show
 
             Picture
               .query { imageable_type: 'Show', imageable_id: show.id }
@@ -30,13 +31,8 @@ angular
       Show
         .query()
         .then (shows)->
-          $scope.shows = shows
-
-          angular.forEach $scope.shows, (show, i)->
-            Picture
-              .get(show.coverPictureId)
-              .then (picture)->
-                show.coverPicture = picture
+          for show in shows
+            $scope.addShow show
 
     $scope.nextStep = (form)->
       if $scope.validate(form)
@@ -53,16 +49,26 @@ angular
     $scope.removePicture = (index)->
       $scope.show.pictures[index]._destroy = 1
 
+    $scope.addShow = (show, index)->
+      if index
+        $scope.shows[index] = show
+      else
+        $scope.shows.push(show)
+      Picture
+        .get(show.coverPictureId)
+        .then (picture)->
+          show.coverPicture = picture
+
     $scope.removeShow = (show)->
       if confirm("Are you sure you want to remove this meal?")
         show.remove()
         $scope.shows.splice $scope.shows.indexOf(show), 1
 
-    $scope.activateShow = (show, index)->
+    $scope.toggleActive = (show, index)->
       show
-        .activate()
+        .toggleActive()
         .then (show)->
-          $scope.shows[index] = show
+          $scope.addShow(show, index)
         , (reason)->
           if reason.data.errors.address
             window.location = '/dashboard/profile' + '?flash[error]=' + reason.data.errors.address[0]
