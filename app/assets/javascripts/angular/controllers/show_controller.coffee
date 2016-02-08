@@ -1,6 +1,6 @@
 angular
   .module 'enapparte'
-  .controller 'ShowController', ['$scope', 'Show', 'Picture', ($scope, Show, Picture)->
+  .controller 'ShowController', ['$scope', '$rootScope', 'Show', 'Picture', 'Flash', '$sce', ($scope, $rootScope, Show, Picture, Flash, $sce)->
     $scope.step = 1
 
     $scope.show = {}
@@ -50,7 +50,7 @@ angular
       $scope.show.pictures[index]._destroy = 1
 
     $scope.addShow = (show, index)->
-      if index
+      if index != undefined
         $scope.shows[index] = show
       else
         $scope.shows.push(show)
@@ -64,11 +64,24 @@ angular
         show.remove()
         $scope.shows.splice $scope.shows.indexOf(show), 1
 
+    $scope.$on 'activateAllShows', (e)->
+      for show, index in $scope.shows
+        console.log index
+
     $scope.toggleActive = (show, index)->
       show
         .toggleActive()
         .then (show)->
           $scope.addShow(show, index)
+          # check all shows for activate
+          if show.active
+            needActivate = false
+            for show in $scope.shows
+              if !show.active
+                needActivate = true
+                break
+            if needActivate
+              Flash.showNotice($sce.trustAsHtml('<span>Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click=\'$emit("activateAllShows");\'>here</a> for all activate.</span>'))
         , (reason)->
           if reason.data.errors.address
             window.location = '/dashboard/profile' + '?flash[error]=' + reason.data.errors.address[0]

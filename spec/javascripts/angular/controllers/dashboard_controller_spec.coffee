@@ -1,4 +1,3 @@
-
 describe 'DashboardController', ->
   DashboardController = undefined
 
