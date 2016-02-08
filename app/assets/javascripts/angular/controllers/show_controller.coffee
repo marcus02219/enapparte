@@ -65,9 +65,9 @@ angular
           $scope.shows[index] = show
         , (reason)->
           if reason.data.errors.address
-            window.location = '/dashboard/profile' + '?error=' + reason.data.errors.address[0]
+            window.location = '/dashboard/profile' + '?flash[error]=' + reason.data.errors.address[0]
           else if reason.data.errors.phone_number
-            window.location = '/dashboard/profile' + '?error=' + reason.data.errors.phone_number[0]
+            window.location = '/dashboard/profile' + '?flash[error]=' + reason.data.errors.phone_number[0]
 
     $scope.selectCoverPhoto = (pic)->
       for picture in $scope.show.pictures
