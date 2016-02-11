@@ -50,7 +50,7 @@ angular
       $scope.show.pictures[index]._destroy = 1
 
     $scope.addShow = (show, index)->
-      if index != undefined
+      if angular.isDefined(index)
         $scope.shows[index] = show
       else
         $scope.shows.push(show)
@@ -65,11 +65,15 @@ angular
         $scope.shows.splice $scope.shows.indexOf(show), 1
 
     $scope.$on 'activateAllShows', (e)->
-      for show, index in $scope.shows
-        console.log index
+      angular.forEach $scope.shows, (show, i)->
+        if !show.active
+          show
+            .toggleActive()
+            .then (show)->
+              $scope.addShow(show, i)
+      Flash.closeNotice()
 
     $scope.toggleActive = (show, index)->
-      Flash.showNotice(('Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click="alert(123)">here</a> for all activate.'))
       show
         .toggleActive()
         .then (show)->
@@ -81,8 +85,8 @@ angular
               if !show.active
                 needActivate = true
                 break
-            # if needActivate
-              # Flash.showNotice($sce.trustAsHtml('Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click="alert(123)">here</a> for all activate.'))
+            if needActivate
+              Flash.showNotice('Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click="broadcast(\'activateAllShows\')">here</a> for all activate.')
         , (reason)->
           if reason.data.errors.address
             window.location = '/dashboard/profile' + '?flash[error]=' + reason.data.errors.address[0]

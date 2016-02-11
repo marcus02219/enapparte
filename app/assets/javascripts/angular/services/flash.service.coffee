@@ -8,4 +8,7 @@ angular
       showNotice: (msg)->
         @$rootScope.flash = {}  unless @$rootScope.flash
         @$rootScope.flash.notice = msg
+
+      closeNotice: ()->
+        @$rootScope.flash.notice = undefined
   ]
