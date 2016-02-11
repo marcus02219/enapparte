@@ -1,6 +1,9 @@
 angular
   .module 'enapparte'
-  .controller 'MainController', ['$scope', ($scope)->
+  .controller 'MainController', ['$rootScope', '$scope', '$sanitize', 'Flash', ($rootScope, $scope, $sanitize, Flash)->
+
+    $scope.broadcast = (event)->
+      $scope.$broadcast event
 
   ]
 

@@ -9,6 +9,7 @@ asset 'angular-resource'
 asset 'angular-route'
 asset 'angular-route'
 asset 'angular-bootstrap'
+asset 'angular-sanitize'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'

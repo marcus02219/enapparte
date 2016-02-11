@@ -36,4 +36,34 @@ RSpec.describe Show, type: :model do
     end
   end
 
+  context '#activate' do
+    context 'when email is not confirmed' do
+      let(:user) { create :user }
+      let(:show) { create :show, user: user }
+      before(:each) { show.activate }
+      it { expect(show.active).to eq true }
+    end
+
+    context 'when email is not confirmed' do
+      let(:user) { create :user, confirmed_at: nil }
+      let(:show) { create :show, user: user }
+      before(:each) { show.activate }
+      it { expect(show.active).to eq false }
+    end
+
+    context 'when address is not filled' do
+      let(:user) { create :user, addresses: [] }
+      let(:show) { create :show, user: user }
+      before(:each) { show.activate }
+      it { expect(show.active).to eq false }
+    end
+
+    context 'when phone is not filled' do
+      let(:user) { create :user, phone_number: nil }
+      let(:show) { create :show, user: user }
+      before(:each) { show.activate }
+      it { expect(show.active).to eq false }
+    end
+  end
+
 end

@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, :defaults => { :format => 'json' }
-      resources :shows, :defaults => { :format => 'json' }
+      resources :shows, :defaults => { :format => 'json' } do
+        post 'toggle_active', on: :member
+      end
       resources :pictures, :defaults => { :format => 'json' }
     end
   end

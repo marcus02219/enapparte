@@ -1,5 +1,5 @@
 angular
-  .module 'enapparte', ['rails', 'ngRoute']
+  .module 'enapparte', ['rails', 'ngRoute', 'ngSanitize']
 
   # .config ($routeProvider)->
   #   $routeProvider
@@ -15,8 +15,5 @@ angular
   ]
 
   .run ['$rootScope', ($rootScope)->
-    $rootScope.flashMessages = true
-
-    $rootScope.$on '$routeChangeStart', (scope, next, current)->
-      $rootScope.flashMessages = true
+    $rootScope.flash = null
   ]

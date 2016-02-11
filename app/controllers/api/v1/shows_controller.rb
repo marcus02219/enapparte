@@ -16,6 +16,23 @@ class Api::V1::ShowsController < Api::BaseController
     respond_with :api, :v1, @show
   end
 
+  def toggle_active
+    @show = current_user.shows.find(params[:id])
+    @show.toggle_active
+    respond_with :api, :v1, @show
+  end
+
+  def index
+    @shows = current_user.shows
+    respond_with :api, :v1, @shows
+  end
+
+  def destroy
+    @show = current_user.shows.find(params[:id])
+    @show.destroy
+    respond_with :api, :v1, @show
+  end
+
   private
 
   def show_params

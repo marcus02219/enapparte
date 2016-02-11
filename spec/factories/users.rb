@@ -58,6 +58,10 @@ FactoryGirl.define do
 
     language
 
+    after(:create) do |user|
+      create :address, user: user
+    end
+
     factory :user_with_picture do
       after(:create) do |user|
         user.picture.image = File.open Rails.root.join('spec/fixtures/photo.jpeg')

@@ -16,3 +16,8 @@ en:
         length: Duration in minutes
         price: Show price
 
+    errors:
+      messages:
+        phone_number_is_empty: 'You must add a phone number'
+        addresses_is_empty: 'You have to fill your address in your profile'
+
