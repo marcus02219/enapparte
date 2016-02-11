@@ -69,6 +69,7 @@ angular
         console.log index
 
     $scope.toggleActive = (show, index)->
+      Flash.showNotice($sce.trustAsHtml('Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click="alert(123)">here</a> for all activate.'))
       show
         .toggleActive()
         .then (show)->
@@ -81,7 +82,7 @@ angular
                 needActivate = true
                 break
             if needActivate
-              Flash.showNotice($sce.trustAsHtml('<span>Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click=\'$emit("activateAllShows");\'>here</a> for all activate.</span>'))
+              Flash.showNotice($sce.trustAsHtml('Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click="alert(123)">here</a> for all activate.'))
         , (reason)->
           if reason.data.errors.address
             window.location = '/dashboard/profile' + '?flash[error]=' + reason.data.errors.address[0]
