@@ -6,19 +6,40 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.destroy_all
+Show.destroy_all
+Address.destroy_all
+Booking.destroy_all
+Rating.destroy_all
+Comment.destroy_all
+Language.destroy_all
+
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
-Language.destroy_all
-Language.create(title:"asdasdasd")
+10.times do
+  Language.create(title: Faker::Lorem.word)
+  Art.create(
+    title: Faker::Lorem.sentence,
+    description: Faker::Lorem.paragraph
+  )
+end
 
-main_user = User.create(firstname:"asdasd",surname:"asdsad",gender:1, email: 'csolg7@gmail.com', password:"dfghjkllkiu7",phone_number:"927-621-4346",provider:"fb",uid:123,dob:Time.now ,activity:"asdsad", language: Language.first)
+main_user = User.create(
+  firstname: Faker::Name.first_name,
+  surname: Faker::Name.last_name,
+  gender: 1,
+  email: 'csolg7@gmail.com',
+  password: "dfghjkllkiu7",
+  phone_number: "927-621-4346",
+  provider: "fb",
+  uid: 123,
+  dob:Time.now,
+  activity:"asdsad",
+  language: Language.all.sample
+)
+
 main_user.confirm!
 
-# Shows
-Show.destroy_all
-
-Address.destroy_all
 5.times.each do |i|
   Address.create(user: main_user,
                  street: Faker::Address.street_address,
@@ -46,6 +67,7 @@ end
   )
 end
 
+# Shows
 User.all.each do |user|
   user.picture.image = File.open(Dir[Rails.root.join('spec/fixtures/photos/*')].sample)
   user.picture.save
@@ -59,7 +81,9 @@ User.all.each do |user|
       max_spectators: 10,
       starts_at: Faker::Time.between(Time.now, 14.days.from_now),
       ends_at: Faker::Time.between(15.days.from_now, 50.days.from_now),
-      active: true
+      active: true,
+      language: Language.all.sample,
+      art: Art.all.sample,
     )
   end
 
@@ -73,9 +97,6 @@ User.all.each do |user|
   end
 end
 
-Booking.destroy_all
-Rating.destroy_all
-Comment.destroy_all
 User.all.each do |user|
   4.times.each do |status|
     20.times.each do
@@ -103,8 +124,4 @@ User.all.each do |user|
   end
 end
 
-puts "1st test user created"
-PaymentMethod.create(payoption:"cc",provider:"stripe")
-Art.create(title:"asdasdas",description:"asdasdasdasd")
-Rating.create(value:5)
 
