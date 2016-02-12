@@ -1,7 +1,7 @@
 = render "tabs"
 
 br
-.container
+.container[ng-controller="PerformancesController" ng-init="init()"]
   br
   .row
     .col-md-3
@@ -21,21 +21,18 @@ br
             p
               = "You have no future bookings"
           - else
-            - @user.current_show_bookings.each do |booking|
-              = render "performance", booking: booking
+            performance[ng-repeat="booking in currentBookings" model="booking"]
 
         #history.tab-pane
           - if @user.old_show_bookings.size == 0
             p
               = "You have no old bookings"
           - else
-            - @user.old_show_bookings.each do |booking|
-              = render "performance", booking: booking
+            performance[ng-repeat="booking in oldBookings" model="booking"]
 
         #cancelled.tab-pane
           - if @user.cancelled_show_bookings.size == 0
             p
               = "You have no cancelled bookings"
           - else
-            - @user.cancelled_show_bookings.each do |booking|
-              = render "performance", booking: booking
+            performance[ng-repeat="booking in cancelledBookings" model="booking"]
