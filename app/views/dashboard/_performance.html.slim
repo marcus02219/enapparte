@@ -4,11 +4,11 @@
       = image_tag booking.user.picture.image.url(:thumb)
     .col-md-10
       p.name
-        span.text-danger = booking.user.full_name
+        = link_to booking.user.full_name, booking.user
         '
         | a réservé pour
         '
-        span.text-danger = booking.show.title
+        = link_to booking.show.title, booking.show
       p.date
         i.glyphicon.glyphicon-calendar
         '
@@ -16,11 +16,14 @@
       p.spectators
         i.glyphicon.glyphicon-ok-circle
         '
+        | Spectators:
+        '
         = booking.spectators
       p.payout
         i.glyphicon.glyphicon-credit-card
         '
         = number_to_currency booking.payout
+        |: You will receive your payment 48 hours after your performance
       br
       - if booking.status == 1
         .row
@@ -35,5 +38,7 @@
       br
 
       .contact
-        = link_to "Contactez #{booking.user.firstname}", "#"
+        | Contactez
+        '
+        = link_to booking.user.full_name, "#"
 hr
