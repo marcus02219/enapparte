@@ -21,18 +21,18 @@ br
             p
               = "You have no future bookings"
           - else
-            performance[ng-repeat="booking in currentBookings" model="booking"]
+            performance[ng-repeat="booking in currentBookings" booking="booking"]
 
         #history.tab-pane
           - if @user.old_show_bookings.size == 0
             p
               = "You have no old bookings"
           - else
-            performance[ng-repeat="booking in oldBookings" model="booking"]
+            performance[ng-repeat="booking in oldBookings" booking="booking"]
 
         #cancelled.tab-pane
           - if @user.cancelled_show_bookings.size == 0
             p
               = "You have no cancelled bookings"
           - else
-            performance[ng-repeat="booking in cancelledBookings" model="booking"]
+            performance[ng-repeat="booking in cancelledBookings" booking="booking"]

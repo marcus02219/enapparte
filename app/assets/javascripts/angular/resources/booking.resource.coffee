@@ -7,5 +7,9 @@ angular
       # serializer: railsSerializer ()->
       #   this.nestedAttribute('pictures')
 
+    resource.prototype.changeStatus = (status)->
+      resource
+        .$post '/api/v1/bookings/' + this.id + '/change_status', { status: status }
+
     resource
   ]

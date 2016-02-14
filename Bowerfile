@@ -10,6 +10,8 @@ asset 'angular-route'
 asset 'angular-route'
 asset 'angular-bootstrap'
 asset 'angular-sanitize'
+asset 'remarkable-bootstrap-notify'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'
+

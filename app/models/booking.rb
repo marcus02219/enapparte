@@ -30,4 +30,9 @@ class Booking < ActiveRecord::Base
   belongs_to :payment_method
   has_many   :ratings
   has_one    :comment
+
+  def change_status status
+    self.update status: status
+  end
 end
+

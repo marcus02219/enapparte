@@ -20,4 +20,5 @@ angular
         .then (bookings)->
           $scope.cancelledBookings = bookings
 
+
   ]

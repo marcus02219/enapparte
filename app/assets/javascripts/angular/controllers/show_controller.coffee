@@ -65,21 +65,21 @@ angular
         $scope.shows.splice $scope.shows.indexOf(show), 1
 
     $scope.$on 'activateAllShows', (e)->
-      angular.forEach $scope.shows, (show, i)->
+      angular.forEach $scope.shows, (show, index)->
         if !show.active
           show
             .toggleActive()
-            .then (show)->
-              $scope.addShow(show, i)
+            .then (result)->
+              show.active = result.active
       Flash.closeNotice()
 
     $scope.toggleActive = (show, index)->
       show
         .toggleActive()
-        .then (show)->
-          $scope.addShow(show, index)
+        .then (result)->
+          show.active = result.active
           # check all shows for activate
-          if show.active
+          if result.active
             needActivate = false
             for show in $scope.shows
               if !show.active

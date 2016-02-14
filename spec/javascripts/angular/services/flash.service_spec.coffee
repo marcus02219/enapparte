@@ -8,4 +8,3 @@ describe 'Flash', ->
 
     notice = 'Notice'
     Flash.showNotice(notice)
-    expect($rootScope.flash.notice).toEqual(notice)
