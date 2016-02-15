@@ -6,6 +6,7 @@ angular
 
       showNotice: (msg)->
         $.notify
+          type: 'notice'
           message: msg
 
       closeNotice: ()->
