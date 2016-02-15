@@ -8,6 +8,7 @@
     "angular-bootstrap": "latest",
     "angular-sanitize": "latest",
     "remarkable-bootstrap-notify": "latest",
+    "angular-moment": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }

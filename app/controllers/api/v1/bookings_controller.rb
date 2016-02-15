@@ -23,13 +23,7 @@ class Api::V1::BookingsController < Api::BaseController
   end
 
   def index
-    if params[:type] == 'current'
-      @bookings = current_user.current_show_bookings
-    elsif params[:type] == 'old'
-      @bookings = current_user.old_show_bookings
-    elsif params[:type] == 'cancelled'
-      @bookings = current_user.cancelled_show_bookings
-    end
+    @bookings = current_user.show_bookings
     respond_with :api, :v1, @bookings
   end
 

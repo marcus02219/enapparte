@@ -32,7 +32,12 @@ class Booking < ActiveRecord::Base
   has_one    :comment
 
   def change_status status
-    self.update status: status
+    if self.update status: status
+      case status
+      when 3
+        UserMailer.booking_cancelled(self).deliver_now
+      end
+    end
   end
 end
 

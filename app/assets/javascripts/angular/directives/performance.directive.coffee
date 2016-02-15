@@ -9,12 +9,20 @@ angular
       }
       replace: true
       link: (scope, element, attrs, ctrl)->
-        scope.changeStatus = (booking, status, index)->
+        # accept
+        scope.acceptBooking = (booking, index)->
           booking
-            .changeStatus(status)
+            .changeStatus(1)
             .then (result)->
-              booking.status = result.status
-              if result.status == 1
-                Flash.showNotice('You accepted the request successfully.')
+              booking.status = 1
+              Flash.showNotice('You\'ve accepted the request successfully.')
+
+        # cancel
+        scope.cancelBooking = (booking, index)->
+          booking
+            .changeStatus(3)
+            .then (result)->
+              booking.status = 3
+              Flash.showNotice('You\'ve cancelled the booking request.')
     }
   ]

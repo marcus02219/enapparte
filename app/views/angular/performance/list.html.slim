@@ -33,9 +33,10 @@
             button.btn.btn-default= "This booking is confirmed"
         .row[ng-if="booking.status == 2"]
           .col-md-12
-            button.btn.btn-default[ng-click="changeStatus(booking, 1, $index)"]= "Accept the application"
+            button.btn.btn-default[ng-click="acceptBooking(booking, $index)"]= "Accept the application"
             '
-            = link_to "Reject the application", "#"
+            a[href="" ng-click="cancelBooking(booking, $index)"]
+              | Cancel the application
         br
 
         .contact
