@@ -1,0 +1,9 @@
+dl
+  dt= "Show title"
+  dd= @booking.show.title
+dl
+  dt= "User name"
+  dd= @booking.user.full_name
+dl
+  dt= "Booking date"
+  dd= l @booking.date, format: :long

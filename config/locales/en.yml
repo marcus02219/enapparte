@@ -22,3 +22,8 @@
 en:
   dashboard:
     add_new_address: "Add New Address"
+
+  performer_mailer:
+    booking_cancelled:
+      subject: "You refused booking"
+

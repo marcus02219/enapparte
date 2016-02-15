@@ -1,0 +1,47 @@
+.panel.panel-default.performance[id="performance_{{ booking.id }}"]
+  .panel-heading
+    | {{ booking.userFullName }}
+    '
+    | a réservé pour
+    '
+    a[ng-href="{{ booking.showUrl }}"]
+      | {{ booking.showTitle }}
+
+  .panel-body
+    .row
+      .photo.pull-left.col-md-2
+        img[ng-src="{{ booking.userPictureUrl }}"]
+      .col-md-10
+        p.date
+          i.glyphicon.glyphicon-calendar
+          '
+          | {{ booking.date | date }}
+        p.spectators
+          i.glyphicon.glyphicon-ok-circle
+          '
+          | Spectators:
+          '
+          | {{ booking.spectators }}
+        p.payout
+          i.glyphicon.glyphicon-credit-card
+          '
+          | {{ booking.payout | currency }}
+          |: You will receive your payment 48 hours after your performance
+        br
+        .row[ng-if="booking.status == 1"]
+          .col-md-12
+            button.btn.btn-default= "This booking is confirmed"
+        .row[ng-if="booking.status == 2"]
+          .col-md-12
+            button.btn.btn-default[ng-click="acceptBooking(booking, $index)"]= "Accept the application"
+            '
+            a[href="" ng-click="cancelBooking(booking, $index)"]
+              | Cancel the application
+        br
+
+        .contact
+          | Contactez
+          '
+          a[href="#"]
+            | {{ booking.userFullName }}
+

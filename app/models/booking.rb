@@ -30,4 +30,18 @@ class Booking < ActiveRecord::Base
   belongs_to :payment_method
   has_many   :ratings
   has_one    :comment
+
+  def change_status status
+    if self.update status: status
+      case status
+      when 3
+        UserMailer.booking_cancelled(self).deliver_now
+      end
+    end
+  end
+
+  def self.check_expired
+    Booking.where('status = 2 and date > ?', 48.hours.ago).update_all status: 4
+  end
 end
+
