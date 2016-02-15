@@ -39,5 +39,9 @@ class Booking < ActiveRecord::Base
       end
     end
   end
+
+  def self.check_expired
+    Booking.where('status = 2 and date > ?', 48.hours.ago).update_all status: 4
+  end
 end
 
