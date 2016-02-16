@@ -30,7 +30,7 @@
         br
         .row[ng-if="booking.status == 1"]
           .col-md-12
-            button.btn.btn-default= "This booking is confirmed"
+            button.btn.btn-default= "Voir les détails"
         .row[ng-if="booking.status == 2"]
           .col-md-12
             button.btn.btn-default[ng-click="acceptBooking(booking, $index)"]= "Accept the application"

@@ -10,10 +10,10 @@ module Features
 
     def signin(email, password)
       visit new_user_session_path
-      within "#SignInModal" do
+      within first("#new_user") do
         fill_in 'user_email', with: email
         fill_in 'user_password', with: password
-        click_button 'Se connecter'
+        click_button 'Sign in'
       end
     end
   end
