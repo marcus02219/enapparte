@@ -42,6 +42,7 @@ class Booking < ActiveRecord::Base
         PerformerMailer.booking_accepted(self).deliver_now
         UserMailer.booking_accepted(self).deliver_now
       when 3
+        PerformerMailer.booking_cancelled(self).deliver_now
         UserMailer.booking_cancelled(self).deliver_now
       end
     end
