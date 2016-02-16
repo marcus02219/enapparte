@@ -20,6 +20,7 @@
 #  published_at     :datetime
 #  starts_at        :string
 #  ends_at          :string
+#  rating           :float
 #
 
 class Show < ActiveRecord::Base
@@ -34,7 +35,10 @@ class Show < ActiveRecord::Base
   has_many   :pictures  , dependent: :destroy , as: :imageable
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
+  has_many :ratings, through: :bookings
+
   after_save :set_cover_picture
+  before_save :recalculate_rating
 
   def toggle_active
     if user && user.confirmed? && user.addresses.any? && user.phone_number.present?
@@ -58,4 +62,9 @@ class Show < ActiveRecord::Base
       self.save
     end
   end
+
+  def recalculate_rating
+    self.rating = 1.0 * self.ratings.sum(:value) / self.ratings.size  if self.ratings.size > 0
+  end
+
 end

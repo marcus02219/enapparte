@@ -20,6 +20,7 @@
 #  published_at     :datetime
 #  starts_at        :string
 #  ends_at          :string
+#  rating           :float
 #
 
 FactoryGirl.define do

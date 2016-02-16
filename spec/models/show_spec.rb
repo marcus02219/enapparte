@@ -20,6 +20,7 @@
 #  published_at     :datetime
 #  starts_at        :string
 #  ends_at          :string
+#  rating           :float
 #
 
 require 'rails_helper'
@@ -64,6 +65,20 @@ RSpec.describe Show, type: :model do
       before(:each) { show.toggle_active }
       it { expect(show.active).to eq false }
     end
+  end
+
+  context '#rating' do
+    let(:show) { create(:show) }
+    let(:bookings) { create_list(:booking, 2, show: show) }
+
+    before(:each) do
+      bookings.each {|booking| create_list(:rating, 2, booking: booking) }
+    end
+
+    it { expect { create(:rating, booking: bookings.first) }.to change { show.reload; show.rating } }
+    it { expect { bookings.first.ratings.first.destroy }.to change { show.reload; show.rating } }
+    it { expect { bookings.first.ratings.first.update_attribute(:value, 0) }.to change { show.reload; show.rating } }
+
   end
 
 end

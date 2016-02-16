@@ -11,14 +11,17 @@
 
 class Rating < ActiveRecord::Base
   belongs_to :booking
-  after_save :touch_user
-  after_destroy :touch_user
+  after_save :touch_parent
+  after_destroy :touch_parent
 
   private
 
-  def touch_user
-    if booking && booking.show && booking.show.user
-      booking.show.user.update_attribute(:updated_at, Time.now)
+  def touch_parent
+    if booking && booking.show
+      booking.show.update_attribute(:updated_at, Time.now)
+      if booking.show.user
+        booking.show.user.update_attribute(:updated_at, Time.now)
+      end
     end
   end
 end
