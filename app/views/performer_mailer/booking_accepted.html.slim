@@ -1,0 +1,21 @@
+dl
+  dt= "Show title"
+  dd= @booking.show.title
+dl
+  dt= "User name"
+  dd= @booking.user.full_name
+dl
+  dt= "Booking date"
+  dd= l @booking.date, format: :long
+dl
+  dt= "Vous recevrez votre paiement 48 heures après votre show"
+  dd= number_to_currency @booking.payout
+dl
+  dt= "Spectators"
+  dd= @booking.spectators
+dl
+  dt= "User address"
+  dd= @booking.user.addresses.first.full_address
+dl
+  dt= "User email"
+  dd= @booking.user.email

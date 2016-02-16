@@ -26,4 +26,11 @@ en:
   performer_mailer:
     booking_cancelled:
       subject: "You refused booking"
+    booking_accepted:
+      subject: "You have confirmed the reservation, up to you and impress your audience!"
 
+  user_mailer:
+    booking_cancelled:
+      subject: "You refused booking"
+    booking_accepted:
+      subject: "Your inquiry has been validated by the performer!"

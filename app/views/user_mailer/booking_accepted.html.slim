@@ -1,0 +1,24 @@
+dl
+  dt= "Show title"
+  dd= @booking.show.title
+dl
+  dt= "Show length"
+  dd= @booking.show.length
+dl
+  dt= "User name"
+  dd= @booking.show.user.full_name
+dl
+  dt= "User phone number"
+  dd= @booking.show.user.phone_number
+dl
+  dt= "Booking date"
+  dd= l @booking.date, format: :long
+dl
+  dt= "Booking price"
+  dd= number_to_currency @booking.price
+dl
+  dt= "Spectators"
+  dd= @booking.spectators
+dl
+  dt= "User address"
+  dd= @booking.show.user.addresses.first.full_address

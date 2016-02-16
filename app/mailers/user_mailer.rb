@@ -5,4 +5,8 @@ class UserMailer < ApplicationMailer
     mail to: booking.user.email, subject: 'Votre demande de reservation a été refusée par le performeur.'
   end
 
+  def booking_accepted booking
+    @booking = booking
+    mail to: booking.user.email, subject: default_i18n_subject
+  end
 end

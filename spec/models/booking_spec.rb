@@ -29,7 +29,8 @@ RSpec.describe Booking, type: :model do
 
   context '#change_status' do
     let(:user) { create :user }
-    let(:show) { create :show }
+    let(:user2) { create :user }
+    let(:show) { create :show, user: user2 }
     let(:booking) { create :booking, user: user, show: show }
 
     context 'when change to 3' do
@@ -41,7 +42,7 @@ RSpec.describe Booking, type: :model do
       subject { booking.change_status(1) }
       it { expect { subject }.to change { booking.payment_received? }.to(true) }
       it { expect { subject }.to change { booking.paid_out_on } }
-      # it { expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1) }
+      it { expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(2) }
     end
   end
 

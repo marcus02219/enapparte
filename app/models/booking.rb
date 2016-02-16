@@ -39,6 +39,8 @@ class Booking < ActiveRecord::Base
           payment_received?: true,
           paid_out_on: Time.new
         )
+        PerformerMailer.booking_accepted(self).deliver_now
+        UserMailer.booking_accepted(self).deliver_now
       when 3
         UserMailer.booking_cancelled(self).deliver_now
       end
