@@ -34,6 +34,11 @@ class Booking < ActiveRecord::Base
   def change_status status
     if self.update status: status
       case status
+      when 1
+        self.update_attributes(
+          payment_received?: true,
+          paid_out_on: Time.new
+        )
       when 3
         UserMailer.booking_cancelled(self).deliver_now
       end

@@ -36,6 +36,13 @@ RSpec.describe Booking, type: :model do
       subject { booking.change_status(3) }
       it { expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1) }
     end
+
+    context 'when change to 1' do
+      subject { booking.change_status(1) }
+      it { expect { subject }.to change { booking.payment_received? }.to(true) }
+      it { expect { subject }.to change { booking.paid_out_on } }
+      # it { expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1) }
+    end
   end
 
   context '.check_expired' do
