@@ -11,10 +11,11 @@ feature 'Booking flow for performer' do
 
   before(:each) do
     signin(user.email, user.password)
+    page.find('#dropdownMenu1').click
     click_link "My Performances"
   end
 
-  scenario 'link to My Performances page' do
+  scenario 'link to My Performances page', js: true do
     expect(page).to have_css('.performance', count: 2)
   end
 

@@ -31,6 +31,7 @@ RSpec.describe Booking, type: :model do
     let(:user) { create :user }
     let(:show) { create :show }
     let(:booking) { create :booking, user: user, show: show }
+
     context 'when change to 3' do
       subject { booking.change_status(3) }
       it { expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1) }
