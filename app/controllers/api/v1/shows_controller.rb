@@ -23,7 +23,11 @@ class Api::V1::ShowsController < Api::BaseController
   end
 
   def index
-    @shows = current_user.shows
+    if params[:all]
+      @shows = Show.where(active: true).order('rating desc').all
+    else
+      @shows = current_user.shows
+    end
     respond_with :api, :v1, @shows
   end
 

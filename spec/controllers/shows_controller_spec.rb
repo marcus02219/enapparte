@@ -46,11 +46,9 @@ describe ShowsController do
     end
 
     describe 'GET index' do
-      let!(:shows) { create_list(:show_with_rating, 3) }
+      let!(:shows) { create_list(:show_with_rating, 5) }
       before(:each) { get :index }
       it { expect(response).to be_success }
-      it { expect(assigns(:shows)).to_not be_empty }
-      it { expect(assigns(:shows).map(&:id)).to eq shows }
     end
   end
 end

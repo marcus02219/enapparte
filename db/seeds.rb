@@ -12,6 +12,7 @@ Booking.destroy_all
 Rating.destroy_all
 Comment.destroy_all
 Language.destroy_all
+Picture.destroy_all
 
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
@@ -85,6 +86,13 @@ User.all.each do |user|
       language: Language.all.sample,
       art: Art.all.sample,
     )
+
+    picture = Picture.create(
+      image: File.open(Dir[Rails.root.join('spec/fixtures/pictures/*')].sample),
+      imageable: show
+    )
+    show.cover_picture = picture
+    show.save
   end
 
   # PaymentMethod
@@ -103,9 +111,9 @@ User.all.each do |user|
       booking = Booking.create(
         user: user,
         show: Show.where('user_id != ?', user.id).all.sample,
-        status: status + 1,
+        status: Faker::Number.between(1, 4),
         date: Faker::Time.between(1.days.ago, 10.days.from_now),
-        spectators: 10,
+        spectators: Faker::Number.between(1, 10),
         price: Faker::Number.decimal(5,2),
         message: Faker::Lorem.sentence,
         payout: Faker::Number.decimal(5,2)

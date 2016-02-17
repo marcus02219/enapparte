@@ -19,7 +19,7 @@ class Api::V1::PicturesController < Api::BaseController
 
   def show
     @picture = Picture.find(params[:id])
-    unless @picture.imageable.try(:user).try(:id) == current_user.id
+    if @picture.imageable_type == 'User' && @picture.imageable.try(:user).try(:id) != current_user.id
       raise ActiveRecord::RecordNotFound
     end
     respond_with :api, :v1, @picture

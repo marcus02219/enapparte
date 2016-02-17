@@ -1,1 +1,20 @@
-.show
+.container[ng-controller="ShowController" ng-init="initShowsForSearch()"]
+  .row
+    .col-md-3
+      form.form-inline
+        .form-group
+          input.form-control[type="text" placeholder="Search"]
+          button.btn.btn-default
+            i.glyphicon.glyphicon-search
+
+    .col-md-9
+      .row
+        .col-md-4[ng-repeat="show in shows"]
+          .show-search.thumbnail
+            img[ng-src="{{ show.coverPicture.src }}"]
+            .caption
+              img.user[ng-src="{{ show.userPictureUrl }}"]
+              h4= "{{ show.title }}"
+
+
+

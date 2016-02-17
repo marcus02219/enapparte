@@ -1,6 +1,6 @@
 angular
   .module 'enapparte'
-  .controller 'ShowController', ['$scope', '$rootScope', 'Show', 'Picture', 'Flash', '$sce', ($scope, $rootScope, Show, Picture, Flash, $sce)->
+  .controller 'ShowController', ['$scope', '$rootScope', 'Show', 'Picture', 'Flash', '$sce', '$filter', ($scope, $rootScope, Show, Picture, Flash, $sce, $filter)->
     $scope.step = 1
 
     $scope.show = {}
@@ -26,6 +26,12 @@ angular
       else
         $scope.show = new Show()
 
+    $scope.initShowsForSearch = ()->
+      Show
+        .query(all: 1)
+        .then (shows)->
+          for show in shows
+            $scope.addShow show
 
     $scope.initShows = ()->
       Show
@@ -114,9 +120,6 @@ angular
           $scope.show.pending = false
           # redirect to
           window.location = '/dashboard/shows'
-
-    $scope.alert = (text)->
-       $window.alert(text)
 
   ]
 
