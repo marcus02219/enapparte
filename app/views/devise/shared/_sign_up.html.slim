@@ -1,28 +1,32 @@
 .authform
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
     h3
-      | Se connecter
+      | S'inscrire
+    = devise_error_messages!
     .form-group
       = f.label :firstname, "Prénom"
       = f.text_field :firstname, :autofocus => true, class: 'form-control'
     .form-group
-      = f.label :surname, "Nom"
+      = f.label :surname
       = f.text_field :surname, :autofocus => true, class: 'form-control'
     .form-group
-      = f.label :gender, "Sexe"
+      = f.label :gender
       br
-      = f.radio_button :gender, '1'
-      = f.label :gender, "Homme", :value => "1"
-      br
-      = f.radio_button :gender, '2'
-      = f.label :gender, "Femme", :value => "2"
+      = f.radio_button :gender, 'male'
+      = f.label :gender, "Male", :value => "0"
+      | </br /> 
+      = f.radio_button :gender, 'female'
+      = f.label :gender, "Female", :value => "1"
+      | </br /> 
+      = f.radio_button :gender, 'other'
+      = f.label :gender, "Other", :value => "2"
     .form-group
       = f.label :email
       = f.email_field :email, class: 'form-control'
     .form-group
-      = f.label :password, "Mot de passe"
+      = f.label :password
       = f.password_field :password, class: 'form-control'
     .form-group
-      = f.label :password_confirmation, "Confirmation du mot de passe"
+      = f.label :password_confirmation
       = f.password_field :password_confirmation, class: 'form-control'
-    = f.submit "S'inscrire", :class => 'button right'
+    = f.submit 'Sign up', :class => 'button right'
