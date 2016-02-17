@@ -1,19 +1,31 @@
-h1 Listing shows
+.container[ng-controller="ShowController" ng-init="initShowsForSearch()"]
+  .row
+    .col-md-3
+      form.form-inline
+        .form-group
+          input.form-control[type="text" placeholder="Search"]
+          button.btn.btn-default
+            i.glyphicon.glyphicon-search
 
-table
-  thead
-    tr
-      th
-      th
-      th
+      hr
 
-  tbody
-    - @shows.each do |show|
-      tr
-        td = link_to 'Show', show
-        td = link_to 'Edit', edit_show_path(show)
-        td = link_to 'Destroy', show, data: {:confirm => 'Are you sure?'}, :method => :delete
+      .checkbox[ng-repeat="art in arts"]
+        label
+          input[type="checkbox" value="{{ art.title }}"]
+          '
+          | {{ art.title }}
 
-br
+    .col-md-9
+      .row
+        .col-md-4[ng-repeat="show in shows"]
+          .show-search.thumbnail
+            img[ng-src="{{ show.coverPicture.src }}"]
+            .caption
+              img.user[ng-src="{{ show.userPictureUrl }}"]
+              h4= "{{ show.title }}"
+              .rating
+                i.glyphicon.glyphicon-star[ng-repeat="k in range(show.rating) track by $index"]
+                i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - show.rating) track by $index"]
 
-= link_to 'New Show', new_show_path
+
+

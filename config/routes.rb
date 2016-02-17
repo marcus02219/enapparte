@@ -8,13 +8,7 @@ Rails.application.routes.draw do
     post 'upload_photo', on: :collection
   end
 
-  resources :shows do
-    get 'photos', on: :member
-    get 'pictures_count', on: :member
-    get 'cover_picture', on: :member
-    get 'shedules', on: :member
-  end
-
+  resources :shows
   resources :pictures do
     post 'destroy', on: :member, as: 'destroy'
   end
@@ -29,6 +23,7 @@ Rails.application.routes.draw do
       resources :bookings, :defaults => { :format => 'json' } do
         post 'change_status', on: :member
       end
+      resources :arts
     end
   end
 

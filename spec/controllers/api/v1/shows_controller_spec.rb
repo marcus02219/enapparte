@@ -44,10 +44,20 @@ describe Api::V1::ShowsController do
     end
 
     context "GET index" do
-      let!(:shows) { create_list(:show, 2, user: user) }
-      before(:each) { get :index, format: :json }
-      it { expect(response).to be_success }
-      it { expect(assigns(:shows).map(&:id)).to match_array(shows.map(&:id)) }
+      context 'for current user' do
+        let!(:shows) { create_list(:show, 2, user: user) }
+        before(:each) { get :index, format: :json }
+        it { expect(response).to be_success }
+        it { expect(assigns(:shows).map(&:id)).to match_array(shows.map(&:id)) }
+      end
+
+      context 'all' do
+        let!(:shows) { create_list(:show_with_rating, 5, user: user, active: true) }
+        let!(:shows_not_active) { create_list(:show, 2, user: user, active: false) }
+        before(:each) { get :index, all: 1, format: :json }
+        it { expect(response).to be_success }
+        it { expect(assigns(:shows).map(&:id)).to eq (shows.sort {|a,b| b.rating <=> a.rating }.map(&:id)) }
+      end
     end
 
     context "DELETE destroy" do

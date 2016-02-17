@@ -1,11 +1,12 @@
 angular
   .module 'enapparte'
-  .controller 'ShowController', ['$scope', '$rootScope', 'Show', 'Picture', 'Flash', '$sce', ($scope, $rootScope, Show, Picture, Flash, $sce)->
+  .controller 'ShowController', ['$scope', '$rootScope', 'Show', 'Picture', 'Flash', '$sce', '$filter', 'Art', ($scope, $rootScope, Show, Picture, Flash, $sce, $filter, Art)->
     $scope.step = 1
 
     $scope.show = {}
 
     $scope.shows = []
+    $scope.arts = []
 
     $scope.init = (id)->
       if id
@@ -26,6 +27,17 @@ angular
       else
         $scope.show = new Show()
 
+    $scope.initShowsForSearch = ()->
+      Art
+        .query()
+        .then (arts)->
+          $scope.arts = arts
+
+      Show
+        .query(all: 1)
+        .then (shows)->
+          for show in shows
+            $scope.addShow show
 
     $scope.initShows = ()->
       Show
@@ -115,8 +127,8 @@ angular
           # redirect to
           window.location = '/dashboard/shows'
 
-    $scope.alert = (text)->
-       $window.alert(text)
+    $scope.range = (n)->
+      new Array(Math.round(n))
 
   ]
 
