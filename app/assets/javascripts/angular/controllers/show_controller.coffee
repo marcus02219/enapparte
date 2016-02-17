@@ -121,6 +121,9 @@ angular
           # redirect to
           window.location = '/dashboard/shows'
 
+    $scope.range = (n)->
+      new Array(Math.round(n))
+
   ]
 
 
