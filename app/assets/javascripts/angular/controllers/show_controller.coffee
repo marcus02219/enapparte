@@ -1,11 +1,12 @@
 angular
   .module 'enapparte'
-  .controller 'ShowController', ['$scope', '$rootScope', 'Show', 'Picture', 'Flash', '$sce', '$filter', ($scope, $rootScope, Show, Picture, Flash, $sce, $filter)->
+  .controller 'ShowController', ['$scope', '$rootScope', 'Show', 'Picture', 'Flash', '$sce', '$filter', 'Art', ($scope, $rootScope, Show, Picture, Flash, $sce, $filter, Art)->
     $scope.step = 1
 
     $scope.show = {}
 
     $scope.shows = []
+    $scope.arts = []
 
     $scope.init = (id)->
       if id
@@ -27,6 +28,11 @@ angular
         $scope.show = new Show()
 
     $scope.initShowsForSearch = ()->
+      Art
+        .query()
+        .then (arts)->
+          $scope.arts = arts
+
       Show
         .query(all: 1)
         .then (shows)->

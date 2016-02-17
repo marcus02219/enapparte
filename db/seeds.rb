@@ -13,6 +13,7 @@ Rating.destroy_all
 Comment.destroy_all
 Language.destroy_all
 Picture.destroy_all
+Art.destroy_all
 
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email

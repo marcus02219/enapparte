@@ -7,6 +7,14 @@
           button.btn.btn-default
             i.glyphicon.glyphicon-search
 
+      hr
+
+      .checkbox[ng-repeat="art in arts"]
+        label
+          input[type="checkbox" value="{{ art.title }}"]
+          '
+          | {{ art.title }}
+
     .col-md-9
       .row
         .col-md-4[ng-repeat="show in shows"]
@@ -17,7 +25,7 @@
               h4= "{{ show.title }}"
               .rating
                 i.glyphicon.glyphicon-star[ng-repeat="k in range(show.rating) track by $index"]
-                i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5-show.rating) track by $index"]
+                i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - show.rating) track by $index"]
 
 
 

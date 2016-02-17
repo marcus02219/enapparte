@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :bookings, :defaults => { :format => 'json' } do
         post 'change_status', on: :member
       end
+      resources :arts
     end
   end
 
