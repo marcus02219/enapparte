@@ -12,6 +12,7 @@ asset 'angular-bootstrap'
 asset 'angular-sanitize'
 asset 'remarkable-bootstrap-notify'
 asset 'angular-moment'
+asset 'seiyria-bootstrap-slider'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'

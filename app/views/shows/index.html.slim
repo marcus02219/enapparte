@@ -9,9 +9,12 @@
 
       hr
 
+      .price
+        filter-price[min="10" max="100000" model="filter.price"]
+
       .checkbox[ng-repeat="art in arts"]
         label
-          input[type="checkbox" value="{{ art.title }}"]
+          input[type="checkbox" value="{{ art.id }}"]
           '
           | {{ art.title }}
 
@@ -28,9 +31,5 @@
                 i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - show.rating) track by $index"]
               .length
                 | {{ show.length }} minutes
-
               .price
                 | {{ show.price | currency }}
-
-
-

@@ -9,6 +9,10 @@ angular
     $scope.arts = []
     $scope.tabsClickable = false
 
+    $scope.filter = {
+      price: 0
+    }
+
     $scope.init = (id)->
       if id
         $scope.tabsClickable = true
