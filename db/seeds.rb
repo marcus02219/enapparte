@@ -73,7 +73,7 @@ end
 User.all.each do |user|
   user.picture.image = File.open(Dir[Rails.root.join('spec/fixtures/photos/*')].sample)
   user.picture.save
-  5.times.each do |i|
+  25.times.each do |i|
     show = Show.create(
       user: user,
       title: Faker::Lorem.word,
