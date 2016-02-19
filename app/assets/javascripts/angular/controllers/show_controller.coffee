@@ -7,9 +7,11 @@ angular
 
     $scope.shows = []
     $scope.arts = []
+    $scope.tabsClickable = false
 
     $scope.init = (id)->
       if id
+        $scope.tabsClickable = true
         Show
           .get id
           .then (show)->
@@ -49,6 +51,10 @@ angular
     $scope.nextStep = (form)->
       if $scope.validate(form)
         $scope.step += 1
+
+    $scope.prevStep = (form)->
+      if $scope.step > 1
+        $scope.step -= 1
 
     $scope.validate = (form)->
       # FIXME: change to switch
@@ -129,6 +135,10 @@ angular
 
     $scope.range = (n)->
       new Array(Math.round(n))
+
+    $scope.tabClick = (step)->
+      if $scope.tabsClickable
+        $scope.step = step
 
   ]
 

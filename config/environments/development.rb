@@ -42,11 +42,11 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     :storage => :s3,
-    :s3_host_name => 's3-eu-west-1.amazonaws.com',
+    :s3_host_name => 's3-eu-central-1.amazonaws.com',
     :s3_credentials => {
-      :bucket => 'alloyeditor',
-      :access_key_id => 'AKIAI3J3P7OHDBALD24A',
-      :secret_access_key => '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'
+      :bucket => 'enapparte-staging-assets',
+      :access_key_id => 'AKIAI7UETJ754CDMRCGA',
+      :secret_access_key => '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'
     }
   }
 end
