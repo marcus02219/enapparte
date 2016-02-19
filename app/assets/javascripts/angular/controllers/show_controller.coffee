@@ -7,9 +7,11 @@ angular
 
     $scope.shows = []
     $scope.arts = []
+    $scope.tabsClickable = false
 
     $scope.init = (id)->
       if id
+        $scope.tabsClickable = true
         Show
           .get id
           .then (show)->
@@ -133,6 +135,10 @@ angular
 
     $scope.range = (n)->
       new Array(Math.round(n))
+
+    $scope.tabClick = (step)->
+      if $scope.tabsClickable
+        $scope.step = step
 
   ]
 
