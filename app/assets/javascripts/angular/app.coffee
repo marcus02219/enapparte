@@ -1,5 +1,5 @@
 angular
-  .module 'enapparte', ['rails', 'ngRoute', 'ngSanitize']
+  .module 'enapparte', ['rails', 'ngRoute', 'ngSanitize', 'cgNotify']
 
   # .config ($routeProvider)->
   #   $routeProvider

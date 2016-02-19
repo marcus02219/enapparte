@@ -108,7 +108,7 @@ angular
                 needActivate = true
                 break
             if needActivate
-              Flash.showNotice('Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click="broadcast(\'activateAllShows\')">here</a> for all activate.')
+              Flash.showNotice($scope, 'Some of your ads are not active and are therefore invisible in the search results. Click <a href="#" ng-click="broadcast(\'activateAllShows\')">here</a> for all activate.')
         , (reason)->
           if reason.data.errors.address
             window.location = '/dashboard/profile' + '?flash[error]=' + reason.data.errors.address[0]

@@ -13,6 +13,7 @@ asset 'angular-sanitize'
 asset 'remarkable-bootstrap-notify'
 asset 'angular-moment'
 asset 'seiyria-bootstrap-slider'
+asset 'angular-notify'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'
