@@ -74,6 +74,9 @@
           .form-group
             .row
               .col-md-9.col-md-offset-3
+                button#continue.btn.btn-default[ng-click="prevStep(showForm)" ng-show="step > 1"]
+                  = "Back"
+                '
                 button#continue.btn.btn-default[ng-click="nextStep(showForm)" ng-show="step < 4"]
                   = "Continue"
                 button#finish.btn.btn-default[ng-click="finish()" ng-show="step == 4"]

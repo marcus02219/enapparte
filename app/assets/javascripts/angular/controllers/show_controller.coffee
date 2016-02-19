@@ -50,6 +50,10 @@ angular
       if $scope.validate(form)
         $scope.step += 1
 
+    $scope.prevStep = (form)->
+      if $scope.step > 1
+        $scope.step -= 1
+
     $scope.validate = (form)->
       # FIXME: change to switch
       return form.$valid  if $scope.step == 1
