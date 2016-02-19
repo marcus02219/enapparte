@@ -65,6 +65,7 @@ class User < ActiveRecord::Base
   has_many :show_bookings, through: :shows, source: :bookings
   has_many :ratings, through: :show_bookings
   before_save :recalculate_rating
+  before_save :deactivate_shows
 
   enum gender: { male: 0, female: 1, other: 2 }
 
@@ -106,5 +107,9 @@ class User < ActiveRecord::Base
 
   def reject_addresses attrs
     attrs['country'].blank? && attrs['postcode'].blank? && attrs['state'].blank? && attrs['city'].blank? && attrs['street'].blank?
+  end
+
+  def deactivate_shows
+    self.shows.update_all(active: false)
   end
 end
