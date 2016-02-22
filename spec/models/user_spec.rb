@@ -64,11 +64,18 @@ describe User do
 
   context 'when clear phone number all show deactivated' do
     let!(:shows) { create_list(:show, 2, active: true, user: user) }
-    before(:each) do
-      user.update_attribute :phone_number, ""
-      user.reload
+
+    before(:each) { user.save }
+
+    it { expect(user.shows.map(&:active)).to_not include(false)  }
+
+    context 'when set phone_number is empty' do
+      before(:each) do
+        user.update_attribute :phone_number, ""
+        user.reload
+      end
+      it { expect(user.shows.map(&:active)).to_not include(true)  }
     end
-    it { expect(user.shows.map(&:active)).to_not include(true)  }
   end
 
 end

@@ -110,6 +110,6 @@ class User < ActiveRecord::Base
   end
 
   def deactivate_shows
-    self.shows.update_all(active: false)
+    self.shows.update_all(active: false)  unless self.phone_number.present?
   end
 end

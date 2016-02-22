@@ -47,17 +47,10 @@ describe Api::V1::ShowsController do
       context 'for current user' do
         let!(:shows) { create_list(:show, 2, user: user) }
         before(:each) { get :index, format: :json }
-        it { expect(response).to be_success }
         it { expect(assigns(:shows).map(&:id)).to match_array(shows.map(&:id)) }
       end
 
-      context 'all' do
-        let!(:shows) { create_list(:show_with_rating, 5, user: user, active: true) }
-        let!(:shows_not_active) { create_list(:show, 2, user: user, active: false) }
-        before(:each) { get :index, all: 1, format: :json }
-        it { expect(response).to be_success }
-        it { expect(assigns(:shows).map(&:id)).to eq (shows.sort {|a,b| b.rating <=> a.rating }.map(&:id)) }
-      end
+      after(:each) { expect(response).to be_success }
     end
 
     context "DELETE destroy" do
@@ -111,6 +104,33 @@ describe Api::V1::ShowsController do
         it { expect(assigns(:show)).to_not be_active }
         it { expect(response.body).to include(I18n.t('activerecord.errors.messages.phone_number_is_empty')) }
       end
+    end
+
+    context 'GET arts' do
+      let!(:arts) { create_list :art, 3 }
+      let!(:show) { create :show, user: user, art: Art.first, active: true }
+      let!(:show2) { create :show, user: user, art: Art.last, active: true }
+      let!(:show3) { create :show, user: user, art_id: 1234, active: true }
+      before(:each) { get :arts, format: :json }
+      it { expect(assigns(:arts)).to match_array([Art.first, Art.last]) }
+    end
+
+    context "GET search" do
+      let!(:shows) { create_list(:show_with_rating, 5, user: user, active: true) }
+      let!(:shows_not_active) { create_list(:show, 2, user: user, active: false) }
+
+      context 'when without params' do
+        before(:each) { get :search, format: :json }
+        it { expect(assigns(:shows).map(&:id)).to eq (shows.sort {|a,b| b.rating <=> a.rating }.map(&:id)) }
+      end
+
+      context 'when full text search' do
+        let!(:show) { create(:show_with_rating, user: user, active: true, title: 'Ruby') }
+        before(:each) { get :search, q: show.title, format: :json }
+        it { expect(assigns(:shows).size).to eq 1 }
+      end
+
+      after(:each) { expect(response).to be_success }
     end
 
   end

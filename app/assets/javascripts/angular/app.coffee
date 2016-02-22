@@ -1,4 +1,4 @@
-angular
+@App = angular
   .module 'enapparte', ['rails', 'ngRoute', 'ngSanitize', 'cgNotify']
 
   # .config ($routeProvider)->
@@ -17,3 +17,5 @@ angular
   .run ['$rootScope', ($rootScope)->
     $rootScope.flash = null
   ]
+
+

@@ -23,10 +23,17 @@ class Api::V1::ShowsController < Api::BaseController
   end
 
   def index
-    if params[:all]
-      @shows = Show.where(active: true).order('rating desc').all
+    @shows = current_user.shows
+    respond_with :api, :v1, @shows
+  end
+
+  def search
+    if params[:q]
+      response = Show.search(params[:q])
+      ap response.records
+      @shows = response.records.where(active: true).order('rating desc').all
     else
-      @shows = current_user.shows
+      @shows = Show.where(active: true).order('rating desc').all
     end
     respond_with :api, :v1, @shows
   end
@@ -35,6 +42,12 @@ class Api::V1::ShowsController < Api::BaseController
     @show = current_user.shows.find(params[:id])
     @show.destroy
     respond_with :api, :v1, @show
+  end
+
+  def arts
+    art_ids = Show.where(active: true).group('art_id').select('art_id').map(&:art_id)
+    @arts = art_ids.map {|id| Art.find_by_id(id) }.select {|art| art.present? }
+    respond_with :api, :v1, @arts
   end
 
   private

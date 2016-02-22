@@ -104,3 +104,7 @@ gem 'angularjs-rails-resource', '~> 2.0.0'
 gem 'whenever'
 gem 'poltergeist'
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'bonsai-elasticsearch-rails'
+

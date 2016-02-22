@@ -1,8 +1,8 @@
 angular
   .module 'enapparte'
-  .service 'Flash', ['$rootScope', 'notify',
+  .service 'Flash', ['notify',
     class Flash
-      constructor: (@$rootScope, @notify)->
+      constructor: (@notify)->
 
       showNotice: (scope, msg)->
         @notify
