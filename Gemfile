@@ -71,6 +71,7 @@ group :development, :test do
   gem 'libnotify'
 
   gem 'awesome_print'
+  gem 'dotenv-rails'
 end
 
 group :production do

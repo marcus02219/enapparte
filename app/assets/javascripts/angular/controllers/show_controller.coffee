@@ -10,8 +10,9 @@ angular
     $scope.tabsClickable = false
 
     $scope.filter = {
-      price: 0
     }
+
+    $scope.search = ""
 
     $scope.init = (id)->
       if id
@@ -43,7 +44,7 @@ angular
         .query(all: 1)
         .then (shows)->
           for show in shows
-            $scope.addShow show
+            $scope.shows.push(show)
 
     $scope.initShows = ()->
       Show
@@ -76,10 +77,10 @@ angular
         $scope.shows[index] = show
       else
         $scope.shows.push(show)
-      Picture
-        .get(show.coverPictureId)
-        .then (picture)->
-          show.coverPicture = picture
+      # Picture
+      #   .get(show.coverPictureId)
+      #   .then (picture)->
+      #     show.coverPicture = picture
 
     $scope.removeShow = (show)->
       if confirm("Are you sure you want to remove this meal?")
