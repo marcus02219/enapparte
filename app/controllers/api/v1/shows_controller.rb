@@ -28,9 +28,8 @@ class Api::V1::ShowsController < Api::BaseController
   end
 
   def search
-    if params[:q]
+    if params[:q].present?
       response = Show.search(params[:q])
-      ap response.records
       @shows = response.records.where(active: true).order('rating desc').all
     else
       @shows = Show.where(active: true).order('rating desc').all

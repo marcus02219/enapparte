@@ -1,10 +1,10 @@
-.container[ng-controller="ShowController" ng-init="initShowsForSearch()"]
+.container[ng-controller="ShowSearchController"]
   .row
     .col-md-3
       form.form-inline
         .form-group
-          input.form-control[type="text" placeholder="Search" ng-model="search.$"]
-          button.btn.btn-default
+          input.form-control[type="text" placeholder="Search" ng-model="filter.text" ng-enter="search()"]
+          button.btn.btn-default[ng-click="search()"]
             i.glyphicon.glyphicon-search
 
       hr
@@ -20,7 +20,7 @@
 
     .col-md-9
       .row
-        .col-md-4[ng-repeat="show in shows | filter:search:strict"]
+        .col-md-4[ng-repeat="show in shows"]
           .show-search.thumbnail
             img[ng-src="{{ show.coverPictureUrl }}"]
             .caption

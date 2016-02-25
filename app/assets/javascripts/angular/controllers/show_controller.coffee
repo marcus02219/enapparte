@@ -62,17 +62,6 @@ class ShowController extends @NGController
     else
       @scope.show = new @Show()
 
-  initShowsForSearch: =>
-    @ShowArt
-      .query()
-      .then (arts)=>
-        @scope.arts = arts
-
-    @ShowSearch
-      .query()
-      .then (shows)=>
-        @scope.shows = shows
-
   initShows: ()=>
     @Show
       .query()
