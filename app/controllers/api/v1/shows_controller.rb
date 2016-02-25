@@ -30,10 +30,18 @@ class Api::V1::ShowsController < Api::BaseController
   def search
     if params[:q].present?
       response = Show.search(params[:q])
-      @shows = response.records.where(active: true).order('rating desc').all
-    else
+      @shows = response.records.where(active: true).order('rating desc')
+    end
+
+    if params[:price0].present? && params[:price1].present?
+      @shows = Show.where(active: true).order('rating desc')  if @shows.nil?
+      @shows = @shows.where(price: params[:price0]..params[:price1])
+    end
+
+    if @shows.nil?
       @shows = Show.where(active: true).order('rating desc').all
     end
+
     respond_with :api, :v1, @shows
   end
 

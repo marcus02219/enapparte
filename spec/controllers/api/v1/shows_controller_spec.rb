@@ -116,7 +116,7 @@ describe Api::V1::ShowsController do
     end
 
     context "GET search" do
-      let!(:shows) { create_list(:show_with_rating, 5, user: user, active: true) }
+      let!(:shows) { create_list(:show_with_rating, 5, user: user, active: true, price: Faker::Number.between(10, 100)) }
       let!(:shows_not_active) { create_list(:show, 2, user: user, active: false) }
 
       context 'when without params' do
@@ -128,6 +128,13 @@ describe Api::V1::ShowsController do
         let!(:show) { create(:show_with_rating, user: user, active: true, title: 'Ruby') }
         before(:each) { get :search, q: show.title, format: :json }
         it { expect(assigns(:shows).size).to eq 1 }
+      end
+
+      context 'when price filter' do
+        let!(:other_shows) { create_list(:show_with_rating, 2, user: user, active: true, price: Faker::Number.between(101, 200)) }
+        let!(:other_shows_not_active) { create_list(:show_with_rating, 2, user: user, active: false, price: Faker::Number.between(101, 200)) }
+        before(:each) { get :search, price0: 101, price1: 200, format: :json }
+        it { expect(assigns(:shows).map(&:id)).to match_array(other_shows.map(&:id)) }
       end
 
       after(:each) { expect(response).to be_success }

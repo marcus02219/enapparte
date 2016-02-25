@@ -17,7 +17,7 @@ class ShowSearchController extends @NGController
 
   filter:
     text: ""
-    price: [0, 100000]
+    price: "0,100000"
 
   init: ->
     @ShowArt
@@ -27,9 +27,17 @@ class ShowSearchController extends @NGController
 
     @search()
 
+    @scope.$watch 'filter.price', (newValue, oldValue)=>
+      @search()
+
   search: =>
+    q = if  @scope.filter.text then '*' + @scope.filter.text + '*' else ''
     @ShowSearch
-      .query(q: '*' + @scope.filter.text + '*')
+      .query
+        q: q
+        price0: @scope.filter.price.split(',')[0]
+        price1: @scope.filter.price.split(',')[1]
       .then (shows)=>
         @scope.shows = shows
+
 
