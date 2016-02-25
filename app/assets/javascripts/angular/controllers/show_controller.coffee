@@ -48,12 +48,12 @@ class ShowController extends @NGController
       @tabsClickable = true
       @Show
         .get id
-        .then (show)->
+        .then (show)=>
           @scope.show = show
 
           @Picture
-            .query { imageable_type: 'Show', imageable_id: @show.id }
-            .then (pictures)->
+            .query { imageable_type: 'Show', imageable_id: @scope.show.id }
+            .then (pictures)=>
               @scope.show.pictures = pictures
               # set selected
               for picture in @scope.show.pictures
