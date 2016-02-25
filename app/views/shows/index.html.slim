@@ -14,7 +14,7 @@
 
       .checkbox[ng-repeat="art in arts"]
         label
-          input[type="checkbox" value="{{ art.id }}"]
+          input[type="checkbox" ng-model="art.checked" ng-click="search()"]
           '
           | {{ art.title }}
 

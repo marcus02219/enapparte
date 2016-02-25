@@ -137,6 +137,19 @@ describe Api::V1::ShowsController do
         it { expect(assigns(:shows).map(&:id)).to match_array(other_shows.map(&:id)) }
       end
 
+      context 'when art checked' do
+        context do
+          let(:art) { shows.first.art }
+          before(:each) { get :search, arts: [art.id].to_json, format: :json }
+          it { expect(assigns(:shows).map(&:id)).to match_array(shows.select {|s| s.art.id == art.id }.map(&:id)) }
+        end
+
+        context 'when arts is empty' do
+          before(:each) { get :search, arts: [].to_json, format: :json }
+          it { expect(assigns(:shows)).to match_array(shows) }
+        end
+      end
+
       after(:each) { expect(response).to be_success }
     end
 

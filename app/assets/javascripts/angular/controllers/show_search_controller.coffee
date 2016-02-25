@@ -32,11 +32,18 @@ class ShowSearchController extends @NGController
 
   search: =>
     q = if  @scope.filter.text then '*' + @scope.filter.text + '*' else ''
+    arts = @scope.arts
+      .filter (art)->
+        art.checked == true
+      .map (art)->
+        art.id
+
     @ShowSearch
       .query
         q: q
         price0: @scope.filter.price.split(',')[0]
         price1: @scope.filter.price.split(',')[1]
+        arts: JSON.stringify(arts)
       .then (shows)=>
         @scope.shows = shows
 

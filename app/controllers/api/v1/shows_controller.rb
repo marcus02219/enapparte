@@ -38,9 +38,19 @@ class Api::V1::ShowsController < Api::BaseController
       @shows = @shows.where(price: params[:price0]..params[:price1])
     end
 
+    if params[:arts].present?
+      art_ids = JSON.parse(params[:arts])
+      if art_ids.any?
+        @shows = Show.where(active: true).order('rating desc')  if @shows.nil?
+        @shows = @shows.where(art_id: JSON.parse(params[:arts]))
+      end
+    end
+
     if @shows.nil?
       @shows = Show.where(active: true).order('rating desc').all
     end
+
+    @shows.joins(:pictures)
 
     respond_with :api, :v1, @shows
   end
