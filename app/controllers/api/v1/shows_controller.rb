@@ -30,7 +30,7 @@ class Api::V1::ShowsController < Api::BaseController
 
   def search
     if params[:q].present?
-      response = Show.search(params[:q])
+      response = Show.search(query: { query_string: { query: params[:q] } })
       @shows = response.records.where(active: true).order('rating desc')
     end
 

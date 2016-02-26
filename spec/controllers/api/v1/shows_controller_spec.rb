@@ -10,6 +10,7 @@ describe Api::V1::ShowsController do
     end
 
     context "GET search" do
+      let!(:user) { create :user }
       let!(:shows) { create_list(:show_with_rating, 5, user: user, active: true, price: Faker::Number.between(10, 100)) }
       let!(:shows_not_active) { create_list(:show, 2, user: user, active: false) }
 
@@ -22,6 +23,14 @@ describe Api::V1::ShowsController do
         let!(:show) { create(:show_with_rating, user: user, active: true, title: 'Ruby') }
         before(:each) { Show.import; sleep 1; get :search, q: show.title, format: :json }
         it { expect(assigns(:shows).size).to eq 1 }
+      end
+
+      context 'when partial search' do
+        let!(:show1) { create :show, title: 'Electronic', active: true }
+        let!(:show2) { create :show, title: 'Electron', active: true }
+        let!(:show3) { create :show, title: 'Tronic', active: true }
+        before(:each) { Show.import; sleep 1; get :search, q: '*tron*', format: :json }
+        it { expect(assigns(:shows).map(&:id)).to match_array([show1.id, show2.id, show3.id]) }
       end
 
       context 'when price filter' do
