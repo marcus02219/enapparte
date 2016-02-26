@@ -25,7 +25,7 @@
       .row
         .col-md-4[dir-paginate="show in shows | itemsPerPage:21"]
           .show-search.thumbnail
-            img[ng-src="{{ show.coverPictureUrl }}"]
+            img[ng-src="{{ show.coverPictureUrl }}" width="300" height="300"]
             .caption
               img.user[ng-src="{{ show.userPictureUrl }}"]
               h4= "{{ show.title }}"

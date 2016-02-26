@@ -50,8 +50,6 @@ class Api::V1::ShowsController < Api::BaseController
       @shows = Show.where(active: true).order('rating desc').all
     end
 
-    @shows.joins(:pictures)
-
     respond_with :api, :v1, @shows
   end
 

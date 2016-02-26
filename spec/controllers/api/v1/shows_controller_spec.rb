@@ -126,7 +126,7 @@ describe Api::V1::ShowsController do
 
       context 'when full text search' do
         let!(:show) { create(:show_with_rating, user: user, active: true, title: 'Ruby') }
-        before(:each) { get :search, q: show.title, format: :json }
+        before(:each) { Show.import; sleep 1; get :search, q: show.title, format: :json }
         it { expect(assigns(:shows).size).to eq 1 }
       end
 
