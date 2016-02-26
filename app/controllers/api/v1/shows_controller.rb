@@ -1,4 +1,5 @@
 class Api::V1::ShowsController < Api::BaseController
+  before_action :authenticate_user!, except: [:search, :arts]
 
   def create
     @show = current_user.shows.create(show_params)

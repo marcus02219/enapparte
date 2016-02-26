@@ -8,6 +8,44 @@ describe Api::V1::ShowsController do
       before(:each) { post :create, show: show_attributes }
       it { expect(response.status).to eq 302 }
     end
+
+    context "GET search" do
+      let!(:shows) { create_list(:show_with_rating, 5, user: user, active: true, price: Faker::Number.between(10, 100)) }
+      let!(:shows_not_active) { create_list(:show, 2, user: user, active: false) }
+
+      context 'when without params' do
+        before(:each) { get :search, format: :json }
+        it { expect(assigns(:shows).map(&:id)).to eq (shows.sort {|a,b| b.rating <=> a.rating }.map(&:id)) }
+      end
+
+      context 'when full text search' do
+        let!(:show) { create(:show_with_rating, user: user, active: true, title: 'Ruby') }
+        before(:each) { Show.import; sleep 1; get :search, q: show.title, format: :json }
+        it { expect(assigns(:shows).size).to eq 1 }
+      end
+
+      context 'when price filter' do
+        let!(:other_shows) { create_list(:show_with_rating, 2, user: user, active: true, price: Faker::Number.between(101, 200)) }
+        let!(:other_shows_not_active) { create_list(:show_with_rating, 2, user: user, active: false, price: Faker::Number.between(101, 200)) }
+        before(:each) { get :search, price0: 101, price1: 200, format: :json }
+        it { expect(assigns(:shows).map(&:id)).to match_array(other_shows.map(&:id)) }
+      end
+
+      context 'when art checked' do
+        context do
+          let(:art) { shows.first.art }
+          before(:each) { get :search, arts: [art.id].to_json, format: :json }
+          it { expect(assigns(:shows).map(&:id)).to match_array(shows.select {|s| s.art.id == art.id }.map(&:id)) }
+        end
+
+        context 'when arts is empty' do
+          before(:each) { get :search, arts: [].to_json, format: :json }
+          it { expect(assigns(:shows)).to match_array(shows) }
+        end
+      end
+
+      after(:each) { expect(response).to be_success }
+    end
   end
 
   context "when signed in" do
@@ -114,45 +152,6 @@ describe Api::V1::ShowsController do
       before(:each) { get :arts, format: :json }
       it { expect(assigns(:arts)).to match_array([Art.first, Art.last]) }
     end
-
-    context "GET search" do
-      let!(:shows) { create_list(:show_with_rating, 5, user: user, active: true, price: Faker::Number.between(10, 100)) }
-      let!(:shows_not_active) { create_list(:show, 2, user: user, active: false) }
-
-      context 'when without params' do
-        before(:each) { get :search, format: :json }
-        it { expect(assigns(:shows).map(&:id)).to eq (shows.sort {|a,b| b.rating <=> a.rating }.map(&:id)) }
-      end
-
-      context 'when full text search' do
-        let!(:show) { create(:show_with_rating, user: user, active: true, title: 'Ruby') }
-        before(:each) { Show.import; sleep 1; get :search, q: show.title, format: :json }
-        it { expect(assigns(:shows).size).to eq 1 }
-      end
-
-      context 'when price filter' do
-        let!(:other_shows) { create_list(:show_with_rating, 2, user: user, active: true, price: Faker::Number.between(101, 200)) }
-        let!(:other_shows_not_active) { create_list(:show_with_rating, 2, user: user, active: false, price: Faker::Number.between(101, 200)) }
-        before(:each) { get :search, price0: 101, price1: 200, format: :json }
-        it { expect(assigns(:shows).map(&:id)).to match_array(other_shows.map(&:id)) }
-      end
-
-      context 'when art checked' do
-        context do
-          let(:art) { shows.first.art }
-          before(:each) { get :search, arts: [art.id].to_json, format: :json }
-          it { expect(assigns(:shows).map(&:id)).to match_array(shows.select {|s| s.art.id == art.id }.map(&:id)) }
-        end
-
-        context 'when arts is empty' do
-          before(:each) { get :search, arts: [].to_json, format: :json }
-          it { expect(assigns(:shows)).to match_array(shows) }
-        end
-      end
-
-      after(:each) { expect(response).to be_success }
-    end
-
   end
 
 end

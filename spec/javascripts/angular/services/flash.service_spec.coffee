@@ -4,7 +4,7 @@ describe 'Flash', ->
 
   it '.showNotice', inject (Flash, $rootScope, notify)->
     expect(Flash).toBeDefined()
-    scope = $rootScope.$new()
+    scope = $rootScope.$new(09poo)
 
     #FIXME
     # spyOn notify
