@@ -11,7 +11,7 @@ br
       / - @user.shows.each do |show|
       .col-sm-6.col-md-4[ng-repeat="show in shows"]
         .thumbnail.show
-          img[ng-src="{{show.coverPicture.src}}"]
+          img[ng-src="{{ show.coverPictureUrl }}"]
           .caption
             a.label.label-danger[ng-href="#" ng-show="!show.active" ng-click="toggleActive(show, $index)"]
               | Disabled (activate)

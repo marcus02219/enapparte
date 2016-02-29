@@ -19,12 +19,12 @@ feature 'Booking flow for performer' do
     expect(page).to have_css('.performance', count: 2)
   end
 
-  # As a performer, I should be able to accept booking requests,
-  # so I can let the booker now I’m available to perform at his place
-  scenario 'Performer accepts booking flow', js: true do
-    within "#performance_#{pending_booking.id}" do
-      click_button 'Accept the application'
-    end
-  end
+  # # As a performer, I should be able to accept booking requests,
+  # # so I can let the booker now I’m available to perform at his place
+  # scenario 'Performer accepts booking flow', js: true do
+  #   within "#performance_#{pending_booking.id}" do
+  #     click_button 'Accept the application'
+  #   end
+  # end
 
 end

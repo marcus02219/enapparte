@@ -1,13 +1,13 @@
 angular
   .module 'enapparte'
-  .service 'Flash', ['$rootScope',
+  .service 'Flash', ['notify',
     class Flash
-      constructor: (@$rootScope)->
+      constructor: (@notify)->
 
-      showNotice: (msg)->
-        $.notify
-          type: 'notice'
-          message: msg
+      showNotice: (scope, msg)->
+        @notify
+          messageTemplate: '<span>' + msg + '</span>'
+          scope: scope
 
       closeNotice: ()->
   ]

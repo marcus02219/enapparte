@@ -45,25 +45,5 @@ describe Api::V1::PicturesController do
         end
       end
     end
-
-    context 'GET show' do
-      context 'when user is owner' do
-        let(:show) { create :show, user: user }
-        let!(:picture) { create :picture, imageable_type: 'Show', imageable_id: show.id }
-        before(:each) { get :show, id: picture.id, format: :json }
-        it { expect(assigns(:picture)).to_not be_nil }
-      end
-
-      context 'when user is not owner' do
-        let(:show) { create :show }
-        let!(:picture) { create :picture, imageable_type: 'Show', imageable_id: show.id }
-        it 'raises exception' do
-          expect {
-            get :show, id: picture.id, format: :json
-          }.to raise_error(ActiveRecord::RecordNotFound)
-        end
-      end
-    end
   end
-
 end

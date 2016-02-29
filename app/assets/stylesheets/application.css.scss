@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require bootstrap-fileinput/css/fileinput.min
+ *= require seiyria-bootstrap-slider/dist/css/bootstrap-slider.min
+ *= require angular-notify/dist/angular-notify.min
  *= require_tree .
  *= require_self
  */

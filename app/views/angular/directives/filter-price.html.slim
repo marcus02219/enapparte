@@ -1,0 +1,8 @@
+.filter-price
+  b
+    | {{ min | currency:undefined:0 }}
+  b.pull-right
+    | {{ max | currency:undefined:0 }}
+  '
+  input[id="{{ elementId }}" type="text" class="span2" ng-model="value"]
+

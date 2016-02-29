@@ -71,6 +71,7 @@ group :development, :test do
   gem 'libnotify'
 
   gem 'awesome_print'
+  gem 'dotenv-rails'
 end
 
 group :production do
@@ -84,6 +85,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'mysql2', '~> 0.3.20'
 end
 
 gem 'slim-rails'
@@ -101,3 +103,8 @@ gem 'jasmine'
 gem 'angularjs-rails-resource', '~> 2.0.0'
 gem 'whenever'
 gem 'poltergeist'
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'bonsai-elasticsearch-rails'
+

@@ -40,6 +40,14 @@ class Show < ActiveRecord::Base
   after_save :set_cover_picture
   before_save :recalculate_rating
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  def as_indexed_json options={}
+    self.as_json({
+      only: [:title, :description]
+    })
+  end
+
   def toggle_active
     if user && user.confirmed? && user.addresses.any? && user.phone_number.present?
       self.active = !self.active

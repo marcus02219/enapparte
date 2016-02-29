@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       resources :users, :defaults => { :format => 'json' }
       resources :shows, :defaults => { :format => 'json' } do
         post 'toggle_active', on: :member
+        get 'arts', on: :collection
+        get 'search', on: :collection
       end
       resources :pictures, :defaults => { :format => 'json' }
       resources :bookings, :defaults => { :format => 'json' } do

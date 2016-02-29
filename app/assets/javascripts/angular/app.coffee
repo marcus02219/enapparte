@@ -1,5 +1,11 @@
-angular
-  .module 'enapparte', ['rails', 'ngRoute', 'ngSanitize']
+@App = angular
+  .module 'enapparte', [
+    'rails'
+    'ngRoute'
+    'ngSanitize'
+    'cgNotify'
+    'angularUtils.directives.dirPagination'
+  ]
 
   # .config ($routeProvider)->
   #   $routeProvider
@@ -17,3 +23,5 @@ angular
   .run ['$rootScope', ($rootScope)->
     $rootScope.flash = null
   ]
+
+
