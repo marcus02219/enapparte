@@ -1,5 +1,11 @@
 @App = angular
-  .module 'enapparte', ['rails', 'ngRoute', 'ngSanitize', 'cgNotify', 'angularUtils.directives.dirPagination']
+  .module 'enapparte', [
+    'rails'
+    'ngRoute'
+    'ngSanitize'
+    'cgNotify'
+    'angularUtils.directives.dirPagination'
+  ]
 
   # .config ($routeProvider)->
   #   $routeProvider

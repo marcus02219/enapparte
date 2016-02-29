@@ -88,11 +88,13 @@ User.all.each do |user|
       art: Art.all.sample,
     )
 
-    picture = Picture.create(
-      image: File.open(Dir[Rails.root.join('spec/fixtures/pictures/*')].sample),
-      imageable: show
-    )
-    show.cover_picture = picture
+    pictures = 7.times.map do
+      Picture.create(
+        image: File.open(Dir[Rails.root.join('spec/fixtures/pictures/*')].sample),
+        imageable: show
+      )
+    end
+    show.cover_picture = pictures.first
     show.save
   end
 

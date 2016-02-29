@@ -14,18 +14,19 @@ class ShowSearchController extends @NGController
 
   shows: []
   arts: []
+  show: null
 
   filter:
     text: ""
     price: "0,100000"
+
+  mode: 'list'
 
   init: ->
     @ShowArt
       .query()
       .then (arts)=>
         @scope.arts = arts
-
-    @search()
 
     @scope.$watch 'filter.price', (newValue, oldValue)=>
       @search()
@@ -46,5 +47,18 @@ class ShowSearchController extends @NGController
         arts: JSON.stringify(arts)
       .then (shows)=>
         @scope.shows = shows
+
+  modeDetails: (show)=>
+    @scope.mode = 'detail'
+    @scope.show = show
+
+  modeList: ()=>
+    @scope.mode = 'list'
+
+  changePicture: (picture)=>
+    @scope.show.coverPicture = picture
+
+
+
 
 
