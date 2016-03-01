@@ -47,6 +47,7 @@ class ShowSearchController extends @NGController
         arts: JSON.stringify(arts)
       .then (shows)=>
         @scope.shows = shows
+        # @scope.show = shows.first
 
   modeDetails: (show)=>
     @scope.mode = 'detail'

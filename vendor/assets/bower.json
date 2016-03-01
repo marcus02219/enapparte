@@ -12,6 +12,7 @@
     "seiyria-bootstrap-slider": "latest",
     "angular-notify": "latest",
     "angular-utils-pagination": "latest",
+    "underscore": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }

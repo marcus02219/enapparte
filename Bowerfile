@@ -15,6 +15,7 @@ asset 'angular-moment'
 asset 'seiyria-bootstrap-slider'
 asset 'angular-notify'
 asset 'angular-utils-pagination'
+asset 'underscore'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'
