@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Show.__elasticsearch__.remove_index!
+Show.__elasticsearch__.delete_index!
 
 User.destroy_all
 Show.destroy_all
