@@ -1,5 +1,5 @@
 .container[ng-controller="ShowSearchController"]
-  .results[ng-if="mode != 'list'"]
+  .results[ng-if="mode == 'list'"]
     .row
       .col-md-3
         form.form-inline
@@ -43,7 +43,7 @@
             dir-pagination-controls.pull-right
 
 
-  .details[ng-if="mode != 'detail'"]
+  .details[ng-if="mode == 'detail'"]
     a[href="" ng-click="modeList()"]
       i.glyphicon.glyphicon-arrow-left
       '
