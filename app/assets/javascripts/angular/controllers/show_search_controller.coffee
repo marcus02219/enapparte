@@ -9,7 +9,8 @@ class ShowSearchController extends @NGController
     'Flash',
     '$filter',
     'ShowArt',
-    'ShowSearch'
+    'ShowSearch',
+    '_'
   ]
 
   shows: []
@@ -32,8 +33,8 @@ class ShowSearchController extends @NGController
       @search()
 
   search: =>
-    q = if  @scope.filter.text then @scope.filter.text else ''
-    arts = @scope.arts
+    q = if  @scope.filter.text then '*' + @scope.filter.text + '*' else ''
+    art_ids = @scope.arts
       .filter (art)->
         art.checked == true
       .map (art)->
@@ -44,10 +45,10 @@ class ShowSearchController extends @NGController
         q: q
         price0: @scope.filter.price.split(',')[0]
         price1: @scope.filter.price.split(',')[1]
-        arts: JSON.stringify(arts)
+        arts: JSON.stringify(art_ids)
       .then (shows)=>
         @scope.shows = shows
-        # @scope.show = shows.first
+        @scope.show = shows[2]
 
   modeDetails: (show)=>
     @scope.mode = 'detail'
@@ -59,6 +60,19 @@ class ShowSearchController extends @NGController
   changePicture: (picture)=>
     @scope.show.coverPicture = picture
 
+  nextPicture: ()=>
+    index = _.indexOf @scope.show.pictures, @scope.show.coverPicture
+    @scope.show.coverPicture = if index >= 0 && index < @scope.show.pictures.length - 1
+      @scope.show.pictures[index + 1]
+    else
+      @scope.show.pictures[0]
+
+  prevPicture: ()=>
+    index = _.indexOf @scope.show.pictures, @scope.show.coverPicture
+    @scope.show.coverPicture = if index > 0 && index <= @scope.show.pictures.length - 1
+      @scope.show.pictures[index - 1]
+    else
+      _.last @scope.show.pictures
 
 
 

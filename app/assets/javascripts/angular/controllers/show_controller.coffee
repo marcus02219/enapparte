@@ -139,9 +139,6 @@ class ShowController extends @NGController
         # redirect to
         window.location = '/dashboard/shows'
 
-  range: (n)->
-    new Array(Math.round(n))
-
   tabClick: (step)->
     if @scope.tabsClickable
       @scope.step = step
