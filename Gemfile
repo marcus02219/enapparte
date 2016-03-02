@@ -107,4 +107,5 @@ gem 'poltergeist'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'bonsai-elasticsearch-rails'
+gem 'dalli'
 
