@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Show.__elasticsearch__.delete_index!
+Show.import force: true
 
 User.destroy_all
 Show.destroy_all
@@ -18,7 +18,6 @@ Language.destroy_all
 Picture.destroy_all
 Art.destroy_all
 
-Show.__elasticsearch__.create_index! force: true
 
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
