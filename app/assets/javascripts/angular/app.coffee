@@ -5,6 +5,7 @@
     'ngSanitize'
     'cgNotify'
     'angularUtils.directives.dirPagination'
+    'underscore'
   ]
 
   # .config ($routeProvider)->

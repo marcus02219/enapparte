@@ -5,9 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+<<<<<<< ad3e55729ed6ac9c474ab1ae176894995039117d
 
 Show.import force: true
 
+puts 'destroy all...'
 User.destroy_all
 Show.destroy_all
 Address.destroy_all
@@ -46,19 +48,8 @@ main_user = User.create(
 
 main_user.confirm!
 
-5.times.each do |i|
-  Address.create(user: main_user,
-                 street: Faker::Address.street_address,
-                 postcode:Faker::Number.number(5),
-                 city: Faker::Address.city,
-                 state: Faker::Address.state,
-                 country: Faker::Address.country,
-                 latitude:41.1,
-                 longitude:42.21
-                )
-end
-
 # users
+puts 'creating users...'
 5.times.each do |i|
   user = User.create(
     gender: User.genders.keys.sample,
@@ -71,13 +62,26 @@ end
     activity: Faker::Lorem.sentence,
     language: Language.first
   )
+
+  5.times.each do |i|
+    Address.create(user: user,
+                   street: Faker::Address.street_address,
+                   postcode:Faker::Number.number(5),
+                   city: Faker::Address.city,
+                   state: Faker::Address.state,
+                   country: Faker::Address.country,
+                   latitude: 41.1,
+                   longitude: 42.21
+                  )
+  end
 end
 
 # Shows
+puts 'creating shows...'
 User.all.each do |user|
   user.picture.image = File.open(Dir[Rails.root.join('spec/fixtures/photos/*')].sample)
   user.picture.save
-  25.times.each do |i|
+  10.times.each do |i|
     show = Show.create(
       user: user,
       title: Faker::Lorem.word,
@@ -98,7 +102,7 @@ User.all.each do |user|
         imageable: show
       )
     end
-    show.cover_picture = pictures.first
+    show.cover_picture = pictures.sample
     show.save
   end
 
@@ -112,6 +116,7 @@ User.all.each do |user|
   end
 end
 
+puts 'creating bookings, ratings, comments...'
 User.all.each do |user|
   4.times.each do |status|
     20.times.each do
@@ -121,9 +126,9 @@ User.all.each do |user|
         status: Faker::Number.between(1, 4),
         date: Faker::Time.between(1.days.ago, 10.days.from_now),
         spectators: Faker::Number.between(1, 10),
-        price: Faker::Number.decimal(5,2),
+        price: Faker::Number.decimal(5, 2),
         message: Faker::Lorem.sentence,
-        payout: Faker::Number.decimal(5,2)
+        payout: Faker::Number.decimal(5, 2)
       )
       3.times.each do
         Rating.create(

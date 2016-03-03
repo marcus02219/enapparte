@@ -5,5 +5,8 @@ angular
     $scope.broadcast = (event)->
       $scope.$broadcast event
 
+    $rootScope.range = (n)->
+      new Array(n)
+
   ]
 
