@@ -1,4 +1,5 @@
 class ShowSearchController extends @NGController
+  @name: "ShowSearchController"
   @register window.App
 
   @$inject: [
