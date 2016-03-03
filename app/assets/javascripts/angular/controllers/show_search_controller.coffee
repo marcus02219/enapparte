@@ -1,6 +1,5 @@
 class ShowSearchController extends @NGController
-  @name: "ShowSearchController"
-  @register window.App
+  @register window.App, 'ShowSearchController'
 
   @$inject: [
     '$scope',
@@ -33,7 +32,7 @@ class ShowSearchController extends @NGController
       @search()
 
   search: =>
-    q = if  @scope.filter.text then '*' + @scope.filter.text + '*' else ''
+    q = if  @scope.filter.text then @scope.filter.text else ''
     arts = @scope.arts
       .filter (art)->
         art.checked == true

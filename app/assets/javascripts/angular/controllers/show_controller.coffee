@@ -1,5 +1,5 @@
 class ShowController extends @NGController
-  @register window.App
+  @register window.App, 'ShowController'
 
   @$inject: [
     '$scope',

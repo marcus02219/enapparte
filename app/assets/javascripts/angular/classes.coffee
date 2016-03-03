@@ -9,8 +9,11 @@ class @NGObject
     @init?()
 
 class @NGController extends @NGObject
-  @register: (app) ->
-    app.controller "#{@name}", this
+  @register: (app, className) ->
+    if className
+      app.controller "#{className}", this
+    else
+      app.controller "#{@name}", this
 
   constructor: (@scope) ->
     @scope[key] = value for key, value of this when !@scope[key]?
