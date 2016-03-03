@@ -31,8 +31,8 @@
                 img.user[ng-src="{{ show.userPictureUrl }}"]
                 h4= "{{ show.title }}"
                 .rating[ng-if="show.rating"]
-                  i.glyphicon.glyphicon-star[ng-repeat="k in range(show.rating) track by $index"]
-                  i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - show.rating) track by $index"]
+                  i.glyphicon.glyphicon-star[ng-repeat="k in range(Math.round(show.rating)) track by $index"]
+                  i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - Math.round(show.rating)) track by $index"]
                 .length
                   | {{ show.length }} minutes
                 .price

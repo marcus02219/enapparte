@@ -6,7 +6,7 @@ angular
       $scope.$broadcast event
 
     $rootScope.range = (n)->
-      new Array(Math.round(n))
+      new Array(n)
 
   ]
 
