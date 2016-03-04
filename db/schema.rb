@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225041618) do
+ActiveRecord::Schema.define(version: 20160304184603) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -142,7 +142,6 @@ ActiveRecord::Schema.define(version: 20160225041618) do
     t.string   "firstname"
     t.string   "surname"
     t.integer  "gender"
-    t.integer  "sex"
     t.text     "bio"
     t.string   "phone_number"
     t.string   "provider"
@@ -156,6 +155,7 @@ ActiveRecord::Schema.define(version: 20160225041618) do
     t.integer  "shows_id"
     t.integer  "picture_id"
     t.float    "rating"
+    t.boolean  "mobile"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

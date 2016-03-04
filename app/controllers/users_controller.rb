@@ -22,7 +22,6 @@
 #  firstname              :string
 #  surname                :string
 #  gender                 :integer
-#  sex                    :integer
 #  bio                    :text
 #  phone_number           :string
 #  provider               :string
@@ -36,6 +35,7 @@
 #  shows_id               :integer
 #  picture_id             :integer
 #  rating                 :float
+#  mobile                 :boolean
 #
 # Indexes
 #
