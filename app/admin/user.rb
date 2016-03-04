@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :firstname, :surname, :gender, :bio, :phone_number,
+  permit_params :email, :password, :firstname, :surname, :gender, :bio, :phone_number, :mobile,
     :provider, :uid, :dob, :activity, :language_id, :picture, :rating,
     :role, :address_ids => [], :booking_ids => [], :show_ids => [], :payment_method_ids => []
   index do
@@ -21,6 +21,7 @@ ActiveAdmin.register User do
       f.input :gender, as: :select, collection: User.genders.keys
       f.input :bio
       f.input :phone_number
+      f.input :mobile
       f.input :dob, as: :datepicker
       f.input :activity
       f.input :language
@@ -42,6 +43,7 @@ ActiveAdmin.register User do
       row :gender
       row :bio
       row :phone_number
+      row :mobile
       row :dob
       row :activity
       row :language do
