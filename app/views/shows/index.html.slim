@@ -65,9 +65,33 @@
               a.thumbnail[href="" ng-click="changePicture(picture)"]
                 img[ng-src="{{ picture.urlThumb }}"]
       .col-md-9
-        .thumbnail.pull-left
-          img[ng-src="{{ show.userPictureUrl }}"]
-        .rating[ng-if="show.rating"]
-          i.glyphicon.glyphicon-star[ng-repeat="k in range(show.rating) track by $index"]
-          i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - show.rating) track by $index"]
+        .row
+          .col-md-2
+            .thumbnail.pull-left
+              img[ng-src="{{ show.userPictureUrl }}"]
+            .user-name.text-center
+              | {{ show.user.fullName }}
+          .col-md-10
+            .rating[ng-if="show.rating"]
+              i.glyphicon.glyphicon-star[ng-repeat="k in range(Math.round(show.rating)) track by $index"]
+              i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - Math.round(show.rating)) track by $index"]
+            h3= "{{ show.title }}"
+            p.price
+              | {{ show.price | currency }}
+            p.length
+              | {{ show.length }} minutes
+            p.available
+              | Disponible de
+              '
+              b
+                | {{ show.startsAt | amParse:'YYYY-MM-DD HH:mm:ss ZZ' | amDateFormat:'LLL' }}
+              '
+              span[ng-if="show.endsAt"]
+                | à
+                '
+                b
+                  | {{ show.endsAt | amParse:'YYYY-MM-DD HH:mm:ss ZZ' | amDateFormat:'LLL' }}
+
+            p.bio
+              | {{ show.user.bio }}
 

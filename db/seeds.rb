@@ -43,7 +43,8 @@ main_user = User.create(
   uid: 123,
   dob:Time.now,
   activity:"asdsad",
-  language: Language.all.sample
+  language: Language.all.sample,
+  bio: Faker::Lorem.paragraphs(5)
 )
 
 main_user.confirm!
@@ -60,7 +61,8 @@ puts 'creating users...'
     phone_number: Faker::Number.number(10).gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3'),
     dob: Faker::Time.backward(14000, :evening).to_date,
     activity: Faker::Lorem.sentence,
-    language: Language.first
+    language: Language.first,
+    bio: Faker::Lorem.paragraphs(5)
   )
 
   5.times.each do |i|

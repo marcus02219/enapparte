@@ -6,6 +6,7 @@
     'cgNotify'
     'angularUtils.directives.dirPagination'
     'underscore'
+    'angularMoment'
   ]
 
   # .config ($routeProvider)->

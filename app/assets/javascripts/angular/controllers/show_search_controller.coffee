@@ -21,7 +21,7 @@ class ShowSearchController extends @NGController
     text: ""
     price: "0,100000"
 
-  mode: 'list'
+  mode: 'detail'
 
   init: ->
     @ShowArt
