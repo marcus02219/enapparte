@@ -36,6 +36,7 @@
 #  shows_id               :integer
 #  picture_id             :integer
 #  rating                 :float
+#  role                   :integer          default(1)
 #
 # Indexes
 #
@@ -58,7 +59,7 @@ class User < ActiveRecord::Base
   has_many   :shows
   has_one    :picture , as: :imageable
 
-  validates :firstname, :surname, :gender, presence: true
+  # validates :firstname, :surname, :gender, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   # validates :phone_number, format: { with: /\d{10}/, message: "bad format" }
 
@@ -68,6 +69,11 @@ class User < ActiveRecord::Base
   before_save :deactivate_shows
 
   enum gender: { male: 0, female: 1, other: 2 }
+  enum role: { admin: 0, user: 1 }
+
+  def picture= file
+    self.build_picture(image: file)
+  end
 
   def comments
     self.shows.inject([]) {|comments, s| comments += s.bookings.map {|b| b.comment} }

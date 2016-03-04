@@ -30,6 +30,7 @@ class Show < ActiveRecord::Base
   has_many   :bookings  , dependent: :destroy
   belongs_to :cover_picture, class_name: 'Picture'
 
+  just_define_datetime_picker :published_at
   validates :art_id, :max_spectators, :length, :title, :description, :language_id, :price, presence: true
 
   has_many   :pictures  , dependent: :destroy , as: :imageable
@@ -58,6 +59,12 @@ class Show < ActiveRecord::Base
       elsif user.phone_number.blank?
         self.errors.add(:phone_number, I18n.t('activerecord.errors.messages.phone_number_is_empty'))
       end
+    end
+  end
+
+  def pictures=(array)
+    array.each do |file|
+      pictures.build(image: file)
     end
   end
 
