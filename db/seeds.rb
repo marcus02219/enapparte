@@ -5,8 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-<<<<<<< ad3e55729ed6ac9c474ab1ae176894995039117d
-
 Show.import force: true
 
 puts 'destroy all...'
