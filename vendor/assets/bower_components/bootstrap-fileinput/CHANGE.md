@@ -1,6 +1,26 @@
 Change Log: `bootstrap-fileinput`
 =================================
 
+## version 4.3.1
+
+**Date:** 28-Feb-2016
+
+1. (enh #514): Set default value for `removeFromPreviewOnError` to `false`.
+2. (enh #554): Update documentation and demos to include `webkitdirectory` for upload.
+3. (enh #555): Set default value for `removeFromPreviewOnError` to `false`.
+4. (enh #557): Enhance default file type parsing to intelligently not render unpreviewable content.
+5. (enh #559): Allow custom error display styles (e.g. via bootstrap dialog) through these changes:
+    - added `msg` param in `fileerror`, `fileuploaderror`, and `filefoldererror` events.
+6. (enh #560): Update French Translations.
+7. (enh #565): Enhance progress bar display when upload is aborted or cancelled.
+8. (enh #567): New properties and improved messages.
+9. (enh #572): Add Finnish Translations.
+10. (enh #573): Update package.json to include `peerDependencies`.
+11. (enh #574): Change naming convention for private / internal methods. Prepend internal plugin methods with underscore `_`.
+12. (enh #575): Implement public method chaining and update docs for methods.
+13. (bug #576): Correct previewCache initialization.
+14. (bug #577): Better label spacing for default browse icon.
+
 ## version 4.3.0
 
 **Date:** 25-Jan-2016
