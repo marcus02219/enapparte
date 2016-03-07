@@ -181,3 +181,22 @@ angular
             time = ('0' + h).slice(-2) + ':' + ('0' + min).slice(-2)
             scope.options.push { name: time, value: time }
     }
+
+  .directive 'inputDatetime', ()->
+    {
+      require: '^form'
+      strict: 'E'
+      templateUrl: 'directives/input_datetime.html'
+      scope:
+        model: '='
+      replace: true
+      link: (scope, element, attrs, form)->
+        scope.form = form
+        scope.label = attrs.label
+        scope.elementId = 'input_' + scope.$id
+        scope.required = attrs.required != undefined
+
+        element.find('input').datetimepicker
+          format: attrs.dateFormat
+
+    }

@@ -13,6 +13,7 @@
     "angular-notify": "latest",
     "angular-utils-pagination": "latest",
     "underscore": "latest",
+    "smalot-bootstrap-datetimepicker": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }

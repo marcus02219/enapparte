@@ -91,7 +91,22 @@
                 '
                 b
                   | {{ show.endsAt | amParse:'YYYY-MM-DD HH:mm:ss ZZ' | amDateFormat:'LLL' }}
+            dl
+              dt Bio
+              dd
+                | {{ show.user.bio }}
+            dl
+              dt Description
+              dd
+                | {{ show.description }}
 
-            p.bio
-              | {{ show.user.bio }}
+            form.form-horizontal
+              fieldset
+                legend Submit a Booking
+
+                input-datetime[label="Choose Date and Hour" model="booking.date" date-format="d M, yyyy hh:ii"]
+
+              br
+              button.btn.btn-default[ng-click="submitBooking()"]
+                | Submit
 

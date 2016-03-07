@@ -16,6 +16,7 @@ asset 'seiyria-bootstrap-slider'
 asset 'angular-notify'
 asset 'angular-utils-pagination'
 asset 'underscore'
+asset 'smalot-bootstrap-datetimepicker'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'

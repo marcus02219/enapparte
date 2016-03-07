@@ -44,7 +44,7 @@ main_user = User.create(
   dob:Time.now,
   activity:"asdsad",
   language: Language.all.sample,
-  bio: Faker::Lorem.paragraphs(5)
+  bio: Faker::Lorem.paragraph(5)
 )
 
 main_user.confirm!
@@ -62,7 +62,7 @@ puts 'creating users...'
     dob: Faker::Time.backward(14000, :evening).to_date,
     activity: Faker::Lorem.sentence,
     language: Language.first,
-    bio: Faker::Lorem.paragraphs(5)
+    bio: Faker::Lorem.paragraph(5)
   )
 
   5.times.each do |i|
