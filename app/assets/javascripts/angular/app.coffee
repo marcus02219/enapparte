@@ -7,6 +7,7 @@
     'angularUtils.directives.dirPagination'
     'underscore'
     'angularMoment'
+    'ui.bootstrap'
   ]
 
   # .config ($routeProvider)->

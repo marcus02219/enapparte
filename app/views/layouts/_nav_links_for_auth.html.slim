@@ -1,20 +1,20 @@
-- if user_signed_in?
-  li
-    .dropdown
-      a#dropdownMenu1.nav_links.dropdown-toggle[type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"]
-        = current_user.full_name
-        span.caret
-      ul.dropdown-menu.dropdown-menu-right[aria-labelledby="dropdownMenu1"]
-        li
-          = link_to 'Dashboard', dashboard_path
-        li
-          = link_to 'My Performances', performances_dashboard_path
-        li
-          = link_to 'Account', edit_user_registration_path
-        li
-          = link_to 'Log out', destroy_user_session_path, method: 'delete'
-- else
-  li
-    = link_to 'Connexion', new_user_session_path, class: 'nav_links', data: { toggle: 'modal', target: '#SignInModal' }
-  li
-    = link_to 'Inscrivez-vous', new_user_registration_path, class: 'nav_links', data: { toggle: 'modal', target: '#SignUpModal' }
+li[ng-if="currentUser.signedIn"]
+  .dropdown
+    a#dropdownMenu1.nav_links.dropdown-toggle[type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"]
+      | {{ currentUser.fullName }}
+      span.caret
+    ul.dropdown-menu.dropdown-menu-right[aria-labelledby="dropdownMenu1"]
+      li
+        = link_to 'Dashboard', dashboard_path
+      li
+        = link_to 'My Performances', performances_dashboard_path
+      li
+        = link_to 'Account', edit_user_registration_path
+      li
+        = link_to 'Log out', destroy_user_session_path, method: 'delete'
+li[ng-if="!auth.signedIn"]
+  a.nav_links[ng-click="showSignIn()"]
+    | Connexion
+li[ng-if="!auth.signedIn"]
+  a.nav_links[ng-click="showSignUp()"]
+    | Inscrivez-vous

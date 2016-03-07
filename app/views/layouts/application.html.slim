@@ -6,7 +6,6 @@ html[ng-app="enapparte"]
       = content_for?(:title) ? yield(:title) : "Enapparte"
     meta[name="description" content=(content_for?(:description) ? yield(:description) : "Enapparte")]
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     script src = "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"
   body[class="#{controller_name} #{action_name}" ng-controller="MainController"]
@@ -15,6 +14,9 @@ html[ng-app="enapparte"]
     .main-content
       = yield
     = render 'layouts/footer'
-    = render partial: 'shared/bootstrap_modal', locals: { modal_id: 'SignInModal', modal_partial: 'devise/shared/log_in' }
-    = render partial: 'shared/bootstrap_modal', locals: { modal_id: 'SignUpModal', modal_partial: 'devise/shared/sign_up' }
+    sign-in
+    sign-up
+    / = render partial: 'shared/bootstrap_modal', locals: { modal_id: 'SignInModal', modal_partial: 'devise/shared/log_in' }
+    / = render partial: 'shared/bootstrap_modal', locals: { modal_id: 'SignUpModal', modal_partial: 'devise/shared/sign_up' }
+    == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == angular_templates Rails.root.join 'app/views/angular'

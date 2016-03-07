@@ -79,6 +79,3 @@ class ShowSearchController extends @NGController
     else
       _.last @scope.show.pictures
 
-
-
-
