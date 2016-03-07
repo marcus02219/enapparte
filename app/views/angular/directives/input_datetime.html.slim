@@ -3,8 +3,8 @@
     abbr[title="required" ng-if="required"] *
     '
     | {{ label }}
-  .col-sm-9
-    input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="text" data-date-format="{{ dateFormat }}" ng-model="model"]
+  .col-sm-4
+    input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="text" data-date-format="{{ dateFormat }}"]
     .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
       span.help-block[ng-show="form[elementId].$error.required"]
         | Please, select date and time

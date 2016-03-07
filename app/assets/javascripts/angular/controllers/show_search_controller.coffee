@@ -11,11 +11,16 @@ class ShowSearchController extends @NGController
     'ShowArt',
     'ShowSearch',
     '_'
+    'moment'
   ]
 
   shows: []
   arts: []
   show: null
+  booking:
+    startDate: moment().add(3, 'd').format()
+    date: moment().add(3, 'd').toDate()
+    spectators: 1
 
   filter:
     text: ""

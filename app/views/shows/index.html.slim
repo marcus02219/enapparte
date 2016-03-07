@@ -100,13 +100,15 @@
               dd
                 | {{ show.description }}
 
-            form.form-horizontal
+            form.form-horizontal[name="bookingForm"]
               fieldset
                 legend Submit a Booking
 
-                input-datetime[label="Choose Date and Hour" model="booking.date" date-format="d M, yyyy hh:ii"]
+                input-datetime[label="Choose Date and Time" model="booking.date" start-date="{{ booking.startDate }}" end-date="{{ show.endsAt }}" date-format="d M, yyyy hh:ii"]
+                input-integer[label="Number of guests" model="booking.spectators" min="1" max="show.maxSpectators"]
 
-              br
-              button.btn.btn-default[ng-click="submitBooking()"]
-                | Submit
+              .row
+                .col-md-9.col-md-offset-3
+                  button.btn.btn-default[ng-click="bookingForm.$valid && submitBooking()"]
+                    | Submit
 

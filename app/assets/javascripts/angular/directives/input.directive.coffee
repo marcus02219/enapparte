@@ -76,36 +76,34 @@ angular
     }
 
   .directive 'inputInteger', ()->
-    {
-      require: '^form'
-      strict: 'E'
-      templateUrl: 'directives/input_integer.html'
-      scope:
-        model: '='
-      replace: true
-      link: (scope, element, attrs, form)->
-        scope.form = form
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.required = attrs.required != undefined
-    }
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_integer.html'
+    scope:
+      model: '='
+      max: '='
+      min: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
 
   .directive 'inputSelect', ()->
-    {
-      require: '^form'
-      strict: 'E'
-      templateUrl: 'directives/input_select.html'
-      scope: {
-        model: '='
-      }
-      replace: true
-      link: (scope, element, attrs, form)->
-        scope.form = form
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.options = element.data('collection')
-        scope.required = attrs.required != undefined
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_select.html'
+    scope: {
+      model: '='
     }
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.options = element.data('collection')
+      scope.required = attrs.required != undefined
 
   .directive 'inputImage', ()->
     {
@@ -183,20 +181,32 @@ angular
     }
 
   .directive 'inputDatetime', ()->
-    {
-      require: '^form'
-      strict: 'E'
-      templateUrl: 'directives/input_datetime.html'
-      scope:
-        model: '='
-      replace: true
-      link: (scope, element, attrs, form)->
-        scope.form = form
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.required = attrs.required != undefined
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_datetime.html'
+    scope:
+      model: '='
+      startDate: '@'
+      endDate: '@'
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
 
-        element.find('input').datetimepicker
-          format: attrs.dateFormat
+      element.find('input').datetimepicker
+        format: attrs.dateFormat
+        autoclose: true
 
-    }
+      scope.$watch 'startDate', (newValue)->
+        element.find('input').datetimepicker 'setStartDate', moment(newValue).toDate()
+
+      scope.$watch 'endDate', (newValue)->
+        element.find('input').datetimepicker 'setEndDate', moment(newValue).toDate()
+
+      element.find('input').datetimepicker 'update', scope.model
+        .on 'changeDate', (e)->
+          scope.$apply ->
+            scope.model = e.date
+
