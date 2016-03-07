@@ -13,7 +13,11 @@
  *= require bootstrap-fileinput/css/fileinput.min
  *= require seiyria-bootstrap-slider/dist/css/bootstrap-slider.min
  *= require angular-notify/dist/angular-notify.min
- *= require_tree .
+ *= require 1st_load_framework
+ *= require custom
+ *= require dashboard
+ *= require home
+ *= require show
  *= require_self
  */
 
