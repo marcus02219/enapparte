@@ -35,6 +35,7 @@
 #  shows_id               :integer
 #  picture_id             :integer
 #  rating                 :float
+#  role                   :integer          default(1)
 #  mobile                 :boolean
 #
 # Indexes

@@ -109,3 +109,5 @@ gem 'elasticsearch-rails'
 gem 'bonsai-elasticsearch-rails'
 gem 'dalli'
 
+gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'just-datetime-picker'

@@ -31,6 +31,12 @@ class Booking < ActiveRecord::Base
   has_many   :ratings
   has_one    :comment
 
+  just_define_datetime_picker :date
+  just_define_datetime_picker :paid_on
+  just_define_datetime_picker :paid_out_on
+
+  alias_method :name, :id
+
   def change_status status
     if self.update status: status
       case status

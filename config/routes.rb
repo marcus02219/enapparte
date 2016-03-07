@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
+  # delete 'admin/pictures/:id', to: 'images#destroy', as: :destroy_image
+
   get 'home/index'
 
   root to: 'home#index'
