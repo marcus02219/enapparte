@@ -9,7 +9,6 @@ class CreateAddresses < ActiveRecord::Migration
       t.float :latitude
       t.float :longitude
       t.references :user
-      t.references :bookings
       t.timestamps null: false
     end
   end

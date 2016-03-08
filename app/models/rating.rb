@@ -10,9 +10,29 @@
 #
 
 class Rating < ActiveRecord::Base
-  belongs_to :booking
+  
+  DEFAULT_VALUE = 5
+
+  
+  belongs_to :review
+  belongs_to :user
+  belongs_to :show
   after_save :touch_parent
   after_destroy :touch_parent
+
+
+  validates :review, :value, presence: true
+  
+  before_save :set_show
+  before_save :set_user
+
+  def set_product
+    self.show_id = review.booking.show.id
+  end
+
+  def set_user
+    self.user_id = review.user.id
+  end
 
   private
 
