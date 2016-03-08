@@ -1,32 +1,15 @@
-.authform
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
+form.form-horizontal[name="formAuth"]
+  .modal-header
     h3
       | S'inscrire
-    = devise_error_messages!
-    .form-group
-      = f.label :firstname, "Prénom"
-      = f.text_field :firstname, :autofocus => true, class: 'form-control'
-    .form-group
-      = f.label :surname
-      = f.text_field :surname, :autofocus => true, class: 'form-control'
-    .form-group
-      = f.label :gender
-      br
-      = f.radio_button :gender, 'male'
-      = f.label :gender, "Male", :value => "0"
-      br
-      = f.radio_button :gender, 'female'
-      = f.label :gender, "Female", :value => "1"
-      br
-      = f.radio_button :gender, 'other'
-      = f.label :gender, "Other", :value => "2"
-    .form-group
-      = f.label :email
-      = f.email_field :email, class: 'form-control'
-    .form-group
-      = f.label :password
-      = f.password_field :password, class: 'form-control'
-    .form-group
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation, class: 'form-control'
-    = f.submit 'Sign up', :class => 'button right'
+  .modal-body
+    input-string[label="Prénom" model="user.firstname" required]
+    input-string[label="Surname" model="user.surname" required]
+    input-radio[label="Gender" model="user.gender" required collection='[{"name": "Male", "value": 0}, {"name": "Female", "value": 1}, {"name": "Other", "value": 2}]']
+    input-email[label="Email" model="user.email" required]
+    input-password[label="Password" model="user.password" required confirmation="1"]
+  .modal-footer
+    button.btn.btn-primary[ng-click="authForm.$valid && ok()"]
+      | Sign Up
+    button.btn.btn-default[ng-click="cancel()"]
+      | Cancel

@@ -1,4 +1,4 @@
-.auth-modal
+form.form-horizontal[name="authForm"]
   .modal-header
     h3.modal-title
       | Se connecter
@@ -10,12 +10,11 @@
       = link_to "Mot de passe oublié?", new_password_path(resource_name)
     .clearfix
   .modal-body
-    form.form-horizontal[name="authForm"]
-      input-email[label="Email" model="auth.email"]
-      input-password[label="Mot de passe" model="auth.password"]
-      input-boolean[label="Se souvenir de moi" model="auth.remember_me"]
+    input-email[label="Email" model="auth.email" required]
+    input-password[label="Mot de passe" model="auth.password" required]
+    input-boolean[label="Se souvenir de moi" model="auth.remember_me"]
   .modal-footer
-    button.btn.btn-primary[ng-click="ok()"]
+    button.btn.btn-primary[ng-click="authForm.$valid && ok()"]
       | Se connecter
     button.btn.btn-default[ng-click="cancel()"]
       | Cancel

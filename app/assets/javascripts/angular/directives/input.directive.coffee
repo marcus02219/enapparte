@@ -1,30 +1,26 @@
 angular
   .module 'enapparte'
   .directive 'inputEnum', ()->
-    {
-      strict: 'E'
-      templateUrl: 'directives/input_enum.html'
-      scope: {
-        dtModel: '='
-      }
-      replace: true
-      link: (scope, element, attrs)->
-        scope.dtLabel = attrs.dtLabel
-        scope.elementId = 'input_' + scope.$id
+    strict: 'E'
+    templateUrl: 'directives/input_enum.html'
+    scope:
+      dtModel: '='
+    replace: true
+    link: (scope, element, attrs)->
+      scope.dtLabel = attrs.dtLabel
+      scope.elementId = 'input_' + scope.$id
 
-        scope.options = []
-        enums = JSON.parse(attrs.dtEnum)
-        for value, label of enums
-          scope.options.push { value: value, label: label }
-    }
+      scope.options = []
+      enums = JSON.parse(attrs.dtEnum)
+      for value, label of enums
+        scope.options.push { value: value, label: label }
 
   .directive 'inputString', ()->
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input_string.html'
-    scope: {
+    scope:
       model: '='
-    }
     replace: true
     link: (scope, element, attrs, form)->
       scope.form = form
@@ -92,9 +88,8 @@ angular
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input_select.html'
-    scope: {
+    scope:
       model: '='
-    }
     replace: true
     link: (scope, element, attrs, form)->
       scope.form = form
@@ -104,79 +99,71 @@ angular
       scope.required = attrs.required != undefined
 
   .directive 'inputImage', ()->
-    {
-      require: '^form'
-      strict: 'E'
-      templateUrl: 'directives/input_image.html'
-      scope:
-        model: '='
-      replace: true
-      link: (scope, element, attrs, form)->
-        scope.form = form
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.required = attrs.required != undefined
-        scope.model = []  unless scope.model
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_image.html'
+    scope:
+      model: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
+      scope.model = []  unless scope.model
 
-        element.bind 'change', (changeEvent) ->
-          for file in changeEvent.target.files
-            reader = new FileReader()
+      element.bind 'change', (changeEvent) ->
+        for file in changeEvent.target.files
+          reader = new FileReader()
 
-            reader.onload = (loadEvent) ->
-              scope.$apply ->
-                scope.model.push { src: loadEvent.target.result }
+          reader.onload = (loadEvent) ->
+            scope.$apply ->
+              scope.model.push { src: loadEvent.target.result }
 
-            reader.readAsDataURL file
-
-    }
+          reader.readAsDataURL file
 
   .directive 'inputImageButton', ()->
-    {
-      require: '^form'
-      strict: 'E'
-      templateUrl: 'directives/input_image_button.html'
-      scope:
-        model: '='
-      replace: true
-      link: (scope, element, attrs, form)->
-        scope.form = form
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.required = attrs.required != undefined
-        scope.model = []  unless scope.model
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_image_button.html'
+    scope:
+      model: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
+      scope.model = []  unless scope.model
 
-        element.bind 'change', (changeEvent) ->
-          for file in changeEvent.target.files
-            reader = new FileReader()
+      element.bind 'change', (changeEvent) ->
+        for file in changeEvent.target.files
+          reader = new FileReader()
 
-            reader.onload = (loadEvent) ->
-              scope.$apply ->
-                scope.model.push { src: loadEvent.target.result }
+          reader.onload = (loadEvent) ->
+            scope.$apply ->
+              scope.model.push { src: loadEvent.target.result }
 
-            reader.readAsDataURL file
-
-    }
+          reader.readAsDataURL file
 
   .directive 'inputTime', ()->
-    {
-      require: '^form'
-      strict: 'E'
-      templateUrl: 'directives/input_time.html'
-      scope:
-        model: '='
-      replace: true
-      link: (scope, element, attrs, form)->
-        scope.form = form
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.required = attrs.required != undefined
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_time.html'
+    scope:
+      model: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
 
-        scope.options = []
-        for h in [0..23]
-          for min in [0, 30]
-            time = ('0' + h).slice(-2) + ':' + ('0' + min).slice(-2)
-            scope.options.push { name: time, value: time }
-    }
+      scope.options = []
+      for h in [0..23]
+        for min in [0, 30]
+          time = ('0' + h).slice(-2) + ':' + ('0' + min).slice(-2)
+          scope.options.push { name: time, value: time }
 
   .directive 'inputDatetime', ()->
     require: '^form'
@@ -226,9 +213,28 @@ angular
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input_password.html'
-    scope: {
+    scope:
       model: '='
-    }
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
+      scope.confirmation = attrs.confirmation != undefined
+
+      if scope.confirmation
+        scope.passwordConfirmation = ""
+        scope.$watch 'passwordConfirmation', (newValue)->
+          console.log newValue
+          scope.form[scope.elementId].$setValidity 'confirmation', scope.model != newValue
+
+  .directive 'inputBoolean', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input-boolean.html'
+    scope:
+      model: '='
     replace: true
     link: (scope, element, attrs, form)->
       scope.form = form
@@ -236,17 +242,18 @@ angular
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
 
-  .directive 'inputBoolean', ()->
+  .directive 'inputRadio', ()->
     require: '^form'
     strict: 'E'
-    templateUrl: 'directives/input-boolean.html'
-    scope: {
+    templateUrl: 'directives/input-radio.html'
+    scope:
       model: '='
-    }
     replace: true
     link: (scope, element, attrs, form)->
       scope.form = form
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
+      scope.options = JSON.parse attrs.collection
       scope.required = attrs.required != undefined
+
 

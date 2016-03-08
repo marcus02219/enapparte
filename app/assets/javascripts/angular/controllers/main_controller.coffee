@@ -22,5 +22,11 @@ angular
         animation: true
         templateUrl: 'devise/log_in.html'
         controller: 'SignInController'
+
+    $rootScope.showSignUp = ()->
+      modalInstance = $uibModal.open
+        animation: true
+        templateUrl: 'devise/sign_up.html'
+        controller: 'SignUpController'
   ]
 

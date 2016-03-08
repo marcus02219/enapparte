@@ -1,13 +1,12 @@
 .form-group.email[ng-class="{ required: required, 'has-error': (form.$submitted || form[elementId].$touched) && form[elementId].$invalid }"]
-  .row
-    label.text-right.col-sm-3.control-label for="{{elementId}}"
-      abbr[title="required" ng-if="required"] *
-      '
-      | {{ label }}
-    .col-sm-9
-      input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="email" ng-model="model"]
-      .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
-        span.help-block[ng-show="form[elementId].$error.required"]
-          | Please, fill the field
-        span.help-block[ng-show="form[elementId].$error.email"]
-          | Not valid email!
+  label.text-right.col-sm-3.control-label for="{{elementId}}"
+    abbr[title="required" ng-if="required"] *
+    '
+    | {{ label }}
+  .col-sm-9
+    input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="email" ng-model="model"]
+    .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
+      span.help-block[ng-show="form[elementId].$error.required"]
+        | Please, fill the field
+      span.help-block[ng-show="form[elementId].$error.email"]
+        | Not valid email!
