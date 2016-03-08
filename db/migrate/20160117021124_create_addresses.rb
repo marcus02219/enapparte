@@ -8,7 +8,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :country
       t.float :latitude
       t.float :longitude
-      t.references :user
+      t.belongs_to :user, index: true
       t.timestamps null: false
     end
   end

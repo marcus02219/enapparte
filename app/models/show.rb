@@ -1,8 +1,11 @@
 class Show < ActiveRecord::Base
   belongs_to :art
   belongs_to :user
-  has_many   :bookings
   belongs_to :cover_picture, class_name: 'Picture'
+  
+  has_one :language, through: :user
+  
+  has_many   :bookings
   has_many   :pictures  , dependent: :destroy , as: :imageable
   has_many :reviews, through: :ratings
   has_many :ratings
@@ -55,6 +58,5 @@ class Show < ActiveRecord::Base
       self.save
     end
   end
-
 
 end

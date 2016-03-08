@@ -1,32 +1,19 @@
-# == Schema Information
-#
-# Table name: ratings
-#
-#  id         :integer          not null, primary key
-#  value      :integer
-#  booking_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class Rating < ActiveRecord::Base
   
   DEFAULT_VALUE = 5
 
-  
-  belongs_to :review
+  belongs_to :review, inverse_of: :rating
   belongs_to :user
   belongs_to :show
   after_save :touch_parent
   after_destroy :touch_parent
-
 
   validates :review, :value, presence: true
   
   before_save :set_show
   before_save :set_user
 
-  def set_product
+  def set_show
     self.show_id = review.booking.show.id
   end
 
