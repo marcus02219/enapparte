@@ -16,9 +16,6 @@
 #  show_id            :integer
 #  user_id            :integer
 #  address_id         :integer
-#  payment_methods_id :integer
-#  ratings_id         :integer
-#  comment_id         :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -27,9 +24,7 @@ class Booking < ActiveRecord::Base
   belongs_to :show
   belongs_to :user
   belongs_to :address
-  belongs_to :payment_method
-  has_many   :ratings
-  has_one    :comment
+  has_one    :review
 
   just_define_datetime_picker :date
   just_define_datetime_picker :paid_on

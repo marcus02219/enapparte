@@ -11,23 +11,10 @@ class CreateBookings < ActiveRecord::Migration
       t.boolean :payment_sent?
       t.datetime :paid_on
       t.datetime :paid_out_on
-=begin
-      belongs_to
-=end
-      t.references :show
-      t.references :user
-      t.references :address
-      t.references :payment_methods
-=begin
-      has_many
-=end
-      t.references :ratings
-=begin
-      has_one
-=end
-      t.references :comment
 
-
+      t.belongs_to :show, index: true
+      t.belongs_to :user, index: true
+      t.belongs_to :address, index: true
 
       t.timestamps null: false
     end

@@ -11,22 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304072309) do
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+ActiveRecord::Schema.define(version: 20160304184603) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -37,7 +22,6 @@ ActiveRecord::Schema.define(version: 20160304072309) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "user_id"
-    t.integer  "bookings_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -157,7 +141,6 @@ ActiveRecord::Schema.define(version: 20160304072309) do
     t.string   "firstname"
     t.string   "surname"
     t.integer  "gender"
-    t.integer  "sex"
     t.text     "bio"
     t.string   "phone_number"
     t.string   "provider"
@@ -171,8 +154,8 @@ ActiveRecord::Schema.define(version: 20160304072309) do
     t.integer  "shows_id"
     t.integer  "picture_id"
     t.float    "rating"
-    t.integer  "role",                   default: 1
     t.boolean  "mobile"
+    t.integer  "role",                   default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

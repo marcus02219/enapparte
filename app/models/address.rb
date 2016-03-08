@@ -11,7 +11,6 @@
 #  latitude    :float
 #  longitude   :float
 #  user_id     :integer
-#  bookings_id :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
