@@ -8,7 +8,11 @@
     'underscore'
     'angularMoment'
     'ui.bootstrap'
+    'Devise'
   ]
+
+@App.config (AuthProvider)->
+
 
   # .config ($routeProvider)->
   #   $routeProvider
@@ -19,12 +23,15 @@
   #       templateUrl: 'root.html'
   #       controller: 'RootController'
 
-  .config ["$httpProvider", ($httpProvider) ->
+@App.config ["$httpProvider", ($httpProvider) ->
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
   ]
 
-  .run ['$rootScope', ($rootScope)->
-    $rootScope.flash = null
-  ]
+@App.run ['$rootScope', 'Auth', ($rootScope, Auth)->
+  Auth.currentUser().then (user)->
+    $rootScope.currentUser = user
+
+  $rootScope.flash = null
+]
 
 

@@ -1,6 +1,6 @@
 angular
   .module 'enapparte'
-  .controller 'MainController', ['$rootScope', '$scope', '$sanitize', '$uibModal', ($rootScope, $scope, $sanitize, $uibModal)->
+  .controller 'MainController', ['$rootScope', '$scope', '$sanitize', '$uibModal', 'Auth', ($rootScope, $scope, $sanitize, $uibModal, Auth)->
 
     $rootScope.Math = window.Math
 
@@ -10,15 +10,17 @@ angular
     $rootScope.range = (n)->
       new Array(n)
 
-    $rootScope.showSignIn = ()->
+    $rootScope.isAuthenticated = ()->
+      Auth.isAuthenticated()
 
+    $rootScope.logout = ()->
+      Auth.logout().then ()->
+        $rootScope.currentUser = null
+
+    $rootScope.showSignIn = ()->
       modalInstance = $uibModal.open
         animation: true
         templateUrl: 'devise/log_in.html'
-        controller: 'MainController'
-        resolve:
-          items: ()->
-            $scope.items
-
+        controller: 'SignInController'
   ]
 

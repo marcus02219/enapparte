@@ -19,20 +19,18 @@ angular
     }
 
   .directive 'inputString', ()->
-    {
-      require: '^form'
-      strict: 'E'
-      templateUrl: 'directives/input_string.html'
-      scope: {
-        model: '='
-      }
-      replace: true
-      link: (scope, element, attrs, form)->
-        scope.form = form
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.required = attrs.required != undefined
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_string.html'
+    scope: {
+      model: '='
     }
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
 
   .directive 'inputText', ()->
     {
@@ -209,4 +207,46 @@ angular
         .on 'changeDate', (e)->
           scope.$apply ->
             scope.model = e.date
+
+  .directive 'inputEmail', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_email.html'
+    scope: {
+      model: '='
+    }
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
+
+  .directive 'inputPassword', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_password.html'
+    scope: {
+      model: '='
+    }
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
+
+  .directive 'inputBoolean', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input-boolean.html'
+    scope: {
+      model: '='
+    }
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
 
