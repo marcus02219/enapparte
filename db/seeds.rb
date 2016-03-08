@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# <<<<<<< ad3e55729ed6ac9c474ab1ae176894995039117d
+#
 
 Show.import force: true
 
@@ -15,7 +15,7 @@ Show.destroy_all
 Address.destroy_all
 Booking.destroy_all
 Rating.destroy_all
-Comment.destroy_all
+Review.destroy_all
 Language.destroy_all
 Picture.destroy_all
 Art.destroy_all
@@ -39,14 +39,15 @@ main_user = User.create(
   email: 'csolg7@gmail.com',
   password: "dfghjkllkiu7",
   phone_number: "927-621-4346",
-  provider: "fb",
-  uid: 123,
+  # provider: "fb",
+  # uid: 123,
   dob:Time.now,
   activity:"asdsad",
-  language: Language.all.sample
+  language: Language.all.sample,
+  bio: Faker::Lorem.paragraph(5)
 )
 
-main_user.confirm!
+# main_user.confirm!
 
 # users
 puts 'creating users...'
@@ -60,7 +61,8 @@ puts 'creating users...'
     phone_number: Faker::Number.number(10).gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3'),
     dob: Faker::Time.backward(14000, :evening).to_date,
     activity: Faker::Lorem.sentence,
-    language: Language.first
+    language: Language.first,
+    bio: Faker::Lorem.paragraph(5)
   )
 
   5.times.each do |i|
@@ -92,7 +94,6 @@ User.all.each do |user|
       starts_at: Faker::Time.between(Time.now, 14.days.from_now),
       ends_at: Faker::Time.between(15.days.from_now, 50.days.from_now),
       active: true,
-      language: Language.all.sample,
       art: Art.all.sample,
     )
 
@@ -107,13 +108,13 @@ User.all.each do |user|
   end
 
   # PaymentMethod
-  5.times.each do |i|
-    PaymentMethod.create(
-      user: user,
-      payoption: Faker::Lorem.sentence,
-      provider: Faker::Company.name
-    )
-  end
+  # 5.times.each do |i|
+  #   PaymentMethod.create(
+  #     user: user,
+  #     payoption: Faker::Lorem.sentence,
+  #     provider: Faker::Company.name
+  #   )
+  # end
 end
 
 puts 'creating bookings, ratings, comments...'
@@ -136,9 +137,9 @@ User.all.each do |user|
           value: Faker::Number.between(1, 5)
         )
       end
-      Comment.create(
+      Review.create(
         booking: booking,
-        content: Faker::Lorem.sentence
+        review: Faker::Lorem.sentence
       )
     end
   end

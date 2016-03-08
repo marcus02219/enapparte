@@ -11,17 +11,22 @@ class ShowSearchController extends @NGController
     'ShowArt',
     'ShowSearch',
     '_'
+    'moment'
   ]
 
   shows: []
   arts: []
   show: null
+  booking:
+    startDate: moment().add(3, 'd').format()
+    date: moment().add(3, 'd').toDate()
+    spectators: 1
 
   filter:
     text: ""
     price: "0,100000"
 
-  mode: 'list'
+  mode: 'detail'
 
   init: ->
     @ShowArt
@@ -73,7 +78,4 @@ class ShowSearchController extends @NGController
       @scope.show.pictures[index - 1]
     else
       _.last @scope.show.pictures
-
-
-
 

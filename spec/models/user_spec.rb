@@ -13,31 +13,17 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string
+#  role                   :integer          default(1)
 #  firstname              :string
 #  surname                :string
 #  gender                 :integer
-#  sex                    :integer
 #  bio                    :text
 #  phone_number           :string
-#  provider               :string
-#  uid                    :integer
 #  dob                    :date
 #  activity               :string
-#  language_id            :integer
-#  addresses_id           :integer
-#  bookings_id            :integer
-#  payment_methods_id     :integer
-#  shows_id               :integer
-#  picture_id             :integer
-#  rating                 :float
-#  role                   :integer          default(1)
-#  mobile                 :boolean
+#  moving                 :boolean
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #

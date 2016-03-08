@@ -1,26 +1,22 @@
 ActiveAdmin.register Show do
-  permit_params :title, :length, :description, :price, :max_spectators, :active, :user_id, :art_id,
-    :language_id, :published_at_date, :published_at_time_hour, :published_at_time_minute, :starts_at,
-    :ends_at, :rating, :booking_ids => [], :pictures => []
-
-  member_action :destroy_picture, method: :delete do
-    pictur = Picture.find(params[:picture_id])
-    if pictur.destroy
-      redirect_to "#{request.env["HTTP_REFERER"]}#pictures", status: 303
-    end
-  end
+  permit_params :title, :length, :surface, :description, :price, :max_spectators, :active, :user_id, :art_id,
+    :published_at_date, :published_at_time_hour, :published_at_time_minute, :starts_at,
+    :ends_at, :booking_ids => [], :pictures => []
 
   form do |f|
     f.inputs "Show" do
       f.input :title
       f.input :length
+      f.input :surface
       f.input :description
       f.input :price
       f.input :max_spectators
+      f.input :starts_at
+      f.input :ends_at
       f.input :active
+      f.input :published_at, as: :just_datetime_picker
       f.input :user
       f.input :art
-      f.input :language
       f.input :bookings
       f.input :pictures, as: :file, input_html: { multiple: true }
       li id: 'pictures' do
@@ -28,10 +24,6 @@ ActiveAdmin.register Show do
           render(partial: 'active_admin/pictures', locals: { object: f.object, page: 'edit' })
         end
       end
-      f.input :published_at, as: :just_datetime_picker
-      f.input :starts_at
-      f.input :ends_at
-      f.input :rating
     end
     f.actions
   end
@@ -40,6 +32,7 @@ ActiveAdmin.register Show do
     attributes_table do
       row :title
       row :length
+      row :surface
       row :description
       row :price
       row :max_spectators
@@ -56,7 +49,6 @@ ActiveAdmin.register Show do
       row :published_at
       row :starts_at
       row :ends_at
-      row :rating
       row :bookings do
         show.bookings.map{ |b| link_to admin_booking_path(b) }.join(', ').html_safe
       end
@@ -80,7 +72,6 @@ ActiveAdmin.register Show do
     id_column
     column :title
     column :price
-    column :rating
     column :user do |show|
       link_to show.user.full_name, admin_user_path(show.user) if show.user
     end

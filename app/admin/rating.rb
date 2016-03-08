@@ -1,17 +1,21 @@
 ActiveAdmin.register Rating do
-  permit_params :value, :booking_id
+  permit_params :value, :review_id, :user_id
   form do |f|
     f.inputs "Rating" do
       f.input :value
-      f.input :booking
+      f.input :review
+      f.input :user
     end
     f.actions
   end
   show do |rating|
     attributes_table do
       row :value
-      row :booking do
-        link_to admin_booking_path(rating.booking) if rating.booking
+      row :review do
+        link_to admin_review_path(rating.review) if rating.review
+      end
+      row :user do
+        link_to rating.user.full_name, admin_user_path(rating.user) if rating.user
       end
       row :created_at
       row :updated_at
@@ -20,8 +24,8 @@ ActiveAdmin.register Rating do
   index do
     selectable_column
     id_column
-    column :booking do |rating|
-      link_to admin_booking_path(rating.booking) if rating.booking
+    column :review do |rating|
+      link_to admin_review_path(rating.review) if rating.review
     end
     column :created_at
     column :updated_at

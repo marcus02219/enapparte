@@ -8,11 +8,13 @@
     "angular-bootstrap": "latest",
     "angular-sanitize": "latest",
     "remarkable-bootstrap-notify": "latest",
-    "angular-moment": "latest",
+    "angular-moment": "1.0.0-beta.4",
     "seiyria-bootstrap-slider": "latest",
     "angular-notify": "latest",
     "angular-utils-pagination": "latest",
     "underscore": "latest",
+    "smalot-bootstrap-datetimepicker": "latest",
+    "angular-devise": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }

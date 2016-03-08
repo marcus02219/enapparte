@@ -3,23 +3,19 @@ class CreateShows < ActiveRecord::Migration
     create_table :shows do |t|
       t.string :title
       t.integer :length
+      t.integer :surface
       t.text :description
       t.float :price
       t.integer :max_spectators
-      t.time :starts_at
-      t.time :ends_at
+      t.string :starts_at
+      t.string :ends_at
       t.boolean :active
-=begin
-      belongs_to
-=end
-      t.references :user
-      t.references :art
-      t.references :language
-=begin
-      has_many
-=end
-      t.references :bookings
-      t.references :pictures
+      t.datetime :published_at
+      t.integer :cover_picture_id
+
+      t.belongs_to :user, index: true
+      t.belongs_to :art, index: true
+      t.belongs_to :cover_picture, index: true
 
       t.timestamps null: false
     end

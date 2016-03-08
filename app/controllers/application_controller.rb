@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  respond_to :html, :json
   include ActionView::Helpers::SanitizeHelper
 
   # Prevent CSRF attacks by raising an exception.

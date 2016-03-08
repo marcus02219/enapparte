@@ -1,0 +1,15 @@
+form.form-horizontal[name="formAuth"]
+  .modal-header
+    h3
+      | S'inscrire
+  .modal-body
+    input-string[label="Prénom" model="user.firstname" required]
+    input-string[label="Surname" model="user.surname" required]
+    input-radio[label="Gender" model="user.gender" required collection='[{"name": "Male", "value": 0}, {"name": "Female", "value": 1}, {"name": "Other", "value": 2}]']
+    input-email[label="Email" model="user.email" required]
+    input-password[label="Password" model="user.password" required confirmation="1"]
+  .modal-footer
+    button.btn.btn-primary[ng-click="authForm.$valid && ok()"]
+      | Sign Up
+    button.btn.btn-default[ng-click="cancel()"]
+      | Cancel

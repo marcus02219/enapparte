@@ -4,7 +4,8 @@
 #
 #  id                 :integer          not null, primary key
 #  title              :string
-#  url                :string
+#  selected           :boolean
+#  imageable_type     :string
 #  imageable_id       :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -12,13 +13,16 @@
 #  image_content_type :string
 #  image_file_size    :integer
 #  image_updated_at   :datetime
-#  imageable_type     :string
-#  selected           :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_pictures_on_imageable_type_and_imageable_id  (imageable_type,imageable_id)
 #
 
 class Picture < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
-
+  
+  # PaperClip
   has_attached_file :image, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/images/picture/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
@@ -43,5 +47,4 @@ class Picture < ActiveRecord::Base
       self.image = data
     end
   end
-
 end
