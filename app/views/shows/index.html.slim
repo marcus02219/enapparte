@@ -65,9 +65,50 @@
               a.thumbnail[href="" ng-click="changePicture(picture)"]
                 img[ng-src="{{ picture.urlThumb }}"]
       .col-md-9
-        .thumbnail.pull-left
-          img[ng-src="{{ show.userPictureUrl }}"]
-        .rating[ng-if="show.rating"]
-          i.glyphicon.glyphicon-star[ng-repeat="k in range(show.rating) track by $index"]
-          i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - show.rating) track by $index"]
+        .row
+          .col-md-2
+            .thumbnail.pull-left
+              img[ng-src="{{ show.userPictureUrl }}"]
+            .user-name.text-center
+              | {{ show.user.fullName }}
+          .col-md-10
+            .rating[ng-if="show.rating"]
+              i.glyphicon.glyphicon-star[ng-repeat="k in range(Math.round(show.rating)) track by $index"]
+              i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - Math.round(show.rating)) track by $index"]
+            h3= "{{ show.title }}"
+            p.price
+              | {{ show.price | currency }}
+            p.length
+              | {{ show.length }} minutes
+            p.available
+              | Disponible de
+              '
+              b
+                | {{ show.startsAt | amParse:'YYYY-MM-DD HH:mm:ss ZZ' | amDateFormat:'LLL' }}
+              '
+              span[ng-if="show.endsAt"]
+                | à
+                '
+                b
+                  | {{ show.endsAt | amParse:'YYYY-MM-DD HH:mm:ss ZZ' | amDateFormat:'LLL' }}
+            dl
+              dt Bio
+              dd
+                | {{ show.user.bio }}
+            dl
+              dt Description
+              dd
+                | {{ show.description }}
+
+            form.form-horizontal[name="bookingForm"]
+              fieldset
+                legend Submit a Booking
+
+                input-datetime[label="Choose Date and Time" model="booking.date" start-date="{{ booking.startDate }}" end-date="{{ show.endsAt }}" date-format="d M, yyyy hh:ii"]
+                input-integer[label="Number of guests" model="booking.spectators" min="1" max="show.maxSpectators"]
+
+              .row
+                .col-md-9.col-md-offset-3
+                  button.btn.btn-default[ng-click="bookingForm.$valid && submitBooking()"]
+                    | Submit
 

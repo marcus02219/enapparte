@@ -5,6 +5,6 @@ angular
       @configure
         url: '/api/v1/shows/search',
         name: 'show'
-        # serializer: railsSerializer ()->
-        #   this.nestedAttribute('pictures')
+        serializer: railsSerializer ()->
+          this.nestedAttribute('user')
   ]

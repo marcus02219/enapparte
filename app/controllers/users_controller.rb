@@ -22,6 +22,7 @@
 #  firstname              :string
 #  surname                :string
 #  gender                 :integer
+#  sex                    :integer
 #  bio                    :text
 #  phone_number           :string
 #  provider               :string

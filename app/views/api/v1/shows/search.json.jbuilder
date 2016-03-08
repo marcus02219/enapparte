@@ -15,4 +15,9 @@ json.array!(@shows) do |show|
     json.url_thumb picture.image.url(:thumb)
     json.url_medium picture.image.url(:medium)
   end
+
+  json.user do
+    json.merge! show.user.try(:attributes)
+    json.full_name show.user.try(:full_name)
+  end
 end
