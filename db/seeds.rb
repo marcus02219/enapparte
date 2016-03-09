@@ -131,16 +131,16 @@ User.all.each do |user|
         message: Faker::Lorem.sentence,
         payout: Faker::Number.decimal(5, 2)
       )
-      3.times.each do
-        Rating.create(
-          booking: booking,
-          value: Faker::Number.between(1, 5)
-        )
-      end
-      Review.create(
+      review = Review.create(
         booking: booking,
         review: Faker::Lorem.sentence
       )
+      3.times.each do
+        Rating.create(
+          review: review,
+          value: Faker::Number.between(1, 5)
+        )
+      end
     end
   end
 end
