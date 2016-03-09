@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304184603) do
+ActiveRecord::Schema.define(version: 20160225041618) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -22,14 +22,15 @@ ActiveRecord::Schema.define(version: 20160304184603) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
 
   create_table "arts", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "shows_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -48,78 +49,81 @@ ActiveRecord::Schema.define(version: 20160304184603) do
     t.integer  "show_id"
     t.integer  "user_id"
     t.integer  "address_id"
-    t.integer  "payment_methods_id"
-    t.integer  "ratings_id"
-    t.integer  "comment_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "content"
-    t.integer  "booking_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "bookings", ["address_id"], name: "index_bookings_on_address_id"
+  add_index "bookings", ["show_id"], name: "index_bookings_on_show_id"
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
 
   create_table "languages", force: :cascade do |t|
     t.string   "title"
-    t.integer  "users_id"
-    t.integer  "shows_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "payment_methods", force: :cascade do |t|
-    t.string   "payoption"
-    t.string   "provider"
-    t.integer  "user_id"
-    t.integer  "bookings_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
+  add_index "languages", ["user_id"], name: "index_languages_on_user_id"
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
-    t.string   "url"
+    t.boolean  "selected"
+    t.string   "imageable_type"
     t.integer  "imageable_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "imageable_type"
-    t.boolean  "selected",           default: false
   end
+
+  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "value"
+    t.integer  "review_id"
+    t.integer  "user_id"
     t.integer  "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "ratings", ["booking_id"], name: "index_ratings_on_booking_id"
+  add_index "ratings", ["review_id"], name: "index_ratings_on_review_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
+  create_table "reviews", force: :cascade do |t|
+    t.text     "review"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["booking_id"], name: "index_reviews_on_booking_id"
+
   create_table "shows", force: :cascade do |t|
     t.string   "title"
     t.integer  "length"
+    t.integer  "surface"
     t.text     "description"
     t.float    "price"
     t.integer  "max_spectators"
-    t.boolean  "active"
-    t.integer  "user_id"
-    t.integer  "art_id"
-    t.integer  "language_id"
-    t.integer  "bookings_id"
-    t.integer  "pictures_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "cover_picture_id"
-    t.datetime "published_at"
     t.string   "starts_at"
     t.string   "ends_at"
-    t.float    "rating"
+    t.boolean  "active"
+    t.datetime "published_at"
+    t.integer  "cover_picture_id"
+    t.integer  "user_id"
+    t.integer  "art_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
+
+  add_index "shows", ["art_id"], name: "index_shows_on_art_id"
+  add_index "shows", ["cover_picture_id"], name: "index_shows_on_cover_picture_id"
+  add_index "shows", ["user_id"], name: "index_shows_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -132,30 +136,17 @@ ActiveRecord::Schema.define(version: 20160304184603) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.integer  "role",                   default: 1
     t.string   "firstname"
     t.string   "surname"
     t.integer  "gender"
     t.text     "bio"
     t.string   "phone_number"
-    t.string   "provider"
-    t.integer  "uid"
     t.date     "dob"
     t.string   "activity"
-    t.integer  "language_id"
-    t.integer  "addresses_id"
-    t.integer  "bookings_id"
-    t.integer  "payment_methods_id"
-    t.integer  "shows_id"
-    t.integer  "picture_id"
-    t.float    "rating"
-    t.boolean  "mobile"
-    t.integer  "role",                   default: 1
+    t.boolean  "moving"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

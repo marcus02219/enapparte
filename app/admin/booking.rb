@@ -3,8 +3,7 @@ ActiveAdmin.register Booking do
     :date_date, :date_time_hour, :date_time_minute,
     :paid_on_date, :paid_on_time_hour, :paid_on_time_minute,
     :paid_out_on_date, :paid_out_on_time_hour, :paid_out_on_time_minute,
-    :payment_sent?, :paid_on , :paid_out_on, :show_id, :user_id, :address_id, :comment_id,
-    :payment_method_id, :rating_ids => []
+    :payment_sent?, :show_id, :user_id, :address_id
   form do |f|
     f.inputs "Booking" do
       f.input :status
@@ -20,12 +19,37 @@ ActiveAdmin.register Booking do
       f.input :show
       f.input :user
       f.input :address
-      # f.input :payment_method
-      f.input :ratings
-      # f.input :comment
     end
     f.actions
   end
+
+  show do |booking|
+    attributes_table do
+      row :status
+      row :date
+      row :spectators
+      row :price
+      row :message
+      row :payout
+      row :payout
+      row :payment_received?
+      row :payment_sent?
+      row :paid_on
+      row :paid_out_on
+      row :show do
+        link_to booking.show.title, admin_show_path(booking.show) if booking.show
+      end
+      row :user do
+        link_to booking.user.full_name, admin_user_path(booking.user) if booking.user
+      end
+      row :address do
+        link_to booking.address.full_address, admin_address_path(booking.address) if booking.address
+      end
+      row :created_at
+      row :updated_at
+    end
+  end
+
   index do
     selectable_column
     id_column

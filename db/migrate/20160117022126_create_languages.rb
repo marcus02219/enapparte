@@ -3,7 +3,7 @@ class CreateLanguages < ActiveRecord::Migration
     create_table :languages do |t|
       t.string :title
       
-      t.belongs_to :users, index: true
+      t.belongs_to :user, index: true
       
       t.timestamps null: false
     end
