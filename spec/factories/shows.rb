@@ -18,6 +18,7 @@
 #  art_id           :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  rating           :float
 #
 # Indexes
 #
@@ -38,7 +39,6 @@ FactoryGirl.define do
     active { false }
 
     art
-    language
 
     factory :show_with_rating do
       after(:create) do |show|
@@ -53,9 +53,13 @@ FactoryGirl.define do
             message: Faker::Lorem.sentence,
             payout: Faker::Number.decimal(5,2)
           )
+          review = Review.create(
+            booking: booking,
+            review: Faker::Lorem.sentence
+          )
           3.times.each do
             Rating.create(
-              booking: booking,
+              review: review,
               value: Faker::Number.between(1, 5)
             )
           end

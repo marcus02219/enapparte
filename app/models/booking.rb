@@ -27,10 +27,11 @@
 #
 
 class Booking < ActiveRecord::Base
-  belongs_to :show
+  belongs_to :show, touch: true
   belongs_to :user
   belongs_to :address
   has_one    :review
+  has_many   :ratings, through: :review
 
   just_define_datetime_picker :date
   just_define_datetime_picker :paid_on

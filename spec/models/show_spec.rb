@@ -18,6 +18,7 @@
 #  art_id           :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  rating           :float
 #
 # Indexes
 #
@@ -48,12 +49,12 @@ RSpec.describe Show, type: :model do
       it { expect(show.active).to eq true }
     end
 
-    context 'when email is not confirmed' do
-      let(:user) { create :user, confirmed_at: nil }
-      let(:show) { create :show, user: user }
-      before(:each) { show.toggle_active }
-      it { expect(show.active).to eq false }
-    end
+    # context 'when email is not confirmed' do
+    #   let(:user) { create :user, confirmed_at: nil }
+    #   let(:show) { create :show, user: user }
+    #   before(:each) { show.toggle_active }
+    #   it { expect(show.active).to eq false }
+    # end
 
     context 'when address is not filled' do
       let(:user) { create :user, addresses: [] }
@@ -75,12 +76,15 @@ RSpec.describe Show, type: :model do
     let(:bookings) { create_list(:booking, 2, show: show) }
 
     before(:each) do
-      bookings.each {|booking| create_list(:rating, 2, booking: booking) }
+      bookings.each do |booking|
+        create_list(:rating, 2, booking: booking)
+      end
     end
 
     it { expect { create(:rating, booking: bookings.first) }.to change { show.reload; show.rating } }
-    it { expect { bookings.first.ratings.first.destroy }.to change { show.reload; show.rating } }
-    it { expect { bookings.first.ratings.first.update_attribute(:value, 0) }.to change { show.reload; show.rating } }
+    it { expect { bookings.first.review.rating.destroy }.to change { show.reload; show.rating } }
+    it { expect { bookings.first.review.destroy }.to change { show.reload; show.rating } }
+    it { expect { bookings.first.review.rating.update_attribute(:value, 0) }.to change { show.reload; show.rating } }
 
   end
 

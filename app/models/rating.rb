@@ -18,10 +18,10 @@
 #
 
 class Rating < ActiveRecord::Base
-  
+
   DEFAULT_VALUE = 5
 
-  belongs_to :review, inverse_of: :rating
+  belongs_to :review, inverse_of: :rating, touch: true
   belongs_to :user
   # belongs_to :show
   has_one :booking, through: :review
@@ -29,7 +29,7 @@ class Rating < ActiveRecord::Base
   after_destroy :touch_parent
 
   validates :review, :value, presence: true
-  
+
   # before_save :set_show
   # before_save :set_user
 

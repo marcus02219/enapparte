@@ -61,7 +61,7 @@ puts 'creating users...'
     phone_number: Faker::Number.number(10).gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3'),
     dob: Faker::Time.backward(14000, :evening).to_date,
     activity: Faker::Lorem.sentence,
-    language: Language.first,
+    language: Language.all.sample,
     bio: Faker::Lorem.paragraph(5)
   )
 
