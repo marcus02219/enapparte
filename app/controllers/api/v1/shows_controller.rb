@@ -30,7 +30,7 @@ class Api::V1::ShowsController < Api::BaseController
 
   def search
     if params[:q].present?
-      response = Show.search(query: { query_string: { query: params[:q] } })
+      response = Show.__elasticsearch__.search(query: { query_string: { query: params[:q] } })
       @shows = response.records.where(active: true).order('rating desc')
     end
 
@@ -69,7 +69,7 @@ class Api::V1::ShowsController < Api::BaseController
   private
 
   def show_params
-    params.require(:show).permit(:art_id, :max_spectators, :length, :title, :description, :language_id, :price, :cover_picture_id, :starts_at, :ends_at, pictures_attributes: [ :src, :_destroy, :id, :selected ])
+    params.require(:show).permit(:art_id, :max_spectators, :length, :title, :description, :price, :cover_picture_id, :starts_at, :ends_at, pictures_attributes: [ :src, :_destroy, :id, :selected ])
   end
 
 end

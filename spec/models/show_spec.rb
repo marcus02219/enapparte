@@ -73,19 +73,12 @@ RSpec.describe Show, type: :model do
 
   context '#rating' do
     let(:show) { create(:show) }
-    let(:bookings) { create_list(:booking, 2, show: show) }
+    let!(:bookings) { create_list(:booking_with_rating, 5, show: show) }
 
-    before(:each) do
-      bookings.each do |booking|
-        create_list(:rating, 2, booking: booking)
-      end
-    end
-
-    it { expect { create(:rating, booking: bookings.first) }.to change { show.reload; show.rating } }
+    it { expect { create(:rating, review: bookings.first.review) }.to change { show.reload; show.rating } }
     it { expect { bookings.first.review.rating.destroy }.to change { show.reload; show.rating } }
     it { expect { bookings.first.review.destroy }.to change { show.reload; show.rating } }
     it { expect { bookings.first.review.rating.update_attribute(:value, 0) }.to change { show.reload; show.rating } }
-
   end
 
 end

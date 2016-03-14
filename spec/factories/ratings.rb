@@ -20,10 +20,5 @@
 FactoryGirl.define do
   factory :rating do
     value { Faker::Number.between(1, 5) }
-    review
-    before(:save) do |rating|
-      rating.review.build
-    end
   end
-
 end

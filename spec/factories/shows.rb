@@ -43,27 +43,7 @@ FactoryGirl.define do
     factory :show_with_rating do
       after(:create) do |show|
         3.times do
-          booking = Booking.create(
-            user: User.all.reject {|u| u.id == show.user.try(:id) }.to_a.sample,
-            show: show,
-            status: Faker::Number.between(1, 4),
-            date: Faker::Time.between(1.days.ago, 10.days.from_now),
-            spectators: Faker::Number.between(1, 100),
-            price: Faker::Number.decimal(5,2),
-            message: Faker::Lorem.sentence,
-            payout: Faker::Number.decimal(5,2)
-          )
-          review = Review.create(
-            booking: booking,
-            review: Faker::Lorem.sentence
-          )
-          3.times.each do
-            Rating.create(
-              review: review,
-              value: Faker::Number.between(1, 5)
-            )
-          end
-          show.bookings << booking
+          booking = create :booking_with_rating, show: show
         end
       end
     end

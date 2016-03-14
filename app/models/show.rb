@@ -36,7 +36,8 @@ class Show < ActiveRecord::Base
 
   has_many   :bookings
   has_many   :pictures  , dependent: :destroy , as: :imageable
-  has_many :ratings, through: :bookings
+  has_many :reviews, through: :bookings
+  has_many :ratings, through: :reviews
 
   just_define_datetime_picker :published_at
   validates :art_id, :max_spectators, :length, :title, :description, :price, presence: true
@@ -89,8 +90,6 @@ class Show < ActiveRecord::Base
   end
 
   def update_rating
-    puts bookings.joins(:ratings).count
-    self.rating = bookings.joins(:ratings).average('ratings.value')
+    self.rating = [ratings.average(:value).to_f, 5].min
   end
-
 end

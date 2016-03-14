@@ -21,9 +21,11 @@ class Review < ActiveRecord::Base
 
   validates :review, presence: true
   validates_associated :rating
-  validates_presence_of :rating
+  # validates_presence_of :rating
 
   def name
   	review[0..200] || id
   end
+
+  private
 end

@@ -44,8 +44,6 @@ FactoryGirl.define do
     activity { Faker::Lorem.sentence }
     bio { Faker::Lorem.sentence }
 
-    language
-
     after(:create) do |user|
       create :address, user: user
     end

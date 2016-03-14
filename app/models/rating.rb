@@ -21,12 +21,12 @@ class Rating < ActiveRecord::Base
 
   DEFAULT_VALUE = 5
 
-  belongs_to :review, inverse_of: :rating, touch: true
+  belongs_to :review, inverse_of: :rating
   belongs_to :user
   # belongs_to :show
   has_one :booking, through: :review
-  after_save :touch_parent
-  after_destroy :touch_parent
+  after_save :touch_show
+  after_destroy :touch_show
 
   validates :review, :value, presence: true
 
@@ -43,12 +43,7 @@ class Rating < ActiveRecord::Base
 
   private
 
-  def touch_parent
-    if booking && booking.show
-      booking.show.update_attribute(:updated_at, Time.now)
-      if booking.show.user
-        booking.show.user.update_attribute(:updated_at, Time.now)
-      end
-    end
+  def touch_show
+    review.try(:booking).try(:show).try(:update_attribute, :updated_at, Time.now)
   end
 end
