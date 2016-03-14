@@ -60,7 +60,7 @@ br
                   fieldset
                     legend= "About you"
                     = f.input :activity
-                    = f.input :language_id, as: :select, collection: Language.all
+                    / = f.input :language_id, as: :select, collection: Language.all
                     = f.input :bio, as: :text
 
                   .form-actions
@@ -82,32 +82,32 @@ br
 
           .row
             .tab-content
-              #received_comments.tab-pane.active
+              #received_reviews.tab-pane.active
                 br
-                - @user.comments.each do |comment|
+                - @user.reviews.each do |review|
                   .row
-                    .comment
+                    .review
                       .photo.pull-left.col-md-2
-                        = image_tag comment.booking.user.picture.image.url(:thumb)
+                        = image_tag review.booking.user.picture.image.url(:thumb)
                       .col-md-10
                         .row
                           .col-md-5
                             span.name
-                              = comment.booking.user.full_name
+                              = review.booking.user.full_name
                             |,
                             '
                             span.date
-                              = l comment.created_at.to_date, format: :long
+                              = l review.created_at.to_date, format: :long
                           .col-md-4
                             .rating
-                              - rating = comment.booking.user.rating.try(:round).to_i
+                              - rating = review.booking.user.rating.try(:round).to_i
                               - rating.times.each do
                                 i.glyphicon.glyphicon-star
                         .row
                           .col-md-12
                             blockquote
                               p
-                                = comment.content
+                                = review.review
 
                       .clearfix
                   hr

@@ -31,14 +31,7 @@ require 'rails_helper'
 
 describe ShowsController do
 
-  context 'when user didn\'t sign in'  do
-    let(:show_attributes) { attributes_for :show }
-    before(:each) { post :index, show: show_attributes }
-    it { expect(response).to redirect_to(new_user_session_path) }
-  end
-
   context "when user signed in" do
-
     let(:user) { create :user }
     let(:show) { create(:show, user: user) }
     before(:each) do sign_in user end

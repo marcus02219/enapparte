@@ -9,7 +9,7 @@ feature "Profile - Received comments" do
 
     user_with_comments = create(:user_with_picture)
     booking = create(:booking, show: show, user: user_with_comments)
-    comment = create(:comment, booking: booking)
+    review = create(:review, booking: booking)
 
     signin(user.email, password)
 

@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
   has_many   :shows
   has_many   :arts, through: :shows
   has_many :ratings, through: :shows, source: :ratings
+  has_many :show_bookings, through: :shows, source: :bookings
+
+  has_many :reviews, through: :show_bookings
 
   validates :firstname, :surname, :gender, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
@@ -61,12 +64,8 @@ class User < ActiveRecord::Base
     self.build_picture(image: file)
   end
 
-  def comments
-    self.shows.inject([]) {|reviews, s| reviews += s.bookings.map {|b| b.reviews} }
-  end
-
   def sent_comments
-    self.bookings.inject([]) {|reviews, b| reviews << b.reviews }
+    self.bookings.inject([]) {|reviews, b| reviews << b.review }
   end
 
   def full_name
