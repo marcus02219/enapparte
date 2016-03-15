@@ -10,7 +10,7 @@ br
         li.active
           a[href="#personal" data-toggle="tab"]= "Personal informations"
         li
-          a[href="#comments" data-toggle="tab"]= "Comments"
+          a[href="#reviews" data-toggle="tab"]= "Reviews"
 
     .col-md-9
       .tab-content
@@ -70,15 +70,15 @@ br
                 br
                 br
 
-        #comments.tab-pane
+        #reviews.tab-pane
           .row
             .page-header
               h2= "Comments"
             ul.nav.nav-tabs
               li.active
-                a[href="#received_comments" data-toggle="tab"]= "Received Comments"
+                a[href="#received_reviews" data-toggle="tab"]= "Received Comments"
               li
-                a[href="#sent_comments" data-toggle="tab"]= "Sent Comments"
+                a[href="#sent_reviews" data-toggle="tab"]= "Sent Comments"
 
           .row
             .tab-content
@@ -111,32 +111,32 @@ br
 
                       .clearfix
                   hr
-              #sent_comments.tab-pane
+              #sent_reviews.tab-pane
                 br
-                - @user.sent_comments.each do |comment|
+                - @user.sent_reviews.each do |review|
                   .row
-                    .comment
+                    .review
                       .photo.pull-left.col-md-2
-                        = image_tag comment.booking.show.user.picture.image.url(:thumb)
+                        = image_tag review.booking.show.user.picture.image.url(:thumb)
                       .col-md-10
                         .row
                           .col-md-5
                             span.name
-                              = comment.booking.show.user.full_name
+                              = review.booking.show.user.full_name
                             |,
                             '
                             span.date
-                              = l comment.created_at.to_date, format: :long
+                              = l review.created_at.to_date, format: :long
                           .col-md-4
                             .rating
-                              - rating = comment.booking.show.user.rating.round
+                              - rating = review.booking.show.user.rating.round
                               - rating.times.each do
                                 i.glyphicon.glyphicon-star
                         .row
                           .col-md-12
                             blockquote
                               p
-                                = comment.review
+                                = review.review
 
                       .clearfix
                   hr

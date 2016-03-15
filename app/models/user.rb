@@ -64,8 +64,8 @@ class User < ActiveRecord::Base
     self.build_picture(image: file)
   end
 
-  def sent_comments
-    self.bookings.inject([]) {|reviews, b| reviews << b.review }.select {|r| r.present? }
+  def sent_reviews
+    self.bookings.inject([]) {|reviews, b| reviews << b.review }
   end
 
   def full_name
