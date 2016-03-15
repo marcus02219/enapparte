@@ -213,21 +213,25 @@ angular
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input_password.html'
-    scope:
+    scope: {
       model: '='
+    }
     replace: true
     link: (scope, element, attrs, form)->
       scope.form = form
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
+      scope.elementConfirmationId = 'input_confirmation_' + scope.$id
       scope.required = attrs.required != undefined
       scope.confirmation = attrs.confirmation != undefined
 
       if scope.confirmation
-        scope.passwordConfirmation = ""
-        scope.$watch 'passwordConfirmation', (newValue)->
-          console.log newValue
-          scope.form[scope.elementId].$setValidity 'confirmation', scope.model != newValue
+        scope.data =
+          confirmation: null
+        scope.$watch 'data.confirmation', (newValue)->
+          scope.form[scope.elementConfirmationId].$setValidity 'confirmation', scope.model == scope.data.confirmation
+        scope.$watch 'model', (newValue)->
+          scope.form[scope.elementConfirmationId].$setValidity 'confirmation', scope.model == scope.data.confirmation
 
   .directive 'inputBoolean', ()->
     require: '^form'
@@ -256,4 +260,9 @@ angular
       scope.options = JSON.parse attrs.collection
       scope.required = attrs.required != undefined
 
+      scope.data =
+        model: null
+
+      scope.$watch 'data.model', (newValue)->
+        scope.model = newValue
 
