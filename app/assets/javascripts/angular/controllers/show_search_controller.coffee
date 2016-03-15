@@ -12,6 +12,7 @@ class ShowSearchController extends @NGController
     'ShowSearch',
     '_'
     'moment'
+    'Auth'
   ]
 
   shows: []
@@ -26,7 +27,7 @@ class ShowSearchController extends @NGController
     text: ""
     price: "0,100000"
 
-  mode: 'detail'
+  mode: 'list'
 
   init: ->
     @ShowArt
@@ -53,7 +54,7 @@ class ShowSearchController extends @NGController
         arts: JSON.stringify(art_ids)
       .then (shows)=>
         @scope.shows = shows
-        @scope.show = shows[2]
+        # @scope.show = shows[2]
 
   modeDetails: (show)=>
     @scope.mode = 'detail'
@@ -78,4 +79,8 @@ class ShowSearchController extends @NGController
       @scope.show.pictures[index - 1]
     else
       _.last @scope.show.pictures
+
+  submitBooking: ()=>
+    unless @Auth.isAuthenticated()
+      @rootScope.showSignIn()
 
