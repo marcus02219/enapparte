@@ -19,14 +19,15 @@ br
         #payment.tab-pane.active
 
         #information.tab-pane
-          -# FIXME
-          = simple_form_for PaymentMethod.new, url: '/' do |f|
-            .form-group
-              label.col-md-3.text-right
-                = "Payment methods"
-              .col-md-9
-                = select_tag :payment_methods, options_for_select(@user.payment_methods.map {|pm| [pm.provider, pm.id]})
-                / = "Add a new payment method"
+          / -# FIXME
+          / = simple_form_for PaymentMethod.new, url: '/' do |f|
+          /   = f.input :user_id, as: :hidden, value: @user.id
+          /   .form-group
+          /     label.col-md-3.text-right
+          /       = "Payment methods"
+          /     .col-md-9
+          /       = select_tag :payment_methods, options_for_select(@user.payment_methods.map {|pm| [pm.provider, pm.id]})
+          /       / = "Add a new payment method"
 
         a[name="security"]
         #security.tab-pane

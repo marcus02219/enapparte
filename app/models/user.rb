@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   has_many :show_bookings, through: :shows, source: :bookings
 
   has_many :reviews, through: :show_bookings
+  has_many :payment_methods
 
   validates :firstname, :surname, :gender, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
