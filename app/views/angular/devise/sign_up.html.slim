@@ -3,7 +3,7 @@ form.form-horizontal[name="authForm" novalidate]
     h3
       | S'inscrire
   .modal-body
-    input-string[label="Prénom" model="user.firstname" required]
+    input-string[label="Prénom" model="user.firstname" required focus]
     input-string[label="Surname" model="user.surname" required]
     input-radio[label="Gender" model="user.gender" required collection='[{"name": "Male", "value": 0}, {"name": "Female", "value": 1}, {"name": "Other", "value": 2}]']
     input-email[label="Email" model="user.email" required]

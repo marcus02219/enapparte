@@ -10,7 +10,7 @@ form.form-horizontal[name="authForm"]
       = link_to "Mot de passe oublié?", new_password_path(resource_name)
     .clearfix
   .modal-body
-    input-email[label="Email" model="auth.email" required]
+    input-email[label="Email" model="auth.email" required focus]
     input-password[label="Mot de passe" model="auth.password" required]
     input-boolean[label="Se souvenir de moi" model="auth.remember_me"]
   .modal-footer

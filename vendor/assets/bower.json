@@ -15,6 +15,7 @@
     "underscore": "latest",
     "smalot-bootstrap-datetimepicker": "latest",
     "angular-devise": "latest",
+    "ng-focus-if": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }

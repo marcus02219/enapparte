@@ -25,6 +25,5 @@ class SignInController extends @NGController
       , (e)=>
         @Flash.showError @scope, e.data.error
 
-
   cancel: ()=>
     @uibModalInstance.dismiss('cancel')

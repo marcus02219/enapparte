@@ -9,6 +9,7 @@
     'angularMoment'
     'ui.bootstrap'
     'Devise'
+    'focus-if'
   ]
 
 @App.config ['AuthProvider', (AuthProvider)->

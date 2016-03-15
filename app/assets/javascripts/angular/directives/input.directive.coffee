@@ -27,6 +27,7 @@ angular
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
+      scope.focus = attrs.focus != undefined
 
   .directive 'inputText', ()->
     {
@@ -208,6 +209,7 @@ angular
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
+      scope.focus = attrs.focus != undefined
 
   .directive 'inputPassword', ()->
     require: '^form'

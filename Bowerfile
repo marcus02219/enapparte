@@ -18,6 +18,7 @@ asset 'angular-utils-pagination'
 asset 'underscore'
 asset 'smalot-bootstrap-datetimepicker'
 asset 'angular-devise'
+asset 'ng-focus-if'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'

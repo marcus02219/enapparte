@@ -4,8 +4,8 @@
     '
     | {{ label }}
   .col-sm-9
-    input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="email" ng-model="model"]
-    .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
+    input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="email" ng-model="model" focus-if="focus"]
+    .error-messages[ng-show="form.$submitted || (form[elementId].$touched && !focus)"]
       span.help-block[ng-show="form[elementId].$error.required"]
         | Please, fill the field
       span.help-block[ng-show="form[elementId].$error.email"]
