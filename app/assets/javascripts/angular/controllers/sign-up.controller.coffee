@@ -21,7 +21,12 @@ class SignUpController extends @NGController
           @rootScope.currentUser = user
           @uibModalInstance.close(@scope.auth)
       , (e)=>
-        @Flash.showError @scope, e.data.error
+        if e.data.error
+          @Flash.showError @scope, e.data.error
+        if e.data.errors
+          angular.forEach e.data.errors, (v, k)=>
+            @Flash.showError @scope, k.charAt(0).toUpperCase() + k.slice(1) + ': ' + v
+
 
   cancel: ()=>
     @uibModalInstance.dismiss('cancel')

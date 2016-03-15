@@ -127,13 +127,6 @@ describe Api::V1::ShowsController do
         it { expect(response).to be_success }
       end
 
-      context 'when email didn\'t confirm' do
-        let!(:show) { create :show, user: user }
-        before(:each) { user.update(confirmed_at: nil) }
-        before(:each) { post :toggle_active, id: show.id, format: :json }
-        it { expect(response.status).to eq 401 }
-      end
-
       context 'when address is empty' do
         let!(:show) { create :show, user: user }
         before(:each) { user.addresses.destroy_all }

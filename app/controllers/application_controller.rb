@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
   helper_method :resource_name, :resource, :devise_mapping, :affix_header?
 
   before_action :set_flash
+  after_filter :set_csrf_cookie_for_ng
+
+  def set_csrf_cookie_for_ng
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
 
   def resource_name
     :user
@@ -24,6 +29,12 @@ class ApplicationController < ActionController::Base
 
   def affix_header?
     controller_name == 'home'
+  end
+
+protected
+
+  def verified_request?
+    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 
   def set_flash

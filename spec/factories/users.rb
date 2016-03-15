@@ -33,7 +33,7 @@
 
 FactoryGirl.define do
   factory :user do
-    confirmed_at Time.now
+    # confirmed_at Time.now
     firstname Faker::Name.first_name
     surname Faker::Name.last_name
     email { Faker::Internet.free_email }
@@ -43,8 +43,6 @@ FactoryGirl.define do
     password '123'*3
     activity { Faker::Lorem.sentence }
     bio { Faker::Lorem.sentence }
-
-    language
 
     after(:create) do |user|
       create :address, user: user

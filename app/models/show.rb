@@ -18,6 +18,7 @@
 #  art_id           :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  rating           :float
 #
 # Indexes
 #
@@ -35,8 +36,8 @@ class Show < ActiveRecord::Base
 
   has_many   :bookings
   has_many   :pictures  , dependent: :destroy , as: :imageable
-  # has_many :reviews, through: :ratings
-  # has_many :ratings
+  has_many :reviews, through: :bookings
+  has_many :ratings, through: :reviews
 
   just_define_datetime_picker :published_at
   validates :art_id, :max_spectators, :length, :title, :description, :price, presence: true
@@ -44,6 +45,7 @@ class Show < ActiveRecord::Base
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
   after_save :set_cover_picture
+  before_save :update_rating
 
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
@@ -54,12 +56,12 @@ class Show < ActiveRecord::Base
     })
   end
 
-  def rating
-    [ratings.average(:value).to_i, 5].min
-  end
+  # def rating
+  #   [ratings.average(:value).to_i, 5].min
+  # end
 
   def toggle_active
-    if user && user.confirmed? && user.addresses.any? && user.phone_number.present?
+    if user && user.addresses.any? && user.phone_number.present?
       self.active = !self.active
       self.save
     else
@@ -87,4 +89,7 @@ class Show < ActiveRecord::Base
     end
   end
 
+  def update_rating
+    self.rating = [ratings.average(:value).to_f, 5].min
+  end
 end

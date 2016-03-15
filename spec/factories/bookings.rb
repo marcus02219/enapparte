@@ -29,15 +29,21 @@
 FactoryGirl.define do
   factory :booking do
     status 1
-date "2016-01-17 05:15:16"
-spectators 1
-price 1.5
-message "MyText"
-payout 1.5
-payment_received? false
-payment_sent? false
-paid_on "2016-01-17 05:15:16"
-paid_out_on "2016-01-17 05:15:16"
+    date "2016-01-17 05:15:16"
+    spectators 1
+    price 1.5
+    message "MyText"
+    payout 1.5
+    payment_received? false
+    payment_sent? false
+    paid_on "2016-01-17 05:15:16"
+    paid_out_on "2016-01-17 05:15:16"
+
+    factory :booking_with_rating do
+      after(:create) do |booking|
+        create :review, booking: booking
+      end
+    end
   end
 
 end

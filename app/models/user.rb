@@ -36,23 +36,26 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, #:confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-         
+
   has_one :language
   has_one    :picture , as: :imageable
-  
+
   has_many   :addresses
   accepts_nested_attributes_for :addresses, reject_if: :reject_addresses
   has_many   :bookings
   has_many   :shows
   has_many   :arts, through: :shows
+  has_many :ratings, through: :shows, source: :ratings
   has_many :show_bookings, through: :shows, source: :bookings
-  has_many :ratings
+
+  has_many :reviews, through: :show_bookings
 
   validates :firstname, :surname, :gender, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   # validates :phone_number, format: { with: /\d{10}/, message: "bad format" }
 
   before_save :deactivate_shows
+  before_save :check_picture_exists
 
   enum gender: { male: 0, female: 1, other: 2 }
   enum role: { admin: 0, user: 1 }
@@ -60,24 +63,14 @@ class User < ActiveRecord::Base
   def picture= file
     self.build_picture(image: file)
   end
-  
-  def comments
-    self.shows.inject([]) {|reviews, s| reviews += s.bookings.map {|b| b.reviews} }
-  end
-  
-  def rating
-    [ratings.average(:value).to_i, 5].min
-  end
 
   def sent_comments
-    self.bookings.inject([]) {|reviews, b| reviews << b.reviews }
+    self.bookings.inject([]) {|reviews, b| reviews << b.review }
   end
 
   def full_name
     "#{firstname} #{surname}"
   end
-
-  before_save :check_picture_exists
 
   def current_bookings
     self.bookings.where('date >= ? and (status = 1 or status = 2)', Time.now).order('date desc')
@@ -89,6 +82,10 @@ class User < ActiveRecord::Base
 
   def cancelled_bookings
     self.bookings.where('(status = 3 or status = 4)', Time.now).order('date desc')
+  end
+
+  def rating
+    [ratings.average(:value).to_i, 5].min
   end
 
   private

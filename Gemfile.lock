@@ -60,6 +60,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    angular_rails_csrf (1.0.4)
+      rails (>= 3, < 5)
     angularjs-rails-resource (2.0.0)
     arbre (1.0.3)
       activesupport (>= 3.0.0)
@@ -431,6 +433,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   activeadmin (~> 1.0.0.pre2)
+  angular_rails_csrf
   angularjs-rails-resource (~> 2.0.0)
   annotate!
   awesome_print
