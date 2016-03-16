@@ -9,6 +9,12 @@ angular
           messageTemplate: '<span>' + msg + '</span>'
           scope: scope
 
+      showSuccess: (scope, msg)->
+        @notify
+          classes: 'alert-success'
+          messageTemplate: '<span>' + msg + '</span>'
+          scope: scope
+
       showError: (scope, msg)=>
         @notify
           classes: 'alert-danger'

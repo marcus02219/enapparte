@@ -20,6 +20,7 @@ class SignUpController extends @NGController
         if @Auth.isAuthenticated()
           @rootScope.currentUser = user
           @uibModalInstance.close(@scope.auth)
+          @Flash.showSuccess @scope, 'Signed up successfully.'
       , (e)=>
         if e.data.error
           @Flash.showError @scope, e.data.error

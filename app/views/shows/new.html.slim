@@ -2,7 +2,7 @@
   .row
     = render "tabs"
     .col-md-9
-      form.show[novalidate name="showForm"]
+      form.show.form-horizontal[novalidate name="showForm"]
         .form-inputs[ng-if="step == 1"]
           fieldset
             legend= "My Show Details"
