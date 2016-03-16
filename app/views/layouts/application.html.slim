@@ -10,9 +10,12 @@ html[ng-app="enapparte"]
     script src = "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"
   body[class="#{controller_name} #{action_name}" ng-controller="MainController"]
     = render 'layouts/header'
-    = content_for?(:messages) ? yield(:messages) : render('layouts/messages')
-    .main-content
-      = yield
+    / = content_for?(:messages) ? yield(:messages) : render('layouts/messages')
+    / = render partial: 'layouts/messages', locals: { flash_class: 'floating' }
+    .flash-messages[ng-if="!rootPath"]
+    .main-content[ng-view]
+      / = yield
     == render 'layouts/footer'
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
-    == angular_templates Rails.root.join 'app/views/angular'
+    - cache do
+      == angular_templates Rails.root.join 'app/views/angular'

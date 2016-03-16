@@ -584,7 +584,7 @@ aside h2.title.white {
 }
 
 @media (min-width: 768px) {
-  .home #header {
+  .home #header.affix-top {
     background: transparent;
     position: absolute;
     left: 0;

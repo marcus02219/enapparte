@@ -51,14 +51,10 @@ class ShowController extends @NGController
         .then (show)=>
           @scope.show = show
 
-          # @Picture
-          #   .query { imageable_type: 'Show', imageable_id: @scope.show.id }
-          #   .then (pictures)=>
-          #     @scope.show.pictures = pictures
-          #     # set selected
-          #     for picture in @scope.show.pictures
-          #       picture.selected = true  if picture.id == @scope.show.coverPictureId
-          #       picture._destroy = 0
+          # set selected
+          for picture in @scope.show.pictures
+            picture.selected = true  if picture.id == @scope.show.coverPictureId
+            picture._destroy = 0
     else
       @scope.show = new @Show()
 

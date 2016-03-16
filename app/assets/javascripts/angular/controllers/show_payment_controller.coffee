@@ -5,9 +5,22 @@ class ShowPaymentController extends @NGController
     '$scope'
     '$rootScope'
     'Show'
-    'Picture'
     'Flash'
+    '$window'
   ]
 
-  init: ->
+  init: (id)=>
     @scope.show = {}
+    console.log id
+    if id
+      @Show
+        .get id
+        .then (show)=>
+          @scope.show = show
+
+          # set selected
+          for picture in @scope.show.pictures
+            picture.selected = true  if picture.id == @scope.show.coverPictureId
+            picture._destroy = 0
+    else
+      # @window.location.href = '/'

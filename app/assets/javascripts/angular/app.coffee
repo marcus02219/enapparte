@@ -17,23 +17,33 @@
 
 @App.config ['$routeProvider', ($routeProvider)->
   $routeProvider
-    .when '/show/new',
-      templateUrl: 'show/new.html'
-      controller: 'ShowController'
+    .when '/shows/new',
+      templateUrl: 'shows/new.html'
+    .when '/shows',
+      templateUrl: 'shows/index.html'
+    .when '/shows/payment',
+      templateUrl: 'shows/payment.html'
     .otherwise
-      redirectTo: ()=>
-        window.location.href = '/'
+      templateUrl: 'root.html'
+      controller: 'RootController'
 ]
 
 @App.config ["$httpProvider", ($httpProvider) ->
-    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-  ]
+  $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
+]
 
 @App.run ['$rootScope', 'Auth', ($rootScope, Auth)->
   Auth.currentUser().then (user)->
     $rootScope.currentUser = user
 
-  $rootScope.flash = null
+  $rootScope.$on '$routeChangeStart', (e)->
+    console.log e
+    $rootScope.rootPath = false
+    $(window).off('.affix')
+    $("#header")
+        .removeClass("affix affix-top affix-bottom")
+        .addClass("not-fixed")
+        .removeData("bs.affix")
 ]
 
 
