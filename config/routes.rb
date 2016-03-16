@@ -10,11 +10,12 @@ Rails.application.routes.draw do
     post 'upload_photo', on: :collection
   end
 
-  resources :shows
+  resources :shows do
+    get 'payment', on: :member
+  end
   resources :pictures do
     post 'destroy', on: :member, as: 'destroy'
   end
-  resources :payments, only: [:new]
 
   namespace :api do
     namespace :v1 do

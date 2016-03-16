@@ -28,7 +28,7 @@
 #
 
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :edit]
+  before_action :set_show, only: [:show, :edit, :payment]
   before_action :authenticate_user!, except: [:index]
 
   # GET /shows
@@ -50,6 +50,10 @@ class ShowsController < ApplicationController
   # GET /shows/1/edit
   def edit
     render 'new'
+  end
+
+  def payment
+
   end
 
   private

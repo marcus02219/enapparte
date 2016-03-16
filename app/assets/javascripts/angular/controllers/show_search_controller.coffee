@@ -79,14 +79,16 @@ class ShowSearchController extends @NGController
     else
       _.last @scope.show.pictures
 
+  redirectToPayment: ()->
+      window.location = '/shows/' + @scope.show.id + '/payment'
 
   submitBooking: ()=>
     unless @Auth.isAuthenticated()
       @rootScope
         .showSignIn()
-        .result.then (result)->
-          window.location = '/payments/new'
+        .result.then (result)=>
+          @redirectToPayment()
     else
-      window.location = '/payments/new'
+      @redirectToPayment()
 
 
