@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/csolg/rb-inotify.git
+  revision: 54771755cfa72ad6ca1a15bb848704fd2b252d6a
+  specs:
+    rb-inotify (0.9.7)
+      ffi (>= 0.5.0)
+
+GIT
   remote: git://github.com/ctran/annotate_models.git
   revision: 56abbaa3eb5e41a3b236f782c0bb2a49dc3d36f1
   specs:
@@ -337,8 +344,6 @@ GEM
       i18n
       polyamorous (~> 1.2)
     rb-fsevent (0.9.7)
-    rb-inotify (0.9.5)
-      ffi (>= 0.5.0)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     rspec (3.4.0)
@@ -483,6 +488,7 @@ DEPENDENCIES
   rails_apps_pages
   rails_apps_testing
   rails_layout
+  rb-inotify!
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver

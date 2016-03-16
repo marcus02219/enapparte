@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 # Use Postmark for email delivery
 gem "postmark-rails"
 
+gem "rb-inotify", github: "csolg/rb-inotify"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
