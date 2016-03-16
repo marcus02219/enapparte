@@ -54,7 +54,6 @@ class ShowSearchController extends @NGController
         arts: JSON.stringify(art_ids)
       .then (shows)=>
         @scope.shows = shows
-        # @scope.show = shows[2]
 
   modeDetails: (show)=>
     @scope.mode = 'detail'
@@ -80,7 +79,14 @@ class ShowSearchController extends @NGController
     else
       _.last @scope.show.pictures
 
+
   submitBooking: ()=>
     unless @Auth.isAuthenticated()
-      @rootScope.showSignIn()
+      @rootScope
+        .showSignIn()
+        .result.then (result)->
+          window.location = '/payments/new'
+    else
+      window.location = '/payments/new'
+
 

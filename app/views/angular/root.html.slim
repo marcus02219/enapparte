@@ -1,5 +1,3 @@
-- content_for( :messages ) do
-  = render partial: 'layouts/messages', locals: { flash_class: 'floating' }
 #slider.carousel.home-carousel.slide[data-ride="carousel" style="text-align:center"]
   .carousel-inner[style="text-align:center;"]
     .item.relative.discovery-card.active[style="background:url(#{image_url('main_bg.jpg')}) no-repeat center center; background-size:cover;"]
@@ -11,9 +9,9 @@
           br
   #search-bar-home.container
     #htw-home-link.row
-      a.btn.btn-lg.btn-classic[href="#how-it-works" style="padding-left:20px;padding-right:20px;"]
+      a.btn.btn-lg.btn-classic[href=(shows_path) style="padding-left:20px;padding-right:20px;"]
         span.glyphicon.glyphicon-heart
-        |  Trouvez un performeur
+        |  Trouver un performeur
 .relative[itemscope itemtype="//schema.org/WebPage"]
   aside.aside_bg[style="padding-bottom:70px;"]
     .container
