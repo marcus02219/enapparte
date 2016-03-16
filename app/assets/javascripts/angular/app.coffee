@@ -11,8 +11,8 @@
     'Devise'
   ]
 
-@App.config (AuthProvider)->
-
+@App.config ['AuthProvider', (AuthProvider)->
+]
 
   # .config ($routeProvider)->
   #   $routeProvider
