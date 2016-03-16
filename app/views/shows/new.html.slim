@@ -13,13 +13,7 @@
             input-integer[label="Duration in minutes" model="show.length" required]
             input-string[label="Title" model="show.title" required]
             input-text[label="Description" model="show.description" required]
-            input-select[label="Language" model="show.languageId" data-collection=(Language.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json) required]
-            / = f.association :art
-            / = f.input :max_spectators
-            / = f.input :length
-            / = f.input :title
-            / = f.input :description
-            / = f.association :language
+            / input-select[label="Language" model="show.languageId" data-collection=(Language.order(:title).all.map {|a| { name: a.title, value: a.id }}.to_json) required]
           fieldset
             legend= "Price"
             input-integer[label="Price" model="show.price" required]
@@ -63,11 +57,6 @@
             br
             input-time[label="Starts at" model="show.startsAt" required]
             input-time[label="Ends at" model="show.endsAt" required]
-              /   = f.input :starts_at do
-              /     = f.select :starts_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
-              / .col-md-5
-              /   = f.input :ends_at do
-              /     = f.select :ends_at, 24.times.to_a.inject([]) {|a, i| h = i.to_s.rjust(2, '0'); a << h + ':00'; a << h + ':30' }
 
         hr
         .form-actions

@@ -15,14 +15,15 @@
 @App.config ['AuthProvider', (AuthProvider)->
 ]
 
-  # .config ($routeProvider)->
-  #   $routeProvider
-  #     .when '/show/new',
-  #       templateUrl: 'show/new.html'
-  #       controller: 'ShowController'
-  #     .otherwise
-  #       templateUrl: 'root.html'
-  #       controller: 'RootController'
+@App.config ['$routeProvider', ($routeProvider)->
+  $routeProvider
+    .when '/show/new',
+      templateUrl: 'show/new.html'
+      controller: 'ShowController'
+    .otherwise
+      redirectTo: ()=>
+        window.location.href = '/'
+]
 
 @App.config ["$httpProvider", ($httpProvider) ->
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')

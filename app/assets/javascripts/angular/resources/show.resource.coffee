@@ -6,6 +6,7 @@ angular
       name: 'show'
       serializer: railsSerializer ()->
         this.nestedAttribute('pictures')
+        this.resource('pictures', 'Picture')
         this.nestedAttribute('cover_picture')
 
     resource.prototype.toggleActive = ()->
