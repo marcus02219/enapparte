@@ -1,7 +1,6 @@
 @App = angular
   .module 'enapparte', [
     'rails'
-    'ngRoute'
     'ngSanitize'
     'cgNotify'
     'angularUtils.directives.dirPagination'
@@ -10,22 +9,10 @@
     'ui.bootstrap'
     'Devise'
     'focus-if'
+    'ui.router'
   ]
 
 @App.config ['AuthProvider', (AuthProvider)->
-]
-
-@App.config ['$routeProvider', ($routeProvider)->
-  $routeProvider
-    .when '/shows/new',
-      templateUrl: 'shows/new.html'
-    .when '/shows',
-      templateUrl: 'shows/index.html'
-    .when '/shows/payment',
-      templateUrl: 'shows/payment.html'
-    .otherwise
-      templateUrl: 'root.html'
-      controller: 'RootController'
 ]
 
 @App.config ["$httpProvider", ($httpProvider) ->
@@ -36,8 +23,7 @@
   Auth.currentUser().then (user)->
     $rootScope.currentUser = user
 
-  $rootScope.$on '$routeChangeStart', (e)->
-    console.log e
+  $rootScope.$on '$stateChangeStart', (e)->
     $rootScope.rootPath = false
     $(window).off('.affix')
     $("#header")
@@ -46,4 +32,19 @@
         .removeData("bs.affix")
 ]
 
+@App.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider)->
+  $urlRouterProvider.otherwise('/')
+
+  $stateProvider
+    .state 'home',
+      url: '/'
+      templateUrl: 'root.html'
+      controller: 'RootController'
+    .state 'shows',
+      url: '/shows'
+      templateUrl: 'shows/index.html'
+    .state 'shows/payment',
+      url: '/shows/payment'
+      templateUrl: 'shows/payment.html'
+]
 

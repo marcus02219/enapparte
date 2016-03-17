@@ -4,7 +4,6 @@ class RootController extends @NGController
   @$inject: [
     '$scope'
     '$rootScope'
-    '$route'
   ]
 
   init: ->

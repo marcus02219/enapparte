@@ -4,7 +4,6 @@
     "jquery-form": "latest",
     "angular": "latest",
     "angular-resource": "latest",
-    "angular-route": "latest",
     "angular-bootstrap": "latest",
     "angular-sanitize": "latest",
     "remarkable-bootstrap-notify": "latest",
@@ -16,6 +15,7 @@
     "smalot-bootstrap-datetimepicker": "latest",
     "angular-devise": "latest",
     "ng-focus-if": "latest",
+    "angular-ui-router": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }
