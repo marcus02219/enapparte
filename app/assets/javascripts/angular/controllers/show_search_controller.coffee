@@ -13,7 +13,7 @@ class ShowSearchController extends @NGController
     '_'
     'moment'
     'Auth'
-    '$location'
+    '$state'
   ]
 
   shows: []
@@ -81,7 +81,9 @@ class ShowSearchController extends @NGController
       _.last @scope.show.pictures
 
   payment: ()->
-    # @location.
+    @state.go 'shows/payment',
+      id: @scope.show.id
+      show: @scope.show
 
   submitBooking: ()=>
     unless @Auth.isAuthenticated()

@@ -6,21 +6,25 @@ class ShowPaymentController extends @NGController
     '$rootScope'
     'Show'
     'Flash'
-    '$window'
+    '$state'
+    '$stateParams'
   ]
 
-  init: (id)=>
+  init: ()=>
+    id = @stateParams.id
     @scope.show = {}
-    console.log id
-    if id
-      @Show
-        .get id
-        .then (show)=>
-          @scope.show = show
-
-          # set selected
-          for picture in @scope.show.pictures
-            picture.selected = true  if picture.id == @scope.show.coverPictureId
-            picture._destroy = 0
+    if @stateParams.show
+      @scope.show = @stateParams.show
     else
-      # @window.location.href = '/'
+      if id
+        @Show
+          .get id
+          .then (show)=>
+            @scope.show = show
+
+            # set selected
+            for picture in @scope.show.pictures
+              picture.selected = true  if picture.id == @scope.show.coverPictureId
+              picture._destroy = 0
+      else
+        # @window.location.href = '/'

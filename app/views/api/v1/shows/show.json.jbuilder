@@ -5,8 +5,7 @@ json.pictures @show.pictures do |picture|
   json.src picture.src
 end
 
-if @show.cover_picture
-  json.cover_picture_url @show.cover_picture.try(:image).try(:url, :medium)
-else
-  json.cover_picture_url Picture.new.image.url(:medium)
+json.cover_picture do
+  json.id @show.cover_picture.try(:id)
+  json.src @show.cover_picture.try(:src)
 end

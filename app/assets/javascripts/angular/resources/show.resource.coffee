@@ -8,6 +8,7 @@ angular
         this.nestedAttribute('pictures')
         this.resource('pictures', 'Picture')
         this.nestedAttribute('cover_picture')
+        this.resource('cover_picture', 'Picture')
 
     resource.prototype.toggleActive = ()->
       resource

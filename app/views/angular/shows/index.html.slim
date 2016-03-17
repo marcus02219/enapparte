@@ -26,7 +26,7 @@
         .row
           .col-md-4[dir-paginate="show in shows | itemsPerPage:21"]
             a.show-search.thumbnail[href="" ng-click="modeDetails(show)"]
-              img[ng-src="{{ show.coverPicture.urlMedium }}" width="300" height="300"]
+              img[ng-src="{{ show.coverPicture.src }}" width="300" height="300"]
               .caption
                 img.user[ng-src="{{ show.userPictureUrl }}"]
                 h4= "{{ show.title }}"
@@ -56,14 +56,14 @@
             .left[ng-click="prevPicture()"]
               .badge
                 i.glyphicon.glyphicon-chevron-left
-            img[ng-src="{{ show.coverPicture.urlMedium }}"]
+            img[ng-src="{{ show.coverPicture.src }}"]
             .right[ng-click="nextPicture()"]
               .badge
                 i.glyphicon.glyphicon-chevron-right
           .row
             .col-md-3[ng-repeat="picture in show.pictures" style="padding: 3px;"]
               a.thumbnail[href="" ng-click="changePicture(picture)"]
-                img[ng-src="{{ picture.urlThumb }}"]
+                img[ng-src="{{ picture.src }}"]
       .col-md-9
         .row
           .col-md-2

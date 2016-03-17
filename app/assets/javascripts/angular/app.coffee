@@ -44,7 +44,9 @@
       url: '/shows'
       templateUrl: 'shows/index.html'
     .state 'shows/payment',
-      url: '/shows/payment'
+      url: '/shows/:id/payment'
       templateUrl: 'shows/payment.html'
+      params:
+        show: null
 ]
 
