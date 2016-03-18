@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def sent_comments
-    self.bookings.inject([]) {|reviews, b| reviews << b.review  if b.review }
+    self.bookings.inject([]) {|reviews, b| reviews << b.review }.select {|r| r.present? }
   end
 
   def full_name
