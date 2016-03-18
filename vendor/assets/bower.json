@@ -16,6 +16,7 @@
     "angular-devise": "latest",
     "ng-focus-if": "latest",
     "angular-ui-router": "latest",
+    "intl-tel-input": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }

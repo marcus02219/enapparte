@@ -43,10 +43,13 @@
     .state 'shows',
       url: '/shows'
       templateUrl: 'shows/index.html'
-    .state 'shows/payment',
+    .state 'shows.payment',
       url: '/shows/:id/payment'
       templateUrl: 'shows/payment.html'
       params:
         show: null
+
+    .state 'dashboard', { url: '/dashboard', templateUrl: 'dashboard/tabs.html' }
+      .state 'dashboard.profile', { url: '/profile', templateUrl: 'dashboard/profile.html' }
 ]
 

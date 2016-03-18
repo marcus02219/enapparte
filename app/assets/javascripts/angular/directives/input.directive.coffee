@@ -28,6 +28,7 @@ angular
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
       scope.focus = attrs.focus != undefined
+      scope.hint = attrs.hint
 
   .directive 'inputText', ()->
     {
@@ -50,11 +51,11 @@ angular
       strict: 'E'
       templateUrl: 'directives/input_date.html'
       scope: {
-        dtModel: '='
+        model: '='
       }
       replace: true
       link: (scope, element, attrs)->
-        scope.dtLabel = attrs.dtLabel
+        scope.label = attrs.label
         scope.elementId = 'input_' + scope.$id
 
         scope.day = 1
@@ -63,9 +64,8 @@ angular
 
         scope.days = [1..31]
         scope.monthes = []
-        month_names = JSON.parse(attrs.dtMonthes)
         for month in [1..12]
-          scope.monthes.push { label: month_names[month], value: month }
+          scope.monthes.push { label: moment().month(month-1).format("MMMM"), value: month }
         currentYear = new Date().getFullYear()
         scope.years = [currentYear - 70..currentYear - 5].reverse()
     }
@@ -127,6 +127,29 @@ angular
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input_image_button.html'
+    scope:
+      model: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
+
+      element.bind 'change', (changeEvent) ->
+        for file in changeEvent.target.files
+          reader = new FileReader()
+
+          reader.onload = (loadEvent) ->
+            scope.$apply ->
+              scope.model = { src: loadEvent.target.result }
+
+          reader.readAsDataURL file
+
+  .directive 'inputImagesButton', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_images_button.html'
     scope:
       model: '='
     replace: true
@@ -210,6 +233,7 @@ angular
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
       scope.focus = attrs.focus != undefined
+      scope.disabled = attrs.disabled != undefined
 
   .directive 'inputPassword', ()->
     require: '^form'
@@ -267,4 +291,38 @@ angular
 
       scope.$watch 'data.model', (newValue)->
         scope.model = newValue
+
+  .directive 'inputPhone', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_phone.html'
+    scope:
+      model: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
+      scope.focus = attrs.focus != undefined
+      scope.hint = attrs.hint
+
+      # IntlTelInput
+      element.find('input').intlTelInput
+        onlyCountries: ["fr"]
+        initialCountry: "fr"
+        preferredCountries: "fr"
+
+  .directive 'inputSelectAddress', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input-select-address.html'
+    scope:
+      model: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
 

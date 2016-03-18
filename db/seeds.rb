@@ -64,7 +64,11 @@ puts 'creating users...'
     language: Language.all.sample,
     bio: Faker::Lorem.paragraph(5)
   )
+end
 
+# Shows
+puts 'creating shows...'
+User.all.each do |user|
   5.times.each do |i|
     Address.create(user: user,
                    street: Faker::Address.street_address,
@@ -76,13 +80,10 @@ puts 'creating users...'
                    longitude: 42.21
                   )
   end
-end
 
-# Shows
-puts 'creating shows...'
-User.all.each do |user|
   user.picture.image = File.open(Dir[Rails.root.join('spec/fixtures/photos/*')].sample)
   user.picture.save
+
   10.times.each do |i|
     show = Show.create(
       user: user,

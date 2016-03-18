@@ -1,0 +1,12 @@
+.form-group.phone[ng-class="{ required: required, 'has-error': (form.$submitted || form[elementId].$touched) && form[elementId].$invalid }"]
+  label.text-right.col-sm-3.control-label for="{{elementId}}"
+    abbr[title="required" ng-if="required"] *
+    '
+    | {{ label }}
+  .col-sm-9
+    input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="tel" ng-model="model" focus-if="focus"]
+    span.help-block[ng-if="hint"]
+      | {{ hint }}
+    .error-messages[ng-show="form.$submitted || (form[elementId].$touched && !focus)"]
+      span.help-block[ng-show="form[elementId].$error.required"]
+        | Please, fill the field
