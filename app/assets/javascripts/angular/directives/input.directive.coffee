@@ -319,10 +319,17 @@ angular
     templateUrl: 'directives/input-select-address.html'
     scope:
       model: '='
+      addresses: '='
     replace: true
+    transclude: true
     link: (scope, element, attrs, form)->
       scope.form = form
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
-      scope.required = attrs.required != undefined
+      scope.required = false
+      scope.addressId = scope.addresses[0].id  if scope.addresses && scope.addresses[0]
 
+      scope.$watch 'addressId', (newValue)=>
+        angular.forEach scope.addresses, (address)=>
+          if "" + address.id == newValue
+            scope.model = address

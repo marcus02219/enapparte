@@ -7,9 +7,9 @@ class DashboardController extends @NGController
     '$state'
   ]
 
-  tabs:[
-    { heading: 'Dashboard', route: 'dashboard', active: true }
-    { heading: 'Profile', route: 'dashboard.profile', active: false }
+  tabs: [
+    { heading: 'Dashboard', route: 'dashboard', active: false }
+    { heading: 'Profile', route: 'dashboard.profile', active: true }
     { heading: 'Messages', route: 'dashboard.messages', active: false }
   ]
 

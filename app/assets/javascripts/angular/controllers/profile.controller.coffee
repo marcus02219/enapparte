@@ -11,13 +11,10 @@ class ProfileController extends @NGController
   user: {}
 
   init: =>
-    google.maps.event.addDomListener(window, 'load', initialize)
-
     if @rootScope.currentUser
       @User
         .get @rootScope.currentUser.id
         .then (user)=>
           @scope.user = user
-
-
+          google_maps_initialize()
 

@@ -12,7 +12,7 @@ var marker;
 var infowindow;
 var first_load = false;
 
-function initialize() {
+function google_maps_initialize() {
   if(!map) {
     map = new google.maps.Map(document.getElementById('google-maps'), {
       center: {lat: 0, lng: 0},
@@ -57,7 +57,7 @@ function initialize() {
       map.setCenter(place.geometry.location);
       map.setZoom(17);  // Why 17? Because it looks good.
     }
-   
+
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
 
@@ -72,7 +72,7 @@ function initialize() {
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
- 
+
     // Get each component of the address from the place details
     // and fill the corresponding field on the form.
     var placeInfor = {
@@ -93,12 +93,12 @@ function initialize() {
     }
 
     // update address infor
-    var sel_index = $('.dashboard .form_addresses select option:selected').index().toString();
-    $("#user_addresses_attributes_"+sel_index+"_country").val(placeInfor["country"]);
-    $("#user_addresses_attributes_"+sel_index+"_state").val(placeInfor["administrative_area_level_1"]);
-    $("#user_addresses_attributes_"+sel_index+"_postcode").val(placeInfor["postal_code"]);
-    $("#user_addresses_attributes_"+sel_index+"_city").val(placeInfor["locality"]);
-    $("#user_addresses_attributes_"+sel_index+"_street").val(placeInfor["street_number"] + placeInfor["route"]);
+    // var sel_index = $('.dashboard .form_addresses select option:selected').index().toString();
+    $("#address_country").val(placeInfor["country"]);
+    $("#address_state").val(placeInfor["administrative_area_level_1"]);
+    $("#address_postcode").val(placeInfor["postal_code"]);
+    $("#address_city").val(placeInfor["locality"]);
+    $("#address_street").val(placeInfor["street_number"] + placeInfor["route"]);
   });
 }
 
@@ -133,11 +133,11 @@ function setLocationbyAddress(sel_index)
   }
 
   var geocoder = new google.maps.Geocoder();
-  
+
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       infowindow.close();
-      
+
       marker.setVisible(false);
 
       var place = results[0];
@@ -150,10 +150,10 @@ function setLocationbyAddress(sel_index)
 
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
-     
+
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, marker);
-      
+
     } else {
       alert('Address contains no geometry ' + status);
       map = null;

@@ -50,6 +50,6 @@
         show: null
 
     .state 'dashboard', { url: '/dashboard', templateUrl: 'dashboard/tabs.html' }
-      .state 'dashboard.profile', { url: '/profile', templateUrl: 'dashboard/profile.html' }
+      .state 'dashboard.profile', { url: '/profile', templateUrl: 'dashboard/profile.html', controller: 'ProfileController' }
 ]
 

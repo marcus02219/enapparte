@@ -1,4 +1,4 @@
-.container[ng-controller="ProfileController"]
+.container
   .row
     .col-md-3
       br
@@ -38,113 +38,136 @@
                     input-phone[label="Phone Number" model="user.phoneNumber" required hint="Le numéro permet aux hôtes et aux performeurs de se contacter. Rassurez-vous, cette information ne sera communiquée qu’une fois votre réservation confirmée!"]
                   fieldset.form_addresses
                     legend= "Addresses"
-                    input-select-address[label="Select address" model="user.addresses" required]
-                      option[ng-repeat="address in user.addresses" value="{{ address.id }}"]
-                        | {{ address.fullAddress }}
+                    input-select-address[label="Select address" model="user.address" addresses="user.addresses" required]
+                    .row
+                      .col-md-9.col-md-offset-3
+                        input#google-address.string.optional.form-control[ng-model="user.address.fullAddress"]
+                    br
+                    #google-maps.col-sm-12[style="height: 300px"]
+                    input#address_country[type="hidden" ng-model="user.address.country"]
+                    input#address_state[type="hidden" ng-model="user.address.state"]
+                    input#address_postcode[type="hidden" ng-model="user.address.postcode"]
+                    input#address_city[type="hidden" ng-model="user.address.city"]
+                    input#address_street[type="hidden" ng-model="user.address.street"]
+                    br
+                    .margin-bottom-20
 
-                /     = f.input :gender, include_blank: false
-                /     = f.input :firstname
-                /     = f.input :surname, hint: "Cette information ne sera partagée uniquement avec les utilisateur faisant partie d’une réservation confirmée"
-                /     = f.input :dob, start_year: Date.today.year - 96, end_year: Date.today.year
-                /     .col-md-9.col-md-offset-3
-                /       = link_to "Actualisez votre adresse email", account_dashboard_path + "#security"
-                /     = f.input :email, disabled: true
-                /     = f.input :phone_number, hint: "Le numéro permet aux hôtes et aux performeurs de se contacter. Rassurez-vous, cette information ne sera communiquée qu’une fois votre réservation confirmée!"
-                /   fieldset.form_addresses
-                /     legend= "Addresses"
-                /     .form-group.tel.optional
-                /       label.tel.optional.col-sm-3.control-label for="user_phone_number"  Select address
-                /       .col-sm-9
-                /         = select_tag "addresses", options_from_collection_for_select(@user.addresses.select { |a| a.persisted? }, :id, :full_address)
-                /     - unless @user.addresses.any? { |a| !a.errors.empty? || a.new_record? }
-                /       - @user.addresses.build
-                /     = f.simple_fields_for :addresses do |address_form|
-                /       = render "profile_address", f: address_form
-                /     .form-group
-                /       label class="string optional col-sm-3 control-label" Address
-                /       .col-sm-9
-                /         input id="google-address" class = "string optional form-control"
-                /       #google-maps class="col-sm-12"
-                /   fieldset
-                /     legend= "About you"
-                /     = f.input :activity
-                /     / = f.input :language_id, as: :select, collection: Language.all
-                /     = f.input :bio, as: :text
+                  fieldset
+                    legend= "About You"
+                    input-string[label="Activity" model="user.activity"]
+                    input-text[label="Bio" model="user.bio"]
 
-                /   .form-actions
-                /     .pull-right
-                /       = f.button :submit, "Save My Profile", class: "btn btn-success"
-                / br
-                / br
-                / br
+                  .form-actions
+                    .pull-right
+                      button.btn.btn-success[ng-click="userSave()"]
+                        | Save My Profile
 
-        / #reviews.tab-pane
-        /   .row
-        /     .page-header
-        /       h2= "Comments"
-        /     ul.nav.nav-tabs
-        /       li.active
-        /         a[href="#received_reviews" data-toggle="tab"]= "Received Comments"
-        /       li
-        /         a[href="#sent_reviews" data-toggle="tab"]= "Sent Comments"
+  .margin-bottom-40
 
-        /   .row
-        /     .tab-content
-        /       #received_reviews.tab-pane.active
-        /         br
-        /         - @user.reviews.each do |review|
-        /           .row
-        /             .review
-        /               .photo.pull-left.col-md-2
-        /                 = image_tag review.booking.user.picture.image.url(:thumb)
-        /               .col-md-10
-        /                 .row
-        /                   .col-md-5
-        /                     span.name
-        /                       = review.booking.user.full_name
-        /                     |,
-        /                     '
-        /                     span.date
-        /                       = l review.created_at.to_date, format: :long
-        /                   .col-md-4
-        /                     .rating
-        /                       - rating = review.booking.user.rating.try(:round).to_i
-        /                       - rating.times.each do
-        /                         i.glyphicon.glyphicon-star
-        /                 .row
-        /                   .col-md-12
-        /                     blockquote
-        /                       p
-        /                         = review.review
 
-        /               .clearfix
-        /           hr
-        /       #sent_reviews.tab-pane
-        /         br
-        /         - @user.sent_reviews.each do |review|
-        /           .row
-        /             .review
-        /               .photo.pull-left.col-md-2
-        /                 = image_tag review.booking.show.user.picture.image.url(:thumb)
-        /               .col-md-10
-        /                 .row
-        /                   .col-md-5
-        /                     span.name
-        /                       = review.booking.show.user.full_name
-        /                     |,
-        /                     '
-        /                     span.date
-        /                       = l review.created_at.to_date, format: :long
-        /                   .col-md-4
-        /                     .rating
-        /                       - rating = review.booking.show.user.rating.round
-        /                       - rating.times.each do
-        /                         i.glyphicon.glyphicon-star
-        /                 .row
-        /                   .col-md-12
-        /                     blockquote
-        /                       p
-        /                         = review.review
+        /         /     = f.input :gender, include_blank: false
+        /         /     = f.input :firstname
+        /         /     = f.input :surname, hint: "Cette information ne sera partagée uniquement avec les utilisateur faisant partie d’une réservation confirmée"
+        /         /     = f.input :dob, start_year: Date.today.year - 96, end_year: Date.today.year
+        /         /     .col-md-9.col-md-offset-3
+        /         /       = link_to "Actualisez votre adresse email", account_dashboard_path + "#security"
+        /         /     = f.input :email, disabled: true
+        /         /     = f.input :phone_number, hint: "Le numéro permet aux hôtes et aux performeurs de se contacter. Rassurez-vous, cette information ne sera communiquée qu’une fois votre réservation confirmée!"
+        /         /   fieldset.form_addresses
+        /         /     legend= "Addresses"
+        /         /     .form-group.tel.optional
+        /         /       label.tel.optional.col-sm-3.control-label for="user_phone_number"  Select address
+        /         /       .col-sm-9
+        /         /         = select_tag "addresses", options_from_collection_for_select(@user.addresses.select { |a| a.persisted? }, :id, :full_address)
+        /         /     - unless @user.addresses.any? { |a| !a.errors.empty? || a.new_record? }
+        /         /       - @user.addresses.build
+        /         /     = f.simple_fields_for :addresses do |address_form|
+        /         /       = render "profile_address", f: address_form
+        /         /     .form-group
+        /         /       label class="string optional col-sm-3 control-label" Address
+        /         /       .col-sm-9
+        /         /         input id="google-address" class = "string optional form-control"
+        /         /       #google-maps class="col-sm-12"
+        /         /   fieldset
+        /         /     legend= "About you"
+        /         /     = f.input :activity
+        /         /     / = f.input :language_id, as: :select, collection: Language.all
+        /         /     = f.input :bio, as: :text
 
-        /               .clearfix
-        /           hr
+        /         /   .form-actions
+        /         /     .pull-right
+        /         /       = f.button :submit, "Save My Profile", class: "btn btn-success"
+        /         / br
+        /         / br
+        /         / br
+
+        / / #reviews.tab-pane
+        / /   .row
+        / /     .page-header
+        / /       h2= "Comments"
+        / /     ul.nav.nav-tabs
+        / /       li.active
+        / /         a[href="#received_reviews" data-toggle="tab"]= "Received Comments"
+        / /       li
+        / /         a[href="#sent_reviews" data-toggle="tab"]= "Sent Comments"
+
+        / /   .row
+        / /     .tab-content
+        / /       #received_reviews.tab-pane.active
+        / /         br
+        / /         - @user.reviews.each do |review|
+        / /           .row
+        / /             .review
+        / /               .photo.pull-left.col-md-2
+        / /                 = image_tag review.booking.user.picture.image.url(:thumb)
+        / /               .col-md-10
+        / /                 .row
+        / /                   .col-md-5
+        / /                     span.name
+        / /                       = review.booking.user.full_name
+        / /                     |,
+        / /                     '
+        / /                     span.date
+        / /                       = l review.created_at.to_date, format: :long
+        / /                   .col-md-4
+        / /                     .rating
+        / /                       - rating = review.booking.user.rating.try(:round).to_i
+        / /                       - rating.times.each do
+        / /                         i.glyphicon.glyphicon-star
+        / /                 .row
+        / /                   .col-md-12
+        / /                     blockquote
+        / /                       p
+        / /                         = review.review
+
+        / /               .clearfix
+        / /           hr
+        / /       #sent_reviews.tab-pane
+        / /         br
+        / /         - @user.sent_reviews.each do |review|
+        / /           .row
+        / /             .review
+        / /               .photo.pull-left.col-md-2
+        / /                 = image_tag review.booking.show.user.picture.image.url(:thumb)
+        / /               .col-md-10
+        / /                 .row
+        / /                   .col-md-5
+        / /                     span.name
+        / /                       = review.booking.show.user.full_name
+        / /                     |,
+        / /                     '
+        / /                     span.date
+        / /                       = l review.created_at.to_date, format: :long
+        / /                   .col-md-4
+        / /                     .rating
+        / /                       - rating = review.booking.show.user.rating.round
+        / /                       - rating.times.each do
+        / /                         i.glyphicon.glyphicon-star
+        / /                 .row
+        / /                   .col-md-12
+        / /                     blockquote
+        / /                       p
+        / /                         = review.review
+
+        / /               .clearfix
+        / /           hr
