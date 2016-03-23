@@ -58,14 +58,15 @@ angular
         scope.label = attrs.label
         scope.elementId = 'input_' + scope.$id
 
-        scope.day = 1
-        scope.month = 1
-        scope.year = 2000
+        scope.day = moment(scope.model).date()
+        scope.month = moment(scope.model).month()
+        scope.year = moment(scope.model).year()
 
         scope.days = [1..31]
-        scope.monthes = []
-        for month in [1..12]
-          scope.monthes.push { label: moment().month(month-1).format("MMMM"), value: month }
+        scope.monthes = [1..12]
+        scope.monthNames = []
+        for month in scope.monthes
+          scope.monthNames.push moment().month(month-1).format("MMMM")
         currentYear = new Date().getFullYear()
         scope.years = [currentYear - 70..currentYear - 5].reverse()
     }

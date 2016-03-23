@@ -8,8 +8,8 @@ class DashboardController extends @NGController
   ]
 
   tabs: [
-    { heading: 'Dashboard', route: 'dashboard', active: false }
     { heading: 'Profile', route: 'dashboard.profile', active: true }
+    { heading: 'Dashboard', route: 'dashboard', active: false }
     { heading: 'Messages', route: 'dashboard.messages', active: false }
   ]
 

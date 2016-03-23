@@ -11,21 +11,28 @@ class ProfileController extends @NGController
   user: {}
   map: null
 
+  componentForm:
+    street_number: 'short_name',
+    route: 'long_name',
+    locality: 'long_name',
+    administrative_area_level_1: 'short_name',
+    country: 'long_name',
+    postal_code: 'short_name'
+
   init: =>
-    if @rootScope.currentUser
-      @User
-        .get @rootScope.currentUser.id
-        .then (user)=>
-          @scope.user = user
-          @scope.initializeMap()
+    @User
+      .get(1)
+      .then (user)=>
+        @scope.user = user
+        @scope.initializeMap()
 
     @scope.$watch 'user.address', (newValue)=>
-      if newValue
+      if newValue && newValue.fullAddress
         @scope.setLocationbyAddress newValue.fullAddress
 
   initializeMap: =>
     if !@scope.map
-      map = new (google.maps.Map)(document.getElementById('google-maps'),
+      @scope.map = new (google.maps.Map)(document.getElementById('google-maps'),
         center:
           lat: 0
           lng: 0
@@ -36,30 +43,30 @@ class ProfileController extends @NGController
         streetViewControl: false)
 
     input = document.getElementById('google-address')
-    autocomplete = new (google.maps.places.Autocomplete)(input)
-    autocomplete.bindTo 'bounds', map
-    if !infowindow
-      infowindow = new (google.maps.InfoWindow)
-    if !marker
-      marker = new (google.maps.Marker)(
-        map: map
+    @scope.autocomplete = new (google.maps.places.Autocomplete)(input)
+    @scope.autocomplete.bindTo 'bounds', @scope.map
+    if !@scope.infowindow
+      @scope.infowindow = new (google.maps.InfoWindow)
+    if !@scope.marker
+      @scope.marker = new (google.maps.Marker)(
+        map: @scope.map
         anchorPoint: new (google.maps.Point)(0, -29))
-    autocomplete.addListener 'place_changed', ->
-      infowindow.close()
-      marker.setVisible false
-      place = autocomplete.getPlace()
-      if !place.geometry
+    @scope.autocomplete.addListener 'place_changed', =>
+      @scope.infowindow.close()
+      @scope.marker.setVisible false
+      place = @scope.autocomplete.getPlace()
+      unless place.geometry
         window.alert 'Autocomplete\'s returned place contains no geometry'
         return
       # If the place has a geometry, then present it on a map.
       if place.geometry.viewport
-        map.fitBounds place.geometry.viewport
+        @scope.map.fitBounds place.geometry.viewport
       else
-        map.setCenter place.geometry.location
-        map.setZoom 17
+        @scope.map.setCenter place.geometry.location
+        @scope.map.setZoom 17
         # Why 17? Because it looks good.
-      marker.setPosition place.geometry.location
-      marker.setVisible true
+      @scope.marker.setPosition place.geometry.location
+      @scope.marker.setVisible true
       address = ''
       if place.address_components
         address = [
@@ -67,8 +74,8 @@ class ProfileController extends @NGController
           place.address_components[1] and place.address_components[1].short_name or ''
           place.address_components[2] and place.address_components[2].short_name or ''
         ].join(' ')
-      infowindow.setContent '<div><strong>' + place.name + '</strong><br>' + address
-      infowindow.open map, marker
+      @scope.infowindow.setContent '<div><strong>' + place.name + '</strong><br>' + address
+      @scope.infowindow.open @scope.map, @scope.marker
       # Get each component of the address from the place details
       # and fill the corresponding field on the form.
       placeInfor =
@@ -81,8 +88,8 @@ class ProfileController extends @NGController
       i = 0
       while i < place.address_components.length
         addressType = place.address_components[i].types[0]
-        if componentForm[addressType]
-          val = place.address_components[i][componentForm[addressType]]
+        if @scope.componentForm[addressType]
+          val = place.address_components[i][@scope.componentForm[addressType]]
           placeInfor[addressType] = val
         i++
       # update address infor
@@ -94,26 +101,26 @@ class ProfileController extends @NGController
       $('#address_street').val placeInfor['street_number'] + placeInfor['route']
 
   setLocationbyAddress: (address) =>
-    if !map
+    if !@scope.map
       @scope.initializeMap()
     geocoder = new (google.maps.Geocoder)
-    geocoder.geocode { 'address': address }, (results, status) ->
+    geocoder.geocode { 'address': address }, (results, status) =>
       if status == google.maps.GeocoderStatus.OK
-        infowindow.close()
-        marker.setVisible false
+        @scope.infowindow.close()
+        @scope.marker.setVisible false
         place = results[0]
-        if place.geometry.viewport
-          map.fitBounds place.geometry.viewport
+        if place.geometry && place.geometry.viewport
+          @scope.map.fitBounds place.geometry.viewport
         else
-          map.setCenter place.geometry.location
-          map.setZoom 17
+          @scope.map.setCenter place.geometry.location
+          @scope.map.setZoom 17
           # Why 17? Because it looks good.
-        marker.setPosition place.geometry.location
-        marker.setVisible true
-        infowindow.setContent '<div><strong>' + place.name + '</strong><br>' + address
-        infowindow.open map, marker
+        @scope.marker.setPosition place.geometry.location
+        @scope.marker.setVisible true
+        @scope.infowindow.setContent '<div><strong>' + place.name + '</strong><br>' + address
+        @scope.infowindow.open @scope.map, @scope.marker
       else
         alert 'Address contains no geometry ' + status
-        map = null
-        marker = null
-        initializeMap()
+        @scope.map = null
+        @scope.marker = null
+        @scope.initializeMap()

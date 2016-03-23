@@ -1,12 +1,11 @@
 .form-group.date[ng-class="{ required: required, 'has-error': (form.$submitted || form[elementId].$touched) && form[elementId].$invalid }"]
-  label.text-right.col-sm-3.control-label for="{{elementId}}"
+  label.text-right.col-sm-3.control-label for="{{elementId}}-day"
     abbr[title="required" ng-if="required"] *
     '
     | {{ label }}
   .col-sm-9
-    select.day.required[id="{{elementId}}-day" ng-model="day"]
-      option[ng-repeat="d in days" ng-value="d" ng-selected="d == day"] {{d}}
-    select.month.required[id="{{elementId}}-month" ng-model="month"]
-      option[ng-repeat="m in monthes" ng-value="m.value" ng-selected="m.value == month"] {{m.label}}
-    select.year.required[id="{{elementId}}-year" ng-model="year"]
-      option[ng-repeat="y in years" ng-value="y" ng-selected="y == year"] {{y}}
+    select.day[id="{{elementId}}-day" ng-required="required" ng-model="day" ng-options="d for d in days track by d"]
+
+    select.month[id="{{elementId}}-month" ng-required="required" ng-model="month" ng-options="monthNames[m-1] for m in monthes track by m"]
+
+    select.year[id="{{elementId}}-year" ng-required="required" ng-model="year" ng-options="year for year in years track by year"]
