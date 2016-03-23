@@ -30,6 +30,16 @@ class ProfileController extends @NGController
       if newValue && newValue.fullAddress
         @scope.setLocationbyAddress newValue.fullAddress
 
+  userSave: =>
+    if @scope.user
+      @scope.user.save()
+        .then (user)=>
+          @scope.user = user
+          @Flash.showNotice @scope, 'User was saved successfully.'
+        , (error)->
+          console.log error
+          # @Flash.showError @scope, 'User was saved successfully.'
+
   initializeMap: =>
     if !@scope.map
       @scope.map = new (google.maps.Map)(document.getElementById('google-maps'),

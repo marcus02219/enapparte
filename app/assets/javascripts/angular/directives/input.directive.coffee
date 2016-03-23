@@ -62,9 +62,15 @@ angular
         scope.elementYearId = scope.elementId + '-year'
         scope.required = attrs.required != undefined
 
-        scope.day = moment(scope.model).date()
-        scope.month = moment(scope.model).month()
-        scope.year = moment(scope.model).year()
+        scope.$watch 'model', (newValue, oldValue)->
+          unless oldValue
+            scope.day = moment(newValue).date()
+            scope.month = moment(newValue).month() + 1
+            scope.year = moment(newValue).year()
+
+        scope.$watchGroup ['day', 'month', 'year'], ()->
+          if scope.model
+            scope.model = moment([scope.year, scope.month - 1, scope.day + 1]).toDate()
 
         scope.days = [1..31]
         scope.monthes = [1..12]
