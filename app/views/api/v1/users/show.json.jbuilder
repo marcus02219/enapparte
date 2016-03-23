@@ -1,4 +1,5 @@
 json.merge! @user.attributes
+json.gender @user.gender
 
 json.picture do
   json.id @user.picture.try(:id)

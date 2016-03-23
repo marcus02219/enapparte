@@ -57,6 +57,10 @@ angular
       link: (scope, element, attrs)->
         scope.label = attrs.label
         scope.elementId = 'input_' + scope.$id
+        scope.elementDayId = scope.elementId + '-day'
+        scope.elementMonthId = scope.elementId + '-month'
+        scope.elementYearId = scope.elementId + '-year'
+        scope.required = attrs.required != undefined
 
         scope.day = moment(scope.model).date()
         scope.month = moment(scope.model).month()
@@ -90,8 +94,9 @@ angular
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input_select.html'
-    scope:
+    scope: {
       model: '='
+    }
     replace: true
     link: (scope, element, attrs, form)->
       scope.form = form
@@ -99,6 +104,16 @@ angular
       scope.elementId = 'input_' + scope.$id
       scope.options = element.data('collection')
       scope.required = attrs.required != undefined
+
+      scope.$watch 'model', (newValue, oldValue)->
+        unless oldValue
+          for option in scope.options
+            if option.value == newValue
+              scope.selectedOption = option
+
+      scope.$watch 'selectedOption', (newValue)->
+        if scope.selectedOption
+          scope.model = scope.selectedOption.value
 
   .directive 'inputImage', ()->
     require: '^form'

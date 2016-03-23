@@ -60,8 +60,7 @@
 
                   .form-actions
                     .pull-right
-                      button.btn.btn-success[ng-click="userSave()"]
-                        | Save My Profile
+                      input.btn.btn-success[type="submit" ng-click="profileForm.$valid && userSave()" value="Save My Profile"]
 
   .margin-bottom-40
 

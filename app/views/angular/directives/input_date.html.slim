@@ -4,8 +4,13 @@
     '
     | {{ label }}
   .col-sm-9
-    select.day[id="{{elementId}}-day" ng-required="required" ng-model="day" ng-options="d for d in days track by d"]
+    select.day[id="{{elementDayId}}" ng-required="required" ng-model="day" ng-options="d for d in days track by d"]
 
-    select.month[id="{{elementId}}-month" ng-required="required" ng-model="month" ng-options="monthNames[m-1] for m in monthes track by m"]
+    select.month[id="{{elementMonthId}}" ng-required="required" ng-model="month" ng-options="monthNames[m-1] for m in monthes track by m"]
 
-    select.year[id="{{elementId}}-year" ng-required="required" ng-model="year" ng-options="year for year in years track by year"]
+    select.year[id="{{elementYearId}}" ng-required="required" ng-model="year" ng-options="year for year in years track by year"]
+
+    | {{ form[elementYearId] | json }}
+    .error-messages[ng-show="form.$submitted || form[elementDayId].$touched || form[elementMonthId].$touched || form[elementYearId].$touched"]
+      span.help-block[ng-show="form[elementDayId].$error.required || form[elementMonthId].$error.required || form[elementYearId].$error.required"]
+        | Please, select a Date

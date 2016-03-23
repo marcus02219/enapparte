@@ -4,9 +4,11 @@
     '
     | {{ label }}
   .col-sm-9
-    select.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="model"]
-      option[ng-repeat="option in options" value="{{ option.value }}" ng-selected="model == option.value"]
-        | {{ option.name }}
+    select.form-control[id="{{elementId}}" name="{{elementId}}"
+      ng-required="required"
+      ng-model="selectedOption"
+      ng-options="option.name for option in options track by option.value"
+    ]
     .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
       span.help-block[ng-show="form[elementId].$error.required"]
         | Please, select a variant

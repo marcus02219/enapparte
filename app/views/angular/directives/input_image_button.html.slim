@@ -3,4 +3,4 @@
     .btn-upload
       .btn.btn-success.pull-left
         | {{ label }}
-      input[type="file" id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="model" multiple]
+      input[type="file" id="{{elementId}}" name="{{elementId}}" ng-required="required && !model.src" ng-model="model"]
