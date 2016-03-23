@@ -26,14 +26,30 @@ RSpec.describe Address, type: :model do
 
   context '#set_is_primary' do
     let(:user) { create(:user) }
-    it { expect(user.addresses.first.is_primary).to be true }
+    it { user.reload; expect(user.addresses.first.is_primary).to be true }
 
     context 'added second address' do
-      before(:each) do
-        user.reload
-        @address2 = create :address, user: user
+      let!(:address) { create :address, user: user }
+
+      it { user.reload; expect(user.addresses.last.is_primary).to_not eq true }
+    end
+
+    context 'create a new address as a primary' do
+      let!(:address) { create :address, user: user, is_primary: true }
+
+      it { user.reload; expect(user.addresses.first.is_primary).to_not eq true }
+      it { user.reload; expect(user.addresses.last.is_primary).to eq true }
+    end
+
+    context 'set an address as a primary' do
+      let!(:address) { create :address, user: user }
+
+      it do
+        expect {
+          user.addresses.last.update_attribute :is_primary, true
+        }.to change { user.reload; user.addresses.first.is_primary }
       end
-      it { expect(@address2.is_primary).to be false }
+
     end
   end
 

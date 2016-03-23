@@ -32,15 +32,19 @@ class Address < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode
 
-  after_save :set_is_primary
+  before_save :set_is_primary
 
   private
 
   def set_is_primary
-    if !self.is_primary && user
-      ap user.addresses
-      unless user.addresses.any? {|a| a.is_primary }
-        self.is_primary = true
+    if user
+      addresses = Address.where user: user
+      if self.is_primary
+        addresses.update_all is_primary: false
+      else
+        unless addresses.any? {|a| a.is_primary }
+          self.is_primary = true
+        end
       end
     end
   end
