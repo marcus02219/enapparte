@@ -36,6 +36,7 @@
                         a[ui-sref="account#security"] "Actualisez votre adresse email"
                     input-email[label="Email" model="user.email" required disabled]
                     input-phone[label="Phone Number" model="user.phoneNumber" required hint="Le numéro permet aux hôtes et aux performeurs de se contacter. Rassurez-vous, cette information ne sera communiquée qu’une fois votre réservation confirmée!"]
+
                   fieldset.form_addresses
                     legend= "Addresses"
                     input-select-address[label="Select address" model="user.address" addresses="user.addresses" required]
@@ -49,8 +50,8 @@
                     input#address_postcode[type="hidden" ng-model="user.address.postcode"]
                     input#address_city[type="hidden" ng-model="user.address.city"]
                     input#address_street[type="hidden" ng-model="user.address.street"]
-                    br
-                    .margin-bottom-20
+
+                  .margin-bottom-40
 
                   fieldset
                     legend= "About You"

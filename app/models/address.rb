@@ -13,6 +13,7 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  is_primary :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -30,5 +31,18 @@ class Address < ActiveRecord::Base
   alias_method :name, :full_address
   geocoded_by :full_address
   after_validation :geocode
+
+  after_save :set_is_primary
+
+  private
+
+  def set_is_primary
+    if !self.is_primary && user
+      ap user.addresses
+      unless user.addresses.any? {|a| a.is_primary }
+        self.is_primary = true
+      end
+    end
+  end
 
 end

@@ -330,6 +330,7 @@ angular
       scope.addressId = scope.addresses[0].id  if scope.addresses && scope.addresses[0]
 
       scope.$watch 'addressId', (newValue)=>
+        scope.model = {}
         angular.forEach scope.addresses, (address)=>
           if "" + address.id == newValue
             scope.model = address
