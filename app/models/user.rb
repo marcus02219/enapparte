@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
 
   has_one :language
   has_one    :picture , as: :imageable
+  accepts_nested_attributes_for :picture, reject_if: proc {|attrs| attrs['src'].blank? || attrs['src'].match(/^http:/) }
 
   has_many   :addresses
   accepts_nested_attributes_for :addresses, reject_if: :reject_addresses

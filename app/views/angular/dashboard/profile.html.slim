@@ -40,16 +40,6 @@
                   fieldset.form_addresses
                     legend= "Addresses"
                     input-select-address[label="Select address" model="user.address" addresses="user.addresses" required]
-                    .row
-                      .col-md-9.col-md-offset-3
-                        input#google-address.string.optional.form-control[ng-model="user.address.fullAddress"]
-                    br
-                    #google-maps.col-sm-12[style="height: 300px"]
-                    input#address_country[type="hidden" ng-model="user.address.country"]
-                    input#address_state[type="hidden" ng-model="user.address.state"]
-                    input#address_postcode[type="hidden" ng-model="user.address.postcode"]
-                    input#address_city[type="hidden" ng-model="user.address.city"]
-                    input#address_street[type="hidden" ng-model="user.address.street"]
 
                   .margin-bottom-40
 
