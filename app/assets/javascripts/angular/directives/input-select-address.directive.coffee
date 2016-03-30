@@ -16,26 +16,29 @@ angular
       scope.required = false
       scope.selectedAddress = {}
 
+      scope.$watch 'selectedAddress', (newValue)=>
+        if newValue
+          if newValue.new
+            $("#google-address").focus()
+            $("#google-address")[0].select()
+          else
+            if newValue.fullAddress
+              angular.forEach scope.addresses, (address)=>
+                address.isPrimary = false
+              newValue.isPrimary = true
+              scope.model = newValue
+              scope.setLocationbyAddress newValue.fullAddress
+
       scope.$watch 'addresses', (addresses)=>
         if addresses instanceof Array
           scope.initializeMap()
           angular.forEach addresses, (address)=>
             if address.isPrimary
+              console.log 'addresses'
+              console.log scope.selectedAddress
+              console.log address
               scope.selectedAddress = address
-              scope.model = address
-          addresses.push { fullAddress: 'Add New Address', isPrimary: false, isNew: true }
-
-      scope.$watch 'selectedAddress', (newValue)=>
-        if newValue
-          if newValue.isNew
-            $("#google-address").focus()
-            $("#google-address")[0].select()
-          else
-            angular.forEach scope.addresses, (address)=>
-              address.isPrimary = false
-            newValue.isPrimary = true
-            scope.model = newValue
-            scope.setLocationbyAddress newValue.fullAddress
+          addresses.push { fullAddress: 'Add New Address', isPrimary: false, new: true }
 
       scope.componentForm =
         street_number: 'short_name',
