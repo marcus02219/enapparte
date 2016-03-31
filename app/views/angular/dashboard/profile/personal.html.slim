@@ -1,0 +1,41 @@
+.row
+  .page-header
+    h2= "Personal informations"
+  / = simple_form_for @user, html: { class: 'form-horizontal' }, url: update_dashboard_path do |f|
+  form.form-horizontal[name="profileForm"]
+    .row
+      .col-md-4
+        h4= "Your profile photo"
+        .photo
+          img[ng-src="{{ user.picture.src }}"]
+
+        input-image-button[label="Change" model="user.picture" required]
+
+      .col-md-8
+        fieldset
+          legend= "Personal Info"
+          input-select[label="Gender" model="user.gender" required data-collection=(User.genders_i18n.map {|k, v| { name: v, value: k } }.to_json)]
+          input-string[label="First Name" model="user.firstname" required]
+          input-string[label="Surname" model="user.surname" required hint="Cette information ne sera partagée uniquement avec les utilisateur faisant partie d’une réservation confirmée"]
+          input-date[label="Date of Birth" model="user.dob" required]
+          .row
+            .col-md-9.col-md-offset-3
+              a[ui-sref="account#security"] "Actualisez votre adresse email"
+          input-email[label="Email" model="user.email" required disabled]
+          input-phone[label="Phone Number" model="user.phoneNumber" required hint="Le numéro permet aux hôtes et aux performeurs de se contacter. Rassurez-vous, cette information ne sera communiquée qu’une fois votre réservation confirmée!"]
+
+        fieldset.form_addresses
+          legend= "Addresses"
+          input-select-address[label="Select address" model="user.address" addresses="user.addresses" required]
+
+        .margin-bottom-40
+
+        fieldset
+          legend= "About You"
+          input-string[label="Activity" model="user.activity"]
+          input-text[label="Bio" model="user.bio"]
+
+        .form-actions
+          .pull-right
+            input.btn.btn-success[type="submit" ng-click="profileForm.$valid && userSave()" value="Save My Profile"]
+

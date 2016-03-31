@@ -19,6 +19,7 @@ asset 'angular-devise'
 asset 'ng-focus-if'
 asset 'angular-ui-router'
 asset 'intl-tel-input'
+asset 'angular-ui-router-tabs'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'

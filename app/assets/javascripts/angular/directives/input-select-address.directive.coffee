@@ -34,9 +34,6 @@ angular
           scope.initializeMap()
           angular.forEach addresses, (address)=>
             if address.isPrimary
-              console.log 'addresses'
-              console.log scope.selectedAddress
-              console.log address
               scope.selectedAddress = address
           addresses.push { fullAddress: 'Add New Address', isPrimary: false, new: true }
 
@@ -113,7 +110,6 @@ angular
           # update address infor
           # var sel_index = $('.dashboard .form_addresses select option:selected').index().toString();
           scope.$apply =>
-            console.log placeInfor
             scope.selectedAddress.fullAddress = $(input).val()
             scope.selectedAddress.country = placeInfor['country']
             scope.selectedAddress.state = placeInfor['administrative_area_level_1']

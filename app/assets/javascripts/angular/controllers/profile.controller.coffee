@@ -6,7 +6,17 @@ class ProfileController extends @NGController
     '$rootScope'
     'Flash'
     'User'
+    '$state'
   ]
+
+  tabs2: [
+    { heading: 'Personal', route: 'dashboard.profile.personal', active: true }
+    { heading: 'Reviews', route: 'dashboard.profile.reviews', active: false }
+  ]
+
+  go: (route)=>
+    console.log route
+    @state.go route
 
   user: {}
   map: null

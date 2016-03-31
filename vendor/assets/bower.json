@@ -17,6 +17,7 @@
     "ng-focus-if": "latest",
     "angular-ui-router": "latest",
     "intl-tel-input": "latest",
+    "angular-ui-router-tabs": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }

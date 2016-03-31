@@ -10,6 +10,7 @@
     'Devise'
     'focus-if'
     'ui.router'
+    'ui.router.tabs'
   ]
 
 @App.config ['AuthProvider', (AuthProvider)->
@@ -49,7 +50,11 @@
       params:
         show: null
 
-    .state 'dashboard', { url: '/dashboard', templateUrl: 'dashboard/tabs.html' }
-      .state 'dashboard.profile', { url: '/profile', templateUrl: 'dashboard/profile.html', controller: 'ProfileController' }
+    .state 'dashboard', { abstract: true, url: '/dashboard', templateUrl: 'dashboard/tabs.html' }
+      .state 'dashboard.index', { url: '/dashboard', templateUrl: 'dashboard/index.html' }
+
+      .state 'dashboard.profile', { abstract: true, url: '/profile', templateUrl: 'dashboard/profile/tabs.html' }
+      .state 'dashboard.profile.personal', { url: '/personal', templateUrl: 'dashboard/profile/personal.html' }
+      .state 'dashboard.profile.reviews', { url: '/reviews', templateUrl: 'dashboard/profile/reviews.html' }
 ]
 

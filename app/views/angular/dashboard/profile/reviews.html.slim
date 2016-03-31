@@ -1,0 +1,70 @@
+#reviews
+  .row
+    .page-header
+      h2= "Reviews"
+    ul.nav.nav-tabs
+      li.active
+        a[href="#received_reviews" data-toggle="tab"]= "Received Reviews"
+      li
+        a[href="#sent_reviews" data-toggle="tab"]= "Sent Reviews"
+
+  .row
+    .tab-content
+      #received_reviews.tab-pane.active
+        br
+        .row[ng-repeat="review in reviews"]
+          .review
+            .photo.pull-left.col-md-2
+              / = image_tag review.booking.user.picture.image.url(:thumb)
+              img[ng-src="{{ review.userImageUrl }}"]
+            .col-md-10
+              .row
+                .col-md-5
+                  span.name
+                    / = review.booking.user.full_name
+                  |,
+                  '
+                  span.date
+                    / = l review.created_at.to_date, format: :long
+                .col-md-4
+                  .rating
+                    / - rating = review.booking.user.rating.try(:round).to_i
+                    / - rating.times.each do
+                    /   i.glyphicon.glyphicon-star
+              .row
+                .col-md-12
+                  blockquote
+                    p
+                      / = review.review
+
+            .clearfix
+          hr
+      / #sent_reviews.tab-pane
+      /   br
+      /   - @user.sent_reviews.each do |review|
+      /     .row
+      /       .review
+      /         .photo.pull-left.col-md-2
+      /           = image_tag review.booking.show.user.picture.image.url(:thumb)
+      /         .col-md-10
+      /           .row
+      /             .col-md-5
+      /               span.name
+      /                 = review.booking.show.user.full_name
+      /               |,
+      /               '
+      /               span.date
+      /                 = l review.created_at.to_date, format: :long
+      /             .col-md-4
+      /               .rating
+      /                 - rating = review.booking.show.user.rating.round
+      /                 - rating.times.each do
+      /                   i.glyphicon.glyphicon-star
+      /           .row
+      /             .col-md-12
+      /               blockquote
+      /                 p
+      /                   = review.review
+
+      /         .clearfix
+      /     hr
