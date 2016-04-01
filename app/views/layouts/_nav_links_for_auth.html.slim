@@ -10,7 +10,8 @@ li[ng-if="isAuthenticated()"]
         a[ui-sref="dashboard.index"]
           | Dashboard
       li
-        = link_to 'My Performances', performances_dashboard_path
+        a[ui-sref="dashboard.performances.current"]
+          | My Performances
       li
         = link_to 'Account', edit_user_registration_path
       li

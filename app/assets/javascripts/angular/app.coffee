@@ -59,5 +59,10 @@
       .state 'dashboard.messages', { url: '/messages', templateUrl: 'dashboard/messages/index.html' }
 
       .state 'dashboard.shows', { url: '/shows', templateUrl: 'dashboard/shows/index.html' }
+
+      .state 'dashboard.performances', { abstract: true, url: '/performances', templateUrl: 'dashboard/performances/index.html' }
+      .state 'dashboard.performances.current', { url: '/current', templateUrl: 'dashboard/performances/current.html' }
+      .state 'dashboard.performances.history', { url: '/history', templateUrl: 'dashboard/performances/history.html' }
+      .state 'dashboard.performances.cancelled', { url: '/cancelled', templateUrl: 'dashboard/performances/cancelled.html' }
 ]
 

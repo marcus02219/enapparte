@@ -12,6 +12,7 @@ class DashboardController extends @NGController
     { heading: 'Profile', route: 'dashboard.profile.personal', routeActive: 'dashboard.profile' }
     { heading: 'Messages', route: 'dashboard.messages' }
     { heading: 'My Shows', route: 'dashboard.shows' }
+    { heading: 'My Performances', route: 'dashboard.performances.current', routeActive: 'dashboard.performances' }
   ]
 
   init: ->

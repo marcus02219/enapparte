@@ -1,0 +1,36 @@
+.container[ng-controller="PerformancesController"]
+  .row
+    .col-md-3
+      br
+      tabs[data="tabsPerformances" type="pills" vertical="true"]
+
+    .col-md-9
+      ui-view
+  / br
+  / .row
+  /   .col-md-3
+  /     br
+  /     ul.nav.nav-pills.nav-stacked
+  /       li.active
+  /         a[href="#current" data-toggle="tab"]= "Current bookings"
+  /       li
+  /         a[href="#history" data-toggle="tab"]= "History"
+  /       li
+  /         a[href="#cancelled" data-toggle="tab"]= "Cancelled bookings"
+
+  /   .col-md-9
+  /     .tab-content
+  /       #current.tab-pane.active
+  /         p[ng-if="(bookings | filter:filterCurrentBookings).length == 0"]
+  /           | You have no current bookings
+  /         performance[ng-repeat="booking in bookings | filter:filterCurrentBookings" booking="booking"]
+
+  /       #history.tab-pane
+  /         p[ng-if="(bookings | filter:filterOldBookings).length == 0"]
+  /           | You have no old bookings
+  /         performance[ng-repeat="booking in bookings | filter:filterOldBookings" booking="booking"]
+
+  /       #cancelled.tab-pane
+  /         p[ng-if="(bookings | filter:filterCancelBookings).length == 0"]
+  /           | You have no cancelled bookings
+  /         performance[ng-repeat="booking in bookings | filter:filterCancelBookings" booking="booking"]
