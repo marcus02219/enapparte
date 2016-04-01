@@ -58,5 +58,9 @@
       .state 'dashboard.profile.reviews', { abstract: true, url: '/reviews', templateUrl: 'dashboard/profile/reviews/tabs.html' }
       .state 'dashboard.profile.reviews.received', { url: '/received', templateUrl: 'dashboard/profile/reviews/received.html' }
       .state 'dashboard.profile.reviews.sent', { url: '/sent', templateUrl: 'dashboard/profile/reviews/sent.html' }
+
+      .state 'dashboard.messages', { url: '/messages', templateUrl: 'dashboard/messages/index.html' }
+
+      .state 'dashboard.shows', { url: '/shows', templateUrl: 'dashboard/shows/index.html' }
 ]
 

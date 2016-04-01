@@ -10,7 +10,8 @@ class DashboardController extends @NGController
   tabs: [
     { heading: 'Dashboard', route: 'dashboard.index' }
     { heading: 'Profile', route: 'dashboard.profile.personal', routeActive: 'dashboard.profile' }
-    # { heading: 'Messages', route: 'dashboard.messages' }
+    { heading: 'Messages', route: 'dashboard.messages' }
+    { heading: 'My Shows', route: 'dashboard.shows' }
   ]
 
   init: ->
