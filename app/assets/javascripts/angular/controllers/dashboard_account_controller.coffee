@@ -23,3 +23,19 @@ class DashboardAccountController extends @NGController
       .then (user)=>
         @scope.user = user
 
+  changePassword: =>
+    @userSave 'Password was changed successfully.'
+
+  changeEmail: =>
+    @userSave 'Email was changed successfully.'
+
+  userSave: (notice)=>
+    if @scope.user
+      @scope.user.save()
+        .then (user)=>
+          @scope.user = user
+          @Flash.showNotice @scope, notice
+        , (error)->
+          console.log error
+          # @Flash.showError @scope, 'User was saved successfully.'
+
