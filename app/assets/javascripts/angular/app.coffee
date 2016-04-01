@@ -41,14 +41,11 @@
       url: '/'
       templateUrl: 'root.html'
       controller: 'RootController'
-    .state 'shows',
-      url: '/shows'
-      templateUrl: 'shows/index.html'
-    .state 'shows.payment',
-      url: '/shows/:id/payment'
-      templateUrl: 'shows/payment.html'
-      params:
-        show: null
+
+    .state 'shows', { abstract: true, url: '/shows', templateUrl: 'shows/index.html' }
+    .state 'shows.search', { url: '/search', templateUrl: 'shows/search.html' }
+    .state 'shows.payment', { url: '/:id/payment', templateUrl: 'shows/payment.html', params: { show: null } }
+    .state 'shows.edit', { url: '/edit', templateUrl: 'shows/edit.html', params: { id: null } }
 
     .state 'dashboard', { abstract: true, url: '/dashboard', templateUrl: 'dashboard/tabs.html' }
       .state 'dashboard.index', { url: '/dashboard', templateUrl: 'dashboard/index.html' }

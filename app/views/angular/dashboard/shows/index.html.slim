@@ -2,7 +2,7 @@
   br
   .row
     .col-md-3
-      a.btn.btn-success[href=(new_show_path)]= "Add New Show"
+      a.btn.btn-success[ui-sref="shows.edit"]= "Add New Show"
 
     .col-md-9
       / - @user.shows.each do |show|
@@ -19,7 +19,7 @@
             .price
               | {{ show.price | currency:$ }}
             .actions.pull-right
-              a[ng-href="/shows/{{show.id}}/edit" title="Edit"]
+              a[ui-sref="shows.edit({ id: show.id })" title="Edit"]
                 i.glyphicon.glyphicon-pencil
               '
               a[href="" title="Delete" ng-click="removeShow(show)"]

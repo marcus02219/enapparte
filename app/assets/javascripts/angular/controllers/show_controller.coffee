@@ -11,6 +11,7 @@ class ShowController extends @NGController
     '$filter',
     'ShowArt',
     'ShowSearch'
+    '$stateParams'
   ]
 
   init: ->
@@ -43,11 +44,11 @@ class ShowController extends @NGController
     @scope.$watch 'show.endsAt', (newValue, oldValue)=>
       @scope.show.startsAt = newValue  if @scope.show.startsAt > newValue
 
-  load: (id)=>
-    if id
+  load: ()=>
+    if @stateParams.id
       @tabsClickable = true
       @Show
-        .get id
+        .get @stateParams.id
         .then (show)=>
           @scope.show = show
 
@@ -93,7 +94,7 @@ class ShowController extends @NGController
     #   .then (picture)->
     #     show.coverPicture = picture
 
-  removeShow: (show)->
+  removeShow: (show)=>
     if confirm("Are you sure you want to remove this meal?")
       show
         .remove()
@@ -133,7 +134,7 @@ class ShowController extends @NGController
       .then ()=>
         @scope.show.pending = false
         # redirect to
-        window.location = '/dashboard/shows'
+        window.history.back()
 
   tabClick: (step)->
     if @scope.tabsClickable
