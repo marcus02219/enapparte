@@ -63,7 +63,7 @@ angular
         scope.required = attrs.required != undefined
 
         scope.$watch 'model', (newValue, oldValue)->
-          unless oldValue
+          if newValue && !scope.day
             scope.day = moment(newValue).date()
             scope.month = moment(newValue).month() + 1
             scope.year = moment(newValue).year()
@@ -112,7 +112,7 @@ angular
       scope.required = attrs.required != undefined
 
       scope.$watch 'model', (newValue, oldValue)->
-        unless oldValue
+        if newValue && !scope.selectedOption
           for option in scope.options
             if option.value == newValue
               scope.selectedOption = option

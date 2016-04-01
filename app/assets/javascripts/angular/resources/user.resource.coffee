@@ -9,6 +9,8 @@ angular
         this.resource('picture', 'Picture')
         this.nestedAttribute('addresses')
         this.resource('addresses', 'Address')
+        this.nestedAttribute('reviews')
+        this.resource('reviews', 'Review')
 
     resource
   ]

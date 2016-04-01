@@ -1,0 +1,27 @@
+#sent_reviews
+  br
+  .row[ng-repeat="review in user.sentReviews"]
+    .review
+      .photo.pull-left.col-md-2
+        img[ng-src="{{ review.userImageUrl }}"]
+      .col-md-10
+        .row
+          .col-md-5
+            span.name
+              | {{ review.bookingUserFullName }}
+            |,
+            '
+            span.date
+              | {{ review.createdAt | date }}
+          .col-md-4
+            .rating[ng-if="review.bookingUserRating"]
+              i.glyphicon.glyphicon-star[ng-repeat="k in range(Math.round(review.bookingUserRating)) track by $index"]
+              i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - Math.round(review.bookingUserRating)) track by $index"]
+        .row
+          .col-md-12
+            blockquote
+              p
+                | {{ review.review }}
+
+      .clearfix
+    hr

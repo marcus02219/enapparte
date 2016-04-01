@@ -10,13 +10,14 @@ class ProfileController extends @NGController
   ]
 
   tabs2: [
-    { heading: 'Personal', route: 'dashboard.profile.personal', active: true }
-    { heading: 'Reviews', route: 'dashboard.profile.reviews', active: false }
+    { heading: 'Personal', route: 'dashboard.profile.personal' }
+    { heading: 'Reviews', route: 'dashboard.profile.reviews.received', routeActive: 'dashboard.profile.reviews' }
   ]
 
-  go: (route)=>
-    console.log route
-    @state.go route
+  tabsReviews: [
+    { heading: 'Received', route: 'dashboard.profile.reviews.received' }
+    { heading: 'Sent', route: 'dashboard.profile.reviews.sent' }
+  ]
 
   user: {}
   map: null
