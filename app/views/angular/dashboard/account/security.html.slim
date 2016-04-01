@@ -1,0 +1,33 @@
+#security
+  / = simple_form_for @user do |f|
+  form.form-horizontal[name="formChangePassword"]
+    fieldset
+      legend Change Password
+      input-password[label="Password" model="user.password" required confirmation="1"]
+    .row
+      .col-md-9.col-md-offset-3
+        button.btn.btn-primary[ng-click="formChangePassword.$valid && changePassword()"]
+          | Change
+
+  br
+  br
+  br
+  br
+  br
+
+  form.form-horizontal[name="formChangeEmail"]
+    fieldset
+      legend Change Email
+      input-email[label="Email" model="user.email" required]
+    .row
+      .col-md-9.col-md-offset-3
+        button.btn.btn-primary[ng-click="formChangePassword.$valid && changeEmail()"]
+          | Change
+  / = simple_form_for @user do |f|
+  /   fieldset
+  /     legend Change Email
+  /     = f.input :email
+  /     br
+  /     br
+  /   .form-actions.col-md-9.col-md-offset-3
+  /     = f.button :submit, 'Change Email'

@@ -69,5 +69,10 @@
       .state 'dashboard.reservations.current', { url: '/current', templateUrl: 'dashboard/reservations/current.html' }
       .state 'dashboard.reservations.history', { url: '/history', templateUrl: 'dashboard/reservations/history.html' }
       .state 'dashboard.reservations.cancelled', { url: '/cancelled', templateUrl: 'dashboard/reservations/cancelled.html' }
+
+      .state 'dashboard.account', { abstract: true, url: '/account', templateUrl: 'dashboard/account/index.html' }
+      .state 'dashboard.account.payment', { url: '/payment', templateUrl: 'dashboard/account/payment.html' }
+      .state 'dashboard.account.information', { url: '/information', templateUrl: 'dashboard/account/information.html' }
+      .state 'dashboard.account.security', { url: '/security', templateUrl: 'dashboard/account/security.html' }
 ]
 
