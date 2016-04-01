@@ -23,7 +23,11 @@ class Api::V1::BookingsController < Api::BaseController
   end
 
   def index
-    @bookings = current_user.show_bookings
+    if params[:reservation]
+      @bookings = current_user.bookings
+    else
+      @bookings = current_user.show_bookings
+    end
     respond_with :api, :v1, @bookings
   end
 

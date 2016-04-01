@@ -13,6 +13,7 @@ class DashboardController extends @NGController
     { heading: 'Messages', route: 'dashboard.messages' }
     { heading: 'My Shows', route: 'dashboard.shows' }
     { heading: 'My Performances', route: 'dashboard.performances.current', routeActive: 'dashboard.performances' }
+    { heading: 'My Reservations', route: 'dashboard.reservations.current', routeActive: 'dashboard.reservations' }
   ]
 
   init: ->

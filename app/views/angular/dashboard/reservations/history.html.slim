@@ -1,0 +1,4 @@
+#history
+  p[ng-if="(bookings | filter:filterOldBookings).length == 0"]
+    | You have no old bookings
+  performance[ng-repeat="booking in bookings | filter:filterOldBookings" booking="booking"]

@@ -48,7 +48,7 @@
     .state 'shows.edit', { url: '/edit', templateUrl: 'shows/edit.html', params: { id: null } }
 
     .state 'dashboard', { abstract: true, url: '/dashboard', templateUrl: 'dashboard/tabs.html' }
-      .state 'dashboard.index', { url: '/dashboard', templateUrl: 'dashboard/index.html' }
+      .state 'dashboard.index', { url: '/index', templateUrl: 'dashboard/index.html' }
 
       .state 'dashboard.profile', { abstract: true, url: '/profile', templateUrl: 'dashboard/profile/tabs.html' }
       .state 'dashboard.profile.personal', { url: '/personal', templateUrl: 'dashboard/profile/personal.html' }
@@ -64,5 +64,10 @@
       .state 'dashboard.performances.current', { url: '/current', templateUrl: 'dashboard/performances/current.html' }
       .state 'dashboard.performances.history', { url: '/history', templateUrl: 'dashboard/performances/history.html' }
       .state 'dashboard.performances.cancelled', { url: '/cancelled', templateUrl: 'dashboard/performances/cancelled.html' }
+
+      .state 'dashboard.reservations', { abstract: true, url: '/reservations', templateUrl: 'dashboard/reservations/index.html' }
+      .state 'dashboard.reservations.current', { url: '/current', templateUrl: 'dashboard/reservations/current.html' }
+      .state 'dashboard.reservations.history', { url: '/history', templateUrl: 'dashboard/reservations/history.html' }
+      .state 'dashboard.reservations.cancelled', { url: '/cancelled', templateUrl: 'dashboard/reservations/cancelled.html' }
 ]
 

@@ -1,0 +1,4 @@
+#current
+  p[ng-if="(bookings | filter:filterCurrentBookings).length == 0"]
+    | You have no current bookings
+  performance[ng-repeat="booking in bookings | filter:filterCurrentBookings" booking="booking"]

@@ -1,0 +1,4 @@
+#cancelled
+  p[ng-if="(bookings | filter:filterCancelBookings).length == 0"]
+    | You have no cancelled bookings
+  performance[ng-repeat="booking in bookings | filter:filterCancelBookings" booking="booking"]
