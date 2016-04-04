@@ -12,12 +12,12 @@
     "angular-notify": "latest",
     "angular-utils-pagination": "latest",
     "underscore": "latest",
-    "smalot-bootstrap-datetimepicker": "latest",
     "angular-devise": "latest",
     "ng-focus-if": "latest",
     "angular-ui-router": "latest",
     "intl-tel-input": "latest",
     "angular-ui-router-tabs": "latest",
+    "angular-bootstrap-datetimepicker": "git://github.com/dalelotts/angular-bootstrap-datetimepicker",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }

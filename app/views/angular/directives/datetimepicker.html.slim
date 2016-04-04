@@ -1,0 +1,19 @@
+.datetimepicker.table-responsive
+  table.table.table-condensed class=("{{ data.currentView }}-view")
+    thead
+      tr
+        th.left data-ng-click="changeView(data.currentView, data.leftDate, $event)" data-ng-show="data.leftDate.selectable"
+          i.glyphicon.glyphicon-arrow-left
+            span.sr-only  { screenReader.previous }
+        th.switch[colspan="5" data-ng-click="changeView(data.previousView, data.previousViewDate, $event)" data-ng-show="data.previousViewDate.selectable"] {{ data.previousViewDate.display }}
+        th.right data-ng-click="changeView(data.currentView, data.rightDate, $event)" data-ng-show="data.rightDate.selectable"
+          i.glyphicon.glyphicon-arrow-right
+            span.sr-only  { screenReader.next }
+      tr
+        th.dow[data-ng-repeat="day in data.dayNames"] {{ day }}
+    tbody
+      tr[data-ng-if="data.currentView !== 'day'"]
+        td[colspan="7"]
+          span[class=("{{ data.currentView }}") data-ng-class=("{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}") data-ng-click="changeView(data.nextView, dateObject, $event)" data-ng-repeat=("dateObject in data.dates")] {{ dateObject.display }}
+      tr data-ng-if=("data.currentView === 'day'") data-ng-repeat=("week in data.weeks")
+        td.day[data-ng-class=("{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}") data-ng-click="changeView(data.nextView, dateObject, $event)" data-ng-repeat=("dateObject in week.dates")] {{ dateObject.display }}

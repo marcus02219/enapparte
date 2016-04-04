@@ -10,9 +10,10 @@ class ShowPaymentController extends @NGController
     '$stateParams'
   ]
 
+  show: {}
+
   init: ()=>
     id = @stateParams.id
-    @scope.show = {}
     if @stateParams.show
       @scope.show = @stateParams.show
     else

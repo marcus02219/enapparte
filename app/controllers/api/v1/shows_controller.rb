@@ -7,7 +7,7 @@ class Api::V1::ShowsController < Api::BaseController
   end
 
   def show
-    @show = current_user.shows.find(params[:id])
+    @show = Show.find(params[:id])
     respond_with :api, :v1, @show
   end
 

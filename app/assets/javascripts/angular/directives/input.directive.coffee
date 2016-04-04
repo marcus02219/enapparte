@@ -219,6 +219,8 @@ angular
       model: '='
       startDate: '@'
       endDate: '@'
+      timeFrom: '@'
+      timeTo: '@'
     replace: true
     link: (scope, element, attrs, form)->
       scope.form = form
@@ -235,6 +237,12 @@ angular
 
       scope.$watch 'endDate', (newValue)->
         element.find('input').datetimepicker 'setEndDate', moment(newValue).toDate()
+
+      scope.$watch 'timeFrom', (newValue)->
+        timeTo = scope.timeTo || '23:30'
+        disabledHours = []
+        disabledMinutes = []
+        # for h in [0..23]
 
       element.find('input').datetimepicker 'update', scope.model
         .on 'changeDate', (e)->

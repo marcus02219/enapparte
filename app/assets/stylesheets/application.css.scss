@@ -10,17 +10,17 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap-fileinput/css/fileinput.min
- *= require seiyria-bootstrap-slider/dist/css/bootstrap-slider.min
- *= require angular-notify/dist/angular-notify.min
- *= require 1st_load_framework
- *= require custom
- *= require dashboard
- *= require home
- *= require show
- *= require smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min
- *= require intl-tel-input/build/css/intlTelInput
- *= require_self
+*= require bootstrap-fileinput/css/fileinput.min
+*= require seiyria-bootstrap-slider/dist/css/bootstrap-slider.min
+*= require angular-notify/dist/angular-notify.min
+*= require 1st_load_framework
+*= require custom
+*= require dashboard
+*= require home
+*= require show
+*= require intl-tel-input/build/css/intlTelInput
+*= require angular-bootstrap-datetimepicker/src/css/datetimepicker
+*= require_self
  */
 
 .main-content {
