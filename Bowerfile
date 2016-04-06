@@ -21,7 +21,6 @@ asset 'angular-ui-router'
 asset 'intl-tel-input'
 asset 'angular-ui-router-tabs'
 asset 'angular-bootstrap-datetimepicker', github: 'dalelotts/angular-bootstrap-datetimepicker'
-asset 'ng-animate'
 asset 'angular-ui-router-anim-in-out'
 
 asset 'angular-mocks'

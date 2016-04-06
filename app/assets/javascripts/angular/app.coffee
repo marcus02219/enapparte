@@ -12,6 +12,8 @@
     'ui.router'
     'ui.router.tabs'
     'ui.bootstrap.datetimepicker'
+    'ngAnimate'
+    'anim-in-out'
   ]
 
 @App.config ['AuthProvider', (AuthProvider)->

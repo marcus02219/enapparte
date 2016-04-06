@@ -13,9 +13,8 @@ html[ng-app="enapparte"]
     / = content_for?(:messages) ? yield(:messages) : render('layouts/messages')
     / = render partial: 'layouts/messages', locals: { flash_class: 'floating' }
     .flash-messages[ng-if="!rootPath"]
-    .ui-view-container
-      .main-content[ui-view]
-        / = yield
+    .main-content.anim-in-out.anim-fade[ui-view=""]
+      / = yield
     == render 'layouts/footer'
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     - cache do
