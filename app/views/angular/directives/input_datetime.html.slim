@@ -4,7 +4,15 @@
     '
     | {{ label }}
   .col-sm-4
-    input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="text" data-date-format="{{ dateFormat }}"]
+    / input.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="text" data-date-format="{{ dateFormat }}"]
+    .dropdown
+      a.dropdown-toggle[id="{{elementId}}" data-target="" data-toggle="dropdown" href="" role="button"]
+        .input-group
+          input.form-control[data-ng-model="model" type="text"]
+          span.input-group-addon
+            i.glyphicon.glyphicon-calendar
+      ul.dropdown-menu aria-labelledby="dLabel" role="menu"
+        datetimepicker[data-datetimepicker-config="{ dropdownSelector: '' }" data-ng-model="model"]
     .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
       span.help-block[ng-show="form[elementId].$error.required"]
         | Please, select date and time

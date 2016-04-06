@@ -228,15 +228,15 @@ angular
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
 
-      element.find('input').datetimepicker
-        format: attrs.dateFormat
-        autoclose: true
+      # element.find('input').datetimepicker
+      #   format: attrs.dateFormat
+      #   autoclose: true
 
-      scope.$watch 'startDate', (newValue)->
-        element.find('input').datetimepicker 'setStartDate', moment(newValue).toDate()
+      # scope.$watch 'startDate', (newValue)->
+      #   element.find('input').datetimepicker 'setStartDate', moment(newValue).toDate()
 
-      scope.$watch 'endDate', (newValue)->
-        element.find('input').datetimepicker 'setEndDate', moment(newValue).toDate()
+      # scope.$watch 'endDate', (newValue)->
+      #   element.find('input').datetimepicker 'setEndDate', moment(newValue).toDate()
 
       scope.$watch 'timeFrom', (newValue)->
         timeTo = scope.timeTo || '23:30'
@@ -244,10 +244,10 @@ angular
         disabledMinutes = []
         # for h in [0..23]
 
-      element.find('input').datetimepicker 'update', scope.model
-        .on 'changeDate', (e)->
-          scope.$apply ->
-            scope.model = e.date
+      # element.find('input').datetimepicker 'update', scope.model
+      #   .on 'changeDate', (e)->
+      #     scope.$apply ->
+      #       scope.model = e.date
 
   .directive 'inputEmail', ()->
     require: '^form'

@@ -441,11 +441,7 @@
       modelType: 'Date',
       parseFormat: 'YYYY-MM-DDTHH:mm:ss.SSSZZ',
       renderOn: null,
-      startView: 'day',
-      timeBegin: '00:00',
-      timeEnd: '23:59',
-      dateBegin: -Infinity,
-      dateEnd: Infinity
+      startView: 'day'
     };
 
     var defaultLocalization = {

@@ -21,6 +21,10 @@
   $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ]
 
+# @App.config ['dateTimePickerConfig', (dateTimePickerConfig)->
+#   # dateTimePickerConfig.defaults
+# ]
+
 @App.run ['$rootScope', 'Auth', ($rootScope, Auth)->
   Auth.currentUser().then (user)->
     $rootScope.currentUser = user
