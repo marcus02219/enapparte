@@ -31,55 +31,51 @@ angular
       scope.hint = attrs.hint
 
   .directive 'inputText', ()->
-    {
-      require: '^form'
-      strict: 'E'
-      templateUrl: 'directives/input_text.html'
-      scope: {
-        model: '='
-      }
-      replace: true
-      link: (scope, element, attrs, form)->
-        scope.form = form
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.required = attrs.required != undefined
+    require: '^form'
+    strict: 'E'
+    templateUrl: 'directives/input_text.html'
+    scope: {
+      model: '='
     }
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.required = attrs.required != undefined
 
   .directive 'inputDate', ()->
-    {
-      strict: 'E'
-      templateUrl: 'directives/input_date.html'
-      scope: {
-        model: '='
-      }
-      replace: true
-      link: (scope, element, attrs)->
-        scope.label = attrs.label
-        scope.elementId = 'input_' + scope.$id
-        scope.elementDayId = scope.elementId + '-day'
-        scope.elementMonthId = scope.elementId + '-month'
-        scope.elementYearId = scope.elementId + '-year'
-        scope.required = attrs.required != undefined
-
-        scope.$watch 'model', (newValue, oldValue)->
-          if newValue && !scope.day
-            scope.day = moment(newValue).date()
-            scope.month = moment(newValue).month() + 1
-            scope.year = moment(newValue).year()
-
-        scope.$watchGroup ['day', 'month', 'year'], ()->
-          if scope.model
-            scope.model = moment([scope.year, scope.month - 1, scope.day + 1]).toDate()
-
-        scope.days = [1..31]
-        scope.monthes = [1..12]
-        scope.monthNames = []
-        for month in scope.monthes
-          scope.monthNames.push moment().month(month-1).format("MMMM")
-        currentYear = new Date().getFullYear()
-        scope.years = [currentYear - 70..currentYear - 5].reverse()
+    strict: 'E'
+    templateUrl: 'directives/input_date.html'
+    scope: {
+      model: '='
     }
+    replace: true
+    link: (scope, element, attrs)->
+      scope.label = attrs.label
+      scope.elementId = 'input_' + scope.$id
+      scope.elementDayId = scope.elementId + '-day'
+      scope.elementMonthId = scope.elementId + '-month'
+      scope.elementYearId = scope.elementId + '-year'
+      scope.required = attrs.required != undefined
+
+      scope.$watch 'model', (newValue, oldValue)->
+        if newValue && !scope.day
+          scope.day = moment(newValue).date()
+          scope.month = moment(newValue).month() + 1
+          scope.year = moment(newValue).year()
+
+      scope.$watchGroup ['day', 'month', 'year'], ()->
+        if scope.model
+          scope.model = moment([scope.year, scope.month - 1, scope.day + 1]).toDate()
+
+      scope.days = [1..31]
+      scope.monthes = [1..12]
+      scope.monthNames = []
+      for month in scope.monthes
+        scope.monthNames.push moment().month(month-1).format("MMMM")
+      currentYear = new Date().getFullYear()
+      scope.years = [currentYear - 70..currentYear - 5].reverse()
 
   .directive 'inputInteger', ()->
     require: '^form'
@@ -221,12 +217,19 @@ angular
       endDate: '@'
       timeFrom: '@'
       timeTo: '@'
+      minuteStep: '@'
     replace: true
     link: (scope, element, attrs, form)->
       scope.form = form
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
+      scope.linkId = 'link_' + scope.$id
       scope.required = attrs.required != undefined
+
+      console.log element.find('datetimepicker').size()
+      element.find('datetimepicker').prop 'datetimepickerConfig',
+        dropdownSelector: '#' + scope.linkId
+        minuteStep: 30
 
       # element.find('input').datetimepicker
       #   format: attrs.dateFormat
@@ -238,11 +241,20 @@ angular
       # scope.$watch 'endDate', (newValue)->
       #   element.find('input').datetimepicker 'setEndDate', moment(newValue).toDate()
 
-      scope.$watch 'timeFrom', (newValue)->
-        timeTo = scope.timeTo || '23:30'
-        disabledHours = []
-        disabledMinutes = []
-        # for h in [0..23]
+      scope.beforeRender = ($view, $dates, $leftDate, $upDate, $rightDate)->
+        if $view == 'day'
+          for date in $dates
+            date.selectable = (scope.startDate == undefined || moment(date.utcDateValue) >= moment(scope.startDate)) && (scope.endDate == undefined || moment(date.utcDateValue) <= moment(scope.endDate))
+        timeFrom = String('00000' + scope.timeFrom).slice(-5)
+        timeTo = String('00000' + scope.timeTo).slice(-5)
+        if $view == 'hour' || $view == 'minute'
+          for hour in $dates
+            time = moment(hour.utcDateValue).format('HH:mm')
+            hour.selectable = not ((scope.timeFrom == undefined || time > timeFrom) && (scope.timeTo == undefined || time < timeTo))
+
+      scope.onTimeSet = (newDate, oldDate)->
+        $('#' + scope.linkId).dropdown('toggle')
+        return
 
       # element.find('input').datetimepicker 'update', scope.model
       #   .on 'changeDate', (e)->

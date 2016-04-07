@@ -63,7 +63,7 @@
             fieldset
               legend Submit a Booking
 
-              input-datetime[label="Choose Date and Time" model="booking.date" time-from="{{ show.startsAt }}" time-to="{{ show.endsAt }}" start-date="{{ booking.startDate }}" minuteStep="30" end-date="{{ show.endsAt }}" date-format="d M, yyyy hh:ii"]
+              input-datetime[label="Choose Date and Time" model="booking.date" time-from="{{ show.startsAt }}" time-to="{{ show.endsAt }}" start-date="{{ booking.startDate }}" minute-step="30" date-format="d M, yyyy hh:ii"]
               input-integer[label="Number of guests" model="booking.spectators" min="1" max="show.maxSpectators"]
 
             .row
