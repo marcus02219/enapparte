@@ -5,15 +5,26 @@ class ShowPaymentController extends @NGController
     '$scope'
     '$rootScope'
     'Show'
+    'User'
     'Flash'
     '$state'
     '$stateParams'
   ]
 
   show: {}
+  booking: {
+    date: null
+    spectators: null
+  }
 
   init: ()=>
     id = @stateParams.id
+    @scope.booking.date = moment.unix(@stateParams.date)
+    @scope.booking.spectators = @stateParams.spectators
+    @User
+      .get(1)
+      .then (user)=>
+        @scope.user = user
     if @stateParams.show
       @scope.show = @stateParams.show
     else

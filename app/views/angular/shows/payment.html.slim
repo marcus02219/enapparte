@@ -4,5 +4,37 @@
       img[ng-src="{{ show.coverPicture.src }}"]
       h3
         | {{ show.title }}
-      | {{ show.startsAt }}
+      p
+        | {{ booking.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}
+      table.table
+        tr
+          td.text-right
+            | Spectators
+          td.text-right
+            | {{ booking.spectators }}
+        tr
+          td.text-right
+            | Price
+          td.text-right
+            | {{ show.price | currency }}
+        tr.active
+          td.text-right : strong
+            | Total
+          td.text-right : strong
+            | {{ show.price * 1.1 | currency }}
+
+      hr
+      p
+        a[href="#"]
+          | Cancellation policy
+      p
+        | N’hésitez pas à nous contacter si vous avez des questions: +334234234
+
+    .col-md-5
+      form.form-horizontal[name="paymentForm"]
+        fieldset.form_addresses
+          legend= "A quelle adresse souhaitez-vous commander la performance?"
+          input-select-address[label="Select address" model="user.address" addresses="user.addresses" required]
+
+
 

@@ -52,7 +52,7 @@
     .state 'shows', { abstract: true, url: '/shows', templateUrl: 'shows/index.html' }
     .state 'shows.search', { url: '/search', templateUrl: 'shows/search.html' }
     .state 'shows.detail', { url: '/:id/detail', templateUrl: 'shows/detail.html' }
-    .state 'shows.payment', { url: '/:id/payment', templateUrl: 'shows/payment.html', params: { show: null } }
+    .state 'shows.payment', { url: '/:id/payment?date&spectators', templateUrl: 'shows/payment.html', params: { show: null } }
     .state 'shows.edit', { url: '/edit', templateUrl: 'shows/edit.html', params: { id: null } }
 
     .state 'dashboard', { abstract: true, url: '/dashboard', templateUrl: 'dashboard/tabs.html' }

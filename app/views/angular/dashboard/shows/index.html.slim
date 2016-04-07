@@ -17,7 +17,7 @@
             h3
               | {{ show.title }}
             .price
-              | {{ show.price | currency:$ }}
+              | {{ show.price | currency }}
             .actions.pull-right
               a[ui-sref="shows.edit({ id: show.id })" title="Edit"]
                 i.glyphicon.glyphicon-pencil

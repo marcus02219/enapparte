@@ -53,6 +53,8 @@ class ShowDetailController extends @NGController
   payment: ()->
     @state.go 'shows.payment',
       id: @scope.show.id
+      date: moment(@scope.booking.date).unix()
+      spectators: @scope.booking.spectators
       show: @scope.show
 
   submitBooking: ()=>
