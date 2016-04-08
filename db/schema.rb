@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321105545) do
+ActiveRecord::Schema.define(version: 20160408011449) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20160321105545) do
   end
 
   add_index "languages", ["user_id"], name: "index_languages_on_user_id"
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "booking_id"
+    t.string  "stripe_token"
+    t.string  "last4"
+  end
+
+  add_index "payment_methods", ["booking_id"], name: "index_payment_methods_on_booking_id"
+  add_index "payment_methods", ["user_id"], name: "index_payment_methods_on_user_id"
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"

@@ -32,9 +32,12 @@
 
     .col-md-5
       form.form-horizontal[name="paymentForm"]
-        fieldset.form_addresses
+        fieldset
           legend= "A quelle adresse souhaitez-vous commander la performance?"
           input-select-address[label="Select address" model="user.address" addresses="user.addresses" required]
-
+        .margin-bottom-40
+        fieldset
+          legend= "Payment"
+          input-select-payment[label="Select payment" model="user.payment" payment-methods="user.paymentMethods" required]
 
 

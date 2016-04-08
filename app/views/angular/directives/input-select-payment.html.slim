@@ -1,0 +1,16 @@
+.address-select
+  .form-group.select[ng-class="{ required: required, 'has-error': (form.$submitted || form[elementId].$touched) && form[elementId].$invalid }"]
+    label.text-right.col-sm-3.control-label for="{{elementId}}"
+      abbr[title="required" ng-if="required"] *
+      '
+      | {{ label }}
+    .col-sm-9
+      select.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="selectedAddress" ng-options="address.fullAddress for address in addresses" ng-transclude]
+      .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
+        span.help-block[ng-show="form[elementId].$error.required"]
+          | Please, select a variant
+  .row
+    .col-md-9.col-md-offset-3
+      input#google-address.string.optional.form-control[ng-model="selectedAddress.fullAddress"]
+  br
+  #google-maps.col-sm-12[style="height: 300px"]

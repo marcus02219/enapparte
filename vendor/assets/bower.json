@@ -19,6 +19,7 @@
     "angular-ui-router-tabs": "latest",
     "angular-bootstrap-datetimepicker": "git://github.com/dalelotts/angular-bootstrap-datetimepicker",
     "angular-ui-router-anim-in-out": "latest",
+    "stripe-angular": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest"
   }
