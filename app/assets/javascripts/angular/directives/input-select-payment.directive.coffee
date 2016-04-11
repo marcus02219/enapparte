@@ -39,15 +39,13 @@ angular
             scope.selectedPaymentMethod.stripeToken = response.id
             scope.selectedPaymentMethod.last4 = response.card.last4
             scope.selectedPaymentMethod.new = false
+            scope.model = scope.selectedPaymentMethod
 
       scope.$watch 'selectedPaymentMethod', (newValue)=>
         if newValue
           if newValue.new
             $("#google-address").focus()
             $("#google-address")[0].select()
-          else
-            scope.model = newValue
-            console.log scope.model
 
       scope.$watch 'paymentMethods', (paymentMethods)=>
         if paymentMethods instanceof Array

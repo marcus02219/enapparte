@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   end
 
   def reject_payment_methods attrs
-    attrs['stripe_token'] && attrs['last4']
+    attrs['stripe_token'].blank? || attrs['last4'].blank?
   end
 
   def deactivate_shows

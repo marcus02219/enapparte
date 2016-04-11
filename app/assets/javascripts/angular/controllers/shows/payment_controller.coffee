@@ -25,6 +25,7 @@ class ShowPaymentController extends @NGController
       .get(1)
       .then (user)=>
         @scope.user = user
+        console.log user.paymentMethods
     if @stateParams.show
       @scope.show = @stateParams.show
     else
@@ -43,8 +44,13 @@ class ShowPaymentController extends @NGController
 
   booking: ()=>
     @scope.$watchGroup [ 'user.address', 'user.payment' ], (newValues)=>
-      console.log newValues
       if newValues[0] && newValues[1]
-        console.log @scope.user.address
-        console.log @scope.user.payment
+        if @scope.user
+          @scope.user.save()
+            .then (user)=>
+              @scope.user = user
+              @Flash.showNotice @scope, 'Booking saved successfully!'
+            , (error)->
+              console.log error
+
 
