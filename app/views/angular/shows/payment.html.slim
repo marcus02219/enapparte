@@ -1,6 +1,6 @@
 .container[ng-controller="ShowPaymentController"]
   .row
-    .col-md-3.col-md-offset-2
+    .col-md-3.col-md-offset-1
       img[ng-src="{{ show.coverPicture.src }}"]
       h3
         | {{ show.title }}
@@ -30,8 +30,8 @@
       p
         | N’hésitez pas à nous contacter si vous avez des questions: +334234234
 
-    .col-md-5
-      form.form-horizontal[name="paymentForm"]
+    .col-md-7
+      form.form-horizontal[name="paymentForm" novalidate]
         fieldset
           legend= "A quelle adresse souhaitez-vous commander la performance?"
           input-select-address[label="Select address" model="user.address" addresses="user.addresses" required]
@@ -39,5 +39,14 @@
         fieldset
           legend= "Payment"
           input-select-payment[label="Select payment" model="user.payment" payment-methods="user.paymentMethods" required]
+
+        hr
+
+        .row
+          .col-md-9.col-md-offset-3
+            button.btn.btn-default[type="submit" ng-click="booking(paymentForm)"]
+              | Reserve
+
+  .margin-bottom-40
 
 

@@ -14,6 +14,8 @@
     'ui.bootstrap.datetimepicker'
     'ngAnimate'
     'anim-in-out'
+    'stripe'
+    'credit-cards'
   ]
 
 @App.config ['AuthProvider', (AuthProvider)->
@@ -26,6 +28,10 @@
 # @App.config ['dateTimePickerConfig', (dateTimePickerConfig)->
 #   # dateTimePickerConfig.defaults
 # ]
+
+@App.config [()->
+  Stripe.setPublishableKey(window.StripePublishableKey)
+]
 
 @App.run ['$rootScope', 'Auth', ($rootScope, Auth)->
   Auth.currentUser().then (user)->

@@ -43,7 +43,10 @@ class User < ActiveRecord::Base
 
   has_many   :addresses
   accepts_nested_attributes_for :addresses, reject_if: :reject_addresses
+
   has_many   :bookings
+  accepts_nested_attributes_for :bookings, reject_if: :reject_bookings
+
   has_many   :shows
   has_many   :arts, through: :shows
   has_many :ratings, through: :shows, source: :ratings
@@ -51,6 +54,7 @@ class User < ActiveRecord::Base
 
   has_many :reviews, through: :show_bookings
   has_many :payment_methods
+  accepts_nested_attributes_for :payment_methods, reject_if: :reject_payment_methods
 
   validates :firstname, :surname, :gender, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
@@ -98,6 +102,10 @@ class User < ActiveRecord::Base
 
   def reject_addresses attrs
     attrs['country'].blank? && attrs['postcode'].blank? && attrs['state'].blank? && attrs['city'].blank? && attrs['street'].blank?
+  end
+
+  def reject_payment_methods attrs
+    attrs['stripe_token'] && attrs['last4']
   end
 
   def deactivate_shows

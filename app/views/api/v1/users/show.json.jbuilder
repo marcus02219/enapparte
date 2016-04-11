@@ -25,3 +25,6 @@ json.sent_reviews @user.sent_reviews do |review|
   json.bookingUserRating review.try(:booking).try(:user).try(:rating)
 end
 
+json.payment_methods @user.payment_methods do |payment_method|
+  json.merge! payment_method.attributes
+end

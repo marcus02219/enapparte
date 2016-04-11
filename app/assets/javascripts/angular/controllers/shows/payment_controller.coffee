@@ -40,3 +40,11 @@ class ShowPaymentController extends @NGController
               picture._destroy = 0
       else
         # @window.location.href = '/'
+
+  booking: ()=>
+    @scope.$watchGroup [ 'user.address', 'user.payment' ], (newValues)=>
+      console.log newValues
+      if newValues[0] && newValues[1]
+        console.log @scope.user.address
+        console.log @scope.user.payment
+
