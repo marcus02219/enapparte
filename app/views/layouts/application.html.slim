@@ -7,7 +7,7 @@ html[ng-app="enapparte"]
     meta[name="description" content=(content_for?(:description) ? yield(:description) : "Enapparte")]
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    script src = "//maps.googleapis.com/maps/api/js?v=3&libraries=places"
+    script src = "https://maps.googleapis.com/maps/api/js?v=3&libraries=places"
   body[class="#{controller_name} #{action_name}" ng-controller="MainController"]
     = render 'layouts/header'
     / = content_for?(:messages) ? yield(:messages) : render('layouts/messages')
@@ -18,5 +18,5 @@ html[ng-app="enapparte"]
     == render 'layouts/footer'
     - cache do
       == angular_templates Rails.root.join 'app/views/angular'
-    == javascript_include_tag '//js.stripe.com/v2/'
+    == javascript_include_tag 'https://js.stripe.com/v2/'
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
