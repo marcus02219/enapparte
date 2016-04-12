@@ -226,7 +226,6 @@ angular
       scope.linkId = 'link_' + scope.$id
       scope.required = attrs.required != undefined
 
-      console.log element.find('datetimepicker').size()
       element.find('datetimepicker').prop 'datetimepickerConfig',
         dropdownSelector: '#' + scope.linkId
         minuteStep: 30

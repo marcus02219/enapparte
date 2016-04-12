@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321105545) do
+ActiveRecord::Schema.define(version: 20160411073755) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -52,9 +52,11 @@ ActiveRecord::Schema.define(version: 20160321105545) do
     t.integer  "address_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "payment_method_id"
   end
 
   add_index "bookings", ["address_id"], name: "index_bookings_on_address_id"
+  add_index "bookings", ["payment_method_id"], name: "index_bookings_on_payment_method_id"
   add_index "bookings", ["show_id"], name: "index_bookings_on_show_id"
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
 
@@ -66,6 +68,16 @@ ActiveRecord::Schema.define(version: 20160321105545) do
   end
 
   add_index "languages", ["user_id"], name: "index_languages_on_user_id"
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "booking_id"
+    t.string  "stripe_token"
+    t.string  "last4"
+  end
+
+  add_index "payment_methods", ["booking_id"], name: "index_payment_methods_on_booking_id"
+  add_index "payment_methods", ["user_id"], name: "index_payment_methods_on_user_id"
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"

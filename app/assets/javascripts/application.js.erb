@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require_self
 //= require moment/min/moment.min
 //= require underscore/underscore-min
 //= require jquery_ujs
@@ -34,8 +35,9 @@
 //= require angular-bootstrap-datetimepicker/src/js/datetimepicker.templates
 //= require angular-animate/angular-animate.min
 //= require angular-ui-router-anim-in-out/anim-in-out
+//= require stripe-angular/stripe-angular
+//= require angular-credit-cards/release/angular-credit-cards
 //= require_tree .
-//= require_self
 //= require intl-tel-input/build/js/intlTelInput.min
 
 
@@ -44,6 +46,8 @@ I18n = {
     'add_new_address': '<%= I18n.t('dashboard.add_new_address') %>'
   }
 }
+
+StripePublishableKey = 'pk_test_BZOxA28fNF4UBPQ0EMYTj5B0';
 
 $(function(){
   if(window.location.hash != "") {

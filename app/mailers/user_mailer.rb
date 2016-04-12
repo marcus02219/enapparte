@@ -9,4 +9,11 @@ class UserMailer < ApplicationMailer
     @booking = booking
     mail to: booking.user.email, subject: default_i18n_subject
   end
+
+  def booking_created booking
+    @booking = booking
+    if booking.user
+      mail to: booking.user.email, subject: default_i18n_subject
+    end
+  end
 end

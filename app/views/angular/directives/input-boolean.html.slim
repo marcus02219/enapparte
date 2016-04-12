@@ -1,6 +1,12 @@
-.form-group.boolean[ng-class=""]
+.form-group[ng-class="{ required: required, 'has-error': (form.$submitted || form[elementId].$touched) && form[elementId].$invalid }"]
   .col-md-9.col-md-offset-3.checkbox
     label
       input[id="{{elementId}}" name="{{elementId}}" ng-required="required" type="checkbox" ng-model="model"]
       '
+      abbr[title="required" ng-if="required"] *
+      '
       | {{ label }}
+
+    .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
+      span.help-block[ng-show="form[elementId].$error.required"]
+        | Please, check it

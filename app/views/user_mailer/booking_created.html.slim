@@ -1,0 +1,20 @@
+dl
+  dt= "Booking date"
+  dd= l @booking.date, format: :long
+dl
+  dt= "Spectators"
+  dd= @booking.spectators
+dl
+  dt= "Booking price"
+  dd= number_to_currency @booking.price
+dl
+  dt= "Title of Show"
+  dd= @booking.show.title
+dl
+  dt= "Name of performer"
+  dd= @booking.show.user.try :full_name
+
+br
+br
+
+= link_to "Voir le statut de votre réservation", root_url + "#/dashboard/reservations/current"

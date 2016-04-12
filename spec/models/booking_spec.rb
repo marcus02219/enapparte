@@ -18,12 +18,14 @@
 #  address_id        :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  payment_method_id :integer
 #
 # Indexes
 #
-#  index_bookings_on_address_id  (address_id)
-#  index_bookings_on_show_id     (show_id)
-#  index_bookings_on_user_id     (user_id)
+#  index_bookings_on_address_id         (address_id)
+#  index_bookings_on_payment_method_id  (payment_method_id)
+#  index_bookings_on_show_id            (show_id)
+#  index_bookings_on_user_id            (user_id)
 #
 
 require 'rails_helper'

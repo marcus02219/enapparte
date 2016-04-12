@@ -14,6 +14,8 @@
     'ui.bootstrap.datetimepicker'
     'ngAnimate'
     'anim-in-out'
+    'stripe'
+    'credit-cards'
   ]
 
 @App.config ['AuthProvider', (AuthProvider)->
@@ -26,6 +28,10 @@
 # @App.config ['dateTimePickerConfig', (dateTimePickerConfig)->
 #   # dateTimePickerConfig.defaults
 # ]
+
+@App.config [()->
+  Stripe.setPublishableKey(window.StripePublishableKey)
+]
 
 @App.run ['$rootScope', 'Auth', ($rootScope, Auth)->
   Auth.currentUser().then (user)->
@@ -53,6 +59,7 @@
     .state 'shows.search', { url: '/search', templateUrl: 'shows/search.html' }
     .state 'shows.detail', { url: '/:id/detail', templateUrl: 'shows/detail.html' }
     .state 'shows.payment', { url: '/:id/payment?date&spectators', templateUrl: 'shows/payment.html', params: { show: null } }
+      .state 'shows.payment_finish', { url: '/payment_finish', templateUrl: 'shows/payment_finish.html' }
     .state 'shows.edit', { url: '/edit', templateUrl: 'shows/edit.html', params: { id: null } }
 
     .state 'dashboard', { abstract: true, url: '/dashboard', templateUrl: 'dashboard/tabs.html' }

@@ -1,0 +1,58 @@
+.address-select
+  .form-group.select[ng-class="{ required: required, 'has-error': (form.$submitted || form[elementId].$touched) && form[elementId].$invalid }"]
+    label.text-right.col-sm-3.control-label for="{{elementId}}"
+      abbr[title="required" ng-if="required"] *
+      '
+      | {{ label }}
+    .col-sm-9
+      select.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="selectedPaymentMethod" ng-options="paymentMethod.last4 for paymentMethod in options" ng-transclude]
+      .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
+        span.help-block[ng-show="form[elementId].$error.required"]
+          | Please, select a payment
+
+  div[ng-if="selectedPaymentMethod.new"]
+    .form-group.string.required[ng-class="{ 'has-error': (form.$submitted || form[cardNumberId].$touched) && form[cardNumberId].$invalid }"]
+      label.text-right.col-sm-3.control-label for="{{cardNumberId}}"
+        abbr[title="required"] *
+        '
+        | Card Number
+      .col-sm-9
+        input.form-control[id="{{cardNumberId}}" name="{{cardNumberId}}" required type="text" ng-model="card.number" cc-number cc-format cc-eager-type]
+        span.help-block
+          | {{ form[cardNumberId].$ccEagerType }}
+        .error-messages[ng-show="form.$submitted || (form[cardNumberId].$touched && !focus)"]
+          span.help-block[ng-show="form[cardNumberId].$invalid"]
+            | The card number is invalid!
+
+    .form-group.string.required[ng-class="{ 'has-error': (form.$submitted || form[cardExpMonthId].$touched) && (form[cardExpYearId].$invalid || form[cardExpMonthId].$invalid) }"]
+      label.text-right.col-sm-3.control-label for="{{cardExpMonthId}}"
+        abbr[title="required"] *
+        '
+        | Expiration
+      .col-sm-2
+        input.form-control[id="{{cardExpMonthId}}" name="{{cardExpMonthId}}" required type="text" ng-model="card.exp_month" cc-exp-month]
+        .text-center
+          small
+            | Month
+        .error-messages[ng-show="form.$submitted || (form[cardExpMonthId].$touched && !focus)"]
+          span.help-block[ng-show="form[cardExpMonthId].$invalid"]
+            | Month is invalid!
+      .col-sm-2
+        input.form-control[id="{{cardExpYearId}}" name="{{cardExpYearId}}" required type="text" ng-model="card.exp_year" cc-exp-year]
+        .text-center
+          small
+            | Year
+        .error-messages[ng-show="form.$submitted || (form[cardExpYearId].$touched && !focus)"]
+          span.help-block[ng-show="form[cardExpYearId].$invalid"]
+            | Year is invalid!
+    .form-group.string.required[ng-class="{ 'has-error': (form.$submitted || form[cardCvcId].$touched) && form[cardCvcId].$invalid }"]
+      label.text-right.col-sm-3.control-label for="{{cardCvcId}}"
+        abbr[title="required"] *
+        '
+        | CVC
+      .col-sm-2
+        input.form-control[id="{{cardCvcId}}" name="{{cardCvcId}}" required type="text" ng-model="card.cvc" cc-cvc cc-type="form[cardNumberId].$ccType"]
+      .error-messages[ng-show="form.$submitted || (form[cardCvcId].$touched && !focus)"]
+        span.help-block[ng-show="form[cardCvcId].$invalid"]
+          | CVC is invalid!
+

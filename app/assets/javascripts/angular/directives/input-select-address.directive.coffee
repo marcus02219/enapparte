@@ -18,14 +18,14 @@ angular
 
       scope.$watch 'selectedAddress', (newValue)=>
         if newValue
+          angular.forEach scope.addresses, (address)=>
+            address.isPrimary = false
+          newValue.isPrimary = true
           if newValue.new
             $("#google-address").focus()
             $("#google-address")[0].select()
           else
             if newValue.fullAddress
-              angular.forEach scope.addresses, (address)=>
-                address.isPrimary = false
-              newValue.isPrimary = true
               scope.model = newValue
               scope.setLocationbyAddress newValue.fullAddress
 
@@ -108,7 +108,7 @@ angular
               placeInfor[addressType] = val
             i++
           # update address infor
-          # var sel_index = $('.dashboard .form_addresses select option:selected').index().toString();
+          # var sel_index = $('.dashboard .form_addresses select option:selected').index().toString()
           scope.$apply =>
             scope.selectedAddress.fullAddress = $(input).val()
             scope.selectedAddress.country = placeInfor['country']

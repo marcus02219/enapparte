@@ -1,0 +1,20 @@
+dl
+  dt= "Booking address"
+  dd= @booking.address.try(:full_address)
+dl
+  dt= "User name"
+  dd= @booking.user.try(:full_name)
+dl
+  dt= "Booking date"
+  dd= l @booking.date, format: :long
+dl
+  dt= "Spectators"
+  dd= @booking.spectators
+dl
+  dt= "Message"
+  dd= @booking.message
+
+br
+br
+
+= link_to "Confirmez la réservation dans les 48 heures", root_url + "#/dashboard/performances/current"

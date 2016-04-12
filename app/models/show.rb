@@ -28,6 +28,9 @@
 #
 
 class Show < ActiveRecord::Base
+
+  COMMISSION = 1.1
+
   belongs_to :art
   belongs_to :user
   belongs_to :cover_picture, class_name: 'Picture'

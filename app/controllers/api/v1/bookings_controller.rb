@@ -1,14 +1,13 @@
 class Api::V1::BookingsController < Api::BaseController
 
-  # def create
-  #   @booking = current_user.bookings.create(booking_params)
-  #   respond_with :api, :v1, @booking
-  # end
-
-  # def booking
-  #   @booking = current_user.bookings.find(params[:id])
-  #   respond_with :api, :v1, @booking
-  # end
+  def create
+    @booking = current_user.bookings.create(booking_params)
+    if @booking.persisted?
+      UserMailer.booking_created(self).deliver_now
+      PerformerMailer.booking_created(self).deliver_now
+    end
+    respond_with :api, :v1, @booking
+  end
 
   # def update
   #   @booking = current_user.bookings.find(params[:id])
@@ -37,10 +36,10 @@ class Api::V1::BookingsController < Api::BaseController
   #   respond_with :api, :v1, @booking
   # end
 
-  # private
+  private
 
-  # def booking_params
-  #   params.require(:booking).permit(:art_id, :max_spectators, :length, :title, :description, :language_id, :price, :cover_picture_id, :starts_at, :ends_at, pictures_attributes: [ :src, :_destroy, :id, :selected ])
-  # end
+  def booking_params
+    params.require(:booking).permit(:date, :spectators, :price, :message, :show_id, :user_id, :address_id, :status)
+  end
 
 end

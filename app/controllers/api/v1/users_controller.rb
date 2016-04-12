@@ -14,7 +14,11 @@ class Api::V1::UsersController < Api::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:gender, :firstname, :surname, :dob, :phone_number, :language_id, :bio, :activity, :email, :password, :password_confirmation, addresses_attributes: [:id, :country, :state, :postcode, :city, :street, :is_primary, :latitude, :longitude], picture_attributes: [:src])
+    params.require(:user).permit(:gender, :firstname, :surname, :dob, :phone_number, :language_id, :bio, :activity, :email, :password, :password_confirmation,
+                                 addresses_attributes: [:id, :country, :state, :postcode, :city, :street, :is_primary, :latitude, :longitude],
+                                 picture_attributes: [:src],
+                                 payment_methods_attributes: [:id, :user_id, :stripe_token, :last4],
+                                )
   end
 
 end
