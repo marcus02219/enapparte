@@ -58,6 +58,7 @@ class ShowPaymentController extends @NGController
           showId: @scope.show.id
         ).create()
           .then (booking)=>
+            @state.go 'shows.payment_finish'
             @Flash.showNotice @scope, 'Booking saved successfully!'
           , (error)->
             console.log error
