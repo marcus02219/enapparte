@@ -5,7 +5,7 @@
       '
       | {{ label }}
     .col-sm-9
-      select.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="selectedPaymentMethod" ng-options="paymentMethod.last4 for paymentMethod in paymentMethods" ng-transclude]
+      select.form-control[id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="selectedPaymentMethod" ng-options="paymentMethod.last4 for paymentMethod in options" ng-transclude]
       .error-messages[ng-show="form.$submitted || form[elementId].$touched"]
         span.help-block[ng-show="form[elementId].$error.required"]
           | Please, select a payment

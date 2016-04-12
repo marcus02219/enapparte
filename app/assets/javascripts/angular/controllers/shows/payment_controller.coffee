@@ -6,6 +6,7 @@ class ShowPaymentController extends @NGController
     '$rootScope'
     'Show'
     'User'
+    'Booking'
     'Flash'
     '$state'
     '$stateParams'
@@ -15,7 +16,9 @@ class ShowPaymentController extends @NGController
   booking: {
     date: null
     spectators: null
+    message: null
   }
+  card: {}
 
   init: ()=>
     id = @stateParams.id
@@ -25,7 +28,6 @@ class ShowPaymentController extends @NGController
       .get(1)
       .then (user)=>
         @scope.user = user
-        console.log user.paymentMethods
     if @stateParams.show
       @scope.show = @stateParams.show
     else
@@ -42,15 +44,46 @@ class ShowPaymentController extends @NGController
       else
         # @window.location.href = '/'
 
-  booking: ()=>
-    @scope.$watchGroup [ 'user.address', 'user.payment' ], (newValues)=>
-      if newValues[0] && newValues[1]
-        if @scope.user
-          @scope.user.save()
-            .then (user)=>
-              @scope.user = user
-              @Flash.showNotice @scope, 'Booking saved successfully!'
-            , (error)->
-              console.log error
+  bookingCreate: ()=>
+    @scope.user.save()
+      .then (user)=>
+        new @Booking(
+          status: 2
+          date: @scope.booking.date.toDate()
+          spectators: @scope.booking.spectators
+          price: @scope.show.price * @scope.show.commission
+          message: @scope.booking.message
+          addressId: @scope.user.address.id
+          paymentId: @scope.user.payment.id
+          showId: @scope.show.id
+        ).create()
+          .then (booking)=>
+            @Flash.showNotice @scope, 'Booking saved successfully!'
+          , (error)->
+            console.log error
+      , (error)->
+        console.log error
 
+  booking: (form)=>
+    if form.$valid && @scope.user
+      if @scope.user.payment.new
+        # Stripe
+        Stripe.card.createToken {
+          number: @scope.card.number
+          cvc: @scope.card.cvc
+          exp_month: @scope.card.exp_month
+          exp_year: @scope.card.exp_year
+        }, (status, response)=>
+          if response.error
+            Flash.showError @scope, response.error.message
+          else
+            selected = {}
+            selected.stripeToken = response.id
+            selected.last4 = response.card.last4
+            selected.new = false
+            @scope.user.paymentMethods.push selected
+            @scope.user.payment = selected
+            @scope.bookingCreate()
+      else
+        @scope.bookingCreate()
 

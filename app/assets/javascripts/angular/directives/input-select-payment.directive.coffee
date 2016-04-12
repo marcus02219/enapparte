@@ -1,15 +1,17 @@
 angular
   .module 'enapparte'
-  .directive 'inputSelectPayment', ()->
+  .directive 'inputSelectPayment', ['$timeout', ($timeout)->
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input-select-payment.html'
     scope:
       model: '='
       paymentMethods: '='
+      card: '='
     replace: true
     transclude: true
     link: (scope, element, attrs, form)->
+      scope.options = []
       scope.form = form
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
@@ -19,36 +21,17 @@ angular
       scope.cardExpYearId = 'input_card_exp_year_' + scope.$id
       scope.required = false
       scope.selectedPaymentMethod = {}
-      scope.card = {}
-
-      scope.$watch 'form.$submitted', (newValue)->
-        if newValue
-          # create Stripe Token
-          Stripe.card.createToken {
-            number: scope.card.number
-            cvc: scope.card.cvc
-            exp_month: scope.card.exp_month
-            exp_year: scope.card.exp_year
-          }, scope.stripeResponseHandler
-
-      scope.stripeResponseHandler = (status, response)->
-        if response.error
-          Flash.showError scope, response.error.message
-        else
-          scope.$apply ->
-            scope.selectedPaymentMethod.stripeToken = response.id
-            scope.selectedPaymentMethod.last4 = response.card.last4
-            scope.selectedPaymentMethod.new = false
-            scope.model = scope.selectedPaymentMethod
 
       scope.$watch 'selectedPaymentMethod', (newValue)=>
-        if newValue
-          if newValue.new
-            $("#google-address").focus()
-            $("#google-address")[0].select()
+        if newValue && newValue.new
+          $timeout ()->
+            $("#" + scope.cardNumberId).focus()
+          , 200
 
-      scope.$watch 'paymentMethods', (paymentMethods)=>
-        if paymentMethods instanceof Array
-          paymentMethods.push { last4: 'Add new payment', new: true }
-          scope.selectedPaymentMethod = paymentMethods[0]
-
+      scope.$watch 'paymentMethods', (newValue)=>
+        if newValue instanceof Array
+          scope.options = angular.copy newValue
+          scope.options.push { last4: 'Add new payment', new: true }
+          scope.selectedPaymentMethod = scope.options[0]
+          scope.model = scope.options[0]
+  ]

@@ -45,8 +45,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :addresses, reject_if: :reject_addresses
 
   has_many   :bookings
-  accepts_nested_attributes_for :bookings, reject_if: :reject_bookings
-
   has_many   :shows
   has_many   :arts, through: :shows
   has_many :ratings, through: :shows, source: :ratings
@@ -105,7 +103,7 @@ class User < ActiveRecord::Base
   end
 
   def reject_payment_methods attrs
-    attrs['stripe_token'].blank? || attrs['last4'].blank?
+    attrs['stripe_token'].blank? && attrs['last4'].blank?
   end
 
   def deactivate_shows

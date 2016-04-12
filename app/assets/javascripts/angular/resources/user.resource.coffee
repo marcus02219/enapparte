@@ -15,10 +15,7 @@ angular
         this.resource('reviews', 'Review')
 
         this.nestedAttribute('paymentMethods')
-        this.resource('payment_methods', 'PaymentMethod')
-
-        this.nestedAttribute('bookings')
-        this.resource('bookings', 'Booking')
+        this.resource('paymentMethods', 'PaymentMethod')
 
     resource
   ]
