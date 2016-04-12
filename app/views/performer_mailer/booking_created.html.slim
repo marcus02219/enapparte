@@ -3,7 +3,7 @@ dl
   dd= @booking.address.try(:full_address)
 dl
   dt= "User name"
-  dd= @booking.user.full_name
+  dd= @booking.user.try(:full_name)
 dl
   dt= "Booking date"
   dd= l @booking.date, format: :long

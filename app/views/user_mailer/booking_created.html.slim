@@ -12,7 +12,7 @@ dl
   dd= @booking.show.title
 dl
   dt= "Name of performer"
-  dd= @booking.show.user.full_name
+  dd= @booking.show.user.try :full_name
 
 br
 br

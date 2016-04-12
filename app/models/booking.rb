@@ -42,8 +42,6 @@ class Booking < ActiveRecord::Base
 
   alias_method :name, :id
 
-  after_create :send_mail
-
   def change_status status
     if self.update status: status
       case status
@@ -66,12 +64,5 @@ class Booking < ActiveRecord::Base
   def self.check_expired
     Booking.where('status = 2 and date > ?', 48.hours.ago).update_all status: 4
   end
-
-  private
-
-    def send_mail
-      UserMailer.booking_created(self).deliver_now
-      PerformerMailer.booking_created(self).deliver_now
-    end
 end
 
