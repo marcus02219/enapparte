@@ -10,4 +10,9 @@ class PerformerMailer < ApplicationMailer
     mail to: booking.show.user.email, subject: default_i18n_subject
   end
 
+  def booking_created booking
+    @booking = booking
+    mail to: booking.show.user.email, subject: default_i18n_subject
+  end
+
 end

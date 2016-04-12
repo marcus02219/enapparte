@@ -31,7 +31,7 @@
 class Booking < ActiveRecord::Base
   belongs_to :show
   belongs_to :user
-  belongs_to :address
+  belongs_to :address, class_name: 'Address'
   belongs_to :payment_method
   has_one    :review
   has_many   :ratings, through: :review
@@ -41,6 +41,8 @@ class Booking < ActiveRecord::Base
   just_define_datetime_picker :paid_out_on
 
   alias_method :name, :id
+
+  after_create :send_mail
 
   def change_status status
     if self.update status: status
@@ -64,5 +66,12 @@ class Booking < ActiveRecord::Base
   def self.check_expired
     Booking.where('status = 2 and date > ?', 48.hours.ago).update_all status: 4
   end
+
+  private
+
+    def send_mail
+      UserMailer.booking_created(self).deliver_now
+      PerformerMailer.booking_created(self).deliver_now
+    end
 end
 
