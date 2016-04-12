@@ -3,8 +3,8 @@ class Api::V1::BookingsController < Api::BaseController
   def create
     @booking = current_user.bookings.create(booking_params)
     if @booking.persisted?
-      UserMailer.booking_created(self).deliver_now
-      PerformerMailer.booking_created(self).deliver_now
+      UserMailer.booking_created(@booking).deliver_now
+      PerformerMailer.booking_created(@booking).deliver_now
     end
     respond_with :api, :v1, @booking
   end
