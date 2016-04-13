@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411073755) do
+ActiveRecord::Schema.define(version: 20160413002836) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -115,6 +115,17 @@ ActiveRecord::Schema.define(version: 20160411073755) do
   end
 
   add_index "reviews", ["booking_id"], name: "index_reviews_on_booking_id"
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
 
   create_table "shows", force: :cascade do |t|
     t.string   "title"

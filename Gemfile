@@ -114,3 +114,5 @@ gem 'just-datetime-picker'
 gem 'angular_rails_csrf'
 gem 'stripe'
 
+gem 'rails-settings-cached', "~> 0.5.6"
+
