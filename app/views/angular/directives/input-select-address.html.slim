@@ -11,6 +11,6 @@
           | Please, select a variant
   .row
     .col-md-9.col-md-offset-3
-      input#google-address.string.optional.form-control[ng-model="selectedAddress.fullAddress"]
+      input#google-address.string.optional.form-control[ng-model="selectedAddress.fullAddress" ng-blur="setLocationbyAddress(selectedAddress.fullAddress)"]
   br
   #google-maps.col-sm-12[style="height: 300px"]
