@@ -22,6 +22,7 @@
     "angular-credit-cards": "latest",
     "stripe-angular": "latest",
     "angular-mocks": "latest",
-    "bootstrap-fileinput": "latest"
+    "bootstrap-fileinput": "latest",
+    "angular-ui-select": "latest"
   }
 }

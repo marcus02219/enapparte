@@ -16,6 +16,7 @@
     'anim-in-out'
     'stripe'
     'credit-cards'
+    'ui.select'
   ]
 
 @App.config ['AuthProvider', (AuthProvider)->
@@ -25,6 +26,9 @@
   $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ]
 
+@App.config ['uiSelectConfig', (uiSelectConfig) ->
+  uiSelectConfig.theme = 'bootstrap'
+]
 # @App.config ['dateTimePickerConfig', (dateTimePickerConfig)->
 #   # dateTimePickerConfig.defaults
 # ]

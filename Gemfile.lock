@@ -105,6 +105,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carmen (1.0.2)
+      activesupport (>= 3.0.0)
     childprocess (0.5.8)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
@@ -157,7 +159,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     enum_help (0.0.14)
     erubis (2.7.0)
-    eventmachine (1.0.9.1)
+    eventmachine (1.2.0.1)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -198,7 +200,7 @@ GEM
       multi_json (~> 1.1)
       thor (~> 0.19)
       tilt
-    guard-livereload (2.5.1)
+    guard-livereload (2.5.2)
       em-websocket (~> 0.5)
       guard (~> 2.8)
       guard-compat (~> 1.0)
@@ -206,7 +208,7 @@ GEM
     guard-rails (0.7.2)
       guard (~> 2.11)
       guard-compat (~> 1.0)
-    guard-rspec (4.6.4)
+    guard-rspec (4.6.5)
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
@@ -254,9 +256,9 @@ GEM
       addressable (~> 2.3)
     libnotify (0.9.1)
       ffi (>= 1.0.11)
-    listen (3.0.5)
+    listen (3.0.6)
       rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9)
+      rb-inotify (>= 0.9.7)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.10)
@@ -269,7 +271,7 @@ GEM
     multi_json (1.11.2)
     multipart-post (2.0.0)
     mysql2 (0.3.20)
-    nenv (0.2.0)
+    nenv (0.3.0)
     netrc (0.11.0)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
@@ -465,6 +467,7 @@ DEPENDENCIES
   bower-rails
   byebug
   capybara
+  carmen
   coffee-rails (~> 4.1.0)
   dalli
   database_cleaner

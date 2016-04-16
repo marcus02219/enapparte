@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, #:confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :language
+  has_and_belongs_to_many :languages
   has_one    :picture , as: :imageable
   accepts_nested_attributes_for :picture, reject_if: proc {|attrs| attrs['src'].blank? || attrs['src'].match(/^http:/) }
 
@@ -90,6 +90,10 @@ class User < ActiveRecord::Base
 
   def rating
     [ratings.average(:value).to_i, 5].min
+  end
+
+  def self.available_languages
+    Language.select(:title, :id)  
   end
 
   private
