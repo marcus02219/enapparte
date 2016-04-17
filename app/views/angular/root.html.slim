@@ -3,33 +3,54 @@
     .item.relative.discovery-card.active[style="background:url(#{image_url('main_bg.jpg')}) no-repeat center center; background-size:cover;"]
       .va-container.va-container-v.va-container-h
         p.va-middle.text-center.text-contrast
-          | Et si notre canapé
+          | Il est temps de réinventer
           br
-          |  nous plaçait aux premières loges ?
+          |  vos évènement
           br
   #search-bar-home.container
     #htw-home-link.row
+      .dropdown
+        button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" aria-haspopup="true" data-toggle="dropdown" type="button" 
+          | Talent recherché
+          span.caret
+        ul.dropdown-menu aria-labelledby="dropdownMenu1" 
+          li
+            a href="#"  Action
+          li
+            a href="#"  Another action
+          li
+            a href="#"  Something else here
+          li.divider role="separator" 
+          li
+            a href="#"  Separated link
+      .container
+        .row
+          .col-sm-6
+            .form-group
+              #datetimepicker1.input-group.date
+                input.form-control type="text" /
+                span.input-group-addon
+                  span.glyphicon.glyphicon-calendar
       a.btn.btn-lg.btn-classic[ui-sref="shows.search" style="padding-left:20px;padding-right:20px;"]
-        span.glyphicon.glyphicon-heart
-        |  Trouver un performeur
+        |  CHERCHER
 .relative[itemscope itemtype="//schema.org/WebPage"]
   aside.aside_bg[style="padding-bottom:70px;"]
     .container
       h2.title.text-center[style="padding-bottom:0 !important"]
         | Ils ont quelque-chose à vous montrer
       p[style="padding-top:15px;text-align:center;margin-bottom:60px;font-size:15px;"]
-        |  Découvrez leur talent depuis le comfort de votre canapé
+        |  Tous nos performeurs ont été sélectionnés avec le plus grand soin. Et puisque le talent s'apprécie en live, nous les avons tous rencontrés afin de vous proposer une sélection riche et éclectique. Ils vous ont concocté des performances d'exception, spécialement calibrées quel que soit votre évènement et l'espace à leur disposition
       .row
         .col-xs-12.col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1
           .row
             .col-xs-12.col-sm-6
-              .discovery-card[style="background:url(#{image_url('img-1.jpg')});"]
+              .discovery-card[style="background:url(#{image_url('musique.jpg')}); background-repeat: no-repeat;"]
             .col-xs-12.col-sm-6
-              .discovery-card[style="background:url(#{image_url('img-2.jpg')});"]
+              .discovery-card[style="background:url(#{image_url('live_painting.jpg')}); background-repeat: no-repeat;"]
             .col-xs-12.col-sm-6
-              .discovery-card[style="background:url(#{image_url('img-3.jpg')});"]
+              .discovery-card[style="background:url(#{image_url('comdie.jpg')}); background-repeat: no-repeat;"]
             .col-xs-12.col-sm-6
-              .discovery-card[style="background:url(#{image_url('img-4.jpg')});"]
+              .discovery-card[style="background:url(#{image_url('insolite.jpg')}); background-repeat: no-repeat;"]
 .row
   .col-sm-8.col-sm-offset-2
     .text-center[style="padding-top:50px;padding-bottom:30px"]
@@ -41,20 +62,33 @@ aside#how-it-works.site-how-it-works.text-center
   .container
     .row
       .col-sm-4.text-center
-        img[src="//static.vizeat.com/assets/img/search.png" alt=""]
+        img src=image_url('search.jpg') /
         h4.feature_header
           |  Découvrez
         p.features_content
-          |  Flanez à la rencontre de nos performeurs. Découvrez leur art et leurs talents. Magicien aux lapins blancs ou joueur de banjo ?
+          |  Que vous ayez déjà une idée entète pour votre évènement ou non; découvrez l'univers des performeurs que rous qvons sélectionnés pour vous en parcourant leurs profils.
       .col-sm-4.text-center
-        img[src="//static.vizeat.com/assets/img/calendar.png" alt=""]
+        img src=image_url('calendar.jpg') /
+
         h4.feature_header
           |  Réservez
         p.features_content
-          |  Choisissez la prestation de vos rêves, échangez avec vos amis et réservez les yeux fermés grâce à notre site sécurisé
+          |  Vous qvez frouvé le performeur qui vous ferq vibrer le jour Jç Tant mieux! Il ne vous reste olus qà indiqer la date de votre événement et àrénement et à réserver en ligne sur notre site sécurisé.
       .col-sm-4.text-center
-        img[src="//static.vizeat.com/assets/img/enjoy.png" alt=""]
+        img src=image_url('enjoy.jpg') /
         h4.feature_header
           |  Partagez
         p.features_content
-          |  Installez vous confortablement aux cotes de vos amis pour une aventure culturelle et humaine unique où partage et talent se rencontrent
+          |  Le jour de vatre évènement, le performeur que vous aurez choisi qpporte son matériel et s'adapteà votre chez-vous. Vous n'avez plus au'à profiter de cette expérience unique avec vos proches!
+  .row.pre-footer
+    .col-sm-6.text-center
+      img src=image_url('nouscontacter.jpg') /
+    .col-sm-6.text-center
+      img src=image_url('concept.jpg') /
+  .row
+    img src=image_url('society.jpg') /
+
+javascript:
+  | $(function () {
+      | $('#datetimepicker1').datetimepicker();
+  | });
