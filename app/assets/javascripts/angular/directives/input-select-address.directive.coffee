@@ -117,6 +117,7 @@ angular
         # update address infor
         # var sel_index = $('.dashboard .form_addresses select option:selected').index().toString()
         scope.$apply =>
+          scope.selectedAddress.fullAddress = $(scope.input).val()
           scope.selectedAddress.country     = placeInfor['country']
           scope.selectedAddress.state       = placeInfor['administrative_area_level_1']
           scope.selectedAddress.postcode    = placeInfor['postal_code']
