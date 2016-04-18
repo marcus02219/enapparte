@@ -13,7 +13,8 @@ li[ng-if="isAuthenticated()"]
         a[ui-sref="dashboard.performances.current"]
           | My Performances
       li
-        = link_to 'Account', edit_user_registration_path
+        a[ui-sref="dashboard.account.information"]
+          | Account
       li
         a[href="" ng-click="logout()"]
           | Log out
