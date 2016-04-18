@@ -120,3 +120,5 @@ gem 'stripe'
 
 gem 'rails-settings-cached', "~> 0.5.6"
 
+gem 'carmen', require: false
+

@@ -92,8 +92,8 @@ User.all.each do |user|
       description: Faker::Lorem.sentence,
       price: Faker::Number.decimal(5,2),
       max_spectators: 10,
-      starts_at: (1..12).to_a.sample.to_s + ':00'
-      ends_at: (13..23).to_a.sample.to_s + ':00'
+      starts_at: (1..12).to_a.sample.to_s + ':00',
+      ends_at: (13..23).to_a.sample.to_s + ':00',
       active: true,
       art: Art.all.sample,
     )

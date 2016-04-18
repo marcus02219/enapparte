@@ -34,6 +34,14 @@
           legend= "About You"
           input-string[label="Activity" model="user.activity"]
           input-text[label="Bio" model="user.bio"]
+          .form-group.languages-select
+            label.text-right.col-sm-3.control-label= "Languages"
+            .col-sm-9
+              ui-select ng-model="user.languageIds" tagging="" tagging-label="(custom 'new' label)" theme="bootstrap" title=("Choose a language") multiple=""
+                ui-select-match(placeholder="Select languages..."){{$item.title}}
+                ui-select-choices repeat=("language.id as language in user.availableLanguages | filter: $select.search") 
+                  div ng-bind-html=("language.title | highlight: $select.search") 
+
 
         .form-actions
           .pull-right

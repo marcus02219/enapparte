@@ -23,4 +23,22 @@ describe Api::V1::UsersController do
     end
   end
 
+  context "update user with languages params" do
+    let(:user) { create(:user) }
+    5.times do
+      let(:languages) { create(:language) }
+    end
+    let(:attr) do 
+      { :language_ids =>  Language.all.map(&:id) }
+    end
+
+    before(:each) do
+        sign_in user
+        put :update, id: user.id, user: attr, format: :json
+        user.reload
+      end
+
+    it { expect(response).to be_success }
+    it { expect(user.language_ids).to eq( Language.all.map(&:id) )}
+  end
 end

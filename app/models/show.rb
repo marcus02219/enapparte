@@ -32,10 +32,10 @@ class Show < ActiveRecord::Base
   COMMISSION = 1.1
 
   belongs_to :art
-  belongs_to :user
   belongs_to :cover_picture, class_name: 'Picture'
 
-  has_one :language, through: :user
+  belongs_to :user
+  has_many :languages, through: :user
 
   has_many   :bookings
   has_many   :pictures  , dependent: :destroy , as: :imageable

@@ -1,4 +1,5 @@
 json.merge! @user.attributes
+json.language_ids @user.language_ids
 json.gender @user.gender
 
 json.picture do
@@ -27,4 +28,8 @@ end
 
 json.payment_methods @user.payment_methods do |payment_method|
   json.merge! payment_method.attributes
+end
+
+json.available_languages  User.available_languages do |language|
+  json.merge! language.attributes
 end
