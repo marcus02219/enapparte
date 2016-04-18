@@ -1,40 +1,34 @@
 #slider.carousel.home-carousel.slide[data-ride="carousel" style="text-align:center"]
   .carousel-inner[style="text-align:center;"]
-    .item.relative.discovery-card.active[style="background:url(#{image_url('main_bg.jpg')}) no-repeat center center; background-size:cover;"]
+    .item.relative.discovery-card.active[style="background:url(#{image_url('main_background.jpg')}) no-repeat center center; background-size:cover;"]
       .va-container.va-container-v.va-container-h
         p.va-middle.text-center.text-contrast
           | Il est temps de réinventer
           br
           |  vos évènement
           br
-  #search-bar-home.container
+  #search-bar-home.container-fluid
     #htw-home-link.row
-      .dropdown
-        button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" aria-haspopup="true" data-toggle="dropdown" type="button" 
-          | Talent recherché
+      span.dropdown
+        button.btn.dropdown-toggle.talent data-toggle="dropdown" type="button" 
+          | Talent
           span.caret
-        ul.dropdown-menu aria-labelledby="dropdownMenu1" 
+        ul.dropdown-menu
           li
-            a href="#"  Action
+            a href="#"  HTML
           li
-            a href="#"  Another action
+            a href="#"  CSS
           li
-            a href="#"  Something else here
-          li.divider role="separator" 
-          li
-            a href="#"  Separated link
-      .container
-        .row
-          .col-sm-6
-            .form-group
-              #datetimepicker1.input-group.date
-                input.form-control type="text" /
-                span.input-group-addon
-                  span.glyphicon.glyphicon-calendar
-      a.btn.btn-lg.btn-classic[ui-sref="shows.search" style="padding-left:20px;padding-right:20px;"]
+            a href="#"  JavaScript
+      span.form-group
+        #datetimepicker1.input-group.date
+          input.form-control type="text" /
+          span.input-group-addon
+            span.glyphicon.glyphicon-calendar
+      a.btn.btn-lg.btn-classic.chercher.text-right[ui-sref="shows.search"]
         |  CHERCHER
 .relative[itemscope itemtype="//schema.org/WebPage"]
-  aside.aside_bg[style="padding-bottom:70px;"]
+  aside.aside_bg
     .container
       h2.title.text-center[style="padding-bottom:0 !important"]
         | Ils ont quelque-chose à vous montrer
@@ -51,14 +45,14 @@
               .discovery-card[style="background:url(#{image_url('comdie.jpg')}); background-repeat: no-repeat;"]
             .col-xs-12.col-sm-6
               .discovery-card[style="background:url(#{image_url('insolite.jpg')}); background-repeat: no-repeat;"]
-.row
-  .col-sm-8.col-sm-offset-2
-    .text-center[style="padding-top:50px;padding-bottom:30px"]
-      a.btn-xl.btn.btn-performer[style="padding:9px 20px 10px 20px;font-size:15px;border-radius:0;" href=""]
-        | Découvrez tous les performeurs
+      .row
+        .col-sm-8.col-sm-offset-2
+          .text-center[style="padding-top:30px;padding-bottom:30px"]
+            a.btn-xl.btn.btn-performer.main-section[style="padding:9px 20px 10px 20px;font-size:15px;border-radius:0;" href=""]
+              | Découvrez tous les performeurs
 aside#how-it-works.site-how-it-works.text-center
   h2.title[style="padding-bottom:40px"]
-    | How it works
+    | COMMENT CA MARCHE?
   .container
     .row
       .col-sm-4.text-center
@@ -89,6 +83,6 @@ aside#how-it-works.site-how-it-works.text-center
     img src=image_url('society.jpg') /
 
 javascript:
-  | $(function () {
-      | $('#datetimepicker1').datetimepicker();
-  | });
+    | $(function () {
+        | $('#datetimepicker1').datetimepicker();
+    | });

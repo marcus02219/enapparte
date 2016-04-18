@@ -10,10 +10,10 @@
         = image_tag( 'logo.png', class: 'logo' )
     nav.collapse.navbar-collapse.bs-navbar-collapse[role="navigation"]
       ul.nav.navbar-nav.navbar-right
-        = render 'layouts/nav_links_for_auth'
         li[ng-if="isAuthenticated()"]
           a.btn.btn-performer[href=(new_show_path)]
             | Postez votre performance
-        li[ng-if="!isAuthenticated()"]
-          a.btn.btn-performer[href=""]
-            | Devenez performeur
+        li
+          a.btn.btn-performer[href="", style="margin-left: 15px;"]
+            | Le Concept
+        = render 'layouts/nav_links_for_auth'
