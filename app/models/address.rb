@@ -32,7 +32,7 @@ class Address < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode
 
-  before_save :set_is_primary
+  # before_save :set_is_primary
 
   private
 

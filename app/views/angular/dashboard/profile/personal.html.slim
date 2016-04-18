@@ -37,7 +37,10 @@
 
         .form-actions
           .pull-right
-            input.btn.btn-success[type="submit" ng-click="profileForm.$valid && userSave()" value="Save My Profile"]
+            button.btn.btn-success[ng-click="profileForm.$valid && userSave()"]
+              i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate[ng-show="user.savePending"]
+              '
+              | Save My Profile
 
   br
   br

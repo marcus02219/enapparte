@@ -17,6 +17,9 @@ angular
       scope.selectedAddress = {}
       scope.input = element.find('#google-address')[0]
 
+      scope.doNothing = (e)->
+        e.preventDefault()
+
       scope.$watch 'selectedAddress', (newValue)=>
         if newValue
           angular.forEach scope.addresses, (address)=>
@@ -114,7 +117,6 @@ angular
         # update address infor
         # var sel_index = $('.dashboard .form_addresses select option:selected').index().toString()
         scope.$apply =>
-          scope.selectedAddress.fullAddress = $(scope.input).val()
           scope.selectedAddress.country     = placeInfor['country']
           scope.selectedAddress.state       = placeInfor['administrative_area_level_1']
           scope.selectedAddress.postcode    = placeInfor['postal_code']
@@ -124,7 +126,6 @@ angular
           if placeInfor['street_number']
             scope.selectedAddress.street += ', ' + placeInfor['street_number']
           scope.model = scope.selectedAddress
-          console.log scope.model
 
       scope.setLocationbyAddress = (address) =>
         if !scope.map

@@ -4,6 +4,7 @@ angular
     resource = railsResourceFactory
       url: '/api/v1/users',
       name: 'user'
+      interceptors: ['saveIndicatorInterceptor']
       serializer: railsSerializer ()->
         this.nestedAttribute('picture')
         this.resource('picture', 'Picture')
