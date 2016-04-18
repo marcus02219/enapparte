@@ -39,7 +39,7 @@ class DashboardController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:gender, :firstname, :surname, :dob, :phone_number, :language_id, :bio, :activity, addresses_attributes: [:id, :country, :state, :postcode, :city, :street])
+    params.require(:user).permit(:gender, :firstname, :surname, :dob, :phone_number, :bio, :activity, addresses_attributes: [:id, :country, :state, :postcode, :city, :street], language_ids: [])
   end
 
   def set_user

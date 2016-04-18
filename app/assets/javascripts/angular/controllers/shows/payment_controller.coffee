@@ -13,17 +13,16 @@ class ShowPaymentController extends @NGController
   ]
 
   show: {}
-  booking: {
-    date: null
-    spectators: null
-    message: null
-  }
   card: {}
 
   init: ()=>
     id = @stateParams.id
-    @scope.booking.date = moment.unix(@stateParams.date)
-    @scope.booking.spectators = @stateParams.spectators
+    date = moment.unix(@stateParams.date).toDate()
+
+    @scope.booking = new @Booking
+      date: date
+      spectators: @stateParams.spectators
+
     @User
       .get(1)
       .then (user)=>
@@ -47,16 +46,12 @@ class ShowPaymentController extends @NGController
   bookingCreate: ()=>
     @scope.user.save()
       .then (user)=>
-        new @Booking(
-          status: 2
-          date: @scope.booking.date.toDate()
-          spectators: @scope.booking.spectators
-          price: @scope.show.price * @scope.show.commission
-          message: @scope.booking.message
-          addressId: @scope.user.address.id
-          paymentId: @scope.user.payment.id
-          showId: @scope.show.id
-        ).create()
+        @scope.booking.status    = 2
+        @scope.booking.price     = @scope.show.price * @scope.show.commission
+        @scope.booking.addressId = @scope.user.address.id
+        @scope.booking.paymentId = @scope.user.payment.id
+        @scope.booking.showId    = @scope.show.id
+        @scope.booking.save()
           .then (booking)=>
             @state.go 'shows.payment_finish'
             @Flash.showNotice @scope, 'Booking saved successfully!'
@@ -65,7 +60,7 @@ class ShowPaymentController extends @NGController
       , (error)->
         console.log error
 
-  booking: (form)=>
+  bookingOrder: (form)=>
     if form.$valid && @scope.user
       if @scope.user.payment.new
         # Stripe

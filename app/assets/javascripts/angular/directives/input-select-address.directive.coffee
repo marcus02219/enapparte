@@ -17,6 +17,9 @@ angular
       scope.selectedAddress = {}
       scope.input = element.find('#google-address')[0]
 
+      scope.doNothing = (e)->
+        e.preventDefault()
+
       scope.$watch 'selectedAddress', (newValue)=>
         if newValue
           angular.forEach scope.addresses, (address)=>
@@ -124,7 +127,6 @@ angular
           if placeInfor['street_number']
             scope.selectedAddress.street += ', ' + placeInfor['street_number']
           scope.model = scope.selectedAddress
-          console.log scope.model
 
       scope.setLocationbyAddress = (address) =>
         if !scope.map

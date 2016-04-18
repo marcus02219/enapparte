@@ -28,4 +28,4 @@ asset 'stripe-angular'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'
-
+asset 'angular-ui-select'

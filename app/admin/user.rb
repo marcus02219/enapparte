@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :firstname, :surname, :gender, :bio, :phone_number, :moving,
-    :dob, :activity, :language_id, :picture, :role, 
-    :address_ids => [], :booking_ids => [], :show_ids => [], :rating_ids => []
+    :dob, :activity, :picture, :role, 
+    :address_ids => [], :booking_ids => [], :show_ids => [], :rating_ids => [], :language_ids => []
   index do
     selectable_column
     id_column
@@ -44,8 +44,10 @@ ActiveAdmin.register User do
       row :moving
       row :dob
       row :activity
-      row :language do
-        link_to user.language.title, admin_language_path(user.language) if user.language
+      table_for user.languages.order('title ASC') do
+        column :languages do |language|
+          link_to language.title, admin_language_path(language)
+        end
       end
       row :bookings do
         user.bookings.map{ |b| link_to admin_booking_path(b) }.join(', ').html_safe

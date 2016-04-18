@@ -24,33 +24,33 @@ require 'rails_helper'
 
 RSpec.describe Address, type: :model do
 
-  context '#set_is_primary' do
-    let(:user) { create(:user) }
-    it { user.reload; expect(user.addresses.first.is_primary).to be true }
+  # context '#set_is_primary' do
+  #   let(:user) { create(:user) }
+  #   it { user.reload; expect(user.addresses.first.is_primary).to be true }
 
-    context 'added second address' do
-      let!(:address) { create :address, user: user }
+  #   context 'added second address' do
+  #     let!(:address) { create :address, user: user }
 
-      it { user.reload; expect(user.addresses.last.is_primary).to_not eq true }
-    end
+  #     it { user.reload; expect(user.addresses.last.is_primary).to_not eq true }
+  #   end
 
-    context 'create a new address as a primary' do
-      let!(:address) { create :address, user: user, is_primary: true }
+  #   context 'create a new address as a primary' do
+  #     let!(:address) { create :address, user: user, is_primary: true }
 
-      it { user.reload; expect(user.addresses.first.is_primary).to_not eq true }
-      it { user.reload; expect(user.addresses.last.is_primary).to eq true }
-    end
+  #     it { user.reload; expect(user.addresses.first.is_primary).to_not eq true }
+  #     it { user.reload; expect(user.addresses.last.is_primary).to eq true }
+  #   end
 
-    context 'set an address as a primary' do
-      let!(:address) { create :address, user: user }
+  #   context 'set an address as a primary' do
+  #     let!(:address) { create :address, user: user }
 
-      it do
-        expect {
-          user.addresses.last.update_attribute :is_primary, true
-        }.to change { user.reload; user.addresses.first.is_primary }
-      end
+  #     it do
+  #       expect {
+  #         user.addresses.last.update_attribute :is_primary, true
+  #       }.to change { user.reload; user.addresses.first.is_primary }
+  #     end
 
-    end
-  end
+  #   end
+  # end
 
 end

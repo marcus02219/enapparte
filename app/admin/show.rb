@@ -43,8 +43,10 @@ ActiveAdmin.register Show do
       row :art do
         link_to show.art.title, admin_art_path(show.art) if show.art
       end
-      row :language do
-        link_to show.language.title, admin_language_path(show.language) if show.language
+      table_for show.languages.order('title ASC') do
+        column :languages do |language|
+          link_to language.title, admin_language_path(language)
+        end
       end
       row :published_at
       row :starts_at

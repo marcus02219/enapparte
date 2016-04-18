@@ -50,7 +50,9 @@
 
         .row
           .col-md-9.col-md-offset-3
-            button.btn.btn-default[type="submit" ng-click="booking(paymentForm)"]
+            button.btn.btn-success[type="submit" ng-click="bookingOrder(paymentForm)"]
+              i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate[ng-show="user.savePending || booking.savePending"]
+              '
               | Booking
 
   .margin-bottom-40
