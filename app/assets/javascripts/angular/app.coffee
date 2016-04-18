@@ -29,6 +29,7 @@
 @App.config ['uiSelectConfig', (uiSelectConfig) ->
   uiSelectConfig.theme = 'bootstrap'
 ]
+
 # @App.config ['dateTimePickerConfig', (dateTimePickerConfig)->
 #   # dateTimePickerConfig.defaults
 # ]
