@@ -20,11 +20,10 @@
             a href="#"  CSS
           li
             a href="#"  JavaScript
-      span.form-group
-        #datetimepicker1.input-group.date
-          input.form-control type="text" /
-          span.input-group-addon
-            span.glyphicon.glyphicon-calendar
+      #datetimepicker1.input-group.date
+        input.form-control type="text" /
+        span.input-group-addon
+          span.glyphicon.glyphicon-calendar
       a.btn.btn-lg.btn-classic.chercher.text-right[ui-sref="shows.search"]
         |  CHERCHER
 .relative[itemscope itemtype="//schema.org/WebPage"]
@@ -38,13 +37,17 @@
         .col-xs-12.col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1
           .row
             .col-xs-12.col-sm-6
-              .discovery-card[style="background:url(#{image_url('musique.jpg')}); background-repeat: no-repeat;"]
+              .discovery-card
+                = image_tag( 'musique.jpg', class: 'img-responsive' )
             .col-xs-12.col-sm-6
-              .discovery-card[style="background:url(#{image_url('live_painting.jpg')}); background-repeat: no-repeat;"]
+              .discovery-card
+                = image_tag( 'live_painting.jpg', class: 'img-responsive' )
             .col-xs-12.col-sm-6
-              .discovery-card[style="background:url(#{image_url('comdie.jpg')}); background-repeat: no-repeat;"]
+              .discovery-card
+                = image_tag( 'comdie.jpg', class: 'img-responsive' )
             .col-xs-12.col-sm-6
-              .discovery-card[style="background:url(#{image_url('insolite.jpg')}); background-repeat: no-repeat;"]
+              .discovery-card
+                = image_tag( 'insolite.jpg', class: 'img-responsive' )
       .row
         .col-sm-8.col-sm-offset-2
           .text-center[style="padding-top:30px;padding-bottom:30px"]
