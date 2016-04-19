@@ -23,5 +23,6 @@ class DashboardController extends @NGController
       .then (shows)=>
         if shows.length > 0
           tab = { heading: 'My Performances', route: 'dashboard.performances.current', routeActive: 'dashboard.performances' }
-          @scope.tabs.splice 4, 0, tab
+          if @scope.tabs[4].heading != tab.heading
+            @scope.tabs.splice 4, 0, tab
 
