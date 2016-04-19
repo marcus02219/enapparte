@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
-  get 'home/index'
-
   root to: 'home#index'
-  devise_for :users
+  devise_for :users, controllers: { confirmations: "confirmations" }
 
   resources :users do
     post 'upload_photo', on: :collection
