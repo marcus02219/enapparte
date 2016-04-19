@@ -7,25 +7,28 @@
           br
           |  vos évènement
           br
-  #search-bar-home.container-fluid
-    #htw-home-link.row
-      span.dropdown
-        button.btn.dropdown-toggle.talent data-toggle="dropdown" type="button"
-          | Talent
-          span.caret
-        ul.dropdown-menu
-          li
-            a href="#"  HTML
-          li
-            a href="#"  CSS
-          li
-            a href="#"  JavaScript
-      #datetimepicker1.input-group.date
-        input.form-control type="text" /
-        span.input-group-addon
-          span.glyphicon.glyphicon-calendar
-      a.btn.btn-lg.btn-classic.chercher.text-right[ui-sref="shows.search"]
-        |  CHERCHER
+  #search-bar-home
+    .row
+      .col-sm-4.col-sx-4
+        span.dropdown
+          button.btn.dropdown-toggle.talent data-toggle="dropdown" type="button"
+            | Talent recheché
+            span.caret
+          ul.dropdown-menu
+            li
+              a href="#"  Filter1
+            li
+              a href="#"  Filter2
+            li
+              a href="#"  Filter3
+      .col-sm-4.col-sx-4
+        #datetimepicker1.input-group.date
+          input.form-control.dt-calendar type="text" /
+          span.input-group-addon
+            span.glyphicon.glyphicon-calendar
+      .col-sm-4.col-sx-4
+        a.btn.btn-lg.btn-classic.chercher[ui-sref="shows.search"]
+          |  CHERCHER
 .relative[itemscope itemtype="//schema.org/WebPage"]
   aside.aside_bg
     .container
@@ -85,7 +88,7 @@ aside#how-it-works.site-how-it-works.text-center
   .row
     img src=image_url('society.jpg') /
 
-/ javascript:
-/   $(function () {
-/       $('#datetimepicker1').datetimepicker();
-/   });
+javascript:
+  $(function () {
+      $('#datetimepicker1').datetimepicker();
+  });
