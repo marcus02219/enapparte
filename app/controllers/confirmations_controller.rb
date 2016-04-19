@@ -3,7 +3,7 @@ class ConfirmationsController < Devise::ConfirmationsController
   private
 
   def after_confirmation_path_for(resource_name, resource)
-    Rails.application.routes.url_helpers.root_url + '#/signin'
+    Rails.application.routes.url_helpers.root_url + '/#/signin'
   end
 
 end
