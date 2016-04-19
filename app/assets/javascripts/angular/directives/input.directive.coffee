@@ -15,7 +15,7 @@ angular
       for value, label of enums
         scope.options.push { value: value, label: label }
 
-  .directive 'inputString', ()->
+  .directive 'inputString', ['$timeout', ($timeout)->
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input_string.html'
@@ -27,8 +27,11 @@ angular
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
-      scope.focus = attrs.focus != undefined
       scope.hint = attrs.hint
+      if attrs.focus != undefined
+        $timeout ->
+          element.find('input').focus()
+  ]
 
   .directive 'inputText', ()->
     require: '^form'
@@ -260,7 +263,7 @@ angular
       #     scope.$apply ->
       #       scope.model = e.date
 
-  .directive 'inputEmail', ()->
+  .directive 'inputEmail', ['$timeout', ($timeout)->
     require: '^form'
     strict: 'E'
     templateUrl: 'directives/input_email.html'
@@ -273,8 +276,11 @@ angular
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
-      scope.focus = attrs.focus != undefined
       scope.disabled = attrs.disabled != undefined
+      if attrs.focus != undefined
+        $timeout ->
+          element.find('input').focus()
+  ]
 
   .directive 'inputPassword', ()->
     require: '^form'
