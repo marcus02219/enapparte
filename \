@@ -15,8 +15,8 @@ html[ng-app="enapparte"]
     = render 'layouts/header'
     / = content_for?(:messages) ? yield(:messages) : render('layouts/messages')
     / = render partial: 'layouts/messages', locals: { flash_class: 'floating' }
-    .flash-messages[ng-if="!rootPath" style="position: absolute;"]
-    .main-content.anim-in-out.anim-fade.fadeIn[ui-view=""]
+    .flash-messages[ng-if="!rootPath"]
+    .main-content.anim-in-out.anim-fade[ui-view=""]
       / = yield
     == render 'layouts/footer'
     - cache do

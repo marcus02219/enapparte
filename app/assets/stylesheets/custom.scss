@@ -8746,7 +8746,7 @@ button.close {
 }
 
 div#header {
-  position: absolute;
+  /* position: absolute; */
   z-index: 10000;
   width: 100%;
 }
@@ -8767,8 +8767,8 @@ a.btn.btn-performer.main-section {
   border-color: #fffca6;
   border-width: 2px;
   border-radius: 0;
-  color: black !important; 
-  background-color: #fffca6 !important;    
+  color: black !important;
+  background-color: #fffca6 !important;
 }
 
 a.btn.btn-lg.btn-classic.chercher {
@@ -8790,17 +8790,17 @@ a.btn.btn-lg.btn-classic.chercher {
 
 .instagram-icon {
   width: 22px;
-  padding-top: 5px; 
+  padding-top: 5px;
 }
 
 .google-icon {
   width: 20px;
-  padding-top: 5px; 
+  padding-top: 5px;
 }
 
 .pinterest-icon {
   width: 25px;
-  padding-top: 3px; 
+  padding-top: 3px;
 }
 
 button.btn.dropdown-toggle.talent {

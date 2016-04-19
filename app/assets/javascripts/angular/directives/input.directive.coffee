@@ -65,8 +65,8 @@ angular
           scope.month = moment(newValue).month() + 1
           scope.year = moment(newValue).year()
 
-      scope.$watchGroup ['day', 'month', 'year'], ()->
-        if scope.model
+      scope.$watchGroup ['day', 'month', 'year'], (newValue)->
+        if scope.day && scope.month && scope.year
           scope.model = moment([scope.year, scope.month - 1, scope.day + 1]).toDate()
 
       scope.days = [1..31]
