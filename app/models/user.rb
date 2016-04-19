@@ -24,6 +24,10 @@
 #  moving                 :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
 #
 # Indexes
 #
@@ -34,7 +38,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, #:confirmable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_and_belongs_to_many :languages
@@ -44,9 +48,9 @@ class User < ActiveRecord::Base
   has_many   :addresses
   accepts_nested_attributes_for :addresses, reject_if: :reject_addresses
 
-  has_many   :bookings
-  has_many   :shows
-  has_many   :arts, through: :shows
+  has_many :bookings
+  has_many :shows
+  has_many :arts, through: :shows
   has_many :ratings, through: :shows, source: :ratings
   has_many :show_bookings, through: :shows, source: :bookings
 
@@ -54,7 +58,7 @@ class User < ActiveRecord::Base
   has_many :payment_methods
   accepts_nested_attributes_for :payment_methods, reject_if: :reject_payment_methods
 
-  validates :firstname, :surname, :gender, presence: true
+  validates :firstname, :surname, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   # validates :phone_number, format: { with: /\d{10}/, message: "bad format" }
 
@@ -93,7 +97,7 @@ class User < ActiveRecord::Base
   end
 
   def self.available_languages
-    Language.select(:title, :id)  
+    Language.select(:title, :id)
   end
 
   private

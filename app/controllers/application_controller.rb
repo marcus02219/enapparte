@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_flash
   after_filter :set_csrf_cookie_for_ng
+  before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
@@ -41,5 +42,9 @@ protected
     params[:flash].each do |type, message|
       flash[type.to_sym] = sanitize(message[0..255])
     end  if params[:flash]
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:firstname, :surname, :password, :email, :password_confirmation) }
   end
 end

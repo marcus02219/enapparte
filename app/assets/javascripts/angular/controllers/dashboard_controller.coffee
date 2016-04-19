@@ -5,6 +5,7 @@ class DashboardController extends @NGController
     '$scope'
     '$rootScope'
     '$state'
+    'Show'
   ]
 
   tabs: [
@@ -12,10 +13,16 @@ class DashboardController extends @NGController
     { heading: 'Profile', route: 'dashboard.profile.personal', routeActive: 'dashboard.profile' }
     { heading: 'Messages', route: 'dashboard.messages' }
     { heading: 'My Shows', route: 'dashboard.shows' }
-    { heading: 'My Performances', route: 'dashboard.performances.current', routeActive: 'dashboard.performances' }
     { heading: 'My Reservations', route: 'dashboard.reservations.current', routeActive: 'dashboard.reservations' }
     { heading: 'Account', route: 'dashboard.account.payment', routeActive: 'dashboard.account' }
   ]
 
   init: ->
+    @Show
+      .query()
+      .then (shows)=>
+        if shows.length > 0
+          tab = { heading: 'My Performances', route: 'dashboard.performances.current', routeActive: 'dashboard.performances' }
+          if @scope.tabs[4].heading != tab.heading
+            @scope.tabs.splice 4, 0, tab
 

@@ -24,6 +24,10 @@
 #  moving                 :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
 #
 # Indexes
 #
@@ -39,10 +43,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to :back, :alert => "Access denied."
-    end
+    @user = current_user
   end
 
   def upload_photo

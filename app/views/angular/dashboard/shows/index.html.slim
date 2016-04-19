@@ -10,9 +10,9 @@
         .thumbnail.show
           img[ng-src="{{ show.coverPictureUrl }}"]
           .caption
-            a.label.label-danger[ng-href="#" ng-show="!show.active" ng-click="toggleActive(show, $index)"]
+            a.label.label-danger[href="" ng-show="!show.active" ng-click="toggleActive(show, $index)"]
               | Disabled (activate)
-            a.label.label-success[ng-href="#" ng-show="show.active" ng-click="toggleActive(show, $index)"]
+            a.label.label-success[href="" ng-show="show.active" ng-click="toggleActive(show, $index)"]
               | Enabled (deactivate)
             h3
               | {{ show.title }}

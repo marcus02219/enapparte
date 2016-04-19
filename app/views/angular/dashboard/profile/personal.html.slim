@@ -14,7 +14,7 @@
       .col-md-8
         fieldset
           legend= "Personal Info"
-          input-select[label="Gender" model="user.gender" required data-collection=(User.genders_i18n.map {|k, v| { name: v, value: k } }.to_json)]
+          / input-select[label="Gender" model="user.gender" required data-collection=(User.genders_i18n.map {|k, v| { name: v, value: k } }.to_json)]
           input-string[label="First Name" model="user.firstname" required]
           input-string[label="Surname" model="user.surname" required hint="Cette information ne sera partagée uniquement avec les utilisateur faisant partie d’une réservation confirmée"]
           input-date[label="Date of Birth" model="user.dob" required]
