@@ -13513,6 +13513,11 @@ fieldset[disabled] .btn-warning.focus {
   border-color: #eea236;
 }
 
+@font-face {
+  font-family: 'FuturaLT';
+  src: url('/assets/FuturaLT.ttf') format('truetype');
+}
+
 .btn-warning .badge {
   color: #f0ad4e;
   background-color: $white;
@@ -17691,12 +17696,11 @@ button.btn.dropdown-toggle.talent {
   color: rgba(0,0,0,0.7);
 }
 
-@font-face {
-  font-family: 'FuturaLT';
-  src: url('/assets/FuturaLT.ttf') format('truetype');
-}
-
 p.va-middle.text-center.text-contrast {
   font-family: FuturaLT !important;
   font-size: 70px !important;
+}
+
+.row.main-description {
+  font-family: FuturaLT !important;
 }
