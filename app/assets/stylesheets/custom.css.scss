@@ -8803,7 +8803,7 @@ nav.collapse.navbar-collapse.bs-navbar-collapse {
 }
 
 button.btn.dropdown-toggle.talent:hover {
-  background-color: #CDB677;
+  background-color: rgb(255,244,129);
   color: white !important;
 }
 
@@ -13772,6 +13772,7 @@ tbody.collapse.in {
   line-height: 1.42857143;
   color: #333;
   white-space: nowrap;
+  font-family: FuturaLT !important;  
 }
 
 .dropdown-menu > li > a:hover,
@@ -17630,7 +17631,7 @@ button.btn.dropdown-toggle.talent {
 }
 
 button.btn.dropdown-toggle.talent:hover {
-  background-color: #CDB677;
+  background-color: rgb(255,244,129);
   color: black;
 }
 
@@ -17647,7 +17648,7 @@ a.btn.btn-lg.btn-classic.chercher:hover {
   width: 100%;
   height: 40px;
   padding: 8px 5px;
-  background-color: #CDB677;
+  background-color: rgb(255,244,129);
   color: white;
 }
 
