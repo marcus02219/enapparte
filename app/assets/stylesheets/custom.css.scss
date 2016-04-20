@@ -8759,7 +8759,7 @@ a.btn.btn-performer {
     border-color: #fffca6;
     border-width: 2px;
     border-radius: 0;
-    color: #fffca6 !important;
+    color: rgba(249, 246, 125, 0.6) !important;
 }
 
 a.btn.btn-performer.main-section {
@@ -17680,11 +17680,6 @@ ul.dropdown-menu.category{
     background-image: none;
 }
 
-@font-face {
-  font-family: 'FuturaLT';
-  src: font-url('fonts/FuturaLT.ttf') format('truetype');
-}
-
 p.va-middle.text-center.text-contrast {
   font-family: "FuturaLT";
   font-size: 70px;
@@ -17694,4 +17689,14 @@ button.btn.dropdown-toggle.talent {
   background-color: white;
   font-size: 20px;
   color: rgba(0,0,0,0.7);
+}
+
+@font-face {
+  font-family: 'FuturaLT';
+  src: url('/assets/FuturaLT.ttf') format('truetype');
+}
+
+p.va-middle.text-center.text-contrast {
+  font-family: FuturaLT !important;
+  font-size: 70px !important;
 }

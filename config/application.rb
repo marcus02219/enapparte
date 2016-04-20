@@ -44,5 +44,7 @@ module Enapparte
     config.after_initialize do
       Rails.application.routes.default_url_options = config.action_mailer.default_url_options
     end
+
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end
