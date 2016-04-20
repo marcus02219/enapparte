@@ -17692,7 +17692,7 @@ p.va-middle.text-center.text-contrast {
 
 button.btn.dropdown-toggle.talent {
   background-color: white;
-  font-size: 20px;
+  font-size: 18px;
   color: rgba(0,0,0,0.7);
 }
 
@@ -17709,6 +17709,13 @@ p.main-description-header {
   padding-top:15px;
   text-align:center;
   margin-bottom:60px;
-  font-size:15px;
+  font-size:18px;
   font-family: FuturaLT !important;
+}
+
+a.btn-xl.btn.btn-performer.main-section {
+  padding:9px 20px 10px 20px;
+  font-size:15px;
+  border-radius:0;
+  font-family: FuturaLT !important; 
 }

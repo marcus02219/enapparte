@@ -19,10 +19,10 @@ li[ng-if="isAuthenticated()"]
         a[href="" ng-click="logout()"]
           | Log out
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[ui-sref="home.signin"]
+  a.nav_links[ui-sref="home.signin" style="font-size: 18px;"]
     | Connexion
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[ui-sref="home.signup"]
+  a.nav_links[ui-sref="home.signup" style="font-size: 18px;"]
     | Inscription
 li[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
