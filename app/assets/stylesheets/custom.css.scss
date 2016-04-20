@@ -8802,11 +8802,6 @@ nav.collapse.navbar-collapse.bs-navbar-collapse {
   padding-top: 30px;
 }
 
-button.btn.dropdown-toggle.talent {
-  background-color: white;
-  color: black;
-}
-
 button.btn.dropdown-toggle.talent:hover {
   background-color: #CDB677;
   color: black;
@@ -17654,4 +17649,49 @@ button.btn.dropdown-toggle.talent {
 
 ul.dropdown-menu {
     margin: 40px 10px;
+}
+
+a.btn.btn-performer {
+
+  border-width: 2px;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  position: relative;
+  z-index: 196;
+}
+
+ul.dropdown-menu.category{
+  margin-left: 0px;
+  margin-top: 45px;
+}
+
+.dropdown-menu>li>a {
+  width: 217px !important;  
+}
+
+
+.bootstrap-datetimepicker-widget.dropdown-menu.bottom {
+  width: 217px !important;
+  margin-top: 5px;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: rgba(249, 246, 125, 0.6) !important;
+    background-image: none;
+}
+
+@font-face {
+  font-family: 'FuturaLT';
+  src: font-url('fonts/FuturaLT.ttf') format('truetype');
+}
+
+p.va-middle.text-center.text-contrast {
+  font-family: "FuturaLT";
+  font-size: 70px;
+}
+
+button.btn.dropdown-toggle.talent {
+  background-color: white;
+  font-size: 20px;
+  color: rgba(0,0,0,0.7);
 }
