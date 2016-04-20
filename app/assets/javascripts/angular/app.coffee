@@ -38,17 +38,18 @@
   Stripe.setPublishableKey(window.StripePublishableKey)
 ]
 
-@App.run ['$rootScope', 'Auth', ($rootScope, Auth)->
+@App.run ['$rootScope', 'Auth', '$state', ($rootScope, Auth, $state)->
   Auth.currentUser().then (user)->
     $rootScope.currentUser = user
 
-  $rootScope.$on '$stateChangeStart', (e)->
+  $rootScope.$on '$stateChangeSuccess', (e)->
     $rootScope.rootPath = false
     $(window).off('.affix')
-    $("#header")
-        .removeClass("affix affix-top affix-bottom")
-        .addClass("not-fixed")
-        .removeData("bs.affix")
+    unless $state.current.name.startsWith 'home'
+      $("#header")
+          .removeClass("affix affix-top affix-bottom")
+          .addClass("not-fixed")
+          .removeData("bs.affix")
 ]
 
 @App.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider)->
@@ -94,5 +95,30 @@
       .state 'dashboard.account.payment', { url: '/payment', templateUrl: 'dashboard/account/payment.html' }
       .state 'dashboard.account.information', { url: '/information', templateUrl: 'dashboard/account/information.html' }
       .state 'dashboard.account.security', { url: '/security', templateUrl: 'dashboard/account/security.html' }
+
+    .state 'home.signin', {
+      url: 'signin',
+      onEnter: ['$uibModal', '$state', ($uibModal, $state)->
+        $uibModal.open
+          animation: true
+          templateUrl: 'devise/log_in.html'
+          controller: 'SignInController'
+        .result
+        .finally ()->
+          $state.go '^'
+      ]
+    }
+    .state 'home.signup', {
+      url: 'signup',
+      onEnter: ['$uibModal', '$state', ($uibModal, $state)->
+        $uibModal.open
+          animation: true
+          templateUrl: 'devise/sign_up.html'
+          controller: 'SignUpController'
+        .result
+        .finally ()->
+          $state.go '^'
+      ]
+    }
 ]
 

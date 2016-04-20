@@ -19,24 +19,24 @@ li[ng-if="isAuthenticated()"]
         a[href="" ng-click="logout()"]
           | Log out
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[href="" ng-click="showSignIn()"]
+  a.nav_links[ui-sref="home.signin"]
     | Connexion
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[href="" ng-click="showSignUp()"]
+  a.nav_links[ui-sref="home.signup"]
     | Inscription
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[href="" ng-click="showSignUp()"]
+  a.nav_links[ui-sref="home.signup"]
     img.facebook-icon src=image_url('i-facebook.png')
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[href="" ng-click="showSignUp()"]
+  a.nav_links[ui-sref="home.signup"]
     img.twitter-icon src=image_url('i-twitter.png') /
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[href="" ng-click="showSignUp()"]
+  a.nav_links[ui-sref="home.signup"]
     img.instagram-icon src=image_url('i-instagram.png') /
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[href="" ng-click="showSignUp()"]
+  a.nav_links[ui-sref="home.signup"]
     img.google-icon src=image_url('i-google.png') /
 li[ng-if="!isAuthenticated()"]
-  a.nav_links[href="" ng-click="showSignUp()"]
+  a.nav_links[ui-sref="home.signup"]
     img.pinterest-icon src=image_url('i-pinterest.png') /
 
