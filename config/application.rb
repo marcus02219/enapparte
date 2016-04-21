@@ -39,7 +39,7 @@ module Enapparte
     config.action_mailer.delivery_method = :postmark
     config.action_mailer.postmark_settings = { :api_token => Rails.application.secrets.postmark_api_key }
     config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
-    config.action_mailer.default_options = { :from => "no-reply@enapparteparis.com" }
+    config.action_mailer.default_options = { :from => Rails.application.secrets.default_from_email }
 
     config.after_initialize do
       Rails.application.routes.default_url_options = config.action_mailer.default_url_options
