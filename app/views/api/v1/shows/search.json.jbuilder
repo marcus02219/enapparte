@@ -15,6 +15,6 @@ json.array!(@shows) do |show|
 
   json.user do |json|
     json.merge! show.user.try(:attributes)
-    # json.full_name show.user.try(:full_name)
+    json.full_name show.user.try(:full_name)
   end
 end

@@ -48,8 +48,8 @@ class User < ActiveRecord::Base
   has_many   :addresses
   accepts_nested_attributes_for :addresses, reject_if: :reject_addresses
 
-  has_many :bookings
-  has_many :shows
+  has_many :bookings, dependent: :destroy
+  has_many :shows, dependent: :destroy
   has_many :arts, through: :shows
   has_many :ratings, through: :shows, source: :ratings
   has_many :show_bookings, through: :shows, source: :bookings
