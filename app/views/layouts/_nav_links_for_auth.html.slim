@@ -24,19 +24,19 @@ li[ng-if="!isAuthenticated()"]
 li[ng-if="!isAuthenticated()"]
   a.nav_links.collapse-header.text-center[ui-sref="home.signup" style="font-size: 18px; font-family: FuturaLT !important; "]
     | Inscription
-li[ng-if="!isAuthenticated()"]
+li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.facebook-icon src=image_url('i-facebook.png')
-li[ng-if="!isAuthenticated()"]
+li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.twitter-icon src=image_url('i-twitter.png') /
-li[ng-if="!isAuthenticated()"]
+li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.instagram-icon src=image_url('i-instagram.png') /
-li[ng-if="!isAuthenticated()"]
+li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.google-icon src=image_url('i-google.png') /
-li[ng-if="!isAuthenticated()"]
+li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.pinterest-icon src=image_url('i-pinterest.png') /
 
