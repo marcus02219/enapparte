@@ -8767,8 +8767,8 @@ a.btn.btn-performer.main-section {
   border-color: #fffca6;
   border-width: 2px;
   border-radius: 0;
-  color: black !important; 
-  background-color: #fffca6 !important;    
+  color: black !important;
+  background-color: #fffca6 !important;
 }
 
 
@@ -8785,17 +8785,17 @@ a.btn.btn-performer.main-section {
 
 .instagram-icon {
   width: 22px;
-  padding-top: 5px; 
+  padding-top: 5px;
 }
 
 .google-icon {
   width: 20px;
-  padding-top: 5px; 
+  padding-top: 5px;
 }
 
 .pinterest-icon {
   width: 25px;
-  padding-top: 3px; 
+  padding-top: 3px;
 }
 
 nav.collapse.navbar-collapse.bs-navbar-collapse {
@@ -13515,7 +13515,7 @@ fieldset[disabled] .btn-warning.focus {
 
 @font-face {
   font-family: 'FuturaLT';
-  src: url('/assets/FuturaLT.ttf') format('truetype');
+  src: font-url('FuturaLT.ttf') format('truetype');
 }
 
 .btn-warning .badge {
@@ -13772,7 +13772,7 @@ tbody.collapse.in {
   line-height: 1.42857143;
   color: #333;
   white-space: nowrap;
-  font-family: FuturaLT !important;  
+  font-family: FuturaLT !important;
 }
 
 .dropdown-menu > li > a:hover,
@@ -17683,7 +17683,7 @@ ul.dropdown-menu.category{
 }
 
 .dropdown-menu>li>a {
-  width: 217px !important;  
+  width: 217px !important;
 }
 
 
@@ -17730,5 +17730,5 @@ a.btn-xl.btn.btn-performer.main-section {
   padding:9px 20px 10px 20px;
   font-size:15px;
   border-radius:0;
-  font-family: FuturaLT !important; 
+  font-family: FuturaLT !important;
 }

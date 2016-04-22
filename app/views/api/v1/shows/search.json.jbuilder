@@ -13,7 +13,7 @@ json.array!(@shows) do |show|
     json.src picture.src
   end
 
-  json.user do
+  json.user do |json|
     json.merge! show.user.try(:attributes)
     json.full_name show.user.try(:full_name)
   end
