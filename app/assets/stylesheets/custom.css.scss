@@ -17732,3 +17732,9 @@ a.btn-xl.btn.btn-performer.main-section {
   border-radius:0;
   font-family: FuturaLT !important;
 }
+
+@media (max-width: 768px) {
+  a.nav_links.collapse-header{
+    color: #002b40 !important;
+  }
+}
