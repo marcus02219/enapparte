@@ -14,9 +14,9 @@
           select.form-control.select-search-home[ng-model="valueSelect", ng-options="art.title for art in arts"]
             option[value=""] Talent recherché
       .col-sm-4.col-sx-4
-        #datetimepicker1.input-group.date
+        #datetimepickersearchhome.input-group.date
           input.form-control.dt-calendar type="text" /
-          span.input-group-addon
+          span.input-group-addon.btn-search-time
             span.glyphicon.glyphicon-calendar
       .col-sm-4.col-sx-4
         a.btn.btn-lg.btn-classic.chercher[ng-click="beginSearch()"]
@@ -93,8 +93,3 @@ aside#how-it-works.site-how-it-works.text-center
       img src=image_url('concept.jpg') /
   .row
     img src=image_url('society.jpg') /
-
-javascript:
-  $(function () {
-    $('#datetimepicker1').datetimepicker();
-  });

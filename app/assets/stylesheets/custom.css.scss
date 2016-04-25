@@ -14731,9 +14731,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   letter-spacing: .34px;
   color: #393939;
   line-height: 25px;
-  // margin-top: 14px;
   margin-bottom: 14px;
-
+  #dropdownMenu1 {
+    color: white;
+  }
   a:hover {
     background: #ccc;
     text-decoration: underline;
@@ -17709,7 +17710,14 @@ ul.dropdown-menu.category{
   width: 217px !important;
   margin-top: 5px;
 }
-
+#datetimepickersearchhome {
+  .btn-search-time {
+    cursor: pointer;
+  }
+  .day:hover {
+    cursor: pointer;
+  }
+}
 .dropdown-menu > li > a:hover {
     background-color: rgba(249, 246, 125, 0.6) !important;
     background-image: none;

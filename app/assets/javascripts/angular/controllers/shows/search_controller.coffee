@@ -26,7 +26,6 @@ class ShowSearchController extends @NGController
   init: ->
 
     if @stateParams.id
-      console.log @stateParams.title
       art_id  = @stateParams.id
       @ShowSearch
         .query
@@ -60,7 +59,6 @@ class ShowSearchController extends @NGController
         @scope.shows = shows
 
   modeDetails: (show)=>
-    console.log show.id
     @state.go 'shows.detail',
       id: show.id
       show: show
