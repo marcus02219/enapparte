@@ -207,6 +207,15 @@ body {
   // max-width: 745px;
   margin: auto;
   // padding: 15px
+  .select-search-home {
+    font-family: FuturaLT !important;
+    font-size: 16px;
+    height: 40px;
+    option {
+      font-family: FuturaLT !important;
+      font-size: 16px;
+    }
+  }
 }
 
 #search-bar-home input {
