@@ -8930,6 +8930,11 @@ body {
   .navbar-nav > li > a {
     padding-top: 12px;
     padding-bottom: 12px;
+    &.btn-leconcept {
+      font-family: FuturaLT !important;
+      font-size: 18px;
+      margin-left: 15px;
+    }
   }
   .nav_links {
     background: transparent none;
@@ -17666,6 +17671,9 @@ button.btn.dropdown-toggle.talent {
 
 ul.dropdown-menu {
     margin: 40px 10px;
+    &.dropdown-list-menu-account {
+      margin: 10px;
+    }
 }
 
 a.btn.btn-performer {
