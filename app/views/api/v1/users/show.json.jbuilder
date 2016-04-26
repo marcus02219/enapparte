@@ -12,7 +12,7 @@ json.addresses @user.addresses do |address|
   json.full_address address.full_address
 end
 
-json.reviews @user.reviews.includes(booking: [user: [:picture, :rating]]) do |review|
+json.reviews @user.reviews.includes(booking: [user: [:picture, :ratings]]) do |review|
   json.merge! review.attributes
   json.userImageUrl review.try(:booking).try(:user).try(:picture).try(:image).try(:url, :thumb)
   json.bookingUserFullName review.try(:booking).try(:user).try(:full_name)
