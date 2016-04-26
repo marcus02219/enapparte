@@ -14,6 +14,7 @@ class ShowSearchController extends @NGController
     'moment'
     'Auth'
     '$state'
+    '$stateParams'
   ]
 
   shows: []
@@ -23,13 +24,22 @@ class ShowSearchController extends @NGController
     price: "0,100000"
 
   init: ->
-    @ShowArt
-      .query()
-      .then (arts)=>
-        @scope.arts = arts
 
-    @scope.$watch 'filter.price', (newValue, oldValue)=>
-      @search()
+    if @stateParams.id
+      art_id  = @stateParams.id
+      @ShowSearch
+        .query
+          arts: JSON.stringify([art_id])
+        .then (shows)=>
+          @scope.shows = shows
+    else
+      @ShowArt
+        .query()
+        .then (arts)=>
+          @scope.arts = arts
+
+      @scope.$watch 'filter.price', (newValue, oldValue)=>
+        @search()
 
   search: =>
     q = if  @scope.filter.text then '*' + @scope.filter.text + '*' else ''
@@ -49,7 +59,6 @@ class ShowSearchController extends @NGController
         @scope.shows = shows
 
   modeDetails: (show)=>
-    console.log show.id
     @state.go 'shows.detail',
       id: show.id
       show: show

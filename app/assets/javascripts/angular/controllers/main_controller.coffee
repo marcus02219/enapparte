@@ -1,6 +1,6 @@
 angular
   .module 'enapparte'
-  .controller 'MainController', ['$rootScope', '$scope', '$sanitize', '$uibModal', 'Auth', ($rootScope, $scope, $sanitize, $uibModal, Auth)->
+  .controller 'MainController', ['$rootScope', '$scope', '$sanitize', '$uibModal', 'Auth', '$state', ($rootScope, $scope, $sanitize, $uibModal, Auth, $state)->
 
     $rootScope.Math = window.Math
 
@@ -16,7 +16,7 @@ angular
     $rootScope.logout = ()->
       Auth.logout().then ()->
         $rootScope.currentUser = null
-
+        $state.go 'home'
     $rootScope.showSignIn = ()->
       $uibModal.open
         animation: true

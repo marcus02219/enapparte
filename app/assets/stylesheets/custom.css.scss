@@ -207,6 +207,15 @@ body {
   // max-width: 745px;
   margin: auto;
   // padding: 15px
+  .select-search-home {
+    font-family: FuturaLT !important;
+    font-size: 16px;
+    height: 40px;
+    option {
+      font-family: FuturaLT !important;
+      font-size: 16px;
+    }
+  }
 }
 
 #search-bar-home input {
@@ -8930,6 +8939,11 @@ body {
   .navbar-nav > li > a {
     padding-top: 12px;
     padding-bottom: 12px;
+    &.btn-leconcept {
+      font-family: FuturaLT !important;
+      font-size: 18px;
+      margin-left: 15px;
+    }
   }
   .nav_links {
     background: transparent none;
@@ -14717,9 +14731,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   letter-spacing: .34px;
   color: #393939;
   line-height: 25px;
-  // margin-top: 14px;
   margin-bottom: 14px;
-
+  #dropdownMenu1 {
+    color: white;
+  }
   a:hover {
     background: #ccc;
     text-decoration: underline;
@@ -16661,7 +16676,9 @@ button.close {
   height: 50px;
   overflow: scroll;
 }
-
+.modal-dialog {
+  margin-top: 100px !important;
+}
 @media (min-width: 768px) {
   .modal-dialog {
     width: 600px;
@@ -17666,6 +17683,9 @@ button.btn.dropdown-toggle.talent {
 
 ul.dropdown-menu {
     margin: 40px 10px;
+    &.dropdown-list-menu-account {
+      margin: 10px;
+    }
 }
 
 a.btn.btn-performer {
@@ -17692,7 +17712,14 @@ ul.dropdown-menu.category{
   width: 217px !important;
   margin-top: 5px;
 }
-
+#datetimepickersearchhome {
+  .btn-search-time {
+    cursor: pointer;
+  }
+  .day:hover {
+    cursor: pointer;
+  }
+}
 .dropdown-menu > li > a:hover {
     background-color: rgba(249, 246, 125, 0.6) !important;
     background-image: none;

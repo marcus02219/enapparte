@@ -62,7 +62,7 @@
       controller: 'RootController'
 
     .state 'shows', { abstract: true, url: '/shows', templateUrl: 'shows/index.html' }
-    .state 'shows.search', { url: '/search', templateUrl: 'shows/search.html' }
+    .state 'shows.search', { url: '/:id/search', templateUrl: 'shows/search.html' }
     .state 'shows.detail', { url: '/:id/detail', templateUrl: 'shows/detail.html' }
     .state 'shows.payment', { url: '/:id/payment?date&spectators', templateUrl: 'shows/payment.html', params: { show: null } }
       .state 'shows.payment_finish', { url: '/payment_finish', templateUrl: 'shows/payment_finish.html' }

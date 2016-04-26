@@ -10,26 +10,16 @@
   #search-bar-home
     .row
       .col-sm-4.col-sx-4
-        span.dropdown
-          button.btn.dropdown-toggle.talent data-toggle="dropdown" type="button"
-            | Talent recherché
-            span.caret[style="margin-left: 45px;"]
-          ul.dropdown-menu.category
-            li
-              a href="#"  Comédie
-            li
-              a href="#"  Insolite
-            li
-              a href="#"  Musique
-            li
-              a href="#"  Live Painting
+        span.dropdown[uib-dropdown]
+          select.form-control.select-search-home[ng-model="valueSelect", ng-options="art.title for art in arts"]
+            option[value=""] Talent recherché
       .col-sm-4.col-sx-4
-        #datetimepicker1.input-group.date
+        #datetimepickersearchhome.input-group.date
           input.form-control.dt-calendar type="text" /
-          span.input-group-addon
+          span.input-group-addon.btn-search-time
             span.glyphicon.glyphicon-calendar
       .col-sm-4.col-sx-4
-        a.btn.btn-lg.btn-classic.chercher[ui-sref="shows.search"]
+        a.btn.btn-lg.btn-classic.chercher[ng-click="beginSearch()"]
           |  CHERCHER
 .relative[itemscope itemtype="//schema.org/WebPage"]
   aside.aside_bg
@@ -68,22 +58,22 @@ aside#how-it-works.site-how-it-works.text-center
         h4.feature_header
           |  Découvrez
         p.features_content
-          |  Que vous ayez déjà une idée en 
-          tête pour votre évènement ou non, 
-          découvrez l’univers des performeurs 
-          que nous avons sélectionnés pour 
-          vous en parcourant leurs profils. 
+          |  Que vous ayez déjà une idée en
+          tête pour votre évènement ou non,
+          découvrez l’univers des performeurs
+          que nous avons sélectionnés pour
+          vous en parcourant leurs profils.
       .col-sm-4.text-center
         img src=image_url('calendar.jpg') /
 
         h4.feature_header
           |  Réservez
         p.features_content
-          |  Vous avez trouvé le performeur 
-          qui vous fera vibrer le jour J? 
-          Tant mieux! Il ne vous reste plus 
-          qu’à indiquer la date de votre 
-          événement et à réserver en ligne 
+          |  Vous avez trouvé le performeur
+          qui vous fera vibrer le jour J?
+          Tant mieux! Il ne vous reste plus
+          qu’à indiquer la date de votre
+          événement et à réserver en ligne
           sur notre site sécurisé.
       .col-sm-4.text-center
         img src=image_url('enjoy.jpg') /
@@ -95,7 +85,7 @@ aside#how-it-works.site-how-it-works.text-center
           choisi apporte son matériel et
           s’adapteà votre chez-vous. Vous
           n’avez plus qu’à profiter de cette
-          expérience unique avec vos proches! 
+          expérience unique avec vos proches!
   .row.pre-footer
     .col-sm-6.text-center
       img src=image_url('nouscontacter.jpg') /
@@ -103,8 +93,3 @@ aside#how-it-works.site-how-it-works.text-center
       img src=image_url('concept.jpg') /
   .row
     img src=image_url('society.jpg') /
-
-javascript:
-  $(function () {
-    $('#datetimepicker1').datetimepicker();
-  });
