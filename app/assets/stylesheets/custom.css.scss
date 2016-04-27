@@ -17769,3 +17769,9 @@ a.btn-xl.btn.btn-performer.main-section {
     display: none !important;
   }
 }
+#content-main-page {
+  padding-top: 100px;
+  &.full-main-content {
+    padding-top: 0;
+  }
+}
