@@ -19,24 +19,29 @@ li[ng-if="isAuthenticated()"]
         a[href="" ng-click="logout()"]
           | Log out
 li[ng-if="!isAuthenticated()"]
-  a.nav_links.collapse-header.text-center[ui-sref="home.signin" style="font-size: 18px; font-family: FuturaLT !important; "]
+  a.nav_links.collapse-header.text-center[ui-sref="home.signin"]
     | Connexion
 li[ng-if="!isAuthenticated()"]
-  a.nav_links.collapse-header.text-center[ui-sref="home.signup" style="font-size: 18px; font-family: FuturaLT !important; "]
+  a.nav_links.collapse-header.text-center[ui-sref="home.signup"]
     | Inscription
 li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.facebook-icon src=image_url('i-facebook.png')
+    img.facebook-icon.hover src=image_url('i-facebook-hover.png')
 li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.twitter-icon src=image_url('i-twitter.png') /
+    img.twitter-icon.hover src=image_url('i-twitter-hover.png') /
 li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.instagram-icon src=image_url('i-instagram.png') /
+    img.instagram-icon.hover src=image_url('i-instagram-hover.png') /
 li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.google-icon src=image_url('i-google.png') /
+    img.google-icon.hover src=image_url('i-google-hover.png') /
 li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]
     img.pinterest-icon src=image_url('i-pinterest.png') /
+    img.pinterest-icon.hover src=image_url('i-pinterest-hover.png') /
 

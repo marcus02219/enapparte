@@ -21,6 +21,7 @@ class RootController extends @NGController
       .affix
         offset:
           top: 490
+    $("#content-main-page").addClass("full-main-content")
     @scope.valueSelect = null
   beginSearch: =>
     @state.go 'shows.search',

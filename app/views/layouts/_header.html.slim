@@ -9,7 +9,7 @@
       a#the_logo.navbar_brand[ui-sref="home"]
         = image_tag( 'logo.png', class: 'logo' )
     nav.collapse.navbar-collapse.bs-navbar-collapse[role="navigation"]
-      ul.nav.navbar-nav.navbar-right
+      ul.nav.navbar-nav.navbar-right.list-menu-nav
         li[ng-if="isAuthenticated()"]
           a.btn.btn-performer[href=(new_show_path)]
             | Postez votre performance
