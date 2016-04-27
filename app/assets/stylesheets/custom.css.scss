@@ -161,7 +161,7 @@ body {
   background: $white !important;
 
   a {
-    color: $navigation_color;
+    color: $navigation_color !important;
     text-decoration: none;
   }
 }
@@ -199,6 +199,20 @@ body {
 }
 
 #search-bar-home {
+  input, span, a {
+    border-radius: 0 !important;
+  }
+  .dt-calendar {
+    border-right: none;
+    box-shadow: none;
+  }
+  .btn-search-time {
+    background-color: #fff;
+    border-left: 0;
+    .glyphicon-calendar {
+      font-size: 15px;
+    }
+  }
   position: absolute;
   left: 0;
   right: 0;
@@ -216,15 +230,6 @@ body {
       font-size: 16px;
     }
   }
-}
-
-#search-bar-home input {
-  -webkit-border-top-left-radius: 4px !important;
-  -webkit-border-bottom-left-radius: 4px !important;
-  -moz-border-radius-topleft: 4px !important;
-  -moz-border-radius-bottomleft: 4px !important;
-  border-top-left-radius: 4px !important;
-  border-bottom-left-radius: 4px !important;
 }
 
 #htw-home-link {
@@ -8768,7 +8773,6 @@ a.btn.btn-performer {
     border-color: #fffca6;
     border-width: 2px;
     border-radius: 0;
-    color: rgba(249, 246, 125, 0.6) !important;
 }
 
 a.btn.btn-performer.main-section {
@@ -8960,7 +8964,7 @@ body {
     border-radius: 0;
   }
   .affix a, .affix, .not-fixed a, .not-fixed {
-    color: $navigation_color;
+    color: $navigation_color !important;
   }
   #the_logo {
     //background: url('../img/logo.png') no-repeat center left;
@@ -9036,14 +9040,6 @@ body {
   padding: 15px
 }
 
-#search-bar-home input {
-  -webkit-border-top-left-radius: 4px !important;
-  -webkit-border-bottom-left-radius: 4px !important;
-  -moz-border-radius-topleft: 4px !important;
-  -moz-border-radius-bottomleft: 4px !important;
-  border-top-left-radius: 4px !important;
-  border-bottom-left-radius: 4px !important;
-}
 
 #htw-home-link {
   margin-bottom: 80px
@@ -17589,13 +17585,22 @@ div#header {
 #header.not-fixed a {
   color: white;
 }
-
 a.btn.btn-performer {
     border-style: solid;
     border-color: #fffca6;
     border-width: 2px;
     border-radius: 0;
-    color: #fffca6 !important;
+    color: #fffca6;
+}
+.affix-top {
+  a.btn.btn-performer {
+    color: #fffca6;
+  }
+}
+.affix {
+  a.btn.btn-performer {
+    color: #002b3f;
+  }
 }
 
 a.btn.btn-performer.main-section {
