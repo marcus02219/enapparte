@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   end
 
   def sent_reviews
-    self.bookings.inject([]) {|reviews, b| reviews << b.review  if b.review }
+    self.bookings.includes(:review).inject([]) {|reviews, b| reviews << b.review  if b.review }
   end
 
   def full_name

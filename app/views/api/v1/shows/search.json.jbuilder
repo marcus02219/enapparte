@@ -1,4 +1,4 @@
-json.array!(@shows) do |show|
+json.array!(@shows.includes(:cover_picture, :pictures, :user)) do |show|
   json.merge! show.attributes
   json.user_picture_url show.try(:user).try(:picture).try(:image).try(:url, :thumb)
   json.commission Show::COMMISSION

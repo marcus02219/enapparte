@@ -45,10 +45,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
-    @picture = Picture.new
-    @picture.imageable_type = params[:imageable_type]
-    @picture.imageable_id = params[:imageable_id]
-    @picture.image = params[:file_data]
+    @picture = Picture.create(picture_params)
 
     if @picture.save
       render json: { initialPreview: [ "<img src='#{ @picture.image.url(:thumb) }'>" ],
@@ -90,6 +87,6 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:imageable_type, :imageable_id)
+      params.require(:picture).permit(:imageable_type, :imageable_id, :file_data)
     end
 end
