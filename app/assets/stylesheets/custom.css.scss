@@ -208,6 +208,7 @@ body {
 }
 
 #search-bar-home {
+  padding: 0 237px;
   input, span, a {
     border-radius: 0 !important;
   }
@@ -222,14 +223,6 @@ body {
       font-size: 15px;
     }
   }
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 100000;
-  bottom: 10px;
-  // max-width: 745px;
-  margin: auto;
-  // padding: 15px
   .select-search-home {
     font-family: FuturaLT !important;
     font-size: 16px;
@@ -9040,18 +9033,6 @@ body {
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.40);
 }
 
-#search-bar-home {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 100000;
-  bottom: 10px;
-  max-width: 745px;
-  margin: auto;
-  padding: 15px
-}
-
-
 #htw-home-link {
   margin-bottom: 80px
 }
@@ -9081,6 +9062,16 @@ body {
 #slider {
   z-index: 500;
   margin: auto;
+  &.home-carousel {
+    text-align: center;
+    .carousel-inner .discovery-card {
+      background: transparent;
+    }
+  }
+  .anchor-arrow {
+    cursor: pointer;
+    padding: 35px 0;
+  }
 }
 
 @media (max-width: 1200px) {

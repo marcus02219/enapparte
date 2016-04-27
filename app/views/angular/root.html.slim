@@ -1,6 +1,6 @@
-#slider.carousel.home-carousel.slide[data-ride="carousel" style="text-align:center"]
+#slider.carousel.home-carousel.slide[data-ride="carousel" style="background:url(#{image_url('main_background.jpg')}) no-repeat center center; background-size:cover;"]
   .carousel-inner[style="text-align:center;"]
-    .item.relative.discovery-card.active[style="background:url(#{image_url('main_background.jpg')}) no-repeat center center; background-size:cover;"]
+    .item.relative.discovery-card.active
       .va-container.va-container-v.va-container-h
         p.va-middle.text-center.text-contrast
           | Il est temps de réinventer
@@ -21,6 +21,8 @@
       .col-sm-4.col-sx-4
         a.btn.btn-lg.btn-classic.chercher[ng-click="beginSearch()"]
           |  CHERCHER
+  span[scroll-on-click]
+    = image_tag 'arrow.png', class: "anchor-arrow"
 .relative[itemscope itemtype="//schema.org/WebPage"]
   aside.aside_bg
     .container
