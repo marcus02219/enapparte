@@ -36,6 +36,5 @@ class DashboardAccountController extends @NGController
           @scope.user = user
           @Flash.showNotice @scope, notice
         , (error)->
-          console.log error
           # @Flash.showError @scope, 'User was saved successfully.'
 

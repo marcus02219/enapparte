@@ -8758,7 +8758,6 @@ button.close {
   }
 }
 
-/*# sourceMappingURL=bootstrap.css.map */
 
 .pre-footer {
   margin-top: 30px;
@@ -17590,11 +17589,16 @@ button.close {
   }
 }
 
-/*# sourceMappingURL=bootstrap.css.map */
-
 .pre-footer {
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+div#header {
+  width: 100%;
+}
+#header.not-fixed a {
+  color: white;
 }
 
 a.btn.btn-performer {
