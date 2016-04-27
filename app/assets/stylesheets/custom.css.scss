@@ -90,7 +90,16 @@ body {
   border-radius: 0;
   min-height: 68px;
   margin-bottom: 0;
-
+  .list-menu-nav {
+    li a {
+      margin-left: 15px;
+      @media (max-width: 767px) {
+        &:hover {
+          background-color: #fffca6;
+        }
+      }
+    }
+  }
   .navbar {
     margin-bottom: 0 !important;
   }
@@ -8760,8 +8769,6 @@ button.close {
 }
 
 div#header {
-  position: absolute;
-  z-index: 10000;
   width: 100%;
 }
 #header.not-fixed a {
@@ -8898,6 +8905,10 @@ body {
     -moz-border-radius: 100px;
     -webkit-border-radius: 100px;
     border-radius: 100px;
+    @media (max-width: 768px) {
+      height: 62px;
+      width: 62px;
+    }
   }
 
   margin-top: 1px;
@@ -17577,11 +17588,6 @@ button.close {
   margin-bottom: 30px;
 }
 
-div#header {
-  /* position: absolute; */
-  /* z-index: 10000; */
-  width: 100%;
-}
 #header.not-fixed a {
   color: white;
 }
