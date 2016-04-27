@@ -5,7 +5,7 @@ angular
       restrict: 'A'
       link: (scope, $elm) ->
         $elm.on 'click', ->
-          $('body').animate { scrollTop: $elm.offset().top }, 'slow'
+          $('body,html').animate { scrollTop: $elm.offset().top }, 'slow'
           return
         return
     }

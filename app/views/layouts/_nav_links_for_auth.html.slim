@@ -19,10 +19,10 @@ li[ng-if="isAuthenticated()"]
         a[href="" ng-click="logout()"]
           | Log out
 li[ng-if="!isAuthenticated()"]
-  a.nav_links.collapse-header.text-center[ui-sref="home.signin" style="font-size: 18px; font-family: FuturaLT !important; "]
+  a.nav_links.collapse-header.text-center[ui-sref="home.signin"]
     | Connexion
 li[ng-if="!isAuthenticated()"]
-  a.nav_links.collapse-header.text-center[ui-sref="home.signup" style="font-size: 18px; font-family: FuturaLT !important; "]
+  a.nav_links.collapse-header.text-center[ui-sref="home.signup"]
     | Inscription
 li.collapse-hide[ng-if="!isAuthenticated()"]
   a.nav_links[ui-sref="home.signup"]

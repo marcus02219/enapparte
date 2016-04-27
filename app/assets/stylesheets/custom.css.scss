@@ -8953,6 +8953,8 @@ body {
   .nav_links {
     background: transparent none;
     color: $white;
+    font-size: 18px;
+    font-family: FuturaLT !important;
     img.hover {
       display: none;
     }
@@ -8964,6 +8966,9 @@ body {
           opacity: 1;
         }
       }
+    }
+    &:focus {
+      outline: none;
     }
   }
   .nav_links:hover {
@@ -9000,13 +9005,18 @@ body {
   top: 0 !important;
   left: 0;
   right: 0;
-  // -moz-box-shadow: 0 1px 0 0 #E4E4E4;
-  // box-shadow: 0 1px 0 0 #E4E4E4;
   background: $white !important;
-
   a {
     color: $navigation_color;
     text-decoration: none;
+    &.nav_links:hover {
+      img {
+        display: block;
+        &.hover {
+          display: none;
+        }
+      }
+    }
   }
 }
 
