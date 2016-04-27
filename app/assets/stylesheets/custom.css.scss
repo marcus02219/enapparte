@@ -8944,11 +8944,27 @@ body {
       font-family: FuturaLT !important;
       font-size: 18px;
       margin-left: 15px;
+      &:hover {
+        border-color: #fff;
+        color: #fff;
+      }
     }
   }
   .nav_links {
     background: transparent none;
     color: $white;
+    img.hover {
+      display: none;
+    }
+    &:hover {
+      img {
+        display: none;
+        &.hover {
+          display: block;
+          opacity: 1;
+        }
+      }
+    }
   }
   .nav_links:hover {
     text-decoration: underline;
@@ -17689,7 +17705,6 @@ ul.dropdown-menu {
 a.btn.btn-performer {
 
   border-width: 2px;
-  border-color: rgb(255, 255, 255);
   border-style: solid;
   position: relative;
   z-index: 196;
