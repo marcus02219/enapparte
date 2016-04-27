@@ -2,23 +2,23 @@
   .carousel-inner[style="text-align:center;"]
     .item.relative.discovery-card.active
       .va-container.va-container-v.va-container-h
-        p.va-middle.text-center.text-contrast
+        p.va-middle.text-center.text-contrast.text-reinvent-desc
           | Il est temps de réinventer
           br
           |  vos évènements
           br
   #search-bar-home
     .row
-      .col-sm-4.col-sx-4
+      .col-sm-4.input-search
         span.dropdown[uib-dropdown]
           select.form-control.select-search-home[ng-model="valueSelect", ng-options="art.title for art in arts"]
             option[value=""] Talent recherché
-      .col-sm-4.col-sx-4
+      .col-sm-4.input-search
         #datetimepickersearchhome.input-group.date
           input.form-control.dt-calendar type="text" /
           span.input-group-addon.btn-search-time
             span.glyphicon.glyphicon-calendar
-      .col-sm-4.col-sx-4
+      .col-sm-4.input-search
         a.btn.btn-lg.btn-classic.chercher[ng-click="beginSearch()"]
           |  CHERCHER
   span[scroll-on-click]
@@ -74,10 +74,12 @@ aside#how-it-works.site-how-it-works.text-center
           |  Partagez
         p.features_content
           |  Le jour de votre événement,le performeur que vous aurez choisi apporte son matériel et s’adapteà votre chez-vous. Vous n’avez plus qu’à profiter de cette expérience unique avec vos proches!
-  .row.pre-footer
-    .col-sm-6.text-center
-      img src=image_url('nouscontacter.jpg') /
-    .col-sm-6.text-center
-      img src=image_url('concept.jpg') /
-  .row
-    img src=image_url('society.jpg') /
+  .container-fluid.pre-footer
+    .row
+      .col-sm-6.text-center.image-left
+        img src=image_url('nouscontacter.jpg') /
+      .col-sm-6.text-center.image-right
+        img src=image_url('concept.jpg') /
+  .container-fluid
+    .row
+      img src=image_url('society.jpg') /

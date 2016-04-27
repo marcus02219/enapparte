@@ -209,6 +209,12 @@ body {
 
 #search-bar-home {
   padding: 0 237px;
+  @media (max-width: 768px) {
+    padding: 0 30px;
+    .input-search {
+      margin-bottom: 15px;
+    }
+  }
   input, span, a {
     border-radius: 0 !important;
   }
@@ -319,8 +325,6 @@ body {
   background-size: cover;
   background: $aside_background center;
   position: relative;
-  height: 290px;
-  margin-bottom: 20px;
 
   .h2 {
     color: $white;
@@ -9020,6 +9024,9 @@ body {
   line-height: 60px;
   letter-spacing: 1px;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.40);
+  &.text-reinvent-desc {
+    line-height: 75px;
+  }
 }
 
 #htw-home-link {
@@ -9117,8 +9124,7 @@ body {
   background-size: cover;
   background: $aside_background center;
   position: relative;
-  height: 290px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
   .h2 {
     color: $white;
@@ -14719,9 +14725,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #393939;
   line-height: 25px;
   margin-bottom: 14px;
-  #dropdownMenu1 {
-    color: white;
-  }
   a:hover {
     background: #ccc;
     text-decoration: underline;
@@ -17568,9 +17571,6 @@ button.close {
   margin-bottom: 30px;
 }
 
-#header.not-fixed a {
-  color: white;
-}
 a.btn.btn-performer {
     border-style: solid;
     border-color: #fffca6;
@@ -17581,6 +17581,9 @@ a.btn.btn-performer {
 .affix-top {
   a.btn.btn-performer {
     color: #fffca6;
+  }
+  #dropdownMenu1 {
+    color: #fff;
   }
 }
 .affix {
@@ -17768,5 +17771,48 @@ a.btn-xl.btn.btn-performer.main-section {
   padding-top: 100px;
   &.full-main-content {
     padding-top: 0;
+  }
+}
+#how-it-works {
+  .pre-footer {
+    @media(max-width: 768px) {
+      margin-bottom: 0;
+    }
+    .image-left {
+      padding-left: 0;
+      @media (max-width: 768px) {
+        padding-right: 0;
+      }
+    }
+    .image-right {
+      padding-right: 0;
+      @media (max-width: 768px) {
+        padding-left: 0;
+      }
+    }
+  }
+}
+.footer {
+  position: relative;
+  font-family: FuturaLT;
+  z-index: 100;
+  @media(max-width: 768px) {
+    padding-top: 20px;
+  }
+  .info-left, .info-right {
+    h4.title {
+      font-size: 26px;
+    }
+    .menu {
+      a {
+        font-size: 18px;
+      }
+    }
+  }
+  hr {
+    border: 1px solid #2c2c34;
+  }
+  #copyright {
+    p {color: #f6f6f6;}
   }
 }
