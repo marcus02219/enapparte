@@ -8775,17 +8775,6 @@ a.btn.btn-performer {
     border-radius: 0;
 }
 
-a.btn.btn-performer.main-section {
-  border-style: solid;
-  border-color: #fffca6;
-  border-width: 2px;
-  border-radius: 0;
-  color: black !important;
-  background-color: #fffca6 !important;
-}
-
-
-
 .facebook-icon {
   padding-top: 5px;
   width: 10px;
@@ -17599,16 +17588,20 @@ a.btn.btn-performer {
     color: #002b3f;
   }
 }
-
-a.btn.btn-performer.main-section {
-  border-style: solid;
-  border-color: #fffca6;
-  border-width: 2px;
-  border-radius: 0;
-  color: black !important;
-  background-color: #fffca6 !important;
+.relative .button-performer {
+  padding: 58px 0;
+  a.btn.btn-performer.main-section {
+    border-style: solid;
+    border-color: #fffca6;
+    border-width: 2px;
+    border-radius: 0;
+    background-color: #fffca6 !important;
+    color: #002b3f;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 10px;
+  }
 }
-
 .facebook-icon {
   padding-top: 5px;
   width: 10px;
