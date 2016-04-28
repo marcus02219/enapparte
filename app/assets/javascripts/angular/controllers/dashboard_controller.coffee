@@ -6,6 +6,8 @@ class DashboardController extends @NGController
     '$rootScope'
     '$state'
     'Show'
+    'Auth'
+    'Flash'
   ]
 
   tabs: [
@@ -18,6 +20,10 @@ class DashboardController extends @NGController
   ]
 
   init: ->
+    unless @Auth.isAuthenticated()
+      @state.go 'home'
+      @Flash.showError @scope, "You need to sign in or sign up before continuing."
+      return
     @Show
       .query()
       .then (shows)=>
