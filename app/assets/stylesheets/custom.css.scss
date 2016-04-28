@@ -17714,17 +17714,13 @@ a.btn.btn-lg.btn-classic.chercher {
   width: 100%;
   height: 40px;
   padding: 8px 5px;
-  background-color: white;
-  color: rgba(0, 0, 0, 0.7);
+  background-color: #fff481;
+  color: #002b3f;
   font-family: FuturaLT !important;
-}
-
-a.btn.btn-lg.btn-classic.chercher:hover {
-  width: 100%;
-  height: 40px;
-  padding: 8px 5px;
-  background-color: rgb(255,244,129);
-  color: white;
+  &:hover{
+    background-color: #002b3f;
+    color: #fff481;
+  }
 }
 
 input.form-control.dt-calendar{
