@@ -22,10 +22,11 @@ asset 'intl-tel-input'
 asset 'angular-ui-router-tabs'
 asset 'angular-bootstrap-datetimepicker', github: 'dalelotts/angular-bootstrap-datetimepicker'
 asset 'angular-ui-router-anim-in-out'
-
 asset 'angular-credit-cards'
 asset 'stripe-angular'
 
 asset 'angular-mocks'
 asset 'bootstrap-fileinput'
 asset 'angular-ui-select'
+asset 'angular-bootstrap-select', github: 'joaoneto/angular-bootstrap-select'
+

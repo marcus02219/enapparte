@@ -8,7 +8,8 @@ $(document).ready( function(){
     $('.flash-messages .alert').alert('close');
   });
   $('#datetimepickersearchhome').datetimepicker({
-    format: "DD/MM/YYYY"
+    format: "DD/MM/YYYY",
+    defaultDate: new Date()
   });
 });
 

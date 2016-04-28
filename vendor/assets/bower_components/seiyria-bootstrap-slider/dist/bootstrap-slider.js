@@ -1,5 +1,5 @@
 /*! =======================================================
-                      VERSION  6.1.2              
+                      VERSION  7.0.3              
 ========================================================= */
 "use strict";
 
@@ -521,6 +521,9 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
 			this.touchCapable = 'ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch;
 
+			this.touchX = 0;
+			this.touchY = 0;
+
 			this.tooltip = this.sliderElem.querySelector('.tooltip-main');
 			this.tooltipInner = this.tooltip.querySelector('.tooltip-inner');
 
@@ -647,9 +650,13 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 			this.handle2.addEventListener("keydown", this.handle2Keydown, false);
 
 			this.mousedown = this._mousedown.bind(this);
+			this.touchstart = this._touchstart.bind(this);
+			this.touchmove = this._touchmove.bind(this);
+
 			if (this.touchCapable) {
 				// Bind touch handlers
-				this.sliderElem.addEventListener("touchstart", this.mousedown, false);
+				this.sliderElem.addEventListener("touchstart", this.touchstart, false);
+				this.sliderElem.addEventListener("touchmove", this.touchmove, false);
 			}
 			this.sliderElem.addEventListener("mousedown", this.mousedown, false);
 
@@ -882,6 +889,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 			},
 
 			relayout: function relayout() {
+				this._resize();
 				this._layout();
 				return this;
 			},
@@ -913,7 +921,8 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 				if (this.hideTooltip) {
 					this.sliderElem.removeEventListener("mouseleave", this.hideTooltip, false);
 				}
-				this.sliderElem.removeEventListener("touchstart", this.mousedown, false);
+				this.sliderElem.removeEventListener("touchstart", this.touchstart, false);
+				this.sliderElem.removeEventListener("touchmove", this.touchmove, false);
 				this.sliderElem.removeEventListener("mousedown", this.mousedown, false);
 
 				// Remove window event listener
@@ -1168,6 +1177,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 					var diff1 = Math.abs(this._state.percentage[0] - percentage);
 					var diff2 = Math.abs(this._state.percentage[1] - percentage);
 					this._state.dragged = diff1 < diff2 ? 0 : 1;
+					this._adjustPercentageForRangeSliders(percentage);
 				} else {
 					this._state.dragged = 0;
 				}
@@ -1214,6 +1224,16 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 				}
 
 				return true;
+			},
+			_touchstart: function _touchstart(ev) {
+				if (ev.changedTouches === undefined) {
+					this._mousedown(ev);
+					return;
+				}
+
+				var touch = ev.changedTouches[0];
+				this.touchX = touch.pageX;
+				this.touchY = touch.pageY;
 			},
 			_triggerFocusOnHandle: function _triggerFocusOnHandle(handleIdx) {
 				if (handleIdx === 0) {
@@ -1296,6 +1316,27 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 				this.setValue(val, true, true);
 
 				return false;
+			},
+			_touchmove: function _touchmove(ev) {
+				if (ev.changedTouches === undefined) {
+					return;
+				}
+
+				var touch = ev.changedTouches[0];
+
+				var xDiff = touch.pageX - this.touchX;
+				var yDiff = touch.pageY - this.touchY;
+
+				if (!this._state.inDrag) {
+					// Vertical Slider
+					if (this.options.orientation === 'vertical' && xDiff <= 5 && xDiff >= -5 && (yDiff >= 15 || yDiff <= -15)) {
+						this._mousedown(ev);
+					}
+					// Horizontal slider.
+					else if (yDiff <= 5 && yDiff >= -5 && (xDiff >= 15 || xDiff <= -15)) {
+							this._mousedown(ev);
+						}
+				}
 			},
 			_adjustPercentageForRangeSliders: function _adjustPercentageForRangeSliders(percentage) {
 				if (this.options.range) {

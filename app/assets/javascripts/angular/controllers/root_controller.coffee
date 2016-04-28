@@ -9,12 +9,14 @@ class RootController extends @NGController
   ]
 
   init: ->
+    @scope.art = {}
     @rootScope.rootPath = true
     @scope.arts = []
     @Art
       .query()
       .then (art)=>
         @scope.arts = art
+    @scope.art.selected = @scope.arts[0]
     $('#header')
       .removeClass('not-fixed')
       .addClass('affix-top')
@@ -22,7 +24,7 @@ class RootController extends @NGController
         offset:
           top: 490
     $("#content-main-page").addClass("full-main-content")
-    @scope.valueSelect = null
   beginSearch: =>
+    idArt = @scope.art.selected.id if @scope.art.selected
     @state.go 'shows.search',
-      id: @scope.valueSelect
+      id: idArt || null
