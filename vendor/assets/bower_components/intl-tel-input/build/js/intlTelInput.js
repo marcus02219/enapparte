@@ -1,5 +1,5 @@
 /*
- * International Telephone Input v8.4.8
+ * International Telephone Input v8.5.2
  * https://github.com/jackocnr/intl-tel-input.git
  * Licensed under the MIT license
  */
@@ -472,19 +472,28 @@
                     });
                 }
             });
-            // on blur: if just a dial code then remove it
+            // on blur or form submit: if just a dial code then remove it
+            var form = this.telInput.prop("form");
+            if (form) {
+                $(form).on("submit" + this.ns, function() {
+                    that._removeEmptyDialCode();
+                });
+            }
             this.telInput.on("blur" + this.ns, function() {
-                var value = that.telInput.val(), startsPlus = value.charAt(0) == "+";
-                if (startsPlus) {
-                    var numeric = that._getNumeric(value);
-                    // if just a plus, or if just a dial code
-                    if (!numeric || that.selectedCountryData.dialCode == numeric) {
-                        that.telInput.val("");
-                    }
-                }
-                // remove the keypress listener we added on focus
-                that.telInput.off("keypress.plus" + that.ns);
+                that._removeEmptyDialCode();
             });
+        },
+        _removeEmptyDialCode: function() {
+            var value = this.telInput.val(), startsPlus = value.charAt(0) == "+";
+            if (startsPlus) {
+                var numeric = this._getNumeric(value);
+                // if just a plus, or if just a dial code
+                if (!numeric || this.selectedCountryData.dialCode == numeric) {
+                    this.telInput.val("");
+                }
+            }
+            // remove the keypress listener we added on focus
+            this.telInput.off("keypress.plus" + this.ns);
         },
         // extract the numeric digits from the given string
         _getNumeric: function(s) {
@@ -629,7 +638,7 @@
         _updateValFromNumber: function(number, doFormat, format) {
             if (doFormat && window.intlTelInputUtils && this.selectedCountryData) {
                 if (!$.isNumeric(format)) {
-                    format = this.options.nationalMode || number.charAt(0) != "+" ? intlTelInputUtils.numberFormat.NATIONAL : intlTelInputUtils.numberFormat.INTERNATIONAL;
+                    format = !this.options.separateDialCode && (this.options.nationalMode || number.charAt(0) != "+") ? intlTelInputUtils.numberFormat.NATIONAL : intlTelInputUtils.numberFormat.INTERNATIONAL;
                 }
                 number = intlTelInputUtils.formatNumber(number, this.selectedCountryData.iso2, format);
             }
@@ -907,6 +916,13 @@
                 // label click hack
                 this.telInput.closest("label").off(this.ns);
             }
+            // unbind submit event handler on form
+            if (this.options.autoHideDialCode) {
+                var form = this.telInput.prop("form");
+                if (form) {
+                    $(form).off(this.ns);
+                }
+            }
             // unbind all events: key events, and focus/blur events if autoHideDialCode=true
             this.telInput.off(this.ns);
             // remove markup (but leave the original input)
@@ -1053,7 +1069,7 @@
         }
     };
     // version
-    $.fn[pluginName].version = "8.4.8";
+    $.fn[pluginName].version = "8.5.2";
     // Tell JSHint to ignore this warning: "character may get silently deleted by one or more browsers"
     // jshint -W100
     // Array of country objects for the flag dropdown.

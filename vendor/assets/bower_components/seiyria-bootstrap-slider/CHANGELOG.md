@@ -1,3 +1,24 @@
+7.0.2 / 2016-04-05
+==================
+* **Bug Fix:** Fixes overlap issue with range slider. [See here for further details](https://github.com/seiyria/bootstrap-slider/issues/435). Thanks to [Jerry (jerrylow)](https://github.com/jerrylow)
+
+7.0.0 / 2016-04-05
+==================
+* **Breaking Change:** Restructured and refactored SASS source files to eliminate compass dependency and be more organized. Thanks to [Jacob van Mourik
+ (jcbvm)](https://github.com/jcbvm)
+
+6.1.7 / 2016-04-03
+==================
+* **Bug Fix:** Fixes issue where slider accidently scrolls when user taps on mobile device. Thanks to [Jerry (jerrylow)](https://github.com/jerrylow)
+
+6.1.5 / 2016-03-12
+==================
+* **Bug Fix:** Call resize() before layout() within relayout() method, which enables intially hidden sliders to be revealed and behave appropriately. Thanks to [Peter (MaZderMind)](https://github.com/MaZderMind)
+
+6.1.3 / 2016-03-07
+==================
+* **Bug Fix:** Fixed horizontal centering issue with labels. Thanks to [Josh Guffey](https://github.com/jguffey)
+
 6.1.0 / 2016-02-28
 ==================
 * **New Feature:** Auto-registering/intializing slider via `data-provide="slider"` attribute. Thanks to [MaZderMind](https://github.com/MaZderMind)
