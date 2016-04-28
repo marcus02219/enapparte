@@ -1,19 +1,4 @@
 .container[ng-controller="DashboardController"]
-  tabs[data="tabs" type="tabs"]
-  / uib-tabset[justified="true"]
-  /     uib-tab[ng-repeat="tab in tabs" heading="{{ tab.heading }}" select="go(tab.route)" active="tab.active"]
-
-  / br
-  / div[ui-view]
+  tabs[data="tabs" type="tabs" template-url="ui-router-tabs-custom-ui-view-template.html"]
   br
   ui-view
-
-  / ul.nav.nav-tabs
-  /   = active_link_to 'Dashboard', dashboard_path, wrap_tag: :li, active: /^\/dashboard$/
-  /   = active_link_to 'Profile', profile_dashboard_path, wrap_tag: :li, active: /^\/dashboard\/(profile|update)$/
-  /   = active_link_to 'Messages', messages_dashboard_path, wrap_tag: :li
-  /   - if @user.shows.size > 0
-  /     = active_link_to 'My Shows', shows_dashboard_path, wrap_tag: :li
-  /     = active_link_to 'My Performances', performances_dashboard_path, wrap_tag: :li
-  /   = active_link_to 'My Bookings', bookings_dashboard_path, wrap_tag: :li
-  /   = active_link_to 'Account', account_dashboard_path, wrap_tag: :li
