@@ -47,8 +47,8 @@
     unless $state.current.name.startsWith 'home'
       $(window).off('.affix')
       $("#header")
-        .removeClass("affix,affix-top, affix-bottom, full-main-content")
-        .addClass("not-fixed")
+        .removeClass("affix-top, affix-bottom, full-main-content")
+        .addClass("affix")
         .removeData("bs.affix")
 ]
 
