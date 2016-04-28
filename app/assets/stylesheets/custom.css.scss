@@ -208,7 +208,7 @@ body {
 }
 
 #search-bar-home {
-  padding: 0 237px;
+  padding: 0 16.875%;
   @media (max-width: 768px) {
     padding: 0 30px;
     .input-search {
@@ -233,6 +233,36 @@ body {
     font-family: FuturaLT !important;
     font-size: 16px;
     height: 40px;
+    .ui-select-search {
+      height: 40px;
+    }
+    .ui-select-match {
+      .ui-select-toggle {
+        height: 40px;
+        padding: 10px 12px;
+      }
+    }
+    .ui-select-choices {
+      border-radius: 0;
+      margin: 10px 0;
+      padding: 0;
+      .ui-select-choices-row {
+        .ui-select-choices-row-inner {
+          padding: 12px;
+          color: #6c6c6c;
+          &:hover {
+            background-color: #fff481;
+            color: #002b3f;
+          }
+        }
+        &.active {
+          .ui-select-choices-row-inner{
+            background-color: #fff481;
+            color: #002b3f;
+          }
+        }
+      }
+    }
     option {
       font-family: FuturaLT !important;
       font-size: 16px;
@@ -17728,19 +17758,39 @@ ul.dropdown-menu.category{
 .dropdown-menu>li>a {
   width: 217px !important;
 }
-
-
-.bootstrap-datetimepicker-widget.dropdown-menu.bottom,
-.bootstrap-datetimepicker-widget.dropdown-menu.top {
-  width: 217px !important;
-  margin-top: 5px;
-}
 #datetimepickersearchhome {
+  .dropdown-menu {
+    border-radius: 0;
+    bottom: auto !important;
+    top: 45px !important;
+    width: 100%;
+    .datepicker .datepicker-days .table-condensed{
+      width: 100%;
+      thead, tbody{
+        tr {
+          th, td{
+            color: #6c6c6c;
+            text-align: center;
+            font-size: 16px;
+            font-family: FuturaLT;
+            font-weight: 100;
+          }
+          td {
+            border: 1px solid rgba(221, 221, 221, 0.13);
+            &.day.active {
+              background-color: #fffc6a;
+            }
+          }
+        }
+      }
+    }
+  }
   .btn-search-time {
     cursor: pointer;
   }
   .day:hover {
     cursor: pointer;
+    background-color: #fffca6;
   }
 }
 .dropdown-menu > li > a:hover {

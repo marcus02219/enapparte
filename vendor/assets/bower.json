@@ -23,6 +23,7 @@
     "stripe-angular": "latest",
     "angular-mocks": "latest",
     "bootstrap-fileinput": "latest",
-    "angular-ui-select": "latest"
+    "angular-ui-select": "latest",
+    "angular-bootstrap-select": "git://github.com/joaoneto/angular-bootstrap-select"
   }
 }
