@@ -35,6 +35,5 @@ class ProfileController extends @NGController
           @scope.user = user
           @Flash.showNotice @scope, 'User was saved successfully.'
         , (error)->
-          console.log error
           # @Flash.showError @scope, 'User was saved successfully.'
 

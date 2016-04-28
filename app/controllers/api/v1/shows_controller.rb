@@ -29,28 +29,7 @@ class Api::V1::ShowsController < Api::BaseController
   end
 
   def search
-    if params[:q].present?
-      response = Show.__elasticsearch__.search(query: { query_string: { query: params[:q] } })
-      @shows = response.records.where(active: true).order('rating desc')
-    end
-
-    if params[:price0].present? && params[:price1].present?
-      @shows = Show.where(active: true).order('rating desc')  if @shows.nil?
-      @shows = @shows.where(price: params[:price0]..params[:price1])
-    end
-
-    if params[:arts].present?
-      art_ids = JSON.parse(params[:arts])
-      if art_ids.any?
-        @shows = Show.where(active: true).order('rating desc')  if @shows.nil?
-        @shows = @shows.where(art_id: JSON.parse(params[:arts]))
-      end
-    end
-
-    if @shows.nil?
-      @shows = Show.where(active: true).order('rating desc').all
-    end
-
+    @shows = show_service.search params[:q], params[:price0], params[:price1], params[:arts]
     respond_with :api, :v1, @shows
   end
 
@@ -71,5 +50,7 @@ class Api::V1::ShowsController < Api::BaseController
   def show_params
     params.require(:show).permit(:art_id, :max_spectators, :length, :title, :description, :price, :cover_picture_id, :starts_at, :ends_at, pictures_attributes: [ :src, :_destroy, :id, :selected ])
   end
-
+  def show_service
+    @show_service = ShowsService.new
+  end
 end

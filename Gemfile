@@ -119,4 +119,4 @@ gem 'angular_rails_csrf'
 gem 'stripe'
 
 gem 'carmen', require: false
-
+gem "js-routes"
