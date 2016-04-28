@@ -10,9 +10,9 @@
   #search-bar-home
     .row
       .col-sm-4.input-search
-        ui-select.select-search-home[ng-model='valueSelect', theme='bootstrap']
+        ui-select.select-search-home[ng-model="art.selected", theme='bootstrap']
           ui-select-match[placeholder='Talent recherché'] {{$select.selected.title}}
-          ui-select-choices[repeat="art in arts"]
+          ui-select-choices[repeat="art as art in arts"]
             div[ng-bind-html="art.title"]
       .col-sm-4.input-search
         #datetimepickersearchhome.input-group.date
