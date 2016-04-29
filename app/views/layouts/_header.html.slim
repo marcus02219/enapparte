@@ -10,7 +10,7 @@
         = image_tag( 'logo.png', class: 'logo' )
     nav.collapse.navbar-collapse.bs-navbar-collapse[role="navigation"]
       ul.nav.navbar-nav.navbar-right.list-menu-nav
-        li[ng-if="isAuthenticated()"]
+        li[ng-if="isAuthenticated() && isPerformer()"]
           a.btn.btn-performer[href=(new_show_path)]
             | Postez votre performance
         li

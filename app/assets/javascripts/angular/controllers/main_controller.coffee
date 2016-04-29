@@ -12,7 +12,8 @@ angular
 
     $rootScope.isAuthenticated = ()->
       Auth.isAuthenticated()
-
+    $rootScope.isPerformer = ()->
+      Auth._currentUser.role in ["admin", "performer"]
     $rootScope.logout = ()->
       Auth.logout().then ()->
         $rootScope.currentUser = null
