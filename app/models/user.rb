@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   before_save :check_picture_exists
 
   enum gender: { male: 0, female: 1, other: 2 }
-  enum role: { admin: 0, user: 1 }
+  enum role: { admin: 0, user: 1, performer: 2 }
 
   def picture= file
     self.build_picture(image: file)
