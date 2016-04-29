@@ -17763,7 +17763,7 @@ ul.dropdown-menu.category{
     border-radius: 0;
     bottom: auto !important;
     top: 45px !important;
-    width: 100%;
+    min-width: 100%;
     .datepicker .datepicker-days .table-condensed{
       width: 100%;
       thead, tbody{
