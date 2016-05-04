@@ -20,15 +20,16 @@ class DashboardController extends @NGController
   ]
 
   init: ->
-    unless @Auth.isAuthenticated()
-      @state.go 'home'
-      @Flash.showError @scope, "You need to sign in or sign up before continuing."
-      return
     @Show
       .query()
       .then (shows)=>
         if shows.length > 0
+          tabPerformer = {heading: 'Calendar', route: "dashboard.calendar", routeActive: 'dashboard.calendar'}
           tab = { heading: 'My Performances', route: 'dashboard.performances.current', routeActive: 'dashboard.performances' }
+
           if @scope.tabs[4].heading != tab.heading
             @scope.tabs.splice 4, 0, tab
-
+          if @isPerformer()
+            @scope.tabs.push tabPerformer
+  isPerformer: ->
+    @Auth._currentUser.role in ["admin", "performer"]

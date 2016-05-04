@@ -38,9 +38,10 @@
   Stripe.setPublishableKey(window.StripePublishableKey)
 ]
 
-@App.run ['$rootScope', 'Auth', '$state', ($rootScope, Auth, $state)->
+@App.run ['$rootScope', 'Auth', '$state', 'Flash', '$timeout', ($rootScope, Auth, $state, Flash, $timeout)->
+
   Auth.currentUser().then (user)->
-    $rootScope.currentUser = user
+      $rootScope.currentUser = user
 
   $rootScope.$on '$stateChangeSuccess', (e)->
     $rootScope.rootPath = false
@@ -50,8 +51,13 @@
         .removeClass("affix-top, affix-bottom, full-main-content")
         .addClass("affix")
         .removeData("bs.affix")
-]
+    $timeout (->
+      if !($state.current.name in ['home', 'home.signin', 'home.signup', 'shows.search']) && !Auth.isAuthenticated()
+        $state.go 'home'
+        Flash.showError $rootScope, "You need to sign in or sign up before continuing."
+    ), 500
 
+]
 @App.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider)->
   $urlRouterProvider.otherwise('/')
 
@@ -96,7 +102,7 @@
       .state 'dashboard.account.payment', { url: '/payment', templateUrl: 'dashboard/account/payment.html' }
       .state 'dashboard.account.information', { url: '/information', templateUrl: 'dashboard/account/information.html' }
       .state 'dashboard.account.security', { url: '/security', templateUrl: 'dashboard/account/security.html' }
-
+      .state 'dashboard.calendar', {url: '/:id/calendar', templateUrl: 'dashboard/calendar/index.html'}
     .state 'home.signin', {
       url: 'signin',
       onEnter: ['$uibModal', '$state', ($uibModal, $state)->

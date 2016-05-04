@@ -12,6 +12,7 @@ class ShowController extends @NGController
     'ShowArt',
     'ShowSearch'
     '$stateParams'
+    '$state'
   ]
 
   init: ->
@@ -133,7 +134,8 @@ class ShowController extends @NGController
       .then ()=>
         @scope.show.pending = false
         # redirect to
-        window.history.back()
+        @state.go 'dashboard.calendar',
+          id: @scope.show.id
         @Flash.showSuccess @scope, 'Created new show successfully.'
 
   tabClick: (step)->
