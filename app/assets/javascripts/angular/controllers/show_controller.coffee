@@ -45,8 +45,8 @@ class ShowController extends @NGController
       @scope.show.startsAt = newValue  if @scope.show.startsAt > newValue
 
   load: ()=>
+    @scope.tabsClickable = true
     if @stateParams.id
-      @tabsClickable = true
       @Show
         .get @stateParams.id
         .then (show)=>

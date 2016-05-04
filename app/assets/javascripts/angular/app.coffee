@@ -66,7 +66,8 @@
     .state 'shows.detail', { url: '/:id/detail', templateUrl: 'shows/detail.html' }
     .state 'shows.payment', { url: '/:id/payment?date&spectators', templateUrl: 'shows/payment.html', params: { show: null } }
       .state 'shows.payment_finish', { url: '/payment_finish', templateUrl: 'shows/payment_finish.html' }
-    .state 'shows.edit', { url: '/edit', templateUrl: 'shows/edit.html', params: { id: null } }
+    .state 'shows.edit', { url: '/:id/edit', templateUrl: 'shows/edit.html', params: { id: null } }
+    .state 'shows.new', {url: '/new', templateUrl: 'shows/edit.html'}
 
     .state 'dashboard', { abstract: true, url: '/dashboard', templateUrl: 'dashboard/tabs.html' }
       .state 'dashboard.index', { url: '/index', templateUrl: 'dashboard/index.html' }
