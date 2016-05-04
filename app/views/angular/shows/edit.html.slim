@@ -42,12 +42,11 @@
                   img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
                   .caption
                     .actions.pull-right
-                      a[href="#" ng-click="removePicture($index)"]
+                      button.btn-remove-picture[type='button' ng-click="removePicture($index)"]
                         i.glyphicon.glyphicon-trash
                   .clearfix
             br
             input-images-button[label="Upload photos" model="show.pictures" required]
-
         .form-inputs[ng-if="step == 3"]
           fieldset
             legend= "Cover Photo"

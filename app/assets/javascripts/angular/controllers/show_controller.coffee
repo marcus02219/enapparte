@@ -83,7 +83,6 @@ class ShowController extends @NGController
 
   removePicture: (index)->
     @scope.show.pictures[index]._destroy = 1
-
   addShow: (show, index)->
     if angular.isDefined(index)
       @scope.shows[index] = show
