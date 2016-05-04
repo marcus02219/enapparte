@@ -9,8 +9,6 @@
           a[href="" ng-click="tabClick(2)"]= "Photos"
         li[ng-class="{ active: step == 3 }"]
           a[href="" ng-click="tabClick(3)"]= "Cover Photo"
-        li[ng-class="{ active: step == 4 }"]
-          a[href="" ng-click="tabClick(4)"]= "Shedules"
 
     .col-md-9
       form.show.form-horizontal[novalidate name="showForm"]
@@ -60,14 +58,6 @@
                     i.glyphicon.glyphicon-ok[ng-show="picture.selected"]
                     '
                     = "Cover Photo"
-
-        .form-inputs[ng-if="step == 4"]
-          fieldset
-            legend= "What at time?"
-            p= "Over what time slot can the spectators order your show?"
-            br
-            input-time[label="Starts at" model="show.startsAt" required]
-            input-time[label="Ends at" model="show.endsAt" required]
 
         hr
         .form-actions
