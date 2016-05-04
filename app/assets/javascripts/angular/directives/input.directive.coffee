@@ -363,4 +363,19 @@ angular
         onlyCountries: ["fr"]
         initialCountry: "fr"
         preferredCountries: "fr"
+  .directive 'inputCheckbox', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: "directives/input_checkbox.html"
+    scope:
+      model: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' +scope.$id
+      scope.data =
+        model: null
+      scope.$watch 'data.model', (newValue)->
+        scope.model = newValue
 

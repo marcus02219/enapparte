@@ -17902,3 +17902,9 @@ a.btn-xl.btn.btn-performer.main-section {
   color: red;
   padding-left: 5px;
 }
+.price-person-checkbox {
+  padding-left: 25px;
+  input[type='checkbox'] {
+    margin-left: 0 !important;
+  }
+ }

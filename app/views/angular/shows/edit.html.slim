@@ -27,8 +27,8 @@
           fieldset
             legend= "Price"
             input-integer[label="Price" model="show.price" required]
-            / = f.input :price
-
+            .price-person-checkbox.col-sm-offset-3
+              input-checkbox[label="Il s’agit du prix par personne" model="show.pricePerson"]
         .form-inputs[ng-if="step == 2"]
           fieldset
             legend= "Add Photos"
