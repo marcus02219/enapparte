@@ -134,6 +134,7 @@ class ShowController extends @NGController
         @scope.show.pending = false
         # redirect to
         window.history.back()
+        @Flash.showSuccess @scope, 'Created new show successfully.'
 
   tabClick: (step)->
     if @scope.tabsClickable

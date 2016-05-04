@@ -67,9 +67,9 @@
                 button#continue.btn.btn-default[ng-click="prevStep(showForm)" ng-show="step > 1"]
                   = "Back"
                 '
-                button#continue.btn.btn-default[ng-click="nextStep(showForm)" ng-show="step < 4"]
+                button#continue.btn.btn-default[ng-click="nextStep(showForm)" ng-show="step < 3"]
                   = "Continue"
-                button#finish.btn.btn-default[ng-click="finish()" ng-show="step == 4"]
+                button#finish.btn.btn-default[ng-click="finish()" ng-show="step == 3"]
                   i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate[ng-show="show.pending"]
                   '
                   = "Finish"
