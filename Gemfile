@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.0'
 # Use Postmark for email delivery
 gem "postmark-rails"
 
-gem "rb-inotify", github: "csolg/rb-inotify"
+# gem "rb-inotify", github: "csolg/rb-inotify"
 
 #Bootstrap Calendar
 gem 'momentjs-rails', '>= 2.9.0'
@@ -120,3 +120,4 @@ gem 'stripe'
 
 gem 'carmen', require: false
 gem "js-routes"
+gem 'fullcalendar-rails'

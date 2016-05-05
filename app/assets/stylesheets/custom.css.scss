@@ -17908,3 +17908,106 @@ a.btn-xl.btn.btn-performer.main-section {
     margin-left: 0 !important;
   }
  }
+.bg-green {
+  background-color: #2bcb86;
+  color: white;
+}
+.calendar-bookings {
+  h5 {color: #555;}
+  .explication-table {
+    td {
+      border: 1px solid #555;
+      color: #555;
+      width: 50px;
+      height: 32px;
+      text-align: center;
+    }
+  }
+  .legend-group {
+    margin-top: 5px;
+    .bg-green, .bg-white {
+      width: 10px;
+      height: 10px;
+      border: 1px solid #555;
+      float: left;
+    }
+    .bg-green {
+      border: none;
+    }
+    .legend-note {
+      line-height: 10px;
+      margin-left: 15px;
+    }
+
+  }
+}
+#calendar-dashboard {
+  .fc-toolbar {
+    .fc-left {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+    }
+    .fc-right {
+      width: 100%;
+      .fc-today-button {
+        display: none;
+      }
+      .fc-button-group {
+        width: 100%;
+        margin-left: 0;
+        .fc-button {
+          background: transparent;
+          border: none;
+          &:focus {
+            outline: none;
+          }
+          &.fc-pre-button {
+            float: left;
+          }
+          &.fc-next-button {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+
+  .fc-widget-content {
+    height: 75px !important;
+    .fc-bg {
+      z-index: 4;
+      .fc-today {
+        background-color: transparent;
+      }
+      td:hover {
+        cursor: pointer;
+      }
+    }
+    .fc-content-skeleton {
+      height: 100%;
+      z-index: 1;
+      table {
+        td:hover {
+          cursor: pointer;
+        }
+        height: 100%;
+        .fc-day-number {
+          text-align: center;
+        }
+        .fc-event-container {
+          .fc-start {
+            background-color: #2bcb86;
+            border: none;
+            border-radius: 0;
+            height: 100%;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
