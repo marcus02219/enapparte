@@ -8,4 +8,5 @@ json.array!(@shows.includes(:cover_picture, user: [:picture] )) do |show|
   else
     json.cover_picture_url Picture.new.image.url(:medium)
   end
+  json.start show.date_at || ""
 end
