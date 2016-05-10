@@ -1,7 +1,9 @@
 .form-group.image[ng-class="{ required: required, 'has-error': (form.$submitted || form[elementId].$touched) && form[elementId].$invalid }"]
   .row
-    .col-sm-9
+    .col-sm-7
       .btn-upload
         .btn.btn-success.pull-left
           | {{ label }}
+        span.msg-validate-photo
+          | Invalid type format
         input[type="file" id="{{elementId}}" name="{{elementId}}" ng-required="required" ng-model="model" multiple]

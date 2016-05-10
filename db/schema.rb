@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418105115) do
+ActiveRecord::Schema.define(version: 20160504093516) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -27,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.boolean  "is_primary", default: false
   end
 
-  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "arts", force: :cascade do |t|
     t.string   "title"
@@ -55,10 +58,10 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.integer  "payment_method_id"
   end
 
-  add_index "bookings", ["address_id"], name: "index_bookings_on_address_id"
-  add_index "bookings", ["payment_method_id"], name: "index_bookings_on_payment_method_id"
-  add_index "bookings", ["show_id"], name: "index_bookings_on_show_id"
-  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
+  add_index "bookings", ["address_id"], name: "index_bookings_on_address_id", using: :btree
+  add_index "bookings", ["payment_method_id"], name: "index_bookings_on_payment_method_id", using: :btree
+  add_index "bookings", ["show_id"], name: "index_bookings_on_show_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
   create_table "languages", force: :cascade do |t|
     t.string   "title"
@@ -71,8 +74,8 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.integer "user_id"
   end
 
-  add_index "languages_users", ["language_id"], name: "index_languages_users_on_language_id"
-  add_index "languages_users", ["user_id"], name: "index_languages_users_on_user_id"
+  add_index "languages_users", ["language_id"], name: "index_languages_users_on_language_id", using: :btree
+  add_index "languages_users", ["user_id"], name: "index_languages_users_on_user_id", using: :btree
 
   create_table "payment_methods", force: :cascade do |t|
     t.integer "user_id"
@@ -81,8 +84,8 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.string  "last4"
   end
 
-  add_index "payment_methods", ["booking_id"], name: "index_payment_methods_on_booking_id"
-  add_index "payment_methods", ["user_id"], name: "index_payment_methods_on_user_id"
+  add_index "payment_methods", ["booking_id"], name: "index_payment_methods_on_booking_id", using: :btree
+  add_index "payment_methods", ["user_id"], name: "index_payment_methods_on_user_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.datetime "image_updated_at"
   end
 
-  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "value"
@@ -108,9 +111,9 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "ratings", ["booking_id"], name: "index_ratings_on_booking_id"
-  add_index "ratings", ["review_id"], name: "index_ratings_on_review_id"
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+  add_index "ratings", ["booking_id"], name: "index_ratings_on_booking_id", using: :btree
+  add_index "ratings", ["review_id"], name: "index_ratings_on_review_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.text     "review"
@@ -119,7 +122,7 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "reviews", ["booking_id"], name: "index_reviews_on_booking_id"
+  add_index "reviews", ["booking_id"], name: "index_reviews_on_booking_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string   "var",                   null: false
@@ -130,7 +133,7 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.datetime "updated_at"
   end
 
-  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "shows", force: :cascade do |t|
     t.string   "title"
@@ -149,11 +152,12 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.float    "rating"
+    t.boolean  "price_person"
   end
 
-  add_index "shows", ["art_id"], name: "index_shows_on_art_id"
-  add_index "shows", ["cover_picture_id"], name: "index_shows_on_cover_picture_id"
-  add_index "shows", ["user_id"], name: "index_shows_on_user_id"
+  add_index "shows", ["art_id"], name: "index_shows_on_art_id", using: :btree
+  add_index "shows", ["cover_picture_id"], name: "index_shows_on_cover_picture_id", using: :btree
+  add_index "shows", ["user_id"], name: "index_shows_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -183,7 +187,10 @@ ActiveRecord::Schema.define(version: 20160418105115) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bookings", "payment_methods"
+  add_foreign_key "payment_methods", "bookings"
+  add_foreign_key "payment_methods", "users"
 end

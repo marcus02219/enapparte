@@ -156,7 +156,6 @@ angular
       scope.label = attrs.label
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
-
       element.bind 'change', (changeEvent) ->
         for file in changeEvent.target.files
           reader = new FileReader()
@@ -180,16 +179,21 @@ angular
       scope.elementId = 'input_' + scope.$id
       scope.required = attrs.required != undefined
       scope.model = []  unless scope.model
-
+      types = /(\.|\/)(jpe?g|png)$/i
+      scope.msgValidate = false
       element.bind 'change', (changeEvent) ->
         for file in changeEvent.target.files
-          reader = new FileReader()
+          if types.test file.type || types.test file.name
+            reader = new FileReader()
 
-          reader.onload = (loadEvent) ->
-            scope.$apply ->
-              scope.model.push { src: loadEvent.target.result }
+            reader.onload = (loadEvent) ->
+              scope.$apply ->
+                scope.model.push { src: loadEvent.target.result }
+                $('.msg-validate-photo').hide()
+            reader.readAsDataURL file
+          else
+            $('.msg-validate-photo').show()
 
-          reader.readAsDataURL file
 
   .directive 'inputTime', ()->
     require: '^form'
@@ -359,4 +363,19 @@ angular
         onlyCountries: ["fr"]
         initialCountry: "fr"
         preferredCountries: "fr"
+  .directive 'inputCheckbox', ()->
+    require: '^form'
+    strict: 'E'
+    templateUrl: "directives/input_checkbox.html"
+    scope:
+      model: '='
+    replace: true
+    link: (scope, element, attrs, form)->
+      scope.form = form
+      scope.label = attrs.label
+      scope.elementId = 'input_' +scope.$id
+      scope.data =
+        model: null
+      scope.$watch 'data.model', (newValue)->
+        scope.model = newValue
 

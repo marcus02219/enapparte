@@ -12,6 +12,7 @@ class ShowController extends @NGController
     'ShowArt',
     'ShowSearch'
     '$stateParams'
+    '$state'
   ]
 
   init: ->
@@ -45,8 +46,8 @@ class ShowController extends @NGController
       @scope.show.startsAt = newValue  if @scope.show.startsAt > newValue
 
   load: ()=>
+    @scope.tabsClickable = true
     if @stateParams.id
-      @tabsClickable = true
       @Show
         .get @stateParams.id
         .then (show)=>
@@ -83,7 +84,6 @@ class ShowController extends @NGController
 
   removePicture: (index)->
     @scope.show.pictures[index]._destroy = 1
-
   addShow: (show, index)->
     if angular.isDefined(index)
       @scope.shows[index] = show
@@ -134,7 +134,9 @@ class ShowController extends @NGController
       .then ()=>
         @scope.show.pending = false
         # redirect to
-        window.history.back()
+        @state.go 'dashboard.calendar',
+          id: @scope.show.id
+        @Flash.showSuccess @scope, 'Created new show successfully.'
 
   tabClick: (step)->
     if @scope.tabsClickable

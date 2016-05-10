@@ -11,7 +11,7 @@
     nav.collapse.navbar-collapse.bs-navbar-collapse[role="navigation"]
       ul.nav.navbar-nav.navbar-right.list-menu-nav
         li[ng-if="isAuthenticated() && isPerformer()"]
-          a.btn.btn-performer[href=(new_show_path)]
+          a.btn.btn-performer[ui-sref="shows.new"]
             | Postez votre performance
         li
           a.btn.btn-performer.btn-leconcept[href=""]

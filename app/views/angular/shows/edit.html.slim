@@ -9,8 +9,6 @@
           a[href="" ng-click="tabClick(2)"]= "Photos"
         li[ng-class="{ active: step == 3 }"]
           a[href="" ng-click="tabClick(3)"]= "Cover Photo"
-        li[ng-class="{ active: step == 4 }"]
-          a[href="" ng-click="tabClick(4)"]= "Shedules"
 
     .col-md-9
       form.show.form-horizontal[novalidate name="showForm"]
@@ -29,8 +27,8 @@
           fieldset
             legend= "Price"
             input-integer[label="Price" model="show.price" required]
-            / = f.input :price
-
+            .price-person-checkbox.col-sm-offset-3
+              input-checkbox[label="Il s’agit du prix par personne" model="show.pricePerson"]
         .form-inputs[ng-if="step == 2"]
           fieldset
             legend= "Add Photos"
@@ -42,12 +40,11 @@
                   img[ng-src="{{picture.src}}" image-crop width="300" height="300"]
                   .caption
                     .actions.pull-right
-                      a[href="#" ng-click="removePicture($index)"]
+                      button.btn-remove-picture[type='button' ng-click="removePicture($index)"]
                         i.glyphicon.glyphicon-trash
                   .clearfix
             br
             input-images-button[label="Upload photos" model="show.pictures" required]
-
         .form-inputs[ng-if="step == 3"]
           fieldset
             legend= "Cover Photo"
@@ -62,14 +59,6 @@
                     '
                     = "Cover Photo"
 
-        .form-inputs[ng-if="step == 4"]
-          fieldset
-            legend= "What at time?"
-            p= "Over what time slot can the spectators order your show?"
-            br
-            input-time[label="Starts at" model="show.startsAt" required]
-            input-time[label="Ends at" model="show.endsAt" required]
-
         hr
         .form-actions
           .form-group
@@ -78,9 +67,9 @@
                 button#continue.btn.btn-default[ng-click="prevStep(showForm)" ng-show="step > 1"]
                   = "Back"
                 '
-                button#continue.btn.btn-default[ng-click="nextStep(showForm)" ng-show="step < 4"]
+                button#continue.btn.btn-default[ng-click="nextStep(showForm)" ng-show="step < 3"]
                   = "Continue"
-                button#finish.btn.btn-default[ng-click="finish()" ng-show="step == 4"]
+                button#finish.btn.btn-default[ng-click="finish()" ng-show="step == 3"]
                   i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate[ng-show="show.pending"]
                   '
                   = "Finish"
