@@ -36,7 +36,7 @@ RSpec.describe Booking, type: :model do
     let(:user) { create :user }
     let(:user2) { create :user }
     let(:show) { create :show, user: user2 }
-    let(:booking) { create :booking, user: user, show: show }
+    let!(:booking) { create :booking, user: user, show: show }
 
     context 'when change to 3' do
       subject { booking.change_status(3) }
