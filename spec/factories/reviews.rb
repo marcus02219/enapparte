@@ -1,3 +1,13 @@
+FactoryGirl.define do
+  factory :review do
+    booking
+    review { Faker::Lorem.sentence }
+    after(:create) do |review|
+      create(:rating, review: review)
+    end
+  end
+end
+
 # == Schema Information
 #
 # Table name: reviews
@@ -12,13 +22,3 @@
 #
 #  index_reviews_on_booking_id  (booking_id)
 #
-
-FactoryGirl.define do
-  factory :review do
-    booking
-    review { Faker::Lorem.sentence }
-    after(:create) do |review|
-      create(:rating, review: review)
-    end
-  end
-end

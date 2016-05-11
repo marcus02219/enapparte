@@ -1,22 +1,3 @@
-# == Schema Information
-#
-# Table name: ratings
-#
-#  id         :integer          not null, primary key
-#  value      :integer
-#  review_id  :integer
-#  user_id    :integer
-#  booking_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-# Indexes
-#
-#  index_ratings_on_booking_id  (booking_id)
-#  index_ratings_on_review_id   (review_id)
-#  index_ratings_on_user_id     (user_id)
-#
-
 class Rating < ActiveRecord::Base
 
   DEFAULT_VALUE = 5
@@ -47,3 +28,22 @@ class Rating < ActiveRecord::Base
     review.try(:booking).try(:show).try(:update_attribute, :updated_at, Time.now)
   end
 end
+
+# == Schema Information
+#
+# Table name: ratings
+#
+#  id         :integer          not null, primary key
+#  value      :integer
+#  review_id  :integer
+#  user_id    :integer
+#  booking_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_ratings_on_booking_id  (booking_id)
+#  index_ratings_on_review_id   (review_id)
+#  index_ratings_on_user_id     (user_id)
+#

@@ -1,3 +1,16 @@
+FactoryGirl.define do
+  factory :address do
+    street "MyString"
+    postcode "MyString"
+    city "MyString"
+    state "MyString"
+    country "MyString"
+    latitude 1.5
+    longitude 1.5
+  end
+
+end
+
 # == Schema Information
 #
 # Table name: addresses
@@ -19,16 +32,3 @@
 #
 #  index_addresses_on_user_id  (user_id)
 #
-
-FactoryGirl.define do
-  factory :address do
-    street "MyString"
-    postcode "MyString"
-    city "MyString"
-    state "MyString"
-    country "MyString"
-    latitude 1.5
-    longitude 1.5
-  end
-
-end

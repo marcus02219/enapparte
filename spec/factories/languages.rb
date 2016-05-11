@@ -1,3 +1,9 @@
+FactoryGirl.define do
+  factory :language do
+    title Faker::Address.country
+  end
+end
+
 # == Schema Information
 #
 # Table name: languages
@@ -7,9 +13,3 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
-FactoryGirl.define do
-  factory :language do
-    title Faker::Address.country
-  end
-end

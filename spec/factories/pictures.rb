@@ -1,3 +1,10 @@
+FactoryGirl.define do
+  factory :picture do
+    title "MyString"
+  end
+
+end
+
 # == Schema Information
 #
 # Table name: pictures
@@ -18,10 +25,3 @@
 #
 #  index_pictures_on_imageable_type_and_imageable_id  (imageable_type,imageable_id)
 #
-
-FactoryGirl.define do
-  factory :picture do
-    title "MyString"
-  end
-
-end

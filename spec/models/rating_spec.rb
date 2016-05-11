@@ -1,3 +1,9 @@
+require 'rails_helper'
+
+RSpec.describe Rating, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
+end
+
 # == Schema Information
 #
 # Table name: ratings
@@ -16,9 +22,3 @@
 #  index_ratings_on_review_id   (review_id)
 #  index_ratings_on_user_id     (user_id)
 #
-
-require 'rails_helper'
-
-RSpec.describe Rating, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end

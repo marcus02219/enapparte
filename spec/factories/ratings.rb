@@ -1,3 +1,9 @@
+FactoryGirl.define do
+  factory :rating do
+    value { Faker::Number.between(1, 5) }
+  end
+end
+
 # == Schema Information
 #
 # Table name: ratings
@@ -16,9 +22,3 @@
 #  index_ratings_on_review_id   (review_id)
 #  index_ratings_on_user_id     (user_id)
 #
-
-FactoryGirl.define do
-  factory :rating do
-    value { Faker::Number.between(1, 5) }
-  end
-end

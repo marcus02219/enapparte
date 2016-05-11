@@ -1,3 +1,35 @@
+require 'rails_helper'
+
+describe User do
+  let(:user) { create(:user)  }
+
+  context '#rating' do
+    let(:show) { create(:show, user: user) }
+    let(:bookings) { create_list(:booking_with_rating, 5, show: show) }
+
+    it { expect { create(:rating, review: bookings.first.review) }.to change { user.reload; user.rating } }
+    it { expect { bookings.first.ratings.first.destroy }.to change { user.reload; user.rating } }
+    it { expect { bookings.first.ratings.first.update_attribute(:value, 0) }.to change { user.reload; user.rating } }
+  end
+
+  # context 'when clear phone number all show deactivated' do
+  #   let!(:shows) { create_list(:show, 2, active: true, user: user) }
+
+  #   before(:each) { user.save }
+
+  #   it { expect(user.shows.map(&:active)).to_not include(false)  }
+
+  #   context 'when set phone_number is empty' do
+  #     before(:each) do
+  #       user.update_attribute :phone_number, ""
+  #       user.reload
+  #     end
+  #     it { expect(user.shows.map(&:active)).to_not include(true)  }
+  #   end
+  # end
+
+end
+
 # == Schema Information
 #
 # Table name: users
@@ -34,35 +66,3 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
-require 'rails_helper'
-
-describe User do
-  let(:user) { create(:user)  }
-
-  context '#rating' do
-    let(:show) { create(:show, user: user) }
-    let(:bookings) { create_list(:booking_with_rating, 5, show: show) }
-
-    it { expect { create(:rating, review: bookings.first.review) }.to change { user.reload; user.rating } }
-    it { expect { bookings.first.ratings.first.destroy }.to change { user.reload; user.rating } }
-    it { expect { bookings.first.ratings.first.update_attribute(:value, 0) }.to change { user.reload; user.rating } }
-  end
-
-  # context 'when clear phone number all show deactivated' do
-  #   let!(:shows) { create_list(:show, 2, active: true, user: user) }
-
-  #   before(:each) { user.save }
-
-  #   it { expect(user.shows.map(&:active)).to_not include(false)  }
-
-  #   context 'when set phone_number is empty' do
-  #     before(:each) do
-  #       user.update_attribute :phone_number, ""
-  #       user.reload
-  #     end
-  #     it { expect(user.shows.map(&:active)).to_not include(true)  }
-  #   end
-  # end
-
-end

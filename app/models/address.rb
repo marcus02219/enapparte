@@ -1,25 +1,3 @@
-# == Schema Information
-#
-# Table name: addresses
-#
-#  id         :integer          not null, primary key
-#  street     :string
-#  postcode   :string
-#  city       :string
-#  state      :string
-#  country    :string
-#  latitude   :float
-#  longitude  :float
-#  user_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  is_primary :boolean          default(FALSE)
-#
-# Indexes
-#
-#  index_addresses_on_user_id  (user_id)
-#
-
 class Address < ActiveRecord::Base
   belongs_to :user
   has_many   :bookings
@@ -50,3 +28,25 @@ class Address < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id         :integer          not null, primary key
+#  street     :string
+#  postcode   :string
+#  city       :string
+#  state      :string
+#  country    :string
+#  latitude   :float
+#  longitude  :float
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  is_primary :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_addresses_on_user_id  (user_id)
+#

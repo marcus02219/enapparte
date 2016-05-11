@@ -1,3 +1,29 @@
+FactoryGirl.define do
+  factory :user do
+    # confirmed_at Time.now
+    firstname Faker::Name.first_name
+    surname Faker::Name.last_name
+    email { Faker::Internet.free_email }
+    gender { User.genders.keys.sample }
+    phone_number { Faker::Number.number(10).gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3') }
+    dob { Faker::Time.backward(14000, :evening).to_date }
+    password '123'*3
+    activity { Faker::Lorem.sentence }
+    bio { Faker::Lorem.sentence }
+
+    after(:create) do |user|
+      create :address, user: user
+    end
+
+    factory :user_with_picture do
+      after(:create) do |user|
+        user.picture.image = File.open Rails.root.join('spec/fixtures/photo.jpeg')
+        user.picture.save
+      end
+    end
+  end
+end
+
 # == Schema Information
 #
 # Table name: users
@@ -34,29 +60,3 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
-FactoryGirl.define do
-  factory :user do
-    # confirmed_at Time.now
-    firstname Faker::Name.first_name
-    surname Faker::Name.last_name
-    email { Faker::Internet.free_email }
-    gender { User.genders.keys.sample }
-    phone_number { Faker::Number.number(10).gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3') }
-    dob { Faker::Time.backward(14000, :evening).to_date }
-    password '123'*3
-    activity { Faker::Lorem.sentence }
-    bio { Faker::Lorem.sentence }
-
-    after(:create) do |user|
-      create :address, user: user
-    end
-
-    factory :user_with_picture do
-      after(:create) do |user|
-        user.picture.image = File.open Rails.root.join('spec/fixtures/photo.jpeg')
-        user.picture.save
-      end
-    end
-  end
-end

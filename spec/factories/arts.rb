@@ -1,3 +1,11 @@
+FactoryGirl.define do
+  factory :art do
+    title "MyString"
+    description "MyText"
+  end
+
+end
+
 # == Schema Information
 #
 # Table name: arts
@@ -8,11 +16,3 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-
-FactoryGirl.define do
-  factory :art do
-    title "MyString"
-    description "MyText"
-  end
-
-end
