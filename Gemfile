@@ -74,6 +74,9 @@ group :development do
   gem 'rails_layout'
   gem 'spring-commands-rspec'
   gem 'annotate', github: 'ctran/annotate_models'
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec'
+  gem 'slim_lint'
 end
 
 group :test do
