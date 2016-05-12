@@ -215,8 +215,13 @@ body {
       margin-bottom: 15px;
     }
   }
-  input, span, a {
+  input, span {
     border-radius: 0 !important;
+  }
+  a {
+    border-radius: 0 !important;
+    font-size: 10px;
+    padding-top: 11px;
   }
   .dt-calendar {
     border-right: none;
