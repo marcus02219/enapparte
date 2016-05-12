@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :payment_methods
   accepts_nested_attributes_for :payment_methods, reject_if: :reject_payment_methods
 
+  has_many :availabilities, class_name: 'UserAvailability', dependent: :destroy
+
   validates :firstname, :surname, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   # validates :phone_number, format: { with: /\d{10}/, message: "bad format" }
