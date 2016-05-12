@@ -21,7 +21,7 @@ Picture.destroy_all
 Art.destroy_all
 
 
-user = CreateAdminService.new.call
+user = CreateAdminService.new.perform
 puts 'CREATED ADMIN USER: ' << user.email
 
 10.times do
