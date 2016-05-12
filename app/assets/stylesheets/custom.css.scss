@@ -9086,6 +9086,12 @@ body {
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.40);
   &.text-reinvent-desc {
     line-height: 75px;
+    font-size: 70px;
+    font-family: "Futura LT";
+    color: rgb(255, 255, 255);
+    text-align: center;
+    z-index: 178;
+    position: absolute;
   }
 }
 
