@@ -29,7 +29,11 @@ class Api::V1::ShowsController < Api::BaseController
   end
 
   def search
-    @shows = show_service.search params[:q], params[:price0], params[:price1], params[:arts]
+    @shows = ShowSearchService.new(query: params[:q],
+                                   price_min: params[:price0],
+                                   price_max: params[:price1],
+                                   arts: params[:arts])
+                              .results
     respond_with :api, :v1, @shows
   end
 
@@ -49,8 +53,5 @@ class Api::V1::ShowsController < Api::BaseController
 
   def show_params
     params.require(:show).permit(:art_id, :max_spectators, :length, :title, :description, :price, :price_person, :cover_picture_id, :starts_at, :ends_at, :date_at, pictures_attributes: [ :src, :_destroy, :id, :selected ])
-  end
-  def show_service
-    @show_service = ShowsService.new
   end
 end
