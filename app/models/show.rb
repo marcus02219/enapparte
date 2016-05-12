@@ -90,7 +90,6 @@ end
 #  updated_at       :datetime         not null
 #  rating           :float
 #  price_person     :boolean
-#  date_at          :datetime
 #
 # Indexes
 #
