@@ -103,5 +103,25 @@ describe Api::V1::UserAvailabilitiesController do
 
       it { expect(json['error']).to be_present }
     end
+
+    context 'authorised user' do
+      before do
+        sign_in user
+        get :create, format: :json,
+                     availability: { available_at: '2016-05-12' }
+      end
+
+      it 'creates new availability' do
+        result = user.availabilities.size
+
+        expect(result).to eq(1)
+      end
+
+      it 'returns new availability' do
+        result = json['available_at']
+
+        expect(result).to eq('2016-05-12')
+      end
+    end
   end
 end
