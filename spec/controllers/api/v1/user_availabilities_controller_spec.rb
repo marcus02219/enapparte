@@ -25,5 +25,25 @@ describe Api::V1::UserAvailabilitiesController do
 
       it { expect(json['error']).to be_present }
     end
+
+    context 'authorised user' do
+      before do
+        sign_in user
+        get :index, format: :json
+      end
+
+      it 'returns array of availabilities of current user' do
+        result = json.map { |e| e['id'] }
+
+        expect(result)
+          .to include(availability_today.id, availability_yesterday.id)
+      end
+
+      it 'doesn\'t return availabilities of other users' do
+        result = json.map { |e| e['id'] }
+
+        expect(result).not_to include(other_user_availability.id)
+      end
+    end
   end
 end
