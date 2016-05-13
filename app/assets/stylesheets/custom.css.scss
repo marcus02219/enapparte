@@ -66,7 +66,7 @@ body {
   height: 100px;
 
   img {
-    margin-top: 0;
+    margin-top: -5px;
     height: 100px;
     width: 100px;
     -moz-border-radius: 100px;
@@ -215,8 +215,13 @@ body {
       margin-bottom: 15px;
     }
   }
-  input, span, a {
+  input, span {
     border-radius: 0 !important;
+  }
+  a {
+    border-radius: 0 !important;
+    font-size: 14px;
+    padding-top: 11px;
   }
   .dt-calendar {
     border-right: none;
@@ -8843,7 +8848,7 @@ button.btn.dropdown-toggle.talent:hover {
 }
 
 a.btn.btn-performer:hover {
-  color: white !important;
+  color: blue !important;
 }
 
 /*!
@@ -8914,7 +8919,7 @@ body {
   height: 100px;
 
   img {
-    margin-top: 0;
+    margin-top: -5px;
     height: 100px;
     width: 100px;
     -moz-border-radius: 100px;
@@ -9081,6 +9086,10 @@ body {
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.40);
   &.text-reinvent-desc {
     line-height: 75px;
+    font-size: 70px;
+    font-family: "Futura LT";
+    color: rgb(255, 255, 255);
+    text-align: center;
   }
 }
 
@@ -17661,7 +17670,7 @@ a.btn.btn-performer {
     background-color: #fffca6 !important;
     color: #002b3f;
     font-weight: 600;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     padding: 10px;
   }
 }
@@ -17816,6 +17825,9 @@ p.va-middle.text-center.text-contrast {
 
 .row.main-description {
   font-family: FuturaLT !important;
+  img {
+    width:50%;
+  }
 }
 
 p.main-description-header {
