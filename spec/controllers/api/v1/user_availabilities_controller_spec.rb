@@ -161,5 +161,20 @@ describe Api::V1::UserAvailabilitiesController do
             .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
+
+    context 'authorised user' do
+      before do
+        sign_in user
+        delete :destroy, id: availability_today.id, format: :json
+      end
+
+      it { expect(response).to have_http_status(:success) }
+
+      it 'destroys availability' do
+        result = UserAvailability.exists?(availability_today.id)
+
+        expect(result).to be false
+      end
+    end
   end
 end
