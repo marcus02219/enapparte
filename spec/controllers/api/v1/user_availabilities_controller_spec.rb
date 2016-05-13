@@ -153,5 +153,13 @@ describe Api::V1::UserAvailabilitiesController do
 
       it { expect(json['error']).to be_present }
     end
+
+    context 'other user' do
+      it 'returns 404 error' do
+        sign_in other_user
+        expect { get :destroy, id: availability_today.id, format: :json }
+            .to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
   end
 end
