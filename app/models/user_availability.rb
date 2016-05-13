@@ -1,8 +1,8 @@
 class UserAvailability < ActiveRecord::Base
   belongs_to :user
 
-  validate :user, presence: true
-  validate :available_at, presence: true
+  validates :user, presence: true
+  validates :available_at, presence: true
 end
 
 # == Schema Information
