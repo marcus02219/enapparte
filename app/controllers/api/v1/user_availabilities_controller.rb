@@ -27,7 +27,7 @@ module Api
 
       private
 
-      def user_availability_params
+      def availability_params
         params.require(:availability).permit(:available_at)
       end
     end
