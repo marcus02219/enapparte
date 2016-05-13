@@ -77,5 +77,18 @@ describe Api::V1::UserAvailabilitiesController do
           .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
+
+    context 'authorised user' do
+      before do
+        sign_in user
+        get :show, id: availability_today.id, format: :json
+      end
+
+      it 'returns availability' do
+        result = json['id']
+
+        expect(result).to eq(availability_today.id)
+      end
+    end
   end
 end
