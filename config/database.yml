@@ -2,18 +2,16 @@ common: &common
   adapter: postgresql
   encoding: utf8
   pool: 25
-  username: vinhpham
   host: localhost
-  password: qazokm
 development:
-  database: enapparte
+  database: enapparte_development
   min_messages: warning
   <<: *common
 staging:
-  database: enapparte
+  database: enapparte_staging
   min_messages: warning
   <<: *common
 test:
-  database: enapparte
+  database: enapparte_test
   min_messages: warning
   <<: *common
