@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         post 'change_status', on: :member
       end
       resources :arts
+      resources :user_availabilities, path: :availabilities, only: [:index, :show, :create, :destroy]
     end
   end
 
