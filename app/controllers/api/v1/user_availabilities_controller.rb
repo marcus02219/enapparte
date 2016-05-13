@@ -9,7 +9,7 @@ module Api
       end
 
       def show
-        @availability = current_user.availabilities.find_by(id: params[:id])
+        @availability = current_user.availabilities.find_by!(id: params[:id])
         respond_with :api, :v1, @availability
       end
 
@@ -20,7 +20,7 @@ module Api
       end
 
       def destroy
-        @availability = current_user.availabilities.find_by(id: params[:id])
+        @availability = current_user.availabilities.find_by!(id: params[:id])
         @availability.destroy
         respond_with :api, :v1, @availability
       end
