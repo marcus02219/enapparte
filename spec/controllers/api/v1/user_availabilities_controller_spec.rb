@@ -141,7 +141,7 @@ describe Api::V1::UserAvailabilitiesController do
     end
     let!(:other_user_availability) do
       create(:user_availability, user: other_user,
-             available_at: Time.zone.today)
+                                 available_at: Time.zone.today)
     end
 
     context 'unauthorised user' do
@@ -158,7 +158,7 @@ describe Api::V1::UserAvailabilitiesController do
       it 'returns 404 error' do
         sign_in other_user
         expect { get :destroy, id: availability_today.id, format: :json }
-            .to raise_error(ActiveRecord::RecordNotFound)
+          .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
