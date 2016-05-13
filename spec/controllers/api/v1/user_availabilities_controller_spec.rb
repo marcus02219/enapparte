@@ -91,4 +91,17 @@ describe Api::V1::UserAvailabilitiesController do
       end
     end
   end
+
+  describe 'GET #create' do
+    context 'unauthorised user' do
+      before do
+        post :create, format: :json,
+                      availability: { available_at: '2016-05-12' }
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+
+      it { expect(json['error']).to be_present }
+    end
+  end
 end
