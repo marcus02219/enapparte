@@ -32,6 +32,8 @@ describe Api::V1::UserAvailabilitiesController do
         get :index, format: :json
       end
 
+      it { expect(response).to have_http_status(:success) }
+
       it 'returns array of availabilities of current user' do
         result = json.map { |e| e['id'] }
 
@@ -84,6 +86,8 @@ describe Api::V1::UserAvailabilitiesController do
         get :show, id: availability_today.id, format: :json
       end
 
+      it { expect(response).to have_http_status(:success) }
+
       it 'returns availability' do
         result = json['id']
 
@@ -110,6 +114,8 @@ describe Api::V1::UserAvailabilitiesController do
         get :create, format: :json,
                      availability: { available_at: '2016-05-12' }
       end
+
+      it { expect(response).to have_http_status(:success) }
 
       it 'creates new availability' do
         result = user.availabilities.size
