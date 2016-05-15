@@ -1,15 +1,27 @@
 .container[ng-controller="ShowSearchController"]
   .results
     .row
-      .col-md-3
-        form.form-inline
-          .form-group
-            input.form-control[type="text" placeholder="Search" ng-model="filter.text" ng-enter="search()"]
-            button.btn.btn-default[ng-click="search()"]
-              i.glyphicon.glyphicon-search
+      .col-xs-12
+        .filters
+          .row
+            .col-sm-4
+              .input-group.input-group--filters.pull-right
+                input.form-control.dt-calendar type="text" placeholder="Start date" /
+                span.input-group-addon.btn-search-time
+                  span.glyphicon.glyphicon-calendar
+            .col-sm-4
+              .input-group.input-group--filters
+                input.form-control.dt-calendar type="text" placeholder="End date" /
+                span.input-group-addon.btn-search-time
+                  span.glyphicon.glyphicon-calendar
+            .col-sm-4
+              ui-select.select-search-home[ng-model="priceRadius.selected", theme='bootstrap']
+                ui-select-match[placeholder='Price radius'] {{$select.selected}}
+                ui-select-choices[repeat="price in priceRadii"]
+                  div[ng-bind-html="price"]
 
-        hr
-
+    .row
+      /! .col-md-3
         .price
           filter-price[min="10" max="100000" model="filter.price"]
 
@@ -19,7 +31,7 @@
             '
             | {{ art.title }}
 
-      .col-md-9
+      .col-md-12
         .row
           .col-md-12
             dir-pagination-controls.pull-right
@@ -27,15 +39,17 @@
           .col-md-4[dir-paginate="show in shows | itemsPerPage:21"]
             a.show-search.thumbnail[href="" ng-click="modeDetails(show)"]
               img[ng-src="{{ show.coverPicture.src }}" width="300" height="300"]
-              .caption
-                img.user[ng-src="{{ show.userPictureUrl }}"]
-                h4= "{{ show.title }}"
-                .rating[ng-if="show.rating"]
+              .caption.text-center
+                p.placeholder= "Non disponible pour les dates demandées"
+                /! img.user[ng-src="{{ show.userPictureUrl }}"]
+                h4= "{{ ::show.user.fullName }}"
+                p.description= "{{ show.title }}"
+                .rating[ng-if="!show.rating"]
                   i.glyphicon.glyphicon-star[ng-repeat="k in range(Math.round(show.rating)) track by $index"]
                   i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - Math.round(show.rating)) track by $index"]
-                .length
+                /! .length
                   | {{ show.length }} minutes
-                .price
+                /! .price
                   | {{ show.price | currency }}
 
         .row

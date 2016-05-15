@@ -1,0 +1,168 @@
+.results {
+  .show-search {
+    position: relative;
+    padding: 14px;
+    border: 1px solid #b1b1b1;
+    border-radius: 0;
+    font-family: FuturaLT;
+
+    &:not(.unavailable):before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #f2f2f2;
+      opacity: 0;
+      transition: opacity .2s ease-in-out;
+    }
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+
+      &:before {
+        opacity: .2;
+      }
+    }
+
+    .placeholder {
+      display: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 92px 50px 0;
+      background-color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      color: #002b3f;
+      font-size: 30px;
+      font-weight: 800;
+    }
+
+    &.unavailable {
+      cursor: default;
+
+      &:hover {
+        border-color: #b1b1b1;
+      }
+
+      .placeholder {
+        display: inline;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .caption {
+      height: auto;
+
+      h4 {
+        font-weight: 800;
+        font-size: 26px;
+      }
+
+      .description {
+        padding-top: 14px;
+        font-size: 18px;
+      }
+
+      .rating {
+        float: none;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.filters {
+  // margin-bottom: 60px;
+  padding: 260px 30px 60px;
+  background: #f2f2f2 url("/assets/search-banner.jpg") no-repeat center top;
+
+  // duplicate styles from 'custom.css.scss:218-270'
+  input, span {
+    border-radius: 0 !important;
+  }
+
+  a {
+    border-radius: 0 !important;
+    font-size: 14px;
+    padding-top: 11px;
+  }
+
+  .input-group--filters {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .dt-calendar {
+    border-right: none;
+    box-shadow: none;
+    color: #6c6c6c;
+    font-family: FuturaLT !important;
+    font-size: 16px;
+  }
+
+  .select-search-home {
+    max-width: 300px;
+    font-family: FuturaLT !important;
+
+    .btn {
+      color: #6c6c6c;
+
+      .text-muted {
+        color: #6c6c6c;
+      }
+
+      font-size: 16px;
+    }
+
+    height: 40px;
+
+    .ui-select-search {
+      height: 40px;
+    }
+
+    .ui-select-match {
+      .ui-select-toggle {
+        height: 40px;
+        padding: 10px 12px;
+        border-radius: 0;
+        outline: none;
+      }
+    }
+
+    .ui-select-choices {
+      border-radius: 0;
+      margin: 10px 0;
+      padding: 0;
+
+      .ui-select-choices-row {
+        .ui-select-choices-row-inner {
+          padding: 12px;
+          color: #6c6c6c;
+
+          &:hover {
+            background-color: #fff481;
+            color: #002b3f;
+          }
+        }
+
+        &.active {
+          .ui-select-choices-row-inner {
+            background-color: #fff481;
+            color: #002b3f;
+          }
+        }
+      }
+    }
+  }
+
+  // end of -- duplicate styles from 'custom.css.scss:218-270'
+}

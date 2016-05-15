@@ -8,6 +8,12 @@
         span.icon-bar
       a#the_logo.navbar_brand[ui-sref="home"]
         = image_tag( 'logo.png', class: 'logo' )
+    .pull-left
+      ui-select.select-search-home[ng-model="art.selected", theme='bootstrap']
+        ui-select-match[placeholder='Talent recherché'] {{$select.selected.title}}
+        ui-select-choices[repeat="art as art in arts"]
+          div[ng-bind-html="art.title"]
+
     nav.collapse.navbar-collapse.bs-navbar-collapse[role="navigation"]
       ul.nav.navbar-nav.navbar-right.list-menu-nav
         li[ng-if="isAuthenticated() && isPerformer()"]
