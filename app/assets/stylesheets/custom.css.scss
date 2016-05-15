@@ -231,7 +231,8 @@ body {
 }
 
 #search-bar-home,
-#header {
+#header,
+.filters {
   input, span {
     border-radius: 0 !important;
   }
