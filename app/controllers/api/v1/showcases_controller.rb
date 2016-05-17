@@ -33,7 +33,7 @@ module Api
       private
 
       def showcase_params
-        params.require(:show).permit(:kind, :url)
+        params.require(:showcase).permit(:kind, :url)
       end
     end
   end
