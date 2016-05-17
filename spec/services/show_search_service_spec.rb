@@ -19,9 +19,10 @@ describe ShowSearchService, type: :service do
     describe 'filter by query' do
       context 'query exists' do
         let(:params) { { query: '*song*' } }
+        subject { described_class.new(params).results }
 
         it 'returns filtered shows' do
-          expect(subject).to contain_exactly(show_song)
+          expect(subject).to contain_exactly(show_song, show_bit)
         end
       end
     end
