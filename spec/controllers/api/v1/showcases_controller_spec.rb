@@ -90,6 +90,37 @@ describe Api::V1::ShowcasesController do
     end
   end
 
+  describe 'PATCH #update' do
+    let!(:showcase) { create :showcase, user: user }
+    let(:params) { { url: 'http://yahoo.com' } }
+
+    context 'authorized user' do
+      before do
+        sign_in user
+        patch :update, id: showcase.id, showcase: params, format: :json
+      end
+
+      it { expect(response).to have_http_status(:success) }
+
+      it 'updates showcase' do
+        showcase.reload
+        result = showcase.url
+
+        expect(result).to eq('http://yahoo.com')
+      end
+    end
+
+    context 'unauthorized user' do
+      before do
+        patch :update, id: showcase.id, showcase: params, format: :json
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+
+      it { expect(json['error']).to be_present }
+    end
+  end
+
   describe 'DELETE #destroy' do
     let!(:showcase) { create :showcase, user: user }
 
