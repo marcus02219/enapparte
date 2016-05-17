@@ -40,6 +40,29 @@ describe Api::V1::UsersController do
         it { expect(response).to be_success }
         it { expect(user.language_ids).to eq(Language.all.map(&:id)) }
       end
+
+      context 'update user with showcase' do
+        let(:user) { create(:user) }
+        let(:attr) do
+          {
+            showcases_attributes: [{ url: 'http://ya.ru', kind: 'link' },
+                                   { url: 'http://goog.le', kind: 'link' }]
+          }
+        end
+
+        before(:each) do
+          sign_in user
+          put :update, id: user.id, user: attr, format: :json
+          user.reload
+        end
+
+        it { expect(response).to be_success }
+        it do
+          result = user.showcases.map(&:url)
+
+          expect(result).to contain_exactly('http://ya.ru', 'http://goog.le')
+        end
+      end
     end
   end
 end
