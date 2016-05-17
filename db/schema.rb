@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20160517115954) do
 
   create_table "showcases", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "kind"
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

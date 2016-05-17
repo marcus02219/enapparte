@@ -11,7 +11,7 @@ end
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  type       :string
+#  kind       :string
 #  url        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
