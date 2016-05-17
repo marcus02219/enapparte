@@ -43,7 +43,7 @@ describe Api::V1::ShowcasesController do
 
       it { expect(response).to have_http_status(:success) }
 
-      it 'returns list of showcases' do
+      it 'returns showcase' do
         result = json['id']
 
         expect(result).to eq(showcase.id)
@@ -53,6 +53,35 @@ describe Api::V1::ShowcasesController do
     context 'unauthorized user' do
       before do
         get :show, id: showcase.id, format: :json
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+
+      it { expect(json['error']).to be_present }
+    end
+  end
+
+  describe 'POST #create' do
+    let(:params) { { url: 'http://ya.ru', kind: 'link' } }
+
+    context 'authorized user' do
+      before do
+        sign_in user
+        post :create, showcase: params, format: :json
+      end
+
+      it { expect(response).to have_http_status(:success) }
+
+      it 'creates showcase' do
+        result = json['url']
+
+        expect(result).to eq('http://ya.ru')
+      end
+    end
+
+    context 'unauthorized user' do
+      before do
+        post :create, showcase: params, format: :json
       end
 
       it { expect(response).to have_http_status(:unauthorized) }
