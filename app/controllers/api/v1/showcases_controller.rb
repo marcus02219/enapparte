@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ShowCasesController < Api::BaseController
+    class ShowcasesController < Api::BaseController
       before_action :authenticate_user!
 
       def index
