@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505091410) do
+ActiveRecord::Schema.define(version: 20160517115954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,14 @@ ActiveRecord::Schema.define(version: 20160505091410) do
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
+  create_table "showcases", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "shows", force: :cascade do |t|
     t.string   "title"
     t.integer  "length"
@@ -153,12 +161,18 @@ ActiveRecord::Schema.define(version: 20160505091410) do
     t.datetime "updated_at",       null: false
     t.float    "rating"
     t.boolean  "price_person"
-    t.datetime "date_at"
   end
 
   add_index "shows", ["art_id"], name: "index_shows_on_art_id", using: :btree
   add_index "shows", ["cover_picture_id"], name: "index_shows_on_cover_picture_id", using: :btree
   add_index "shows", ["user_id"], name: "index_shows_on_user_id", using: :btree
+
+  create_table "user_availabilities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.date     "available_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

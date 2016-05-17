@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :reviews, through: :show_bookings
   has_many :payment_methods
   accepts_nested_attributes_for :payment_methods, reject_if: :reject_payment_methods
+  has_many :showcases, dependent: :destroy
 
   validates :firstname, :surname, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
