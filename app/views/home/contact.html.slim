@@ -1,0 +1,16 @@
+form.form-horizontal[name="contactForm" novalidate]
+  .modal-header
+    h3
+      | Il est temps de réinventer vos évènements !
+  .modal-body
+    p
+      | ENAPPARTÉ vous propose une sélection riche et éclectique de performeurs culturels pour votre évènement, quels que soient l'occasion, vos envies et votre budget.
+
+    input-string[label="Prénom" model="user.firstname" required focus]
+    input-string[label="Surname" model="user.surname" required]
+    / input-radio[label="Gender" model="user.gender" required collection='[{"name": "Male", "value": 0}, {"name": "Female", "value": 1}, {"name": "Other", "value": 2}]']
+    input-email[label="Email" model="user.email" required]
+    input-password[label="Password" model="user.password" required confirmation="1"]
+  .modal-footer
+    button.btn.btn-primary[ng-click="contactForm.$valid && ok()"]
+      | ENVOYER

@@ -16,4 +16,9 @@ class UserMailer < ApplicationMailer
       mail to: booking.user.email, subject: default_i18n_subject
     end
   end
+
+  def contact_mail contact
+    @contact = contact
+    mail to: "jft@enapparteparis.com", subject: default_i18n_subject
+  end
 end

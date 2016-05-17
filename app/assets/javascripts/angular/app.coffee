@@ -52,7 +52,7 @@
         .addClass("affix")
         .removeData("bs.affix")
     $timeout (->
-      if !($state.current.name in ['home', 'home.signin', 'home.signup', 'shows.search']) && !Auth.isAuthenticated()
+      if !($state.current.name in ['home', 'home.signin', 'home.signup', 'shows.search', 'contact']) && !Auth.isAuthenticated()
         $state.go 'home'
         Flash.showError $rootScope, "You need to sign in or sign up before continuing."
     ), 500
@@ -127,5 +127,17 @@
           $state.go '^'
       ]
     }
-]
+    .state 'home.contact', {
+      url: 'contact',
+      onEnter: ['$uibModal', '$state', ($uibModal, $state)->
+        $uibModal.open
+          animation: true
+          templateUrl: 'home/contact.html'
+          controller: 'ContactController'
+        .result
+        .finally ()->
+          $state.go '^'
+      ]
+    }
 
+]
