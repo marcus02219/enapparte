@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         post 'change_status', on: :member
       end
       resources :arts
+      resources :showcases
     end
   end
 
