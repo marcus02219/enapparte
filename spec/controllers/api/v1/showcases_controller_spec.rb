@@ -4,19 +4,9 @@ describe Api::V1::ShowcasesController do
   let(:user) { create :user }
 
   describe 'GET #index' do
-    context 'unauthorized user' do
-      before do
-        get :index, format: :json
-      end
-
-      it { expect(response).to have_http_status(:unauthorized) }
-
-      it { expect(json['error']).to be_present }
-    end
+    let!(:showcase) { create :showcase, user: user }
 
     context 'authorized user' do
-      let!(:showcase) { create :showcase, user: user }
-
       before do
         sign_in user
         get :index, format: :json
@@ -29,6 +19,45 @@ describe Api::V1::ShowcasesController do
 
         expect(result).to contain_exactly(showcase.id)
       end
+    end
+
+    context 'unauthorized user' do
+      before do
+        get :index, format: :json
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+
+      it { expect(json['error']).to be_present }
+    end
+  end
+
+  describe 'GET #show' do
+    let!(:showcase) { create :showcase, user: user }
+
+    context 'authorized user' do
+      before do
+        sign_in user
+        get :show, id: showcase.id, format: :json
+      end
+
+      it { expect(response).to have_http_status(:success) }
+
+      it 'returns list of showcases' do
+        result = json['id']
+
+        expect(result).to eq(showcase.id)
+      end
+    end
+
+    context 'unauthorized user' do
+      before do
+        get :show, id: showcase.id, format: :json
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+
+      it { expect(json['error']).to be_present }
     end
   end
 end
