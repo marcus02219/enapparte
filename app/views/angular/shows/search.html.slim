@@ -8,12 +8,10 @@
               .input-group.input-group--filters.pull-right
                 input.form-control.dt-calendar type="text" placeholder="Start date" /
                 span.input-group-addon.btn-search-time
-                  span.glyphicon.glyphicon-calendar
             .col-sm-4
               .input-group.input-group--filters
                 input.form-control.dt-calendar type="text" placeholder="End date" /
                 span.input-group-addon.btn-search-time
-                  span.glyphicon.glyphicon-calendar
             .col-sm-4
               ui-select.select-search-home[ng-model="priceRadius.selected", theme='bootstrap']
                 ui-select-match[placeholder='Price radius'] {{$select.selected}}
@@ -44,7 +42,7 @@
                 /! img.user[ng-src="{{ show.userPictureUrl }}"]
                 h4= "{{ ::show.user.fullName }}"
                 p.description= "{{ show.title }}"
-                .rating[ng-if="!show.rating"]
+                .rating[ng-if="show.rating"]
                   i.glyphicon.glyphicon-star[ng-repeat="k in range(Math.round(show.rating)) track by $index"]
                   i.glyphicon.glyphicon-star-empty[ng-repeat="k in range(5 - Math.round(show.rating)) track by $index"]
                 /! .length

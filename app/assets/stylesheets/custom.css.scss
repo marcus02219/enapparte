@@ -108,6 +108,10 @@ body {
     margin-bottom: 0 !important;
   }
 
+  .navbar-header {
+    width: 100%;
+  }
+
   .navbar-brand {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -175,9 +179,49 @@ body {
   }
 
   .select-search-home {
-    width: 300px;
-    margin-left: 12px;
-    padding-top: 30px;
+    float: left;
+    width: calc(100% - 140px);
+    max-width: 300px;
+    margin-top: 30px;
+
+    .ui-select-search {
+      width: 100%;
+      max-width: 300px;
+      font-size: 18px;
+      color: #6c6c6c;
+    }
+
+    .ui-select-match {
+      .ui-select-toggle {
+        width: 100%;
+        max-width: 300px;
+        padding: 6px 12px;
+        border-color: #b1b1b1;
+        font-size: 18px;
+
+        .text-muted {
+          color: #6c6c6c;
+        }
+      }
+    }
+
+    .ui-select-choices-row {
+      .ui-select-choices-row-inner {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .select-search-home {
+      margin-top: 17px;
+    }
+  }
+
+  .custom-search {
+    float: left;
+    width: calc(100% - 200px);
+    max-width: 300px;
   }
 }
 
@@ -283,6 +327,7 @@ body {
     .ui-select-toggle {
       height: 40px;
       padding: 10px 12px;
+      color: #6c6c6c;
     }
   }
 
