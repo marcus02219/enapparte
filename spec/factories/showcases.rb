@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :showcase do
-    kind
     url 'http://yandex.ru'
   end
 end
