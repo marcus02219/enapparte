@@ -1,18 +1,20 @@
 #header.navbar.navbar-static-top[role="banner"]
   div[style="padding:0 30px"]
-    .navbar-header
-      button.navbar-toggle[type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"]
-        span.sr-only
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a#the_logo.navbar_brand[ui-sref="home"]
-        = image_tag( 'logo.png', class: 'logo' )
-    .pull-left
-      ui-select.select-search-home[ng-model="art.selected", theme='bootstrap']
-        ui-select-match[placeholder='Talent recherché'] {{$select.selected.title}}
-        ui-select-choices[repeat="art as art in arts"]
-          div[ng-bind-html="art.title"]
+    .col-sm-6.col-xs-12
+      .navbar-header
+        button.navbar-toggle[type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"]
+          span.sr-only
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+
+        a#the_logo.navbar_brand[ui-sref="home"]
+          = image_tag( 'logo.png', class: 'logo' )
+
+        ui-select.select-search-home[ng-model="art.selected", theme='bootstrap']
+          ui-select-match[placeholder='Talent recherché'] {{$select.selected.title}}
+          ui-select-choices[repeat="art as art in arts"]
+            div[ng-bind-html="art.title"]
 
     nav.collapse.navbar-collapse.bs-navbar-collapse[role="navigation"]
       ul.nav.navbar-nav.navbar-right.list-menu-nav
