@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Api::V1::ShowcasesController do
+  render_views
   let(:user) { create :user }
 
   describe 'GET #index' do
