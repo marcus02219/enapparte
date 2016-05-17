@@ -1,7 +1,8 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :firstname, :surname, :gender, :bio, :phone_number, :moving,
-    :dob, :activity, :picture, :role, 
-    :address_ids => [], :booking_ids => [], :show_ids => [], :rating_ids => [], :language_ids => []
+    :dob, :activity, :picture, :role,
+    :address_ids => [], :booking_ids => [], :show_ids => [], :rating_ids => [], :language_ids => [],
+                :showcases_attributes => [:id, :kind, :url]
   index do
     selectable_column
     id_column
@@ -15,7 +16,9 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "User" do
       f.input :email
-      f.input :password
+      if f.object.new_record?
+        f.input :password
+      end
       f.input :firstname
       f.input :surname
       f.input :gender, as: :select, collection: User.genders.keys
@@ -31,6 +34,10 @@ ActiveAdmin.register User do
         hint: (image_tag(f.object.picture.image.url(:thumb)) if f.object.picture)
       f.input :ratings
       f.input :role, as: :select, collection: User.roles.keys
+      f.has_many :showcases, heading: false, allow_destroy: true do |s|
+        s.input :kind
+        s.input :url
+      end
     end
     f.actions
   end
@@ -61,6 +68,11 @@ ActiveAdmin.register User do
       row :role
       row :picture do
         image_tag user.picture.image.url(:thumb) if user.picture
+      end
+      table_for user.showcases do
+        column :showcases do |showcase|
+          raw(showcase.kind+': '+link_to(showcase.url, showcase.url, target: '_blank'))
+        end
       end
 
       row :created_at
