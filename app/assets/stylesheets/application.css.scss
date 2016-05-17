@@ -25,9 +25,10 @@
 *= require angular-ui-select/dist/select.min
 *= require fullcalendar
 *= require style
+*= require search
 *= require_self
  */
 
 .main-content {
-  min-height: 600px
+  min-height: 600px;
 }

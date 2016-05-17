@@ -22,6 +22,12 @@ class ShowSearchController extends @NGController
   filter:
     text: ""
     price: "0,100000"
+  priceRadii: [
+    '< 50 €',
+    '50 € - 100 €',
+    '100 € - 200 €',
+    '200+ €'
+  ]
 
   init: ->
 
