@@ -8,6 +8,8 @@ provided by the [RailsApps Project](http://railsapps.github.io/).
 
 Rails Composer is supported by developers who purchase our RailsApps tutorials.
 
+API Documentation: http://localhost:3000/apidoc/V1.html
+
 Problems? Issues?
 -----------
 
