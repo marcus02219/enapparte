@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   ActiveAdmin.routes(self)
 
   root to: 'home#index'
