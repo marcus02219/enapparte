@@ -89,4 +89,33 @@ describe Api::V1::ShowcasesController do
       it { expect(json['error']).to be_present }
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:showcase) { create :showcase, user: user }
+
+    context 'authorized user' do
+      before do
+        sign_in user
+        delete :destroy, id: showcase.id, format: :json
+      end
+
+      it { expect(response).to have_http_status(:success) }
+
+      it 'deletes showcase' do
+        result = Showcase.where(id: showcase.id)
+
+        expect(result).to be_empty
+      end
+    end
+
+    context 'unauthorized user' do
+      before do
+        delete :destroy, id: showcase.id, format: :json
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+
+      it { expect(json['error']).to be_present }
+    end
+  end
 end
