@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   ActiveAdmin.routes(self)
 
   root to: 'home#index'
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
         post 'change_status', on: :member
       end
       resources :arts
+      resources :showcases
     end
   end
 
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
   get '/dashboard/account', to: 'dashboard#account', as: 'account_dashboard'
   patch '/dashboard/update', to: 'dashboard#update', as: 'update_dashboard'
   get '/dashboard/bookings', to: 'dashboard#bookings', as: 'bookings_dashboard'
-
+  post '/contact', to: 'home#index', as: 'home_contact'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

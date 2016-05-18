@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/Apipie/apipie-rails.git
+  revision: 296c097f9acb951149d3a67db69b84eb216bdd7e
+  specs:
+    apipie-rails (0.3.6)
+      json
+
+GIT
   remote: git://github.com/ctran/annotate_models.git
   revision: c952306966c9bae4438e4d40351561af3d8005c0
   specs:
@@ -267,6 +274,7 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    maruku (0.7.2)
     method_source (0.8.2)
     mime-types (2.99.1)
     mimemagic (0.3.0)
@@ -483,6 +491,7 @@ DEPENDENCIES
   angular_rails_csrf
   angularjs-rails-resource (~> 2.0.0)
   annotate!
+  apipie-rails!
   awesome_print
   aws-sdk (< 2.0)
   better_errors
@@ -521,6 +530,7 @@ DEPENDENCIES
   just-datetime-picker
   launchy
   libnotify
+  maruku
   momentjs-rails (>= 2.9.0)
   mysql2 (~> 0.3.20)
   paperclip

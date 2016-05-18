@@ -161,18 +161,12 @@ ActiveRecord::Schema.define(version: 20160517115954) do
     t.datetime "updated_at",       null: false
     t.float    "rating"
     t.boolean  "price_person"
+    t.datetime "date_at"
   end
 
   add_index "shows", ["art_id"], name: "index_shows_on_art_id", using: :btree
   add_index "shows", ["cover_picture_id"], name: "index_shows_on_cover_picture_id", using: :btree
   add_index "shows", ["user_id"], name: "index_shows_on_user_id", using: :btree
-
-  create_table "user_availabilities", force: :cascade do |t|
-    t.integer  "user_id"
-    t.date     "available_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
