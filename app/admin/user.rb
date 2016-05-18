@@ -7,6 +7,7 @@ ActiveAdmin.register User do
     selectable_column
     id_column
     column :email
+    column :role
     column :full_name
     column :phone_number
     column :created_at
@@ -31,7 +32,6 @@ ActiveAdmin.register User do
       f.input :picture, as: :file,
                         hint: (image_tag(f.object.picture.image
                                              .url(:thumb)) if f.object.picture)
-      f.input :ratings
       f.input :role, as: :select, collection: User.roles.keys
       f.has_many :showcases, heading: false, allow_destroy: true do |s|
         s.input :kind
