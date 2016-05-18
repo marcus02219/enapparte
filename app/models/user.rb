@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :bookings, dependent: :destroy
   has_many :shows, dependent: :destroy
-  has_many :arts, through: :shows
+  has_many :arts, dependent: :destroy
   has_many :ratings, through: :shows, source: :ratings
   has_many :show_bookings, through: :shows, source: :bookings
 
@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
 
   enum gender: { male: 0, female: 1, other: 2 }
   enum role: { admin: 0, user: 1, performer: 2 }
+
+  scope :performers, -> { where role: roles[:performer] }
 
   def picture= file
     self.build_picture(image: file)
