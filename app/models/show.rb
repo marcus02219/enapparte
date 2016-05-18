@@ -1,8 +1,7 @@
 class Show < ActiveRecord::Base
 
   COMMISSION = 1.1
-
-  belongs_to :art
+  
   belongs_to :cover_picture, class_name: 'Picture'
 
   belongs_to :user
@@ -90,7 +89,6 @@ end
 #  updated_at       :datetime         not null
 #  rating           :float
 #  price_person     :boolean
-#  date_at          :datetime
 #
 # Indexes
 #

@@ -9,8 +9,6 @@ FactoryGirl.define do
     ends_at { "2016-01-17 05:17:54" }
     active { false }
 
-    art
-
     factory :show_with_rating do
       after(:create) do |show|
         3.times do
@@ -44,7 +42,6 @@ end
 #  updated_at       :datetime         not null
 #  rating           :float
 #  price_person     :boolean
-#  date_at          :datetime
 #
 # Indexes
 #
