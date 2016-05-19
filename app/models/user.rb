@@ -1,46 +1,49 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  has_and_belongs_to_many :languages
-  has_one    :picture , as: :imageable
-  accepts_nested_attributes_for :picture, reject_if: proc {|attrs| attrs['src'].blank? || attrs['src'].match(/^http:/) }
-
-  has_many   :addresses
-  accepts_nested_attributes_for :addresses, reject_if: :reject_addresses
-
-  has_many :bookings, dependent: :destroy
-  has_many :shows, dependent: :destroy
-  has_many :arts, dependent: :destroy
-  has_many :ratings, through: :shows, source: :ratings
-  has_many :show_bookings, through: :shows, source: :bookings
-
-  has_many :reviews, through: :show_bookings
-  has_many :payment_methods
-  accepts_nested_attributes_for :payment_methods, reject_if: :reject_payment_methods
-  has_many :showcases, dependent: :destroy
-  accepts_nested_attributes_for :showcases
-
-  validates :firstname, :surname, presence: true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
-  # validates :phone_number, format: { with: /\d{10}/, message: "bad format" }
-
-  before_save :deactivate_shows
-  before_save :check_picture_exists
 
   enum gender: { male: 0, female: 1, other: 2 }
   enum role: { admin: 0, user: 1, performer: 2 }
 
+  has_one :picture, as: :imageable
+  has_many :addresses
+  has_many :bookings, dependent: :destroy
+  has_many :shows, dependent: :destroy
+  has_many :arts, dependent: :destroy
+  has_many :ratings, through: :shows, source: :ratings
+  has_many :show_bookings, through: :shows, source: :booking
+  has_many :reviews, through: :show_bookings
+  has_many :payment_methods
+  has_many :showcases, dependent: :destroy
+  has_many :languages_user
+  has_many :languages, through: :languages_user
+
+  accepts_nested_attributes_for :picture, reject_if: proc { |attrs|
+    attrs['src'].blank? || attrs['src'].match(/^http:/)
+  }
+  accepts_nested_attributes_for :addresses, reject_if: :reject_addresses
+  accepts_nested_attributes_for :payment_methods,
+                                reject_if: :reject_payment_methods
+  accepts_nested_attributes_for :showcases
+
+  validates :firstname, :surname, presence: true
+  validates :email, format: {
+    with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
+  }
+
+  before_save :deactivate_shows
+  before_save :check_picture_exists
+
   scope :performers, -> { where role: roles[:performer] }
 
-  def picture= file
-    self.build_picture(image: file)
+  def picture=(file)
+    build_picture(image: file)
   end
 
   def sent_reviews
-    self.bookings.includes(:review).inject([]) {|reviews, b| reviews << b.review  if b.review }
+    bookings.includes(:review).inject([]) do |reviews, b|
+      reviews << b.review if b.review
+    end
   end
 
   def full_name
@@ -48,15 +51,19 @@ class User < ActiveRecord::Base
   end
 
   def current_bookings
-    self.bookings.where('date >= ? and (status = 1 or status = 2)', Time.now).order('date desc')
+    bookings
+      .where('date >= ? and (status = 1 or status = 2)', Time.zone.now)
+      .order('date desc')
   end
 
   def old_bookings
-    self.bookings.where('date < ? and (status = 1)', Time.now).order('date desc')
+    bookings.where('date < ? and (status = 1)', Time.zone.now)
+            .order('date desc')
   end
 
   def cancelled_bookings
-    self.bookings.where('(status = 3 or status = 4)', Time.now).order('date desc')
+    bookings.where('(status = 3 or status = 4)', Time.zone.now)
+            .order('date desc')
   end
 
   def rating
@@ -70,19 +77,20 @@ class User < ActiveRecord::Base
   private
 
   def check_picture_exists
-    self.build_picture  if self.picture.nil?
+    build_picture if picture.nil?
   end
 
-  def reject_addresses attrs
-    attrs['country'].blank? && attrs['postcode'].blank? && attrs['state'].blank? && attrs['city'].blank? && attrs['street'].blank?
+  def reject_addresses(attrs)
+    attrs['country'].blank? && attrs['postcode'].blank? &&
+      attrs['state'].blank? && attrs['city'].blank? && attrs['street'].blank?
   end
 
-  def reject_payment_methods attrs
+  def reject_payment_methods(attrs)
     attrs['stripe_token'].blank? && attrs['last4'].blank?
   end
 
   def deactivate_shows
-    self.shows.update_all(active: false)  unless self.phone_number.present?
+    shows.update_all(active: false) unless phone_number.present?
   end
 end
 
