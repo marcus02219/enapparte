@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :shows, dependent: :destroy
   belongs_to :art
   has_many :ratings, through: :shows, source: :ratings
-  has_many :show_bookings, through: :shows, source: :booking
+  has_many :show_bookings, through: :shows, source: :bookings
   has_many :reviews, through: :show_bookings
   has_many :payment_methods
   has_many :showcases, dependent: :destroy
