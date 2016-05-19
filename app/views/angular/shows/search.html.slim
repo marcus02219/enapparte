@@ -1,23 +1,26 @@
-.container[ng-controller="ShowSearchController"]
-  .results
+.container.va-container-h[ng-controller="ShowSearchController"]
+  .filters
     .row
-      .col-xs-12
-        .filters
-          .row
-            .col-sm-4
-              .input-group.input-group--filters.pull-right
-                input.form-control.dt-calendar type="text" placeholder="Start date" /
-                span.input-group-addon.btn-search-time
-            .col-sm-4
-              .input-group.input-group--filters
-                input.form-control.dt-calendar type="text" placeholder="End date" /
-                span.input-group-addon.btn-search-time
-            .col-sm-4
-              ui-select.select-search-home[ng-model="priceRadius.selected", theme='bootstrap']
-                ui-select-match[placeholder='Price radius'] {{$select.selected}}
-                ui-select-choices[repeat="price in priceRadii"]
-                  div[ng-bind-html="price"]
+      .col-sm-4.col-xs-12
+        .form-group.clearfix
+          .input-group.input-group--filters.pull-right
+            input.form-control.dt-calendar type="text" placeholder="Start date" /
+            span.input-group-addon.btn-search-time
+              span.glyphicon.glyphicon-calendar
+      .col-sm-4.col-xs-12
+        .form-group
+          .input-group.input-group--filters
+            input.form-control.dt-calendar type="text" placeholder="End date" /
+            span.input-group-addon.btn-search-time
+              span.glyphicon.glyphicon-calendar
+      .col-sm-4.col-xs-12
+        .form-group
+          ui-select.select-search-home[ng-model="priceRadius.selected", theme='bootstrap']
+            ui-select-match[placeholder='Price radius'] {{$select.selected}}
+            ui-select-choices[repeat="price in priceRadii"]
+              div[ng-bind-html="price"]
 
+  .results
     .row
       /! .col-md-3
         .price
@@ -34,7 +37,7 @@
           .col-md-12
             dir-pagination-controls.pull-right
         .row
-          .col-md-4[dir-paginate="show in shows | itemsPerPage:21"]
+          .col-md-4.col-sm-6.col-xs-12[dir-paginate="show in shows | itemsPerPage:21"]
             a.show-search.thumbnail[href="" ng-click="modeDetails(show)"]
               img[ng-src="{{ show.coverPicture.src }}" width="300" height="300"]
               .caption.text-center
