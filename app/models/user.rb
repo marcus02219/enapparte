@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :showcases, dependent: :destroy
   has_many :languages_user
   has_many :languages, through: :languages_user
+  has_many :availabilities, class_name: 'UserAvailability', dependent: :destroy
 
   accepts_nested_attributes_for :picture, reject_if: proc { |attrs|
     attrs['src'].blank? || attrs['src'].match(/^http:/)
@@ -25,8 +26,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :payment_methods,
                                 reject_if: :reject_payment_methods
   accepts_nested_attributes_for :showcases
-
-  has_many :availabilities, class_name: 'UserAvailability', dependent: :destroy
+  accepts_nested_attributes_for :availabilities
 
   validates :firstname, :surname, presence: true
   validates :email, format: {
