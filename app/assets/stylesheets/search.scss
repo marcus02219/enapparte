@@ -1,4 +1,11 @@
+.container.va-container-h {
+  width: 100%;
+  padding: 0;
+}
+
 .results {
+  padding: 0 130px;
+
   .show-search {
     position: relative;
     padding: 14px;
@@ -64,13 +71,11 @@
 
       h4 {
         font-weight: 800;
-        font-size: 26px;
         color: #002b3f;
       }
 
       .description {
         padding-top: 14px;
-        font-size: 18px;
       }
 
       .rating {
@@ -86,52 +91,44 @@
   background: #f2f2f2 url("/assets/search-banner.jpg") no-repeat center top;
 
   .input-group--filters {
-    max-width: 300px;
     margin: 0 auto;
+
+    @media (min-width: 768px) {
+      max-width: 300px;
+    }
   }
 
   .dt-calendar {
-    border-color: #b1b1b1;
     border-right: none;
     box-shadow: none;
     color: #6c6c6c;
     font-family: FuturaLT !important;
-    font-size: 18px;
   }
 
   .btn-search-time {
-    padding: 0 22px;
-    background: #ffffff url("/assets/dt-calendar.png") no-repeat center center;
-    border-color: #b1b1b1;
+    background-color: #fff;
     border-left: 0;
     cursor: pointer;
   }
 
-  .select-search-home {
-    max-width: 300px;
-
-    .ui-select-search {
+  @media (min-width: 768px) {
+    .select-search-home,
+    .ui-select-search,
+    .ui-select-match .ui-select-toggle {
       max-width: 300px;
-      font-size: 18px;
+    }
+  }
+
+  .select-search-home {
+    .ui-select-search {
       color: #6c6c6c;
     }
 
     .ui-select-match {
       .ui-select-toggle {
-        max-width: 300px;
-        padding: 6px 12px;
-        border-color: #b1b1b1;
-        font-size: 18px;
-
         .text-muted {
           color: #6c6c6c;
         }
-      }
-    }
-
-    .ui-select-choices-row {
-      .ui-select-choices-row-inner {
-        font-size: 18px;
       }
     }
   }

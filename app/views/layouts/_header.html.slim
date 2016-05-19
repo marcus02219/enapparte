@@ -1,6 +1,6 @@
 #header.navbar.navbar-static-top[role="banner"]
   div[style="padding:0 30px"]
-    .col-sm-6.col-xs-12
+    .col-md-4.col-sm-3.col-xs-12
       .navbar-header
         button.navbar-toggle[type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"]
           span.sr-only
@@ -11,17 +11,20 @@
         a#the_logo.navbar_brand[ui-sref="home"]
           = image_tag( 'logo.png', class: 'logo' )
 
+        .clearfix.visible-sm-block
+
         ui-select.select-search-home[ng-model="art.selected", theme='bootstrap']
           ui-select-match[placeholder='Talent recherché'] {{$select.selected.title}}
           ui-select-choices[repeat="art as art in arts"]
             div[ng-bind-html="art.title"]
 
-    nav.collapse.navbar-collapse.bs-navbar-collapse[role="navigation"]
-      ul.nav.navbar-nav.navbar-right.list-menu-nav
-        li[ng-if="isAuthenticated() && isPerformer()"]
-          a.btn.btn-performer[ui-sref="shows.new"]
-            | Postez votre performance
-        li
-          a.btn.btn-performer.btn-leconcept[href=""]
-            | Le Concept
-        = render 'layouts/nav_links_for_auth'
+    .col-md-8.col-sm-9
+      nav.collapse.navbar-collapse.bs-navbar-collapse[role="navigation"]
+        ul.nav.navbar-nav.navbar-right.list-menu-nav
+          li[ng-if="isAuthenticated() && isPerformer()"]
+            a.btn.btn-performer[ui-sref="shows.new"]
+              | Postez votre performance
+          li
+            a.btn.btn-performer.btn-leconcept[href=""]
+              | Le Concept
+          = render 'layouts/nav_links_for_auth'

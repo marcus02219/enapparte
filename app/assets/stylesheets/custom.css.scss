@@ -73,6 +73,10 @@ body {
     -moz-border-radius: 100px;
     -webkit-border-radius: 100px;
     border-radius: 100px;
+
+    @media (max-width: 767px) {
+      margin-left: 0;
+    }
   }
 
   margin-top: 1px;
@@ -80,6 +84,10 @@ body {
   margin-bottom: -40px;
   min-width: 115px;
   float: left;
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    float: none;
+  }
 }
 
 #header {
@@ -178,43 +186,37 @@ body {
     background: url("../img/logo.png") no-repeat center left;
   }
 
+  @media (min-width: 768px) {
+    .select-search-home,
+    .ui-select-search,
+    .ui-select-match .ui-select-toggle {
+      max-width: 300px;
+    }
+  }
+
   .select-search-home {
     float: left;
-    width: calc(100% - 140px);
-    max-width: 300px;
+    width: 100%;
     margin-top: 30px;
 
+    @media (min-width: 992px) {
+      width: calc(100% - 140px);
+    }
+
+    @media (max-width: 991px) {
+      margin: 10px 0 15px;
+    }
+
     .ui-select-search {
-      width: 100%;
-      max-width: 300px;
-      font-size: 18px;
       color: #6c6c6c;
     }
 
     .ui-select-match {
       .ui-select-toggle {
-        width: 100%;
-        max-width: 300px;
-        padding: 6px 12px;
-        border-color: #b1b1b1;
-        font-size: 18px;
-
         .text-muted {
           color: #6c6c6c;
         }
       }
-    }
-
-    .ui-select-choices-row {
-      .ui-select-choices-row-inner {
-        font-size: 18px;
-      }
-    }
-  }
-
-  @media (max-width: 767px) {
-    .select-search-home {
-      margin-top: 17px;
     }
   }
 
@@ -9271,9 +9273,10 @@ body {
     -webkit-border-radius: 100px;
     border-radius: 100px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       height: 62px;
       width: 62px;
+      margin-left: 0;
     }
   }
 
@@ -9281,7 +9284,10 @@ body {
   padding-top: 1px;
   margin-bottom: -40px;
   min-width: 115px;
-  float: left;
+
+  @media (max-width: 767px) and (min-width: 992px) {
+    float: left;
+  }
 }
 
 #header {
@@ -9386,6 +9392,10 @@ body {
     padding-top: 1px;
     margin-bottom: -40px;
     min-width: 115px;
+
+    @media (max-width: 767px) {
+      margin-top: 10px;
+    }
   }
 
   .affix #the_logo img {
