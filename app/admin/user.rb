@@ -2,7 +2,8 @@ ActiveAdmin.register User do
   permit_params :email, :password, :firstname, :surname, :gender, :bio,
                 :phone_number, :moving, :dob, :activity, :picture, :role, :art_id,
                 address_ids: [], booking_ids: [], show_ids: [], rating_ids: [],
-                language_ids: [], showcases_attributes: [:id, :kind, :url]
+                language_ids: [], showcases_attributes: [:id, :kind, :url],
+                availabilities_attributes: [:available_at]
   index do
     selectable_column
     id_column
@@ -41,6 +42,9 @@ ActiveAdmin.register User do
       f.has_many :showcases, heading: false, allow_destroy: true do |s|
         s.input :kind
         s.input :url
+      end
+      f.has_many :availabilities, heading: false, allow_destroy: true do |s|
+        s.input :available_at
       end
       f.input :art
     end
