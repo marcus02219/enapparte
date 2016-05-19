@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :art do
+    user
     title "MyString"
     description "MyText"
   end
