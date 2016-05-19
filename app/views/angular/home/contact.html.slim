@@ -16,11 +16,12 @@ form.form-horizontal[name="contactForm" novalidate]
       a.text-center[ui-sref="home.signup" ng-if="!isAuthenticated()"]
         | Je m’inscris
 
-    div[ng-if="!isAuthenticated()"]
-      input-string[label="Nom" model="contact.name" required focus]
-      input-string[label="Ville" model="contact.city" required]
-      input-email[label="Mail" model="contact.mail" required]
-      input-string[label="Téléphone (facultatif)" model="contact.phone" required]
+
+    #div[ng-if="!isAuthenticated()"]
+    input-string[label="Nom" model="contact.name" required focus]
+    input-string[label="Ville" model="contact.city" required]
+    input-email[label="Mail" model="contact.mail" required]
+    input-string[label="Téléphone (facultatif)" model="contact.phone" required]
 
     input-text[label="Message" model="contact.message" required]
 

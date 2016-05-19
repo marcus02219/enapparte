@@ -11,11 +11,16 @@ class ContactController extends @NGController
   ]
 
   ok: ()=>
-    console.log(@scope.contact)
-    $http(
+    console.log @scope.contact
+    user = @rootScope.currentUser
+    if user
+      data = {email: user.email, message: @scope.contact.message}
+    else
+      data = {email: @scope.contact.email, message: @scope.contact.message}
+    @http(
       method: 'POST'
       url: '/contact'
-      data: @scope.contact).then ((response) ->
+      data: {contact:@scope.contact}).then ((response) ->
       console.log response
       @Flash.showSuccess @scope, 'Contact mail is sent successfully.'
       return
