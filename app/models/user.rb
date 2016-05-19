@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   validates :email, format: {
     with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
   }
+  validate :user_is_performer, if: 'art.present?'
 
   before_save :deactivate_shows
   before_save :check_picture_exists
@@ -91,6 +92,10 @@ class User < ActiveRecord::Base
 
   def deactivate_shows
     shows.update_all(active: false) unless phone_number.present?
+  end
+
+  def user_is_performer
+    errors.add(:art, 'A user should be performer') unless performer?
   end
 end
 
