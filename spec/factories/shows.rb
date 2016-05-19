@@ -37,7 +37,6 @@ end
 #  published_at     :datetime
 #  cover_picture_id :integer
 #  user_id          :integer
-#  art_id           :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  rating           :float
@@ -45,7 +44,6 @@ end
 #
 # Indexes
 #
-#  index_shows_on_art_id            (art_id)
 #  index_shows_on_cover_picture_id  (cover_picture_id)
 #  index_shows_on_user_id           (user_id)
 #
