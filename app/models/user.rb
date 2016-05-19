@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :addresses
   has_many :bookings, dependent: :destroy
   has_many :shows, dependent: :destroy
-  has_many :arts, dependent: :destroy
+  belongs_to :art
   has_many :ratings, through: :shows, source: :ratings
   has_many :show_bookings, through: :shows, source: :booking
   has_many :reviews, through: :show_bookings
@@ -124,6 +124,7 @@ end
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
+#  art_id                 :integer
 #
 # Indexes
 #
