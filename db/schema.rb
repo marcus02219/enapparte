@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20160519064950) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "user_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -162,6 +161,7 @@ ActiveRecord::Schema.define(version: 20160519064950) do
     t.datetime "updated_at",       null: false
     t.float    "rating"
     t.boolean  "price_person"
+    t.datetime "date_at"
   end
 
   add_index "shows", ["art_id"], name: "index_shows_on_art_id", using: :btree
