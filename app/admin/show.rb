@@ -1,5 +1,5 @@
 ActiveAdmin.register Show do
-  permit_params :title, :length, :surface, :description, :price, :max_spectators, :active, :user_id, :art_id,
+  permit_params :title, :length, :surface, :description, :price, :max_spectators, :active, :user_id,
     :published_at_date, :published_at_time_hour, :published_at_time_minute, :starts_at,
     :ends_at, :booking_ids => [], :pictures => []
 
@@ -16,7 +16,6 @@ ActiveAdmin.register Show do
       f.input :active
       f.input :published_at, as: :just_datetime_picker
       f.input :user
-      f.input :art
       f.input :bookings
       f.input :pictures, as: :file, input_html: { multiple: true }
       li id: 'pictures' do
@@ -39,9 +38,6 @@ ActiveAdmin.register Show do
       row :active
       row :user do
         link_to show.user.full_name, admin_user_path(show.user) if show.user
-      end
-      row :art do
-        link_to show.art.title, admin_art_path(show.art) if show.art
       end
       table_for show.languages.order('title ASC') do
         column :languages do |language|

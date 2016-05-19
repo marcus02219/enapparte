@@ -1,5 +1,5 @@
 class Api::V1::ShowsController < Api::BaseController
-  before_action :authenticate_user!, except: [:search, :arts, :show]
+  before_action :authenticate_user!, except: [:search, :show]
 
   def create
     @show = current_user.shows.create(show_params)
@@ -31,8 +31,7 @@ class Api::V1::ShowsController < Api::BaseController
   def search
     @shows = ShowSearchService.new(query: params[:q],
                                    price_min: params[:price0],
-                                   price_max: params[:price1],
-                                   arts: params[:arts])
+                                   price_max: params[:price1])
                               .results
     respond_with :api, :v1, @shows
   end
@@ -43,15 +42,9 @@ class Api::V1::ShowsController < Api::BaseController
     respond_with :api, :v1, @show
   end
 
-  def arts
-    art_ids = Show.where(active: true).group('art_id').select('art_id').map(&:art_id)
-    @arts = art_ids.map {|id| Art.find_by_id(id) }.select {|art| art.present? }
-    respond_with :api, :v1, @arts
-  end
-
   private
 
   def show_params
-    params.require(:show).permit(:art_id, :max_spectators, :length, :title, :description, :price, :price_person, :cover_picture_id, :starts_at, :ends_at, :date_at, pictures_attributes: [ :src, :_destroy, :id, :selected ])
+    params.require(:show).permit(:max_spectators, :length, :title, :description, :price, :price_person, :cover_picture_id, :starts_at, :ends_at, :date_at, pictures_attributes: [ :src, :_destroy, :id, :selected ])
   end
 end

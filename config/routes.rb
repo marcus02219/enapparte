@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, :defaults => { :format => 'json' }
+      resources :users, :defaults => { :format => 'json' } do
+        get 'search', on: :collection
+      end
       resources :shows, :defaults => { :format => 'json' } do
         post 'toggle_active', on: :member
         get 'arts', on: :collection

@@ -1,28 +1,31 @@
 ActiveAdmin.register Art do
-  permit_params :title, :description, :show_ids => []
-  form do |f|
-    f.inputs "Art" do
-      f.input :title
-      f.input :description
-      f.input :shows
-    end
-    f.actions
-  end
+  permit_params :user_id, :title, :description
+
   index do
     selectable_column
     id_column
+    column :user
     column :title
     column :created_at
     column :updated_at
     actions
   end
+
+  form do |f|
+    f.inputs 'Art' do
+      f.semantic_errors *f.object.errors.keys
+      f.input :user, as: :select, collection: User.performers
+      f.input :title
+      f.input :description
+    end
+    f.actions
+  end
+
   show do |art|
     attributes_table do
+      row :user
       row :title
       row :description
-      row :shows do
-        art.shows.map{|show| link_to show.title, admin_show_path(show)}.join(', ').html_safe
-      end
       row :created_at
       row :updated_at
     end

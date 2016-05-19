@@ -6,7 +6,7 @@ describe Api::V1::ArtsController do
   before(:each) { sign_in user }
 
   context 'GET index' do
-    let(:arts) { create_list :art, 2 }
+    let(:arts) { create_list :art, 2, user: user }
     context 'when get all arts' do
       before(:each) { get :index, format: :json }
       it { expect(assigns(:arts)).to match_array(Art.all) }

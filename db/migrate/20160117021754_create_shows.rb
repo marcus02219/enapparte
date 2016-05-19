@@ -14,7 +14,6 @@ class CreateShows < ActiveRecord::Migration
       t.integer :cover_picture_id
 
       t.belongs_to :user, index: true
-      t.belongs_to :art, index: true
       t.belongs_to :cover_picture, index: true
 
       t.timestamps null: false

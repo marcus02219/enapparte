@@ -1,6 +1,17 @@
 module Api
   module V1
     class UsersController < Api::BaseController
+      before_action :authenticate_user!, except: [:search]
+
+      def search
+        @users = UserSearchService.new(role: :performer,
+                                       start_at: params[:start_at],
+                                       stop_at: params[:stop_at],
+                                       art_id: params[:art_id])
+                                  .results
+        respond_with :api, :v1, @users
+      end
+
       def show
         @user = current_user
         respond_with :api, :v1, @user

@@ -1,8 +1,7 @@
 class Show < ActiveRecord::Base
 
   COMMISSION = 1.1
-
-  belongs_to :art
+  
   belongs_to :cover_picture, class_name: 'Picture'
 
   belongs_to :user
@@ -14,7 +13,7 @@ class Show < ActiveRecord::Base
   has_many :ratings, through: :reviews
 
   just_define_datetime_picker :published_at
-  validates :art_id, :max_spectators, :length, :title, :description, :price, presence: true
+  validates :max_spectators, :length, :title, :description, :price, presence: true
 
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
@@ -85,16 +84,13 @@ end
 #  published_at     :datetime
 #  cover_picture_id :integer
 #  user_id          :integer
-#  art_id           :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  rating           :float
 #  price_person     :boolean
-#  date_at          :datetime
 #
 # Indexes
 #
-#  index_shows_on_art_id            (art_id)
 #  index_shows_on_cover_picture_id  (cover_picture_id)
 #  index_shows_on_user_id           (user_id)
 #
