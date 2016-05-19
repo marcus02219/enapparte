@@ -1,5 +1,5 @@
 class Art < ActiveRecord::Base
-  belongs_to :user
+  has_many :users
 
   validates :title, presence: true
   validates :user, presence: true
@@ -19,5 +19,4 @@ end
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :integer
 #
