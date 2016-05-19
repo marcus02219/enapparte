@@ -43,19 +43,6 @@ describe Api::V1::ShowsController do
         it { expect(assigns(:shows).map(&:id)).to match_array(other_shows.map(&:id)) }
       end
 
-      context 'when art checked' do
-        context do
-          let(:art) { shows.first.art }
-          before(:each) { get :search, arts: [art.id].to_json, format: :json }
-          it { expect(assigns(:shows).map(&:id)).to match_array(shows.select {|s| s.art.id == art.id }.map(&:id)) }
-        end
-
-        context 'when arts is empty' do
-          before(:each) { get :search, arts: [].to_json, format: :json }
-          it { expect(assigns(:shows)).to match_array(shows) }
-        end
-      end
-
       after(:each) { expect(response).to be_success }
     end
   end
@@ -65,7 +52,7 @@ describe Api::V1::ShowsController do
     before(:each) { sign_in user }
 
     context "POST create" do
-      let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
+      let(:show_attributes) { attributes_for :show, language_id: Language.first.id }
       before(:each) { post :create, show: show_attributes, format: :json }
       it { expect(response).to be_success }
       it { expect(assigns(:show)).to be_persisted }
@@ -75,7 +62,7 @@ describe Api::V1::ShowsController do
     context "PUT update" do
       context 'when user is owner' do
         let(:show) { create :show, user: user }
-        let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
+        let(:show_attributes) { attributes_for :show, language_id: Language.first.id }
         before(:each) { put :update, id: show.id, show: show_attributes, format: :json }
         it { expect(response).to be_success }
         it { expect(assigns(:show)).to be_persisted }
@@ -84,7 +71,7 @@ describe Api::V1::ShowsController do
 
       context 'when user is not owner' do
         let(:show) { create :show }
-        let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
+        let(:show_attributes) { attributes_for :show, language_id: Language.first.id }
         it "raises exception" do
           expect {
             put :update, id: show.id, show: show_attributes, format: :json
@@ -113,7 +100,7 @@ describe Api::V1::ShowsController do
 
       context 'when user is not owner' do
         let(:show) { create :show }
-        let(:show_attributes) { attributes_for :show, art_id: Art.first.id, language_id: Language.first.id }
+        let(:show_attributes) { attributes_for :show, language_id: Language.first.id }
         it "raises exception" do
           expect {
             delete :destroy, id: show.id, format: :json
@@ -147,15 +134,6 @@ describe Api::V1::ShowsController do
         it { expect(assigns(:show)).to_not be_active }
         it { expect(response.body).to include(I18n.t('activerecord.errors.messages.phone_number_is_empty')) }
       end
-    end
-
-    context 'GET arts' do
-      let!(:arts) { create_list :art, 3 }
-      let!(:show) { create :show, user: user, art: Art.first, active: true }
-      let!(:show2) { create :show, user: user, art: Art.last, active: true }
-      let!(:show3) { create :show, user: user, art_id: 1234, active: true }
-      before(:each) { get :arts, format: :json }
-      it { expect(assigns(:arts)).to match_array([Art.first, Art.last]) }
     end
   end
 
