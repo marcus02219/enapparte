@@ -12,7 +12,7 @@ describe ShowSearchService, type: :service do
   end
 
   describe '#results' do
-    subject { described_class.new(params).results }
+    subject { Show.import; sleep(1); described_class.new(params).results }
 
     describe 'filter by query' do
       context 'query exists' do

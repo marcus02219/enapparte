@@ -1,10 +1,12 @@
 ActiveAdmin.register Art do
-  permit_params :user_id, :title, :description
+  permit_params :title, :description
 
   index do
     selectable_column
     id_column
-    column :user
+    column :art do |art|
+      raw art.users.map { |user| link_to(user.full_name, admin_user_path(user)) }.join(', ')
+    end
     column :title
     column :created_at
     column :updated_at
@@ -14,7 +16,6 @@ ActiveAdmin.register Art do
   form do |f|
     f.inputs 'Art' do
       f.semantic_errors *f.object.errors.keys
-      f.input :user, as: :select, collection: User.performers
       f.input :title
       f.input :description
     end
@@ -23,7 +24,11 @@ ActiveAdmin.register Art do
 
   show do |art|
     attributes_table do
-      row :user
+      table_for art.users do
+        column :users do |user|
+          link_to user.full_name, admin_user_path(user)
+        end
+      end
       row :title
       row :description
       row :created_at

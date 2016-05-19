@@ -1,8 +1,9 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :firstname, :surname, :gender, :bio,
-                :phone_number, :moving, :dob, :activity, :picture, :role,
+                :phone_number, :moving, :dob, :activity, :picture, :role, :art_id,
                 address_ids: [], booking_ids: [], show_ids: [], rating_ids: [],
-                language_ids: [], showcases_attributes: [:id, :kind, :url]
+                language_ids: [], showcases_attributes: [:id, :kind, :url],
+                availabilities_attributes: [:available_at]
   index do
     selectable_column
     id_column
@@ -14,6 +15,11 @@ ActiveAdmin.register User do
     column :updated_at
     actions
   end
+
+  filter :email
+  filter :role
+  filter :full_name
+
   form do |f|
     f.inputs 'User' do
       f.input :email
@@ -37,6 +43,10 @@ ActiveAdmin.register User do
         s.input :kind
         s.input :url
       end
+      f.has_many :availabilities, heading: false, allow_destroy: true do |s|
+        s.input :available_at
+      end
+      f.input :art
     end
     f.actions
   end
@@ -79,6 +89,9 @@ ActiveAdmin.register User do
           raw(showcase.kind + ': ' +
                   link_to(showcase.url, showcase.url, target: '_blank'))
         end
+      end
+      row :art do
+        link_to user.art.title, admin_art_path(user.art)
       end
 
       row :created_at

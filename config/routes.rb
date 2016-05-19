@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       end
       resources :arts
       resources :showcases
+      resources :user_availabilities, path: :availabilities, only: [:index, :show, :create, :destroy]
     end
   end
 

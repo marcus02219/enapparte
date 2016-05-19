@@ -11,12 +11,13 @@ class User < ActiveRecord::Base
   has_many :shows, dependent: :destroy
   belongs_to :art
   has_many :ratings, through: :shows, source: :ratings
-  has_many :show_bookings, through: :shows, source: :booking
+  has_many :show_bookings, through: :shows, source: :bookings
   has_many :reviews, through: :show_bookings
   has_many :payment_methods
   has_many :showcases, dependent: :destroy
   has_many :languages_user
   has_many :languages, through: :languages_user
+  has_many :availabilities, class_name: 'UserAvailability', dependent: :destroy
 
   accepts_nested_attributes_for :picture, reject_if: proc { |attrs|
     attrs['src'].blank? || attrs['src'].match(/^http:/)
@@ -25,11 +26,13 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :payment_methods,
                                 reject_if: :reject_payment_methods
   accepts_nested_attributes_for :showcases
+  accepts_nested_attributes_for :availabilities
 
   validates :firstname, :surname, presence: true
   validates :email, format: {
     with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
   }
+  validate :user_is_performer, if: 'art.present?'
 
   before_save :deactivate_shows
   before_save :check_picture_exists
@@ -91,6 +94,10 @@ class User < ActiveRecord::Base
 
   def deactivate_shows
     shows.update_all(active: false) unless phone_number.present?
+  end
+
+  def user_is_performer
+    errors.add(:art, 'A user should be performer') unless performer?
   end
 end
 
