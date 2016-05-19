@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :art do
-    user
     title "MyString"
     description "MyText"
   end
@@ -16,5 +15,4 @@ end
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :integer
 #
