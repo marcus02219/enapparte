@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   def contact
     contact = contact_params
     UserMailer.contact_mail(contact).deliver_now
+    render json: { msg: "success" }
   end
 
   private

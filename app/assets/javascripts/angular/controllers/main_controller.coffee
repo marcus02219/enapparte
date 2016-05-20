@@ -30,4 +30,3 @@ angular
         templateUrl: 'devise/sign_up.html'
         controller: 'SignUpController'
   ]
-

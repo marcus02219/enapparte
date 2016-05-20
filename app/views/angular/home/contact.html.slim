@@ -9,18 +9,22 @@ form.form-horizontal[name="contactForm" novalidate]
       | Vous avez une demande particulière ? Vous souhaitez nous poser des questions ou nous soumettre une idée ?
     p.main-description-header[style="text-align:justify;margin-bottom:0px;"]
       | N'hésitez pas à nous contacter, nous vous répondrons dans les meilleurs délais.Merci, et à très bientôt !
-    p.main-description-header[style="text-align:justify;margin-bottom:0px;"]
-      a.text-center[ui-sref="home.signin" ng-if="!isAuthenticated()"]
-        | J'ai un compte : me connecter
-      br
-      a.text-center[ui-sref="home.signup" ng-if="!isAuthenticated()"]
-        | Je m’inscris
+    div.clearfix
+    br
+    div.row
+      div.col-sm-5.col-sm-offset-2
+        a.btn.btn-primary.text-center[ui-sref="home.signin" ng-if="!isAuthenticated()"]
+          | J'ai un compte : me connecter
+      div.col-sm-5
+        a.btn.btn-primary.text-center[ui-sref="home.signup" ng-if="!isAuthenticated()"]
+          | Je m’inscris
 
+    br
     div[ng-if="!isAuthenticated()"]
-      input-string[label="Nom" model="contact.name" required focus]
-      input-string[label="Ville" model="contact.city" required]
-      input-email[label="Mail" model="contact.mail" required]
-      input-string[label="Téléphone (facultatif)" model="contact.phone" required]
+    input-string[label="Nom" model="contact.name" required focus]
+    input-string[label="Ville" model="contact.city" required]
+    input-email[label="Mail" model="contact.mail" required]
+    input-string[label="Téléphone (facultatif)" model="contact.phone"]
 
     input-text[label="Message" model="contact.message" required]
 
