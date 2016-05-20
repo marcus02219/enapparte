@@ -52,7 +52,7 @@
         .addClass("affix")
         .removeData("bs.affix")
     $timeout (->
-      if !($state.current.name in ['home', 'home.signin', 'home.signup', 'shows.search', 'contact']) && !Auth.isAuthenticated()
+      if !($state.current.name in ['home', 'home.signin', 'home.signup', 'shows.search', 'home.contact']) && !Auth.isAuthenticated()
         $state.go 'home'
         Flash.showError $rootScope, "You need to sign in or sign up before continuing."
     ), 500
