@@ -4,7 +4,7 @@ module Api
       before_action :authenticate_user!
 
       resource_description do
-        short 'Uaser Availabilities'
+        short 'User Availabilities'
       end
 
       api! 'List of availabilities'
