@@ -50,6 +50,7 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
   show do |user|
     attributes_table do
       row :email
@@ -91,7 +92,7 @@ ActiveAdmin.register User do
         end
       end
       row :art do
-        link_to user.art.title, admin_art_path(user.art)
+        link_to user.art.title, admin_art_path(user.art) if user.art
       end
 
       row :created_at
