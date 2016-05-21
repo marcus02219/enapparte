@@ -4,13 +4,13 @@
     .col-sm-4
       table.explication-table
         tr
-          td.bg-green Mon
-          td.bg-green Tue
-          td.bg-green Web
-          td.bg-green Thu
+          td.bg-green#td-mon[ng-click="weekday_Click('MON')"] Mon 
+          td.bg-green#td-tue[ng-click="weekday_Click('TUE')"] Tue 
+          td.bg-green#td-wed[ng-click="weekday_Click('WED')"] Web 
+          td.bg-green#td-thu[ng-click="weekday_Click('THU')"] Thu 
           td Fri
           td Sat
-          td.bg-green Sun
+          td Sun 
     .col-sm-3
       .legend-group.legend-available
         .bg-green
