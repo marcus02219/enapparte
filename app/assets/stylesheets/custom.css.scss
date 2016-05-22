@@ -9339,8 +9339,9 @@ body {
       margin-left: 15px;
 
       &:hover {
-        border-color: #fff;
-        color: #fff;
++       background-color: #002b3f !important;
+ +      color: #fff481 !important;
+ +      border-color: #002b3f;
       }
     }
   }
