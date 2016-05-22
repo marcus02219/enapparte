@@ -18504,6 +18504,12 @@ a.btn-xl.btn.btn-performer.main-section {
   font-size: 15px;
   border-radius: 0;
   font-family: FuturaLT !important;
+
+  &:hover {
+    background-color: #002b3f !important;
+    color: #fff481 !important;
+    border-color: #002b3f;
+  }
 }
 
 @media (max-width: 768px) {
