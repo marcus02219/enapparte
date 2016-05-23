@@ -7,23 +7,24 @@ angular
         $timeout ()->
           scope.$on 'weekday_click' , ()->
             date = new Date($elm.fullCalendar('getDate'))
+            year = date.getFullYear()
             month = date.getMonth()
+            console.log("weekday_click:" + month)
             src = []
             i = 0  
-            $elm.fullCalendar 'clientEvents', (event)->  
-              dateE = new Date(event.start)
-              dateE.setDate(dateE.getDate() + 1)
-              if dateE.getDay() == scope.weekday
-                src[i++] = event
-                scope.id = event.id
-                scope.delete_available_date()      
-            
+            existing_days = []
+            $elm.fullCalendar 'clientEvents', (event)->
+              dateE = new Date(event.available_at)
+              if dateE.getFullYear() == year && dateE.getMonth() == month+1 && dateE.getDay() == scope.weekday
+                existing_days.push(dateE.getDate())
             i = 1
             while i < 32
               date = new Date($elm.fullCalendar('getDate'))
-              push_date = new Date(2016, date.getMonth(), i)
-              if push_date.getDay() == scope.weekday
-                push_date.setDate(push_date.getDate())
+              if scope.first_available_month == 0
+                push_date = new Date(date.getFullYear(), date.getMonth(), i)
+              else
+                push_date = new Date(date.getFullYear(), date.getMonth() + 1, i)
+              if push_date.getDay() == scope.weekday && i not in existing_days
                 date = push_date
                 date = date.toDateString()
                 scope.available_at = date
@@ -66,5 +67,6 @@ angular
         , 1000
     }
   ]
+
 
 
